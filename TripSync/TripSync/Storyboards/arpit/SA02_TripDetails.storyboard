@@ -13,7 +13,7 @@
         <!--Your Trips-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="CA02_TripDetailsVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,9 +436,21 @@
                         <barButtonItem key="rightBarButtonItem" image="ellipsis.circle" catalog="system" id="0Ib-xd-k71">
                             <menu key="menu" id="Kzw-8L-fRh">
                                 <children>
-                                    <command title="Share Invite" image="square.and.arrow.up" id="gYm-pL-0xS"/>
-                                    <command title="Show QR" image="qrcode" id="QbZ-Xt-7tY"/>
-                                    <command title="Edit Trip" image="pencil" id="hNf-9d-P2k"/>
+                                    <command title="Share Invite" image="square.and.arrow.up" catalog="system" id="gYm-pL-0xS">
+                                        <connections>
+                                            <action selector="shareInviteTapped:" destination="Y6W-OH-hqX" id="share-action"/>
+                                        </connections>
+                                    </command>
+                                    <command title="Show QR" image="qrcode" catalog="system" id="QbZ-Xt-7tY">
+                                        <connections>
+                                            <action selector="showQRTapped:" destination="Y6W-OH-hqX" id="qr-action"/>
+                                        </connections>
+                                    </command>
+                                    <command title="Edit Trip" image="pencil" catalog="system" id="hNf-9d-P2k">
+                                        <connections>
+                                            <action selector="editTripTapped:" destination="Y6W-OH-hqX" id="edit-action"/>
+                                        </connections>
+                                    </command>
                                 </children>
                             </menu>
                         </barButtonItem>
@@ -457,11 +469,11 @@
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="message.fill" catalog="system" width="128" height="104"/>
-        <image name="pencil" width="128" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
-        <image name="qrcode" width="128" height="128"/>
-        <image name="square.and.arrow.up" width="128" height="128"/>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <namedColor name="CardColor">
             <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
