@@ -255,7 +255,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Trips" id="Xca-Cs-jF7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2gT-RP-4xx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2gT-RP-4xx">
+                            <connections>
+                                <segue destination="Eh6-lY-7FX" kind="show" id="JcF-43-uRk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="currentTripCard" destination="Pmr-Oi-quV" id="JbE-bd-6Ng"/>
@@ -270,6 +274,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1037.3134328358208" y="3.432494279176201"/>
+        </scene>
+        <!--SA02_TripDetails-->
+        <scene sceneID="JfO-2O-TgK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA02_TripDetails" id="Eh6-lY-7FX" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7as-MX-YNO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="09i-3W-p8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hat-kJ-S7I">
