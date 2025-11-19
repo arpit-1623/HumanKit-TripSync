@@ -34,8 +34,10 @@ class TripDetailsViewController: UIViewController {
     @IBAction func editTripTapped(_ sender: Any) {
         // TODO: Implement edit trip functionality
         // This should navigate to edit trip screen
-        let alert = UIAlertController(title: "Edit Trip", message: "Edit trip functionality will be implemented here", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        // let alert = UIAlertController(title: "Edit Trip", message: "Edit trip functionality will be implemented here", preferredStyle: .alert)
+        // alert.addAction(UIAlertAction(title: "OK", style: .default))
+        // present(alert, animated: true)
+        
+        performSegue(withIdentifier: "tripDetailsToEditTrip", sender: nil)
     }
 }
