@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CA02_TripDetailsVC: UIViewController {
+class TripDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

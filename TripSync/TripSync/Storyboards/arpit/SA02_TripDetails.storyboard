@@ -14,7 +14,7 @@
         <!--Your Trips-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CA02_TripDetailsVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="TripDetailsViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,7 +482,7 @@
         <!--Edit Trip-->
         <scene sceneID="yLx-nK-KAs">
             <objects>
-                <tableViewController id="GMa-wL-hgw" customClass="CA03_EditTripVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="GMa-wL-hgw" customClass="EditTripTableViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="vE3-Gc-iq5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -697,12 +697,47 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="number-of-days-cell">
+                                        <rect key="frame" x="20" y="535.33333015441895" width="353" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="number-of-days-cell" id="number-of-days-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="number-of-days-stack">
+                                                    <rect key="frame" x="16" y="11.999999999999998" width="321" height="20.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="number-of-days-title-label">
+                                                            <rect key="frame" x="0.0" y="0.0" width="130" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 days" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="number-of-days-value-label">
+                                                            <rect key="frame" x="138" y="0.0" width="183" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="number-of-days-value-label" firstAttribute="width" secondItem="number-of-days-stack" secondAttribute="width" multiplier="0.57" id="days-value-width"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="number-of-days-stack" firstAttribute="centerY" secondItem="number-of-days-content" secondAttribute="centerY" id="days-stack-center"/>
+                                                <constraint firstItem="number-of-days-stack" firstAttribute="leading" secondItem="number-of-days-content" secondAttribute="leading" constant="16" id="days-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="number-of-days-stack" secondAttribute="trailing" constant="16" id="days-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Trip Details" id="trip-details-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="invite-code-cell">
-                                        <rect key="frame" x="20" y="591.33333015441895" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="635.33333015441895" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="invite-code-cell" id="invite-code-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -737,7 +772,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="created-date-cell">
-                                        <rect key="frame" x="20" y="651.33333015441895" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="695.33333015441895" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="created-date-cell" id="created-date-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -776,17 +811,16 @@
                             <tableViewSection footerTitle="Deleting this trip will remove it for all members. This action cannot be undone." id="delete-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="delete-trip-cell">
-                                        <rect key="frame" x="20" y="747.33333015441895" width="353" height="80"/>
+                                        <rect key="frame" x="20" y="791.33333015441895" width="353" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="delete-trip-cell" id="delete-trip-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-trip-button">
-                                                    <rect key="frame" x="76.666666666666686" y="20" width="200" height="40"/>
+                                                    <rect key="frame" x="125.66666666666669" y="20" width="102" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="delete-button-height"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="delete-button-width"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
@@ -830,6 +864,7 @@
                         <outlet property="endDatePicker" destination="end-date-picker" id="end-picker-outlet"/>
                         <outlet property="endDateValueLabel" destination="end-date-value-label" id="end-value-label-outlet"/>
                         <outlet property="inviteCodeValueLabel" destination="invite-code-value" id="invite-code-value-outlet"/>
+                        <outlet property="numberOfDaysLabel" destination="number-of-days-value-label" id="number-of-days-outlet"/>
                         <outlet property="startDatePicker" destination="start-date-picker" id="start-picker-outlet"/>
                         <outlet property="startDateValueLabel" destination="start-date-value-label" id="start-value-label-outlet"/>
                         <outlet property="tripDescView" destination="trip-desc-view" id="trip-desc-outlet"/>
@@ -839,7 +874,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Di4-JT-f0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1863" y="867"/>
+            <point key="canvasLocation" x="1861.8320610687022" y="866.90140845070425"/>
         </scene>
     </scenes>
     <resources>

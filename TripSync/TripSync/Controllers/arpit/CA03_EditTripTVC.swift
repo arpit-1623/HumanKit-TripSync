@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CA03_EditTripVC: UITableViewController {
+class EditTripTableViewController: UITableViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tripNameField: UITextField!
@@ -20,6 +20,8 @@ class CA03_EditTripVC: UITableViewController {
     @IBOutlet weak var endDateValueLabel: UILabel!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
+    @IBOutlet weak var numberOfDaysLabel: UILabel!
+    
     @IBOutlet weak var inviteCodeValueLabel: UILabel!
     @IBOutlet weak var createdDateValueLabel: UILabel!
     
@@ -31,6 +33,7 @@ class CA03_EditTripVC: UITableViewController {
     private let startDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     private let endDateLabelCellIndexPath = IndexPath(row: 2, section: 1)
     private let endDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
+    private let numberOfDaysCellIndexPath = IndexPath(row: 4, section: 1)
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -65,6 +68,15 @@ class CA03_EditTripVC: UITableViewController {
     private func updateDateLabels() {
         startDateValueLabel.text = dateFormatter.string(from: startDatePicker.date)
         endDateValueLabel.text = dateFormatter.string(from: endDatePicker.date)
+        updateNumberOfDays()
+    }
+    
+    private func updateNumberOfDays() {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: startDatePicker.date, to: endDatePicker.date)
+        let days = components.day ?? 0
+        let suffix = days == 1 ? "day" : "days"
+        numberOfDaysLabel.text = "\(days) \(suffix)"
     }
     
     // MARK: - Actions
