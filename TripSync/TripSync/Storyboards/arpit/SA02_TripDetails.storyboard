@@ -458,11 +458,22 @@
                     </navigationItem>
                     <connections>
                         <segue destination="edit-nav-controller" kind="show" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
+                        <segue destination="fzT-z3-qEK" kind="show" identifier="tripDetailsToInviteQR" id="Su7-dq-ayw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1017.5572519083969" y="126.7605633802817"/>
+        </scene>
+        <!--SA03_InviteQR-->
+        <scene sceneID="cVb-4c-mA4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA03_InviteQR" id="fzT-z3-qEK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="odo-5O-Wca"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zjm-uY-p4s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1862" y="127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="edit-nav-scene">
@@ -529,8 +540,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Exploring the vibrant city of Tokyo with friends" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="trip-desc-view">
-                                                    <rect key="frame" x="16" y="10" width="321" height="80"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Exploring the vibrant city of Tokyo with friends" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="trip-desc-view">
+                                                    <rect key="frame" x="16" y="12" width="321" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="trip-desc-height"/>
                                                     </constraints>

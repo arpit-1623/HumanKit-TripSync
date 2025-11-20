@@ -26,9 +26,11 @@ class TripDetailsViewController: UIViewController {
     @IBAction func showQRTapped(_ sender: Any) {
         // TODO: Implement QR code display
         // This should present a modal with generated QR code for the trip
-        let alert = UIAlertController(title: "Show QR", message: "QR code display functionality will be implemented here", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        // let alert = UIAlertController(title: "Show QR", message: "QR code display functionality will be implemented here", preferredStyle: .alert)
+        // alert.addAction(UIAlertAction(title: "OK", style: .default))
+        // present(alert, animated: true)
+        
+        performSegue(withIdentifier: "tripDetailsToInviteQR", sender: nil)
     }
     
     @IBAction func editTripTapped(_ sender: Any) {
