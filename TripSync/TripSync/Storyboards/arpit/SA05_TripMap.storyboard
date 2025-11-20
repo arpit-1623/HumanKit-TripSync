@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="TripMapViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-view">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cluster-button">
+                                <rect key="frame" x="325" y="134" width="52" height="52"/>
+                                <color key="backgroundColor" name="CardColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="cluster-button-height"/>
+                                    <constraint firstAttribute="width" constant="52" id="cluster-button-width"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="binoculars.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.10000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clusterButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cluster-button-action"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="center-button">
+                                <rect key="frame" x="325" y="716" width="52" height="52"/>
+                                <color key="backgroundColor" name="CardColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="center-button-height"/>
+                                    <constraint firstAttribute="width" constant="52" id="center-button-width"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="26"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.10000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="centerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="center-button-action"/>
+                                </connections>
+                            </button>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="menu-visual-effect">
+                                <rect key="frame" x="16" y="688" width="361" height="80"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="menu-content-view">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="menu-header-view">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="80"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="filter-segment">
+                                                    <rect key="frame" x="20" y="12" width="265" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="filter-segment-height"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="All"/>
+                                                        <segment title="Subgroups"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="filterChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="filter-segment-action"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chevron-button">
+                                                    <rect key="frame" x="301" y="12" width="40" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="chevron-button-height"/>
+                                                        <constraint firstAttribute="width" constant="40" id="chevron-button-width"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="chevron.up" catalog="system" symbolScale="medium"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="chevronButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="chevron-button-action"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="chevron-button" firstAttribute="centerY" secondItem="filter-segment" secondAttribute="centerY" id="chevron-button-centerY"/>
+                                                <constraint firstItem="chevron-button" firstAttribute="leading" secondItem="filter-segment" secondAttribute="trailing" constant="16" id="chevron-button-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="chevron-button" secondAttribute="trailing" constant="20" id="chevron-button-trailing"/>
+                                                <constraint firstItem="filter-segment" firstAttribute="leading" secondItem="menu-header-view" secondAttribute="leading" constant="20" id="filter-segment-leading"/>
+                                                <constraint firstItem="filter-segment" firstAttribute="top" secondItem="menu-header-view" secondAttribute="top" constant="12" id="filter-segment-top"/>
+                                                <constraint firstAttribute="height" constant="80" id="menu-header-height"/>
+                                            </constraints>
+                                        </view>
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="members-table">
+                                            <rect key="frame" x="0.0" y="80" width="361" height="0.0"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <prototypes>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemberLocationCell" rowHeight="80" id="member-cell" customClass="MemberLocationTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="50" width="361" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="member-cell" id="member-cell-content">
+                                                        <rect key="frame" x="0.0" y="0.0" width="342.66666666666669" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="member-card-view">
+                                                                <rect key="frame" x="12" y="6" width="350.66666666666669" height="68"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="initials-container">
+                                                                        <rect key="frame" x="12" y="12" width="48" height="48"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AJ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="initials-label">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="initials-container-height"/>
+                                                                            <constraint firstAttribute="width" constant="48" id="initials-container-width"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="initials-label" secondAttribute="bottom" id="initials-label-bottom"/>
+                                                                            <constraint firstItem="initials-label" firstAttribute="leading" secondItem="initials-container" secondAttribute="leading" id="initials-label-leading"/>
+                                                                            <constraint firstItem="initials-label" firstAttribute="top" secondItem="initials-container" secondAttribute="top" id="initials-label-top"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="initials-label" secondAttribute="trailing" id="initials-label-trailing"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="24"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="member-info-stack">
+                                                                        <rect key="frame" x="72" y="16" width="200" height="40"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Alice Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="name-label">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="105.33333333333333" height="20.333333333333332"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="location-status-stack">
+                                                                                <rect key="frame" x="0.0" y="24.333333333333343" width="111.66666666666667" height="15.666666666666657"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="location-icon">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="14" height="15.666666666666668"/>
+                                                                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="14" id="location-icon-width"/>
+                                                                                        </constraints>
+                                                                                        <imageReference key="image" image="circle.fill" catalog="system" symbolScale="small"/>
+                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                                                    </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-status-label">
+                                                                                        <rect key="frame" x="20" y="0.0" width="91.666666666666686" height="15.666666666666668"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="CardColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="member-info-stack" firstAttribute="centerY" secondItem="member-card-view" secondAttribute="centerY" id="info-stack-centerY"/>
+                                                                    <constraint firstItem="member-info-stack" firstAttribute="leading" secondItem="initials-container" secondAttribute="trailing" constant="12" id="info-stack-leading"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="member-info-stack" secondAttribute="trailing" constant="12" id="info-stack-trailing"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="initials-container" secondAttribute="bottom" constant="12" id="initials-bottom"/>
+                                                                    <constraint firstItem="initials-container" firstAttribute="leading" secondItem="member-card-view" secondAttribute="leading" constant="12" id="initials-leading"/>
+                                                                    <constraint firstItem="initials-container" firstAttribute="top" secondItem="member-card-view" secondAttribute="top" constant="12" id="initials-top"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="member-card-view" secondAttribute="bottom" constant="6" id="card-bottom"/>
+                                                            <constraint firstItem="member-card-view" firstAttribute="leading" secondItem="member-cell-content" secondAttribute="leading" constant="12" id="card-leading"/>
+                                                            <constraint firstItem="member-card-view" firstAttribute="top" secondItem="member-cell-content" secondAttribute="top" constant="6" id="card-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="member-card-view" secondAttribute="trailing" constant="12" id="card-trailing"/>
+                                                        </constraints>
+                                                    </tableViewCellContentView>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="cardView" destination="member-card-view" id="member-card-outlet"/>
+                                                        <outlet property="initialsContainerView" destination="initials-container" id="initials-container-outlet"/>
+                                                        <outlet property="initialsLabel" destination="initials-label" id="initials-label-outlet"/>
+                                                        <outlet property="locationIconImageView" destination="location-icon" id="location-icon-outlet"/>
+                                                        <outlet property="locationStatusLabel" destination="location-status-label" id="location-status-outlet"/>
+                                                        <outlet property="nameLabel" destination="name-label" id="name-label-outlet"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubgroupCell" rowHeight="80" id="subgroup-cell" customClass="SubgroupTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="130" width="361" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="subgroup-cell" id="subgroup-cell-content">
+                                                        <rect key="frame" x="0.0" y="0.0" width="342.66666666666669" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-card-view">
+                                                                <rect key="frame" x="12" y="6" width="350.66666666666669" height="68"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-info-stack">
+                                                                        <rect key="frame" x="16" y="16" width="200" height="40"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Food Explorers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-name-label">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="120.66666666666667" height="20.333333333333332"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="members-count-stack">
+                                                                                <rect key="frame" x="0.0" y="24.333333333333343" width="96.666666666666671" height="15.666666666666657"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="members-icon">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="14" height="15.666666666666668"/>
+                                                                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="14" id="members-icon-width"/>
+                                                                                        </constraints>
+                                                                                        <imageReference key="image" image="person.2.fill" catalog="system" symbolScale="small"/>
+                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                                                    </imageView>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2 Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="member-count-label">
+                                                                                        <rect key="frame" x="20" y="0.0" width="76.666666666666686" height="15.666666666666668"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="CardColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="subgroup-info-stack" firstAttribute="centerY" secondItem="subgroup-card-view" secondAttribute="centerY" id="subgroup-stack-centerY"/>
+                                                                    <constraint firstItem="subgroup-info-stack" firstAttribute="leading" secondItem="subgroup-card-view" secondAttribute="leading" constant="16" id="subgroup-stack-leading"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="subgroup-info-stack" secondAttribute="trailing" constant="16" id="subgroup-stack-trailing"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="subgroup-card-view" secondAttribute="bottom" constant="6" id="subgroup-card-bottom"/>
+                                                            <constraint firstItem="subgroup-card-view" firstAttribute="leading" secondItem="subgroup-cell-content" secondAttribute="leading" constant="12" id="subgroup-card-leading"/>
+                                                            <constraint firstItem="subgroup-card-view" firstAttribute="top" secondItem="subgroup-cell-content" secondAttribute="top" constant="6" id="subgroup-card-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="subgroup-card-view" secondAttribute="trailing" constant="12" id="subgroup-card-trailing"/>
+                                                        </constraints>
+                                                    </tableViewCellContentView>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="cardView" destination="subgroup-card-view" id="subgroup-card-outlet"/>
+                                                        <outlet property="memberCountLabel" destination="member-count-label" id="member-count-outlet"/>
+                                                        <outlet property="membersIconImageView" destination="members-icon" id="members-icon-outlet"/>
+                                                        <outlet property="nameLabel" destination="subgroup-name-label" id="subgroup-name-outlet"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                            </prototypes>
+                                        </tableView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="menu-header-view" firstAttribute="leading" secondItem="menu-content-view" secondAttribute="leading" id="header-leading"/>
+                                        <constraint firstItem="menu-header-view" firstAttribute="top" secondItem="menu-content-view" secondAttribute="top" id="header-top"/>
+                                        <constraint firstAttribute="trailing" secondItem="menu-header-view" secondAttribute="trailing" id="header-trailing"/>
+                                        <constraint firstAttribute="bottom" secondItem="members-table" secondAttribute="bottom" id="table-bottom"/>
+                                        <constraint firstItem="members-table" firstAttribute="leading" secondItem="menu-content-view" secondAttribute="leading" id="table-leading"/>
+                                        <constraint firstItem="members-table" firstAttribute="top" secondItem="menu-header-view" secondAttribute="bottom" id="table-top"/>
+                                        <constraint firstAttribute="trailing" secondItem="members-table" secondAttribute="trailing" id="table-trailing"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="menu-height-constraint"/>
+                                </constraints>
+                                <blurEffect style="regular"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.10000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskedCorners" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="menu-tap-gesture" appends="YES" id="menu-tap-connection"/>
+                                </connections>
+                            </visualEffectView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="center-button" secondAttribute="bottom" constant="16" id="center-button-bottom"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="center-button" secondAttribute="trailing" constant="16" id="center-button-trailing"/>
+                            <constraint firstItem="cluster-button" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="cluster-button-top"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cluster-button" secondAttribute="trailing" constant="16" id="cluster-button-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="map-view" secondAttribute="bottom" id="map-bottom"/>
+                            <constraint firstItem="map-view" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="map-leading"/>
+                            <constraint firstItem="map-view" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="map-top"/>
+                            <constraint firstAttribute="trailing" secondItem="map-view" secondAttribute="trailing" id="map-trailing"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="menu-visual-effect" secondAttribute="bottom" constant="16" id="menu-bottom"/>
+                            <constraint firstItem="menu-visual-effect" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="16" id="menu-leading"/>
+                            <constraint firstAttribute="trailing" secondItem="menu-visual-effect" secondAttribute="trailing" constant="16" id="menu-trailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="nav-item">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="close-button">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="Y6W-OH-hqX" id="close-button-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="centerButton" destination="center-button" id="center-button-outlet"/>
+                        <outlet property="chevronButton" destination="chevron-button" id="chevron-button-outlet"/>
+                        <outlet property="clusterButton" destination="cluster-button" id="cluster-button-outlet"/>
+                        <outlet property="filterSegmentedControl" destination="filter-segment" id="filter-segment-outlet"/>
+                        <outlet property="mapView" destination="map-view" id="map-view-outlet"/>
+                        <outlet property="membersTableView" destination="members-table" id="members-table-outlet"/>
+                        <outlet property="menuHeightConstraint" destination="menu-height-constraint" id="menu-height-outlet"/>
+                        <outlet property="menuVisualEffectView" destination="menu-visual-effect" id="menu-visual-effect-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="menu-tap-gesture">
+                    <connections>
+                        <action selector="menuHeaderTapped:" destination="Y6W-OH-hqX" id="menu-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="79" y="127"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="binoculars.fill" catalog="system" width="128" height="90"/>
+        <image name="chevron.up" catalog="system" width="128" height="70"/>
+        <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
+        <image name="person.2.fill" catalog="system" width="128" height="86"/>
+        <namedColor name="CardColor">
+            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

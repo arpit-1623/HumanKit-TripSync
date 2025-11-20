@@ -46,13 +46,7 @@ class TripDetailsViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func mapButtonTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(
-            title: "Map",
-            message: "Map view will be shown here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        performSegue(withIdentifier: "tripDetailsToMap", sender: self)
     }
     
     @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {

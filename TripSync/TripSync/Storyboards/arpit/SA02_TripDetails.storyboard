@@ -476,6 +476,7 @@
                         <segue destination="edit-nav-controller" kind="show" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
                         <segue destination="fzT-z3-qEK" kind="show" identifier="tripDetailsToInviteQR" id="Su7-dq-ayw"/>
                         <segue destination="SA04-members-placeholder" kind="show" identifier="tripDetailsToMembers" id="members-segue"/>
+                        <segue destination="Ovq-4a-p51" kind="show" identifier="tripDetailsToMap" id="map-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -511,6 +512,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjm-uY-p4s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1862" y="127"/>
+        </scene>
+        <!--SA05_TripMap-->
+        <scene sceneID="Gzq-6j-Dgo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA05_TripMap" id="Ovq-4a-p51" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lf6-Yb-D2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="227"/>
         </scene>
         <!--SA04_TripMembers-->
         <scene sceneID="SA04-members-scene">
