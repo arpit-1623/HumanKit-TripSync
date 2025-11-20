@@ -112,6 +112,7 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="7AY-5e-keX" secondAttribute="height" multiplier="1:1" id="KRx-ez-YpD"/>
                                                             <constraint firstItem="Lpf-k2-yJR" firstAttribute="centerY" secondItem="7AY-5e-keX" secondAttribute="centerY" id="OvZ-hX-2xX"/>
@@ -134,6 +135,9 @@
                                                                 <size key="value" width="0.0" height="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="map-tap-gesture" appends="YES" id="map-tap-connection"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button">
                                                         <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
@@ -159,6 +163,7 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstItem="QqY-Dk-5kl" firstAttribute="centerY" secondItem="ugQ-QQ-Yfe" secondAttribute="centerY" id="Iod-gI-O9l"/>
                                                             <constraint firstItem="QqY-Dk-5kl" firstAttribute="centerX" secondItem="ugQ-QQ-Yfe" secondAttribute="centerX" id="sX8-ca-H8J"/>
@@ -181,6 +186,9 @@
                                                                 <size key="value" width="0.0" height="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="chat-tap-gesture" appends="YES" id="chat-tap-connection"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button">
                                                         <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
@@ -206,6 +214,7 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="sVT-DY-Cgg" secondAttribute="height" multiplier="1:1" id="2G9-B7-cjm"/>
                                                             <constraint firstItem="EEl-oj-3bS" firstAttribute="centerX" secondItem="sVT-DY-Cgg" secondAttribute="centerX" id="D7y-nR-EO7"/>
@@ -228,6 +237,9 @@
                                                                 <size key="value" width="0.0" height="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="itinerary-tap-gesture" appends="YES" id="itinerary-tap-connection"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Members Button">
                                                         <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
@@ -253,6 +265,7 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstItem="CQU-Mb-brE" firstAttribute="centerX" secondItem="UdY-MK-rhy" secondAttribute="centerX" id="3iI-qH-bSe"/>
                                                             <constraint firstItem="CQU-Mb-brE" firstAttribute="centerY" secondItem="UdY-MK-rhy" secondAttribute="centerY" id="Qau-0t-sF9"/>
@@ -275,6 +288,9 @@
                                                                 <size key="value" width="0.0" height="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="members-tap-gesture" appends="YES" id="members-tap-connection"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -459,9 +475,30 @@
                     <connections>
                         <segue destination="edit-nav-controller" kind="show" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
                         <segue destination="fzT-z3-qEK" kind="show" identifier="tripDetailsToInviteQR" id="Su7-dq-ayw"/>
+                        <segue destination="SA04-members-placeholder" kind="show" identifier="tripDetailsToMembers" id="members-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="map-tap-gesture">
+                    <connections>
+                        <action selector="mapButtonTapped:" destination="Y6W-OH-hqX" id="map-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="chat-tap-gesture">
+                    <connections>
+                        <action selector="chatButtonTapped:" destination="Y6W-OH-hqX" id="chat-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="itinerary-tap-gesture">
+                    <connections>
+                        <action selector="itineraryButtonTapped:" destination="Y6W-OH-hqX" id="itinerary-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="members-tap-gesture">
+                    <connections>
+                        <action selector="membersButtonTapped:" destination="Y6W-OH-hqX" id="members-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1017.5572519083969" y="126.7605633802817"/>
         </scene>
@@ -474,6 +511,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjm-uY-p4s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1862" y="127"/>
+        </scene>
+        <!--SA04_TripMembers-->
+        <scene sceneID="SA04-members-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA04_TripMembers" id="SA04-members-placeholder" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SA04-members-nav"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SA04-members-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1882" y="35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="edit-nav-scene">
