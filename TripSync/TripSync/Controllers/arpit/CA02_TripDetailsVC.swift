@@ -62,14 +62,16 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(
-            title: "Itinerary",
-            
-            message: "Trip itinerary will be shown here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+//        let alert = UIAlertController(
+//            title: "Itinerary",
+//            
+//            message: "Trip itinerary will be shown here",
+//            preferredStyle: .alert
+//        )
+//        alert.addAction(UIAlertAction(title: "OK", style: .default))
+//        present(alert, animated: true)
+        
+        performSegue(withIdentifier: "tripDetailsToItinerary", sender: nil)
     }
     
     @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
