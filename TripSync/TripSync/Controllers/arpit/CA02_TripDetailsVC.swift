@@ -42,4 +42,41 @@ class TripDetailsViewController: UIViewController {
         
         performSegue(withIdentifier: "tripDetailsToEditTrip", sender: nil)
     }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func mapButtonTapped(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(
+            title: "Map",
+            message: "Map view will be shown here",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(
+            title: "Chat",
+            message: "Group chat will open here",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(
+            title: "Itinerary",
+            message: "Trip itinerary will be shown here",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
+        // Navigate to members screen
+        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    }
 }

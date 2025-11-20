@@ -38,8 +38,8 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="64" id="profile-image-width"/>
                                                                         <constraint firstAttribute="height" constant="64" id="profile-image-height"/>
+                                                                        <constraint firstAttribute="width" constant="64" id="profile-image-width"/>
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -48,16 +48,16 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="name-role-stack">
-                                                                    <rect key="frame" x="76" y="12.666666666666664" width="188" height="38.666666666666664"/>
+                                                                    <rect key="frame" x="76" y="11.000000000000004" width="188" height="42.333333333333343"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="member-name-label">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="20.333333333333332"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="member-role-label">
-                                                                            <rect key="frame" x="0.0" y="24.333333333333336" width="54.666666666666664" height="14.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="24.333333333333336" width="57" height="18"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -67,8 +67,8 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="member-menu-button">
                                                                     <rect key="frame" x="276" y="12" width="45" height="40"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="45" id="menu-button-width"/>
                                                                         <constraint firstAttribute="height" constant="40" id="menu-button-height"/>
+                                                                        <constraint firstAttribute="width" constant="45" id="menu-button-width"/>
                                                                     </constraints>
                                                                     <color key="tintColor" systemColor="systemGrayColor"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -79,10 +79,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="CardColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="member-stack" secondAttribute="bottom" constant="12" id="stack-bottom"/>
                                                         <constraint firstItem="member-stack" firstAttribute="leading" secondItem="member-card-view" secondAttribute="leading" constant="16" id="stack-leading"/>
                                                         <constraint firstItem="member-stack" firstAttribute="top" secondItem="member-card-view" secondAttribute="top" constant="12" id="stack-top"/>
                                                         <constraint firstAttribute="trailing" secondItem="member-stack" secondAttribute="trailing" constant="16" id="stack-trailing"/>
-                                                        <constraint firstAttribute="bottom" secondItem="member-stack" secondAttribute="bottom" constant="12" id="stack-bottom"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -104,10 +104,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="member-card-view" secondAttribute="bottom" id="card-bottom"/>
                                                 <constraint firstItem="member-card-view" firstAttribute="leading" secondItem="member-cell-content" secondAttribute="leading" id="card-leading"/>
                                                 <constraint firstItem="member-card-view" firstAttribute="top" secondItem="member-cell-content" secondAttribute="top" id="card-top"/>
                                                 <constraint firstAttribute="trailing" secondItem="member-card-view" secondAttribute="trailing" id="card-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="member-card-view" secondAttribute="bottom" id="card-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,10 +124,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="members-table-view" secondAttribute="bottom" id="table-bottom"/>
                             <constraint firstItem="members-table-view" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="table-leading"/>
                             <constraint firstItem="members-table-view" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="table-top"/>
                             <constraint firstItem="members-table-view" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="table-trailing"/>
-                            <constraint firstAttribute="bottom" secondItem="members-table-view" secondAttribute="bottom" id="table-bottom"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Members" id="nav-item">
@@ -152,9 +152,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="person.badge.plus" catalog="system" width="128" height="95"/>
+        <image name="person.badge.plus" catalog="system" width="128" height="124"/>
         <namedColor name="CardColor">
             <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
