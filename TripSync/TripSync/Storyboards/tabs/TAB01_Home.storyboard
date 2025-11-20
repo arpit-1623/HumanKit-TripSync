@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
         </scene>
-        <!--SD01_CreateTrip-->
+        <!--SM02_Home-->
         <scene sceneID="Wbn-Hv-UCR">
             <objects>
-                <viewControllerPlaceholder storyboardName="SD01_CreateTrip" id="Zp7-15-2Wt" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SM02_Home" id="Zp7-15-2Wt" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FNF-OM-E9V"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1v-oJ-t6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
