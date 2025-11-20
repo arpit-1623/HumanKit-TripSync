@@ -478,6 +478,7 @@
                         <segue destination="SA04-members-placeholder" kind="show" identifier="tripDetailsToMembers" id="members-segue"/>
                         <segue destination="Ovq-4a-p51" kind="show" identifier="tripDetailsToMap" id="map-segue"/>
                         <segue destination="ewh-Dc-x06" kind="show" identifier="tripDetailsToChat" id="chat-segue"/>
+                        <segue destination="9nZ-G9-4Ye" kind="show" identifier="tripDetailsToItinerary" id="itinerary-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -529,6 +530,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTe-Sn-IsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1874" y="308"/>
+        </scene>
+        <!--SS02_Itinerary-->
+        <scene sceneID="Wdz-ti-Naz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SS02_Itinerary" id="9nZ-G9-4Ye" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGr-cR-ufl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="-32"/>
         </scene>
         <!--SA04_TripMembers-->
         <scene sceneID="SA04-members-scene">
