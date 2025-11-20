@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g89-YJ-2Df">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
@@ -21,13 +21,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TripSync =)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uZ-zt-LP5">
-                                <rect key="frame" x="99.666666666666686" y="158" width="194" height="43"/>
+                                <rect key="frame" x="99.666666666666686" y="212" width="194" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stay connected, wherever you wander" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKr-Jh-60Q">
-                                <rect key="frame" x="43" y="213" width="307" height="21.666666666666657"/>
+                                <rect key="frame" x="43" y="267" width="307" height="21.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,6 +45,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Create Account">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <segue destination="p0V-Kb-bhT" kind="show" id="cAy-ab-iki"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -79,6 +82,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Log In">
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <segue destination="l66-vZ-XtO" kind="show" id="uZc-6i-Lrm"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
@@ -115,10 +121,11 @@
                             <constraint firstItem="vKr-Jh-60Q" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="oay-6P-wlt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ISU-U7-Snd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="92"/>
+            <point key="canvasLocation" x="1046.5648854961833" y="-39.436619718309863"/>
         </scene>
         <!--Create Account-->
         <scene sceneID="t6Q-rP-OP6">
@@ -132,7 +139,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chh-Rd-oGj">
-                                <rect key="frame" x="0.0" y="218" width="393" height="634"/>
+                                <rect key="frame" x="0.0" y="272" width="393" height="580"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="m0Z-YO-Cwv">
                                         <rect key="frame" x="61.666666666666657" y="30" width="269.66666666666674" height="62"/>
@@ -300,10 +307,11 @@
                             <constraint firstItem="Kxh-9A-VTY" firstAttribute="trailing" secondItem="chh-Rd-oGj" secondAttribute="trailing" id="mds-0C-aRr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="83U-UZ-yVc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21v-vi-uPt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="971.7557251908396" y="91.549295774647888"/>
+            <point key="canvasLocation" x="1933.5877862595419" y="-353.52112676056339"/>
         </scene>
         <!--Welcome Back-->
         <scene sceneID="db4-bM-hcV">
@@ -317,7 +325,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bq-LR-6Wz">
-                                <rect key="frame" x="0.0" y="218" width="393" height="634"/>
+                                <rect key="frame" x="0.0" y="272" width="393" height="580"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ft8-Oe-NQV">
                                         <rect key="frame" x="89.666666666666671" y="30" width="213.66666666666663" height="62"/>
@@ -387,6 +395,9 @@
                                                         <buttonConfiguration key="configuration" style="plain" title="Forgot Password">
                                                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <segue destination="gUP-Ae-be4" kind="show" id="sqs-up-eAP"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -489,10 +500,11 @@
                             <constraint firstItem="8cM-Tj-F6q" firstAttribute="leading" secondItem="Wur-bZ-uLt" secondAttribute="leading" id="kD0-RY-lJX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="E9G-F9-qG5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2m-K0-cJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1787" y="92"/>
+            <point key="canvasLocation" x="1933.5877862595419" y="374.64788732394368"/>
         </scene>
         <!--Forgot Password-->
         <scene sceneID="X5O-bQ-bJx">
@@ -506,7 +518,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T31-ch-aQT">
-                                <rect key="frame" x="0.0" y="288" width="393" height="564"/>
+                                <rect key="frame" x="0.0" y="342" width="393" height="510"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ygi-Ya-fe2">
                                         <rect key="frame" x="30" y="29.999999999999993" width="333" height="82.333333333333314"/>
@@ -620,10 +632,29 @@
                             <constraint firstAttribute="trailing" secondItem="wuv-ux-CUW" secondAttribute="trailing" id="vJQ-lN-cwR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="STb-ic-7y5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPa-ma-3jz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566" y="92"/>
+            <point key="canvasLocation" x="2782.4427480916029" y="374.64788732394368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HK7-0m-9N8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g89-YJ-2Df" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="18M-tM-M9q">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="kNW-xg-OuU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcp-nT-RoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119.84732824427481" y="-39.436619718309863"/>
         </scene>
     </scenes>
     <resources>

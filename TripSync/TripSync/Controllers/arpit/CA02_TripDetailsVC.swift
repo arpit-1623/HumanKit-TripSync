@@ -46,28 +46,25 @@ class TripDetailsViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func mapButtonTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(
-            title: "Map",
-            message: "Map view will be shown here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        performSegue(withIdentifier: "tripDetailsToMap", sender: self)
     }
     
     @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(
-            title: "Chat",
-            message: "Group chat will open here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+//        let alert = UIAlertController(
+//            title: "Chat",
+//            message: "Group chat will open here",
+//            preferredStyle: .alert
+//        )
+//        alert.addAction(UIAlertAction(title: "OK", style: .default))
+//        present(alert, animated: true)
+        
+        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
     }
     
     @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
         let alert = UIAlertController(
             title: "Itinerary",
+            
             message: "Trip itinerary will be shown here",
             preferredStyle: .alert
         )
