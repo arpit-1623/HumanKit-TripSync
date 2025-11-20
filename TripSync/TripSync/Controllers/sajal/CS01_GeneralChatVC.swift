@@ -46,6 +46,11 @@ class GeneralChatViewController: UIViewController {
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         print("Segment changed to: \(sender.selectedSegmentIndex)")
     }
+    
+    @IBAction func sendButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "chatToItineraryScreen", sender: nil)
+    }
+    
 }
 
 // MARK: - UITableViewDelegate & DataSource
@@ -73,4 +78,5 @@ extension GeneralChatViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
+    
 }
