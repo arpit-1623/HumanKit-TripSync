@@ -48,7 +48,6 @@ class GeneralChatViewController: UIViewController {
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "chatToItineraryScreen", sender: nil)
     }
     
 }
