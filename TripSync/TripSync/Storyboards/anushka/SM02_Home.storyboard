@@ -145,7 +145,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKe-eC-Y93" userLabel="Action Buttons Container">
-                                                <rect key="frame" x="20" y="252" width="353" height="100"/>
+                                                <rect key="frame" x="20" y="236" width="353" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fPa-Dy-vHd">
                                                         <rect key="frame" x="16" y="16" width="321" height="68"/>
@@ -316,7 +316,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DcR-3Y-9pP">
-                                                <rect key="frame" x="20" y="368" width="353" height="140"/>
+                                                <rect key="frame" x="20" y="352" width="353" height="140"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwb-HH-cg0" userLabel="Create Trip Container">
                                                         <rect key="frame" x="0.0" y="0.0" width="168.66666666666666" height="140"/>
@@ -439,13 +439,13 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHJ-t9-hOQ">
-                                                <rect key="frame" x="20" y="524" width="353" height="24"/>
+                                                <rect key="frame" x="20" y="508" width="353" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aXo-Jp-dXp">
-                                                <rect key="frame" x="20" y="564" width="353" height="616"/>
+                                                <rect key="frame" x="20" y="548" width="353" height="632"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingTripCell" rowHeight="120" id="Ecb-xH-JBw">
@@ -550,7 +550,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="aXo-Jp-dXp" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="0Ec-7d-zG8"/>
-                                            <constraint firstItem="mKe-eC-Y93" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="bottom" constant="16" id="41C-Ip-RBU"/>
+                                            <constraint firstItem="mKe-eC-Y93" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="bottom" id="41C-Ip-RBU"/>
                                             <constraint firstItem="DcR-3Y-9pP" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="7O6-8Q-XGB"/>
                                             <constraint firstAttribute="trailing" secondItem="DcR-3Y-9pP" secondAttribute="trailing" constant="20" id="AQF-A5-pnM"/>
                                             <constraint firstAttribute="trailing" secondItem="mth-ql-0cY" secondAttribute="trailing" constant="20" id="Bna-1X-5ej"/>
