@@ -170,7 +170,7 @@
                                                         <constraint firstItem="location-itinerary" firstAttribute="top" secondItem="title-itinerary" secondAttribute="bottom" constant="4" id="location-top"/>
                                                         <constraint firstItem="location-itinerary" firstAttribute="trailing" secondItem="title-itinerary" secondAttribute="trailing" id="location-trailing"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pill-view" secondAttribute="bottom" constant="16" id="pill-bottom"/>
-                                                        <constraint firstItem="pill-view" firstAttribute="leading" secondItem="time-itinerary" secondAttribute="trailing" constant="8" id="pill-leading"/>
+                                                        <constraint firstItem="pill-view" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="leading" id="pill-leading"/>
                                                         <constraint firstItem="pill-view" firstAttribute="top" secondItem="time-itinerary" secondAttribute="bottom" constant="8" id="pill-top"/>
                                                         <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="timeicon-itinerary" secondAttribute="centerY" id="time-centerY"/>
                                                         <constraint firstItem="time-itinerary" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="trailing" constant="4" id="time-leading"/>
