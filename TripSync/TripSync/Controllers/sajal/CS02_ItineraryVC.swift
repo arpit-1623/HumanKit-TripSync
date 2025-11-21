@@ -93,6 +93,8 @@ class CS02_ItineraryVC: UIViewController {
         // Create dummy subgroups
         let foodExplorersId = UUID()
         let mountainTrekId = UUID()
+        let beachLoversId = UUID()
+        let cultureVulturesId = UUID()
         
         subgroups = [
             Subgroup(
@@ -106,6 +108,20 @@ class CS02_ItineraryVC: UIViewController {
                 name: "Mountain Trek",
                 description: "For adventure seekers",
                 colorHex: "#9B59B6",
+                tripId: currentTrip!.id,
+                memberIds: [userId]
+            ),
+            Subgroup(
+                name: "Beach Lovers",
+                description: "For beach enthusiasts",
+                colorHex: "#3498DB",
+                tripId: currentTrip!.id,
+                memberIds: [userId]
+            ),
+            Subgroup(
+                name: "Culture Vultures",
+                description: "For culture seekers",
+                colorHex: "#E67E22",
                 tripId: currentTrip!.id,
                 memberIds: [userId]
             )
@@ -124,7 +140,7 @@ class CS02_ItineraryVC: UIViewController {
             date: day1Date,
             time: day1Time1,
             tripId: currentTrip!.id,
-            subgroupId: nil, // All
+            subgroupId: subgroups[3].id, // Culture Vultures
             createdByUserId: userId
         ))
         
@@ -135,13 +151,15 @@ class CS02_ItineraryVC: UIViewController {
             date: day1Date,
             time: day1Time2,
             tripId: currentTrip!.id,
-            subgroupId: foodExplorersId,
+            subgroupId: subgroups[0].id, // Food Explorers
             createdByUserId: userId
         ))
         
         // Day 2 - Oct 30, 2025
         let day2Date = Date(timeIntervalSince1970: 1730275200) // Oct 30, 2025 00:00
         let day2Time1 = Date(timeIntervalSince1970: 1730304000) // 8:00 AM
+        let day2Time2 = Date(timeIntervalSince1970: 1730318400) // 12:00 PM
+        let day2Time3 = Date(timeIntervalSince1970: 1730332800) // 4:00 PM
         
         allItineraryStops.append(ItineraryStop(
             title: "Mount Takao Trail",
@@ -150,7 +168,56 @@ class CS02_ItineraryVC: UIViewController {
             date: day2Date,
             time: day2Time1,
             tripId: currentTrip!.id,
-            subgroupId: mountainTrekId,
+            subgroupId: subgroups[1].id, // Mountain Trek
+            createdByUserId: userId
+        ))
+        
+        allItineraryStops.append(ItineraryStop(
+            title: "Tsukiji Fish Market",
+            location: "Chuo City, Tokyo",
+            address: "5 Chome-2-1 Tsukiji, Chuo City, Tokyo",
+            date: day2Date,
+            time: day2Time2,
+            tripId: currentTrip!.id,
+            subgroupId: subgroups[0].id, // Food Explorers
+            createdByUserId: userId
+        ))
+        
+        allItineraryStops.append(ItineraryStop(
+            title: "Odaiba Beach",
+            location: "Odaiba, Tokyo",
+            address: "1 Chome Daiba, Minato City, Tokyo",
+            date: day2Date,
+            time: day2Time3,
+            tripId: currentTrip!.id,
+            subgroupId: subgroups[2].id, // Beach Lovers
+            createdByUserId: userId
+        ))
+        
+        // Day 3 - Oct 31, 2025
+        let day3Date = Date(timeIntervalSince1970: 1730361600) // Oct 31, 2025 00:00
+        let day3Time1 = Date(timeIntervalSince1970: 1730394000) // 9:00 AM
+        let day3Time2 = Date(timeIntervalSince1970: 1730408400) // 1:00 PM
+        
+        allItineraryStops.append(ItineraryStop(
+            title: "Tokyo National Museum",
+            location: "Ueno Park, Tokyo",
+            address: "13-9 Uenokoen, Taito City, Tokyo",
+            date: day3Date,
+            time: day3Time1,
+            tripId: currentTrip!.id,
+            subgroupId: subgroups[3].id, // Culture Vultures
+            createdByUserId: userId
+        ))
+        
+        allItineraryStops.append(ItineraryStop(
+            title: "Meiji Shrine",
+            location: "Shibuya City, Tokyo",
+            address: "1-1 Yoyogikamizonocho, Shibuya City, Tokyo",
+            date: day3Date,
+            time: day3Time2,
+            tripId: currentTrip!.id,
+            subgroupId: subgroups[3].id, // Culture Vultures
             createdByUserId: userId
         ))
     }
@@ -287,11 +354,11 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(containerView)
         
-        let iconLabel = UILabel()
-        iconLabel.text = "📅"
-        iconLabel.font = .systemFont(ofSize: 16)
-        iconLabel.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(iconLabel)
+        let iconImageView = UIImageView(image: UIImage(systemName: "calendar.circle.fill"))
+        iconImageView.tintColor = .label
+        iconImageView.contentMode = .scaleAspectFit
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(iconImageView)
         
         let dateLabel = UILabel()
         let dayNumber = section + 1
@@ -309,10 +376,12 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
             containerView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
             containerView.heightAnchor.constraint(equalToConstant: 36),
             
-            iconLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
-            iconLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
+            iconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 24),
             
-            dateLabel.leadingAnchor.constraint(equalTo: iconLabel.trailingAnchor, constant: 8),
+            dateLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 8),
             dateLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             dateLabel.trailingAnchor.constraint(lessThanOrEqualTo: containerView.trailingAnchor, constant: -12)
         ])

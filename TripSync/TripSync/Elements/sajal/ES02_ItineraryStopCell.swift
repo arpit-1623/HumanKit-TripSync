@@ -15,7 +15,7 @@ class ES02_ItineraryStopCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var timeIconLabel: UILabel!
+    @IBOutlet weak var timeIconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var subgroupPillView: UIView!
     @IBOutlet weak var subgroupLabel: UILabel!
@@ -58,8 +58,9 @@ class ES02_ItineraryStopCell: UITableViewCell {
         locationLabel.numberOfLines = 1
         
         // Time icon
-        timeIconLabel.text = "🕐"
-        timeIconLabel.font = .systemFont(ofSize: 14)
+        timeIconImageView.image = UIImage(systemName: "clock")
+        timeIconImageView.tintColor = .secondaryLabel
+        timeIconImageView.contentMode = .scaleAspectFit
         
         // Time label
         timeLabel.font = .systemFont(ofSize: 14, weight: .medium)
