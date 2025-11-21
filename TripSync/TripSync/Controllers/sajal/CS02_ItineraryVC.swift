@@ -76,6 +76,8 @@ class CS02_ItineraryVC: UIViewController {
         itineraryTableView.backgroundColor = .systemBackground
         itineraryTableView.rowHeight = UITableView.automaticDimension
         itineraryTableView.estimatedRowHeight = 120
+        itineraryTableView.contentInsetAdjustmentBehavior = .never
+        itineraryTableView.clipsToBounds = true
     }
     
     private func loadDummyData() {
@@ -394,7 +396,7 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             containerView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            containerView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
+            containerView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 0),
             containerView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
             containerView.heightAnchor.constraint(equalToConstant: 36),
             
@@ -412,7 +414,7 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
+        return 44
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
