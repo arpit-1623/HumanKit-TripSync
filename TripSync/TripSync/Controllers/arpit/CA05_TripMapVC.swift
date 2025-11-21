@@ -31,7 +31,7 @@ class TripMapViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     private var userAnnotations: [UUID: MKPointAnnotation] = [:]
-    private let collapsedHeight: CGFloat = 80
+    private let collapsedHeight: CGFloat = 60
     private let expandedHeight: CGFloat = 360
     private var isMenuExpanded = false
     
@@ -133,22 +133,8 @@ class TripMapViewController: UIViewController {
     }
     
     private func loadTripData() {
-        guard let trip = trip else { return }
-        
-        // Load members
-        members = trip.memberIds.compactMap { DataModel.shared.getUser(byId: $0) }
-        filteredMembers = members
-        
-        // Load subgroups
-        subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
-        
-        // Load locations
-        locations = DataModel.shared.getLocations(forTripId: trip.id)
-        
-        // If no locations exist, create dummy locations for testing
-        if locations.isEmpty {
-            loadDummyLocations()
-        }
+        // Use hardcoded sample data for testing
+        loadHardcodedSampleData()
         
         // Update map annotations
         updateMapAnnotations()
@@ -159,6 +145,54 @@ class TripMapViewController: UIViewController {
         // Reload table views
         memberTableView.reloadData()
         subgroupTableView.reloadData()
+    }
+    
+    private func loadHardcodedSampleData() {
+        // Create sample users
+        let user1 = User(fullName: "Alice Johnson", email: "alice@example.com")
+        let user2 = User(fullName: "Bob Smith", email: "bob@example.com")
+        let user3 = User(fullName: "John Doe", email: "john@example.com")
+        let user4 = User(fullName: "Sarah Wilson", email: "sarah@example.com")
+        
+        members = [user1, user2, user3, user4]
+        filteredMembers = members
+        
+        // Create sample locations around Warsaw, Poland
+        let loc1 = UserLocation(userId: user1.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2319, longitude: 21.0122), isLive: true)
+        let loc2 = UserLocation(userId: user2.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2297, longitude: 21.0122), isLive: true)
+        let loc3 = UserLocation(userId: user3.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2250, longitude: 21.0100), isLive: false)
+        let loc4 = UserLocation(userId: user4.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2280, longitude: 21.0140), isLive: true)
+        
+        locations = [loc1, loc2, loc3, loc4]
+        
+        // Create sample subgroups
+        let subgroup1 = Subgroup(name: "Food Explorers", description: "Exploring local cuisine", colorHex: "#FF8C42", tripId: UUID(), memberIds: [user1.id, user2.id])
+        let subgroup2 = Subgroup(name: "Mountain Trek", description: "Hiking enthusiasts", colorHex: "#007AFF", tripId: UUID(), memberIds: [user3.id, user4.id])
+        
+        subgroups = [subgroup1, subgroup2]
+    }
+    
+    private func loadSampleTrip() {
+        // Get first available trip from DataModel
+        let trips = DataModel.shared.getAllTrips()
+        if let firstTrip = trips.first {
+            self.trip = firstTrip
+        } else {
+            // Create a sample trip if none exist
+            let sampleUsers = DataModel.shared.getAllUsers()
+            if let firstUser = sampleUsers.first {
+                let sampleTrip = Trip(
+                    name: "Sample Trip",
+                    description: "A sample trip for testing the map view",
+                    location: "Warsaw, Poland",
+                    startDate: Date(),
+                    endDate: Date().addingTimeInterval(86400 * 7),
+                    createdByUserId: firstUser.id
+                )
+                self.trip = sampleTrip
+                DataModel.shared.saveTrip(sampleTrip)
+            }
+        }
     }
     
     private func loadDummyLocations() {
@@ -443,25 +477,19 @@ extension TripMapViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == memberTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MemberMapCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MemberMapCell", for: indexPath) as? MemberMapCell else {
+                return UITableViewCell()
+            }
             let member = filteredMembers[indexPath.row]
             let location = locations.first(where: { $0.userId == member.id })
-            
-            // Configure cell (this will be styled in storyboard)
-            cell.textLabel?.text = member.fullName
-            cell.detailTextLabel?.text = location?.isLive == true ? "Live" : "Offline"
-            cell.backgroundColor = .clear
-            
+            cell.configure(with: member, location: location)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupCell", for: indexPath) as? SubgroupMapCell else {
+                return UITableViewCell()
+            }
             let subgroup = subgroups[indexPath.row]
-            
-            cell.textLabel?.text = subgroup.name
-            cell.detailTextLabel?.text = "\(subgroup.memberIds.count) Members"
-            cell.accessoryType = .disclosureIndicator
-            cell.backgroundColor = .clear
-            
+            cell.configure(with: subgroup)
             return cell
         }
     }

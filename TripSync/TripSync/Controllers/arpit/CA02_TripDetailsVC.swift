@@ -8,6 +8,9 @@
 import UIKit
 
 class TripDetailsViewController: UIViewController {
+    
+    // MARK: - Properties
+    var trip: Trip?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,5 +80,15 @@ class TripDetailsViewController: UIViewController {
     @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
         // Navigate to members screen
         performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tripDetailsToMap" {
+            if let mapVC = segue.destination as? TripMapViewController {
+                mapVC.trip = self.trip
+            }
+        }
     }
 }
