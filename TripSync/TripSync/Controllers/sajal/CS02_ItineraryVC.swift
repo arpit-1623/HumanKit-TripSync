@@ -186,10 +186,27 @@ class CS02_ItineraryVC: UIViewController {
     
     // MARK: - Actions
     @objc private func addButtonTapped() {
-        // TODO: Navigate to add itinerary stop screen
-        let alert = UIAlertController(title: "Add Stop", message: "Add itinerary functionality coming soon", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        performSegue(withIdentifier: "showAddStop", sender: nil)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddStop" {
+            if let navController = segue.destination as? UINavigationController,
+               let addStopVC = navController.topViewController as? CS03_AddItineraryStopVC {
+                addStopVC.delegate = self
+                addStopVC.tripId = currentTrip?.id
+                addStopVC.availableSubgroups = subgroups
+            }
+        }
+    }
+}
+
+// MARK: - AddItineraryStopDelegate
+extension CS02_ItineraryVC: AddItineraryStopDelegate {
+    func didAddItineraryStop(_ stop: ItineraryStop) {
+        allItineraryStops.append(stop)
+        filterAndGroupStops()
     }
 }
 

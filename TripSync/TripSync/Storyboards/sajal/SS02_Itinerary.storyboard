@@ -218,7 +218,13 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="table-itinerary" secondAttribute="trailing" id="table-trailing"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Itinerary" id="nav-item-itinerary"/>
+                    <navigationItem key="navigationItem" title="Itinerary" id="nav-item-itinerary">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="add-stop-bar-btn">
+                            <connections>
+                                <segue destination="add-stop-nav-controller" kind="presentation" identifier="showAddStop" modalPresentationStyle="formSheet" id="segue-add-stop"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="itineraryTableView" destination="table-itinerary" id="outlet-table-itinerary"/>
                         <outlet property="subgroupCollectionView" destination="collection-subgroups" id="outlet-collection-subgroups"/>
@@ -228,20 +234,317 @@
             </objects>
             <point key="canvasLocation" x="1056" y="98"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="add-stop-nav-scene">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="add-stop-nav-controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="add-stop-nav-bar">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="add-stop-vc" kind="relationship" relationship="rootViewController" id="root-vc-segue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="add-stop-nav-first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000" y="-600"/>
+        </scene>
+        <!--Add Itinerary Stop-->
+        <scene sceneID="add-stop-scene">
+            <objects>
+                <tableViewController id="add-stop-vc" customClass="CS03_AddItineraryStopVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="add-stop-tableview">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Stop Information" id="stop-info-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="title-cell">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="title-cell" id="title-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="title-stack">
+                                                    <rect key="frame" x="16" y="10" width="321" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-label-left">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="80" id="title-label-width"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Activity name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="title-textfield">
+                                                            <rect key="frame" x="92" y="0.0" width="229" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="title-stack" firstAttribute="centerY" secondItem="title-content" secondAttribute="centerY" id="title-stack-center"/>
+                                                <constraint firstItem="title-stack" firstAttribute="leading" secondItem="title-content" secondAttribute="leading" constant="16" id="title-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="title-stack" secondAttribute="trailing" constant="16" id="title-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="location-cell">
+                                        <rect key="frame" x="20" y="115.33333206176758" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="location-cell" id="location-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="location-stack">
+                                                    <rect key="frame" x="16" y="10" width="321" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-label-left">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="80" id="location-label-width"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="location-textfield">
+                                                            <rect key="frame" x="92" y="0.0" width="229" height="40"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="location-stack" firstAttribute="centerY" secondItem="location-content" secondAttribute="centerY" id="location-stack-center"/>
+                                                <constraint firstItem="location-stack" firstAttribute="leading" secondItem="location-content" secondAttribute="leading" constant="16" id="location-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="location-stack" secondAttribute="trailing" constant="16" id="location-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Date &amp; Time" id="datetime-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="date-label-cell">
+                                        <rect key="frame" x="20" y="231.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="date-label-cell" id="date-label-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="date-label-stack">
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="321" height="20.333333333333329"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="date-icon">
+                                                            <rect key="frame" x="0.0" y="1.3333333333333286" width="20" height="18"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="date-icon-width"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="date-label-text">
+                                                            <rect key="frame" x="32" y="0.0" width="36" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="30 Oct 2025" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="date-value-label">
+                                                            <rect key="frame" x="80" y="0.0" width="241" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="date-label-stack" firstAttribute="centerY" secondItem="date-label-content" secondAttribute="centerY" id="date-label-stack-center"/>
+                                                <constraint firstItem="date-label-stack" firstAttribute="leading" secondItem="date-label-content" secondAttribute="leading" constant="16" id="date-label-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="date-label-stack" secondAttribute="trailing" constant="16" id="date-label-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="date-picker-cell">
+                                        <rect key="frame" x="20" y="282.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="date-picker-cell" id="date-picker-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="date-picker">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="date-picker" firstAttribute="top" secondItem="date-picker-content" secondAttribute="topMargin" constant="-15" id="date-picker-top"/>
+                                                <constraint firstItem="date-picker" firstAttribute="leading" secondItem="date-picker-content" secondAttribute="leading" id="date-picker-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="date-picker" secondAttribute="trailing" id="date-picker-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="time-label-cell">
+                                        <rect key="frame" x="20" y="333.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="time-label-cell" id="time-label-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="time-label-stack">
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="321" height="20.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🕐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-icon">
+                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20.333333333333329"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="time-icon-width"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-label-text">
+                                                            <rect key="frame" x="32" y="0.0" width="39.666666666666657" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="5:40 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-value-label">
+                                                            <rect key="frame" x="83.666666666666686" y="0.0" width="237.33333333333331" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="time-label-stack" firstAttribute="centerY" secondItem="time-label-content" secondAttribute="centerY" id="time-label-stack-center"/>
+                                                <constraint firstItem="time-label-stack" firstAttribute="leading" secondItem="time-label-content" secondAttribute="leading" constant="16" id="time-label-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="time-label-stack" secondAttribute="trailing" constant="16" id="time-label-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="time-picker-cell">
+                                        <rect key="frame" x="20" y="384.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="time-picker-cell" id="time-picker-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="time-picker">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="time-picker" firstAttribute="top" secondItem="time-picker-content" secondAttribute="topMargin" constant="-15" id="time-picker-top"/>
+                                                <constraint firstItem="time-picker" firstAttribute="leading" secondItem="time-picker-content" secondAttribute="leading" id="time-picker-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="time-picker" secondAttribute="trailing" id="time-picker-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Subgroup" id="subgroup-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="subgroup-cell">
+                                        <rect key="frame" x="20" y="491.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="subgroup-cell" id="subgroup-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-stack">
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="290.66666666666669" height="20.333333333333329"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-label-text">
+                                                            <rect key="frame" x="0.0" y="0.0" width="79.666666666666671" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-value-label">
+                                                            <rect key="frame" x="91.666666666666686" y="0.0" width="199" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="subgroup-stack" firstAttribute="centerY" secondItem="subgroup-content" secondAttribute="centerY" id="subgroup-stack-center"/>
+                                                <constraint firstItem="subgroup-stack" firstAttribute="leading" secondItem="subgroup-content" secondAttribute="leading" constant="16" id="subgroup-stack-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="subgroup-stack" secondAttribute="trailing" constant="16" id="subgroup-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="add-stop-vc" id="add-stop-datasource"/>
+                            <outlet property="delegate" destination="add-stop-vc" id="add-stop-delegate"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Itinerary Stop" id="add-stop-nav-item">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cancel-btn">
+                            <connections>
+                                <action selector="cancelTapped:" destination="add-stop-vc" id="cancel-action"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="add-btn">
+                            <connections>
+                                <action selector="addTapped:" destination="add-stop-vc" id="add-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="date-picker" id="outlet-date-picker"/>
+                        <outlet property="dateValueLabel" destination="date-value-label" id="outlet-date-value-label"/>
+                        <outlet property="locationTextField" destination="location-textfield" id="outlet-location-textfield"/>
+                        <outlet property="subgroupValueLabel" destination="subgroup-value-label" id="outlet-subgroup-value-label"/>
+                        <outlet property="timePicker" destination="time-picker" id="outlet-time-picker"/>
+                        <outlet property="timeValueLabel" destination="time-value-label" id="outlet-time-value-label"/>
+                        <outlet property="titleTextField" destination="title-textfield" id="outlet-title-textfield"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="add-stop-first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000" y="98"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="CardColor">
             <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
