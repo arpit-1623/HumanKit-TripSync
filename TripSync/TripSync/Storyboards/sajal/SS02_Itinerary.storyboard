@@ -227,6 +227,7 @@
                     <connections>
                         <outlet property="itineraryTableView" destination="table-itinerary" id="outlet-table-itinerary"/>
                         <outlet property="subgroupCollectionView" destination="collection-subgroups" id="outlet-collection-subgroups"/>
+                        <segue destination="add-stop-nav-controller" kind="presentation" identifier="showEditStop" modalPresentationStyle="formSheet" id="segue-edit-stop"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -472,6 +473,31 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="delete-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="delete-cell">
+                                        <rect key="frame" x="20" y="623.33333206176758" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="delete-cell" id="delete-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="delete-label">
+                                                    <rect key="frame" x="16" y="15" width="321" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="delete-label" firstAttribute="centerY" secondItem="delete-content" secondAttribute="centerY" id="delete-label-centerY"/>
+                                                <constraint firstItem="delete-label" firstAttribute="leading" secondItem="delete-content" secondAttribute="leading" constant="16" id="delete-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="delete-label" secondAttribute="trailing" constant="16" id="delete-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="add-stop-vc" id="add-stop-datasource"/>
@@ -484,7 +510,7 @@
                                 <action selector="cancelTapped:" destination="add-stop-vc" id="cancel-action"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="add-btn">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="add-btn">
                             <connections>
                                 <action selector="addTapped:" destination="add-stop-vc" id="add-action"/>
                             </connections>
@@ -525,6 +551,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

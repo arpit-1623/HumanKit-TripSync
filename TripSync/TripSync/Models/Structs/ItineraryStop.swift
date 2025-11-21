@@ -31,6 +31,18 @@ struct ItineraryStop: Codable {
         self.createdByUserId = createdByUserId
     }
     
+    init(id: UUID, title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID) {
+        self.id = id
+        self.title = title
+        self.location = location
+        self.address = address
+        self.date = date
+        self.time = time
+        self.tripId = tripId
+        self.subgroupId = subgroupId
+        self.createdByUserId = createdByUserId
+    }
+    
     var timeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"

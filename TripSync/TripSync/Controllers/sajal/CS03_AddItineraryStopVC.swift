@@ -9,6 +9,8 @@ import UIKit
 
 protocol AddItineraryStopDelegate: AnyObject {
     func didAddItineraryStop(_ stop: ItineraryStop)
+    func didUpdateItineraryStop(_ stop: ItineraryStop)
+    func didDeleteItineraryStop(_ stop: ItineraryStop)
 }
 
 class CS03_AddItineraryStopVC: UITableViewController {
@@ -27,6 +29,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
     var tripId: UUID?
     var availableSubgroups: [Subgroup] = []
     var selectedSubgroup: Subgroup?
+    var existingStop: ItineraryStop?
+    var isEditMode: Bool { existingStop != nil }
     
     private var isDatePickerVisible = false
     private var isTimePickerVisible = false
@@ -50,13 +54,34 @@ class CS03_AddItineraryStopVC: UITableViewController {
         updateDateTimeLabels()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Update bar button title based on mode
+        navigationItem.rightBarButtonItem?.title = isEditMode ? "Save" : "Add"
+    }
+    
     // MARK: - Setup
     private func setupUI() {
+        // Update title
+        title = isEditMode ? "Edit Stop" : "Add Stop"
+        
         // Configure text fields
         titleTextField.placeholder = "Activity name"
         locationTextField.placeholder = "Address"
         titleTextField.delegate = self
         locationTextField.delegate = self
+        
+        // Populate fields if editing
+        if let stop = existingStop {
+            titleTextField.text = stop.title
+            locationTextField.text = stop.location
+            datePicker.date = stop.date
+            timePicker.date = stop.time
+            
+            if let subgroupId = stop.subgroupId {
+                selectedSubgroup = availableSubgroups.first { $0.id == subgroupId }
+            }
+        }
         
         // Configure date picker
         datePicker.datePickerMode = .date
@@ -198,6 +223,9 @@ class CS03_AddItineraryStopVC: UITableViewController {
         } else if indexPath.section == 2 && indexPath.row == 0 {
             // Subgroup cell tapped
             showSubgroupPicker()
+        } else if indexPath.section == 3 && indexPath.row == 0 && isEditMode {
+            // Delete button tapped
+            deleteTapped()
         }
     }
     
@@ -212,7 +240,29 @@ class CS03_AddItineraryStopVC: UITableViewController {
                 return isTimePickerVisible ? 216 : 0
             }
         }
+        
+        // Section 3: Delete button - hide in add mode
+        if indexPath.section == 3 && !isEditMode {
+            return 0
+        }
+        
         return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // Hide delete section header in add mode
+        if section == 3 && !isEditMode {
+            return 0.01
+        }
+        return super.tableView(tableView, heightForHeaderInSection: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // Hide delete section footer in add mode
+        if section == 3 && !isEditMode {
+            return 0.01
+        }
+        return super.tableView(tableView, heightForFooterInSection: section)
     }
     
     private func toggleDatePicker() {
@@ -269,19 +319,53 @@ class CS03_AddItineraryStopVC: UITableViewController {
         guard validateForm() else { return }
         guard let tripId = tripId else { return }
         
-        let newStop = ItineraryStop(
-            title: titleTextField.text ?? "",
-            location: locationTextField.text ?? "",
-            address: locationTextField.text ?? "",
-            date: datePicker.date,
-            time: timePicker.date,
-            tripId: tripId,
-            subgroupId: selectedSubgroup?.id,
-            createdByUserId: UUID() // Replace with actual user ID
+        if let existingStop = existingStop {
+            // Edit mode - update existing stop
+            let updatedStop = ItineraryStop(
+                id: existingStop.id,
+                title: titleTextField.text ?? "",
+                location: locationTextField.text ?? "",
+                address: locationTextField.text ?? "",
+                date: datePicker.date,
+                time: timePicker.date,
+                tripId: tripId,
+                subgroupId: selectedSubgroup?.id,
+                createdByUserId: existingStop.createdByUserId
+            )
+            delegate?.didUpdateItineraryStop(updatedStop)
+        } else {
+            // Add mode - create new stop
+            let newStop = ItineraryStop(
+                title: titleTextField.text ?? "",
+                location: titleTextField.text ?? "",
+                address: locationTextField.text ?? "",
+                date: datePicker.date,
+                time: timePicker.date,
+                tripId: tripId,
+                subgroupId: selectedSubgroup?.id,
+                createdByUserId: UUID()
+            )
+            delegate?.didAddItineraryStop(newStop)
+        }
+        
+        dismiss(animated: true)
+    }
+    
+    @objc private func deleteTapped() {
+        let alert = UIAlertController(
+            title: "Delete Stop",
+            message: "Are you sure you want to delete this itinerary stop?",
+            preferredStyle: .alert
         )
         
-        delegate?.didAddItineraryStop(newStop)
-        dismiss(animated: true)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self, let stop = self.existingStop else { return }
+            self.delegate?.didDeleteItineraryStop(stop)
+            self.dismiss(animated: true)
+        })
+        
+        present(alert, animated: true)
     }
 }
 

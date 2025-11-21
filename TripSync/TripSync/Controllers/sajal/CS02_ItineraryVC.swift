@@ -265,6 +265,16 @@ class CS02_ItineraryVC: UIViewController {
                 addStopVC.tripId = currentTrip?.id
                 addStopVC.availableSubgroups = subgroups
             }
+        } else if segue.identifier == "showEditStop" {
+            if let navController = segue.destination as? UINavigationController,
+               let addStopVC = navController.topViewController as? CS03_AddItineraryStopVC,
+               let indexPath = sender as? IndexPath {
+                let stop = groupedStops[indexPath.section].stops[indexPath.row]
+                addStopVC.delegate = self
+                addStopVC.tripId = currentTrip?.id
+                addStopVC.availableSubgroups = subgroups
+                addStopVC.existingStop = stop
+            }
         }
     }
 }
@@ -273,6 +283,18 @@ class CS02_ItineraryVC: UIViewController {
 extension CS02_ItineraryVC: AddItineraryStopDelegate {
     func didAddItineraryStop(_ stop: ItineraryStop) {
         allItineraryStops.append(stop)
+        filterAndGroupStops()
+    }
+    
+    func didUpdateItineraryStop(_ stop: ItineraryStop) {
+        if let index = allItineraryStops.firstIndex(where: { $0.id == stop.id }) {
+            allItineraryStops[index] = stop
+            filterAndGroupStops()
+        }
+    }
+    
+    func didDeleteItineraryStop(_ stop: ItineraryStop) {
+        allItineraryStops.removeAll { $0.id == stop.id }
         filterAndGroupStops()
     }
 }
@@ -395,6 +417,6 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO: Navigate to edit/detail screen
+        performSegue(withIdentifier: "showEditStop", sender: indexPath)
     }
 }
