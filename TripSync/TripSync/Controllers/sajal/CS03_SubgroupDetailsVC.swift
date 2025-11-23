@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubgroupDetailsViewController: UIViewController {
+class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -22,6 +22,7 @@ class SubgroupDetailsViewController: UIViewController {
     
     // MARK: - Properties
     var subgroup: Subgroup?
+    var trip: Trip?
     var members: [User] = []
     
     // MARK: - Lifecycle
@@ -37,16 +38,16 @@ class SubgroupDetailsViewController: UIViewController {
     private func setupUI() {
         title = "Subgroup Details"
         
+        // Add edit button to navigation bar
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
+        navigationItem.rightBarButtonItem = editButton
+        
         // Configure logo view
-        logoView.layer.cornerRadius = 40 // 80pt diameter / 2
+        logoView.layer.cornerRadius = 30 // 60pt diameter / 2
         logoView.layer.masksToBounds = true
-        logoView.layer.shadowColor = UIColor.black.cgColor
-        logoView.layer.shadowOpacity = 0.1
-        logoView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        logoView.layer.shadowRadius = 4
         
         // Configure logo label
-        logoLabel.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        logoLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         logoLabel.textColor = .white
         logoLabel.textAlignment = .center
         
@@ -70,10 +71,10 @@ class SubgroupDetailsViewController: UIViewController {
         config.image = UIImage(systemName: icon)
         config.imagePadding = 8
         config.imagePlacement = .top
-        config.baseBackgroundColor = .systemBlue
-        config.baseForegroundColor = .white
+        config.baseBackgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1) // Sky blue
+        config.baseForegroundColor = .darkGray
         config.cornerStyle = .medium
-        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        config.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 24, bottom: 20, trailing: 24)
         
         button.configuration = config
         button.layer.shadowColor = UIColor.black.cgColor
@@ -108,9 +109,15 @@ class SubgroupDetailsViewController: UIViewController {
             logoLabel.text = String(firstLetter).uppercased()
         }
         
-        // Load members
-        members = subgroup.memberIds.compactMap { memberId in
-            DataModel.shared.getUser(byId: memberId)
+        // Load members from trip or subgroup
+        if let trip = trip {
+            members = trip.memberIds.compactMap { memberId in
+                DataModel.shared.getUser(byId: memberId)
+            }
+        } else {
+            members = subgroup.memberIds.compactMap { memberId in
+                DataModel.shared.getUser(byId: memberId)
+            }
         }
         
         membersTableView.reloadData()
@@ -124,6 +131,10 @@ class SubgroupDetailsViewController: UIViewController {
     }
     
     // MARK: - Actions
+    @objc private func editButtonTapped() {
+        performSegue(withIdentifier: "subgroupDetailsToEdit", sender: subgroup)
+    }
+    
     @IBAction func itineraryButtonTapped(_ sender: UIButton) {
         guard let subgroup = subgroup else { return }
         
@@ -178,7 +189,32 @@ class SubgroupDetailsViewController: UIViewController {
                   let subgroup = sender as? Subgroup {
             // TODO: Pass subgroup filter to chat when view controller is ready
             print("Navigate to chat for subgroup: \(subgroup.name)")
+        } else if segue.identifier == "subgroupDetailsToEdit",
+                  let navController = segue.destination as? UINavigationController,
+                  let formVC = navController.topViewController as? CS04_SubgroupFormVC,
+                  let subgroup = sender as? Subgroup {
+            formVC.existingSubgroup = subgroup
+            formVC.trip = trip
+            formVC.tripId = trip?.id
+            formVC.tripMembers = members
+            formVC.delegate = self
         }
+    }
+    
+    // MARK: - SubgroupFormDelegate
+    func didCreateSubgroup(_ subgroup: Subgroup) {
+        // Not used in details screen
+    }
+    
+    func didUpdateSubgroup(_ subgroup: Subgroup) {
+        // Update local subgroup
+        self.subgroup = subgroup
+        
+        // Update DataModel (saveSubgroup handles both create and update)
+        DataModel.shared.saveSubgroup(subgroup)
+        
+        // Reload UI
+        loadData()
     }
 }
 

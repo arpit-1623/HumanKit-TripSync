@@ -13,6 +13,7 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var subgroupsTableView: UITableView!
     
     // MARK: - Properties
+    var trip: Trip?
     var subgroups: [Subgroup] = []
 
     override func viewDidLoad() {
@@ -184,6 +185,7 @@ extension TripDetailsViewController {
            let destinationVC = segue.destination as? SubgroupDetailsViewController,
            let subgroup = sender as? Subgroup {
             destinationVC.subgroup = subgroup
+            destinationVC.trip = self.trip
         }
     }
 }

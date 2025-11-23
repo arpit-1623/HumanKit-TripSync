@@ -223,6 +223,10 @@ class DataModel {
         return subgroups.first(where: { $0.id == id })
     }
     
+    public func deleteSubgroup(_ subgroup: Subgroup) {
+        deleteSubgroup(byId: subgroup.id)
+    }
+    
     public func deleteSubgroup(byId id: UUID) {
         guard let subgroup = getSubgroup(byId: id) else { return }
         
