@@ -483,6 +483,7 @@
                         <segue destination="Ovq-4a-p51" kind="show" identifier="tripDetailsToMap" id="map-segue"/>
                         <segue destination="ewh-Dc-x06" kind="show" identifier="tripDetailsToChat" id="chat-segue"/>
                         <segue destination="9nZ-G9-4Ye" kind="show" identifier="tripDetailsToItinerary" id="itinerary-segue"/>
+                        <segue destination="SS03-subgroup-details" kind="show" identifier="tripDetailsToSubgroupDetails" id="subgroup-details-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -552,6 +553,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGr-cR-ufl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861" y="-32"/>
+        </scene>
+        <!--SS03_Subgroup-->
+        <scene sceneID="SS03-subgroup-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SS03_Subgroup" id="SS03-subgroup-details" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SS03-subgroup-nav"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SS03-subgroup-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1882" y="120"/>
         </scene>
         <!--SA04_TripMembers-->
         <scene sceneID="SA04-members-scene">
