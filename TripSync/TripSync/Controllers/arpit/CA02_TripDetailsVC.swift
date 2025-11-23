@@ -13,6 +13,7 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var subgroupsTableView: UITableView!
     
     // MARK: - Properties
+    var trip: Trip?
     var subgroups: [Subgroup] = []
     // MARK: - Properties
     var trip: Trip?
@@ -182,5 +183,21 @@ extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Navigate to subgroup details
+        let subgroup = subgroups[indexPath.row]
+        performSegue(withIdentifier: "tripDetailsToSubgroupDetails", sender: subgroup)
+    }
+}
+
+// MARK: - Navigation
+extension TripDetailsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tripDetailsToSubgroupDetails",
+           let destinationVC = segue.destination as? SubgroupDetailsViewController,
+           let subgroup = sender as? Subgroup {
+            destinationVC.subgroup = subgroup
+            destinationVC.trip = self.trip
+        }
     }
 }

@@ -169,6 +169,13 @@
                                                         <constraint firstAttribute="height" constant="50" id="color11-height"/>
                                                     </constraints>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-12">
+                                                    <rect key="frame" x="96" y="135" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="color12-width"/>
+                                                        <constraint firstAttribute="height" constant="50" id="color12-height"/>
+                                                    </constraints>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="color-btn-1" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="color1-leading"/>
@@ -182,6 +189,7 @@
                                                 <constraint firstItem="color-btn-9" firstAttribute="leading" secondItem="color-btn-8" secondAttribute="trailing" constant="10" id="color9-spacing"/>
                                                 <constraint firstItem="color-btn-10" firstAttribute="leading" secondItem="color-btn-9" secondAttribute="trailing" constant="10" id="color10-spacing"/>
                                                 <constraint firstItem="color-btn-11" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="color11-leading"/>
+                                                <constraint firstItem="color-btn-12" firstAttribute="leading" secondItem="color-btn-11" secondAttribute="trailing" constant="10" id="color12-spacing"/>
                                                 <constraint firstItem="color-btn-1" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color1-top"/>
                                                 <constraint firstItem="color-btn-2" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color2-top"/>
                                                 <constraint firstItem="color-btn-3" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color3-top"/>
@@ -193,6 +201,110 @@
                                                 <constraint firstItem="color-btn-9" firstAttribute="top" secondItem="color-btn-4" secondAttribute="bottom" constant="10" id="color9-top"/>
                                                 <constraint firstItem="color-btn-10" firstAttribute="top" secondItem="color-btn-5" secondAttribute="bottom" constant="10" id="color10-top"/>
                                                 <constraint firstItem="color-btn-11" firstAttribute="top" secondItem="color-btn-6" secondAttribute="bottom" constant="10" id="color11-top"/>
+                                                <constraint firstItem="color-btn-12" firstAttribute="top" secondItem="color-btn-7" secondAttribute="bottom" constant="10" id="color12-top"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="DETAILS" id="section-details">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-members-count">
+                                        <rect key="frame" x="0.0" y="230" width="393" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-members-count" id="content-members-count">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="members-title-label">
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="73.333333333333329" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="members-count-label">
+                                                    <rect key="frame" x="361" y="11.666666666666664" width="16" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
+                                                <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="members-count-label" secondAttribute="trailing" constant="16" id="members-count-trailing"/>
+                                                <constraint firstItem="members-count-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-count-centery"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-created-date">
+                                        <rect key="frame" x="0.0" y="274" width="393" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-created-date" id="content-created-date">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="created-title-label">
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="65" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November 23, 2025" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="created-date-label">
+                                                    <rect key="frame" x="214.33333333333334" y="11.666666666666664" width="162.66666666666666" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
+                                                <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="created-date-label" secondAttribute="trailing" constant="16" id="created-date-trailing"/>
+                                                <constraint firstItem="created-date-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-date-centery"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="section-delete">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="cell-delete">
+                                        <rect key="frame" x="0.0" y="336" width="393" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-delete" id="content-delete">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-button">
+                                                    <rect key="frame" x="16" y="10" width="361" height="44"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="delete-button-height"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Delete Subgroup">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteSubgroupTapped:" destination="subgroup-form-vc" eventType="touchUpInside" id="delete-action"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This action cannot be undone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="delete-warning-label">
+                                                    <rect key="frame" x="16" y="58" width="361" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="delete-button" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-button-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="delete-button" secondAttribute="trailing" constant="16" id="delete-button-trailing"/>
+                                                <constraint firstItem="delete-button" firstAttribute="top" secondItem="content-delete" secondAttribute="top" constant="10" id="delete-button-top"/>
+                                                <constraint firstItem="delete-warning-label" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-warning-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="delete-warning-label" secondAttribute="trailing" constant="16" id="delete-warning-trailing"/>
+                                                <constraint firstItem="delete-warning-label" firstAttribute="top" secondItem="delete-button" secondAttribute="bottom" constant="4" id="delete-warning-top"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -251,7 +363,10 @@
                         <outlet property="color9Button" destination="color-btn-9" id="color9-outlet"/>
                         <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
                         <outlet property="color11Button" destination="color-btn-11" id="color11-outlet"/>
+                        <outlet property="color12Button" destination="color-btn-12" id="color12-outlet"/>
+                        <outlet property="createdDateLabel" destination="created-date-label" id="created-date-outlet"/>
                         <outlet property="descriptionTextView" destination="desc-textview" id="desc-outlet"/>
+                        <outlet property="membersCountLabel" destination="members-count-label" id="members-count-outlet"/>
                         <outlet property="nameTextField" destination="name-textfield" id="name-outlet"/>
                     </connections>
                 </tableViewController>
@@ -264,6 +379,9 @@
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -272,6 +390,9 @@
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
