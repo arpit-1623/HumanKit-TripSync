@@ -9,11 +9,67 @@ import UIKit
 
 class TripDetailsViewController: UIViewController {
     
+    // MARK: - Outlets
+    @IBOutlet weak var subgroupsTableView: UITableView!
+    
+    // MARK: - Properties
+    var subgroups: [Subgroup] = []
     // MARK: - Properties
     var trip: Trip?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSubgroupsTableView()
+        loadDummyData()
+    }
+    
+    // MARK: - Setup
+    private func setupSubgroupsTableView() {
+        subgroupsTableView.delegate = self
+        subgroupsTableView.dataSource = self
+        subgroupsTableView.backgroundColor = .clear
+        subgroupsTableView.separatorStyle = .none
+        subgroupsTableView.isScrollEnabled = false
+    }
+    
+    private func loadDummyData() {
+        let tripId = UUID()
+        let userId = UUID()
+        
+        subgroups = [
+            Subgroup(
+                name: "Food Explorers",
+                description: "For those who want to try food...",
+                colorHex: "#FF6B9D",
+                tripId: tripId,
+                memberIds: [userId]
+            ),
+            Subgroup(
+                name: "Adventure Squad",
+                description: "For thrill seekers and explorers",
+                colorHex: "#4ECDC4",
+                tripId: tripId,
+                memberIds: [userId]
+            ),
+            Subgroup(
+                name: "Culture Vultures",
+                description: "History and art enthusiasts",
+                colorHex: "#FFB84D",
+                tripId: tripId,
+                memberIds: [userId]
+            )
+        ]
+        
+        subgroupsTableView.reloadData()
+        updateTableViewHeight()
+    }
+    
+    private func updateTableViewHeight() {
+        subgroupsTableView.layoutIfNeeded()
+        let height = CGFloat(subgroups.count * 80)
+        if let heightConstraint = subgroupsTableView.constraints.first(where: { $0.firstAttribute == .height }) {
+            heightConstraint.constant = height
+        }
     }
     
     // MARK: - Menu Actions
@@ -90,5 +146,41 @@ class TripDetailsViewController: UIViewController {
                 mapVC.trip = self.trip
             }
         }
+    }
+}
+
+// MARK: - UITableViewDelegate & DataSource
+extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return subgroups.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupCell", for: indexPath)
+        let subgroup = subgroups[indexPath.row]
+        
+        // Configure cell views using tags
+        if let avatarView = cell.contentView.viewWithTag(100) {
+            avatarView.backgroundColor = UIColor(hex: subgroup.colorHex) ?? .systemPink
+        }
+        
+        if let nameLabel = cell.contentView.viewWithTag(101) as? UILabel {
+            nameLabel.text = subgroup.name
+        }
+        
+        if let descLabel = cell.contentView.viewWithTag(102) as? UILabel {
+            descLabel.text = subgroup.description
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

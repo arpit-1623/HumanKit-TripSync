@@ -28,18 +28,12 @@
             </objects>
             <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--SS05_Profile-->
         <scene sceneID="hDe-UJ-i0b">
             <objects>
-                <viewController id="QVF-m9-1rQ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Fi-Ge-bWC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="eOj-jA-OwN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
+                <viewControllerPlaceholder storyboardName="SS05_Profile" id="QVF-m9-1rQ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="aAk-Jb-UiP"/>
-                </viewController>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mh6-GJ-C2Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1024" y="-2"/>
