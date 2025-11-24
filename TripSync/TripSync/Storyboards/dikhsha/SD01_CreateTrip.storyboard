@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Create Trip View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="CreateTripViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,50 +20,202 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" red="0.91196620771994752" green="0.59140765177307397" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
+                            <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blur-effect-view">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="blur-content-view">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ui5-f6-MDk">
                                 <rect key="frame" x="0.0" y="118" width="393" height="734"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5zL-tj-RFl">
-                                        <rect key="frame" x="8" y="0.0" width="393" height="680"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-view">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="750"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trip Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jac-Oq-nhO">
+                                                <rect key="frame" x="24" y="80" width="345" height="60"/>
+                                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="x1j-uL-ztn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="46"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="date-card">
+                                                <rect key="frame" x="24" y="164" width="345" height="90"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="calendar-icon">
+                                                        <rect key="frame" x="50" y="29.33333333333335" width="32" height="32"/>
+                                                        <color key="tintColor" systemColor="labelColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="calendar-height"/>
+                                                            <constraint firstAttribute="width" constant="32" id="calendar-width"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="date-small-label">
+                                                        <rect key="frame" x="99.666666666666671" y="34.666666666666664" width="229.33333333333331" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="date-card-button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="90"/>
+                                                        <connections>
+                                                            <action selector="didTapDateCard:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="date-card-action"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="date-card-button" secondAttribute="bottom" id="button-bottom"/>
+                                                    <constraint firstItem="date-card-button" firstAttribute="leading" secondItem="date-card" secondAttribute="leading" id="button-leading"/>
+                                                    <constraint firstItem="date-card-button" firstAttribute="top" secondItem="date-card" secondAttribute="top" id="button-top"/>
+                                                    <constraint firstAttribute="trailing" secondItem="date-card-button" secondAttribute="trailing" id="button-trailing"/>
+                                                    <constraint firstItem="calendar-icon" firstAttribute="centerY" secondItem="date-card" secondAttribute="centerY" id="calendar-centerY"/>
+                                                    <constraint firstItem="calendar-icon" firstAttribute="leading" secondItem="date-card" secondAttribute="leading" constant="50" id="calendar-leading"/>
+                                                    <constraint firstAttribute="height" constant="90" id="date-card-height"/>
+                                                    <constraint firstItem="date-small-label" firstAttribute="leading" secondItem="calendar-icon" secondAttribute="trailing" constant="17.5" id="small-label-leading"/>
+                                                    <constraint firstItem="date-small-label" firstAttribute="centerY" secondItem="date-card" secondAttribute="centerY" id="small-label-centerY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="date-small-label" secondAttribute="trailing" constant="16" id="small-label-trailing"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pill-stack">
+                                                <rect key="frame" x="24" y="280" width="345" height="100"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="location-pill">
+                                                        <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="100"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="location-icon">
+                                                                <rect key="frame" x="66.333333333333329" y="16.333333333333332" width="32" height="31.333333333333339"/>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="32" id="location-icon-height"/>
+                                                                    <constraint firstAttribute="width" constant="32" id="location-icon-width"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-label">
+                                                                <rect key="frame" x="48.666666666666671" y="58.000000000000007" width="67" height="20.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="location-button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="100"/>
+                                                                <connections>
+                                                                    <action selector="didTapLocation:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="location-action"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="location-button" secondAttribute="bottom" id="location-button-bottom"/>
+                                                            <constraint firstItem="location-button" firstAttribute="leading" secondItem="location-pill" secondAttribute="leading" id="location-button-leading"/>
+                                                            <constraint firstItem="location-button" firstAttribute="top" secondItem="location-pill" secondAttribute="top" id="location-button-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="location-button" secondAttribute="trailing" id="location-button-trailing"/>
+                                                            <constraint firstItem="location-icon" firstAttribute="centerX" secondItem="location-pill" secondAttribute="centerX" id="location-icon-centerX"/>
+                                                            <constraint firstItem="location-icon" firstAttribute="top" secondItem="location-pill" secondAttribute="top" constant="16" id="location-icon-top"/>
+                                                            <constraint firstItem="location-label" firstAttribute="centerX" secondItem="location-pill" secondAttribute="centerX" id="location-label-centerX"/>
+                                                            <constraint firstItem="location-label" firstAttribute="top" secondItem="location-icon" secondAttribute="bottom" constant="10" id="location-label-top"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="50"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="image-pill">
+                                                        <rect key="frame" x="180.66666666666663" y="0.0" width="164.33333333333337" height="100"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="image-icon">
+                                                                <rect key="frame" x="66.000000000000028" y="16.666666666666664" width="32" height="30.666666666666664"/>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="32" id="image-icon-height"/>
+                                                                    <constraint firstAttribute="width" constant="32" id="image-icon-width"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="image-label">
+                                                                <rect key="frame" x="58.000000000000028" y="58.000000000000007" width="48" height="20.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="image-button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="164.33333333333334" height="100"/>
+                                                                <connections>
+                                                                    <action selector="didTapImage:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="image-action"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="image-button" secondAttribute="bottom" id="image-button-bottom"/>
+                                                            <constraint firstItem="image-button" firstAttribute="leading" secondItem="image-pill" secondAttribute="leading" id="image-button-leading"/>
+                                                            <constraint firstItem="image-button" firstAttribute="top" secondItem="image-pill" secondAttribute="top" id="image-button-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="image-button" secondAttribute="trailing" id="image-button-trailing"/>
+                                                            <constraint firstItem="image-icon" firstAttribute="centerX" secondItem="image-pill" secondAttribute="centerX" id="image-icon-centerX"/>
+                                                            <constraint firstItem="image-icon" firstAttribute="top" secondItem="image-pill" secondAttribute="top" constant="16" id="image-icon-top"/>
+                                                            <constraint firstItem="image-label" firstAttribute="centerX" secondItem="image-pill" secondAttribute="centerX" id="image-label-centerX"/>
+                                                            <constraint firstItem="image-label" firstAttribute="top" secondItem="image-icon" secondAttribute="bottom" constant="10" id="image-label-top"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="50"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="pill-stack-height"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="pill-stack" secondAttribute="bottom" constant="370" id="content-bottom"/>
+                                            <constraint firstAttribute="height" constant="750" id="content-height"/>
+                                            <constraint firstItem="date-card" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="date-card-leading"/>
+                                            <constraint firstItem="date-card" firstAttribute="top" secondItem="jac-Oq-nhO" secondAttribute="bottom" constant="24" id="date-card-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="date-card" secondAttribute="trailing" constant="24" id="date-card-trailing"/>
+                                            <constraint firstItem="pill-stack" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="pill-stack-leading"/>
+                                            <constraint firstItem="pill-stack" firstAttribute="top" secondItem="date-card" secondAttribute="bottom" constant="26" id="pill-stack-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="pill-stack" secondAttribute="trailing" constant="24" id="pill-stack-trailing"/>
+                                            <constraint firstItem="jac-Oq-nhO" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="trip-name-leading"/>
+                                            <constraint firstItem="jac-Oq-nhO" firstAttribute="top" secondItem="content-view" secondAttribute="top" constant="80" id="trip-name-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="jac-Oq-nhO" secondAttribute="trailing" constant="24" id="trip-name-trailing"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstItem="5zL-tj-RFl" firstAttribute="top" secondItem="8cS-tM-2xC" secondAttribute="top" id="4TL-ao-pjS"/>
-                                    <constraint firstItem="5zL-tj-RFl" firstAttribute="bottom" secondItem="8cS-tM-2xC" secondAttribute="bottom" id="Bu4-6K-mrr"/>
-                                    <constraint firstItem="c2F-8d-RXo" firstAttribute="bottom" secondItem="5zL-tj-RFl" secondAttribute="bottom" id="LqU-zT-dNK"/>
-                                    <constraint firstItem="5zL-tj-RFl" firstAttribute="leading" secondItem="8cS-tM-2xC" secondAttribute="leading" id="i8S-1L-Ic1"/>
-                                    <constraint firstItem="5zL-tj-RFl" firstAttribute="trailing" secondItem="8cS-tM-2xC" secondAttribute="trailing" id="ozb-Ua-4GQ"/>
-                                    <constraint firstItem="5zL-tj-RFl" firstAttribute="width" secondItem="c2F-8d-RXo" secondAttribute="width" id="pMo-6N-jkM"/>
+                                    <constraint firstItem="content-view" firstAttribute="bottom" secondItem="8cS-tM-2xC" secondAttribute="bottom" id="content-bottom-scroll"/>
+                                    <constraint firstItem="content-view" firstAttribute="leading" secondItem="8cS-tM-2xC" secondAttribute="leading" id="content-leading"/>
+                                    <constraint firstItem="content-view" firstAttribute="top" secondItem="8cS-tM-2xC" secondAttribute="top" id="content-top"/>
+                                    <constraint firstItem="content-view" firstAttribute="trailing" secondItem="8cS-tM-2xC" secondAttribute="trailing" id="content-trailing"/>
+                                    <constraint firstItem="content-view" firstAttribute="width" secondItem="c2F-8d-RXo" secondAttribute="width" id="content-width"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="8cS-tM-2xC"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="c2F-8d-RXo"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tz-Xc-UW0">
-                                <rect key="frame" x="24" y="178" width="4" height="50"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="4" id="65r-zt-NpQ"/>
-                                    <constraint firstAttribute="height" constant="50" id="fo2-gm-hTH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6tz-Xc-UW0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="60" id="3w1-oG-CA9"/>
                             <constraint firstItem="Ui5-f6-MDk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="4pq-zX-5XI"/>
                             <constraint firstAttribute="bottom" secondItem="Ui5-f6-MDk" secondAttribute="bottom" id="JSD-zO-nUD"/>
                             <constraint firstItem="Ui5-f6-MDk" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ZjL-tt-ogw"/>
-                            <constraint firstItem="6tz-Xc-UW0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="eH3-3U-2TA"/>
+                            <constraint firstAttribute="bottom" secondItem="blur-effect-view" secondAttribute="bottom" id="blur-bottom"/>
+                            <constraint firstItem="blur-effect-view" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="blur-leading"/>
+                            <constraint firstItem="blur-effect-view" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="blur-top"/>
+                            <constraint firstAttribute="trailing" secondItem="blur-effect-view" secondAttribute="trailing" id="blur-trailing"/>
                             <constraint firstItem="r0a-Tu-VMM" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="gPe-im-XL5"/>
                             <constraint firstItem="r0a-Tu-VMM" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ssa-2w-Zub"/>
                             <constraint firstAttribute="trailing" secondItem="r0a-Tu-VMM" secondAttribute="trailing" id="vKr-3F-4Kp"/>
@@ -72,6 +224,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kzz-4r-zhY"/>
+                    <connections>
+                        <outlet property="dateCardButton" destination="date-card-button" id="outlet-date-card-button"/>
+                        <outlet property="dateSmallLabel" destination="date-small-label" id="outlet-date-small-label"/>
+                        <outlet property="imageButton" destination="image-button" id="outlet-image-button"/>
+                        <outlet property="locationButton" destination="location-button" id="outlet-location-button"/>
+                        <outlet property="tripNameField" destination="jac-Oq-nhO" id="outlet-trip-name-field"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,7 +238,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="createTripBg" width="401" height="874"/>
+        <image name="mappin" catalog="system" width="106" height="128"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
