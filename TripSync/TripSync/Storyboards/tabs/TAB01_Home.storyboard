@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2au-N2-nUX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes>
-        <!--Home-->
-        <scene sceneID="OyO-4e-F7f">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2au-N2-nUX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="KEM-OW-psS"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aW4-Hb-EMp">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Zp7-15-2Wt" kind="relationship" relationship="rootViewController" id="46r-Mv-uKl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PAE-qd-uy1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
-        </scene>
-        <!--SM02_Home-->
-        <scene sceneID="Wbn-Hv-UCR">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SM02_Home" id="Zp7-15-2Wt" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="FNF-OM-E9V"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P1v-oJ-t6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="746" y="-2"/>
-        </scene>
-    </scenes>
-    <resources>
-        <image name="house.fill" catalog="system" width="128" height="104"/>
-    </resources>
+    <scenes/>
 </document>

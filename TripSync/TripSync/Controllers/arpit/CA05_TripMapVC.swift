@@ -133,8 +133,19 @@ class TripMapViewController: UIViewController {
     }
     
     private func loadTripData() {
-        // Use hardcoded sample data for testing
-        loadHardcodedSampleData()
+        guard let trip = trip else { return }
+        
+        // Load members
+        members = trip.memberIds.compactMap { memberId in
+            DataModel.shared.getUser(byId: memberId)
+        }
+        filteredMembers = members
+        
+        // Load subgroups
+        subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
+        
+        // Load locations - for now initialize empty, would be updated via location updates
+        locations = []
         
         // Update map annotations
         updateMapAnnotations()
@@ -145,79 +156,6 @@ class TripMapViewController: UIViewController {
         // Reload table views
         memberTableView.reloadData()
         subgroupTableView.reloadData()
-    }
-    
-    private func loadHardcodedSampleData() {
-        // Create sample users
-        let user1 = User(fullName: "Alice Johnson", email: "alice@example.com")
-        let user2 = User(fullName: "Bob Smith", email: "bob@example.com")
-        let user3 = User(fullName: "John Doe", email: "john@example.com")
-        let user4 = User(fullName: "Sarah Wilson", email: "sarah@example.com")
-        
-        members = [user1, user2, user3, user4]
-        filteredMembers = members
-        
-        // Create sample locations around Warsaw, Poland
-        let loc1 = UserLocation(userId: user1.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2319, longitude: 21.0122), isLive: true)
-        let loc2 = UserLocation(userId: user2.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2297, longitude: 21.0122), isLive: true)
-        let loc3 = UserLocation(userId: user3.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2250, longitude: 21.0100), isLive: false)
-        let loc4 = UserLocation(userId: user4.id, tripId: UUID(), coordinate: CLLocationCoordinate2D(latitude: 52.2280, longitude: 21.0140), isLive: true)
-        
-        locations = [loc1, loc2, loc3, loc4]
-        
-        // Create sample subgroups
-        let subgroup1 = Subgroup(name: "Food Explorers", description: "Exploring local cuisine", colorHex: "#FF8C42", tripId: UUID(), memberIds: [user1.id, user2.id])
-        let subgroup2 = Subgroup(name: "Mountain Trek", description: "Hiking enthusiasts", colorHex: "#007AFF", tripId: UUID(), memberIds: [user3.id, user4.id])
-        
-        subgroups = [subgroup1, subgroup2]
-    }
-    
-    private func loadSampleTrip() {
-        // Get first available trip from DataModel
-        let trips = DataModel.shared.getAllTrips()
-        if let firstTrip = trips.first {
-            self.trip = firstTrip
-        } else {
-            // Create a sample trip if none exist
-            let sampleUsers = DataModel.shared.getAllUsers()
-            if let firstUser = sampleUsers.first {
-                let sampleTrip = Trip(
-                    name: "Sample Trip",
-                    description: "A sample trip for testing the map view",
-                    location: "Warsaw, Poland",
-                    startDate: Date(),
-                    endDate: Date().addingTimeInterval(86400 * 7),
-                    createdByUserId: firstUser.id
-                )
-                self.trip = sampleTrip
-                DataModel.shared.saveTrip(sampleTrip)
-            }
-        }
-    }
-    
-    private func loadDummyLocations() {
-        // Create dummy locations around Warsaw, Poland for testing
-        let baseCoordinates: [(lat: Double, lon: Double)] = [
-            (52.2319, 21.0122),  // Center
-            (52.2297, 21.0122),  // South
-            (52.2250, 21.0100),  // Southwest
-            (52.2280, 21.0140),  // East
-        ]
-        
-        for (index, member) in members.enumerated() {
-            let coordIndex = index % baseCoordinates.count
-            let coord = baseCoordinates[coordIndex]
-            let coordinate = CLLocationCoordinate2D(latitude: coord.lat, longitude: coord.lon)
-            let isLive = index % 3 != 2 // Every third member is offline
-            
-            let location = UserLocation(
-                userId: member.id,
-                tripId: trip?.id ?? UUID(),
-                coordinate: coordinate,
-                isLive: isLive
-            )
-            locations.append(location)
-        }
     }
     
     private func updateMapAnnotations() {

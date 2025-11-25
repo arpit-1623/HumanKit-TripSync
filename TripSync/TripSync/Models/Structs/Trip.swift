@@ -30,6 +30,10 @@ struct Trip: Codable {
     var subgroupIds: [UUID]
     var itineraryStopIds: [UUID]
     var memoryIds: [UUID]
+
+    var memberCount: Int {
+        return memberIds.count
+    }
     
     init(name: String, description: String?, location: String, startDate: Date, endDate: Date, createdByUserId: UUID) {
         self.id = UUID()

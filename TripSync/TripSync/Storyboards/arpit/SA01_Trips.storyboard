@@ -166,6 +166,9 @@
                                                     <segment title="Upcoming"/>
                                                     <segment title="Past"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="segmentedControlChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="ECN-w0-Drr"/>
+                                                </connections>
                                             </segmentedControl>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="110" estimatedRowHeight="110" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-Pp-52w">
                                                 <rect key="frame" x="0.0" y="321.33333333333331" width="402" height="578.66666666666674"/>
@@ -285,14 +288,18 @@
                     <navigationItem key="navigationItem" title="Your Trips" id="Xca-Cs-jF7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2gT-RP-4xx">
                             <connections>
-                                <segue destination="Eh6-lY-7FX" kind="show" id="JcF-43-uRk"/>
+                                <segue destination="Eh6-lY-7FX" kind="show" identifier="tripsToTripDetails" id="JcF-43-uRk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="currentTripCard" destination="Pmr-Oi-quV" id="JbE-bd-6Ng"/>
-                        <outlet property="currentTripImageView" destination="cTr-Ip-8hN" id="Q0E-Zu-txC"/>
+                        <outlet property="currentTripDateRangeLabel" destination="zEK-eu-IVZ" id="Gvb-fm-8ns"/>
+                        <outlet property="currentTripImageView" destination="cTr-Ip-8hN" id="kKG-wz-GwT"/>
                         <outlet property="currentTripLabel" destination="a7z-zj-MpJ" id="xPP-rY-qDH"/>
+                        <outlet property="currentTripLocationLabel" destination="AlB-YS-IoQ" id="JIL-kT-kAu"/>
+                        <outlet property="currentTripMembersLabel" destination="qVi-2H-rVK" id="3jB-NL-G6x"/>
+                        <outlet property="currentTripNameLabel" destination="41v-e2-e3U" id="t5q-34-Aha"/>
                         <outlet property="filterSegmentedControl" destination="z8O-45-6tV" id="Zg7-39-ugl"/>
                         <outlet property="otherTripsLabel" destination="Hn9-fG-8zL" id="VDi-4e-oqs"/>
                         <outlet property="searchBar" destination="8qD-cQ-D1Y" id="gcB-eZ-8LP"/>
