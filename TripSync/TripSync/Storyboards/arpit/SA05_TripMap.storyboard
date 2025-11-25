@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Trip Map View Controller-->
+        <!--Map-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="TripMapViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,21 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <!--Map View-->
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-view-001">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
-                            
-                            <!--Focus All Members Button-->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btn-focus-all-001">
-                                <rect key="frame" x="325" y="621" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="btn-focus-all-width"/>
-                                    <constraint firstAttribute="height" constant="48" id="btn-focus-all-height"/>
-                                </constraints>
+                                <rect key="frame" x="325" y="637" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="btn-focus-all-height"/>
+                                    <constraint firstAttribute="width" constant="48" id="btn-focus-all-width"/>
+                                </constraints>
                                 <state key="normal">
                                     <imageReference key="image" image="viewfinder.circle.fill" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="large"/>
@@ -46,16 +43,13 @@
                                     <action selector="focusAllButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="action-focus-all-001"/>
                                 </connections>
                             </button>
-                            
-                            <!--Current Location Button-->
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btn-location-001">
-                                <rect key="frame" x="325" y="685" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="btn-location-width"/>
-                                    <constraint firstAttribute="height" constant="48" id="btn-location-height"/>
-                                </constraints>
+                                <rect key="frame" x="325" y="701" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="btn-location-height"/>
+                                    <constraint firstAttribute="width" constant="48" id="btn-location-width"/>
+                                </constraints>
                                 <state key="normal">
                                     <imageReference key="image" image="location.fill" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="large"/>
@@ -69,14 +63,11 @@
                                     <action selector="currentLocationButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="action-location-001"/>
                                 </connections>
                             </button>
-                            
-                            <!--Collapsible Menu Container-->
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="menu-container-001">
-                                <rect key="frame" x="16" y="672" width="361" height="80"/>
+                                <rect key="frame" x="16" y="688" width="361" height="80"/>
                                 <subviews>
-                                    <!--Segmented Control-->
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="segment-control-001">
-                                        <rect key="frame" x="16" y="16" width="329" height="33"/>
+                                        <rect key="frame" x="16" y="16" width="329" height="32"/>
                                         <segments>
                                             <segment title="All"/>
                                             <segment title="Subgroups"/>
@@ -85,23 +76,19 @@
                                             <action selector="segmentedControlChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="action-segment-001"/>
                                         </connections>
                                     </segmentedControl>
-                                    
-                                    <!--Member Table View-->
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="table-members-001">
-                                        <rect key="frame" x="0.0" y="64" width="361" height="296"/>
+                                        <rect key="frame" x="0.0" y="63" width="361" height="17"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <!--Member Map Cell-->
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemberMapCell" id="cell-member-001">
-                                                <rect key="frame" x="0.0" y="50" width="361" height="60"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemberMapCell" id="cell-member-001" customClass="MemberMapCell" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="361" height="52"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-member-001" id="cell-member-content-001">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <!--Avatar Circle-->
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avatar-circle-001">
-                                                            <rect key="frame" x="16" y="10" width="40" height="40"/>
+                                                            <rect key="frame" x="16" y="6" width="40" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AJ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avatar-label-001">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -112,12 +99,12 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="avatar-width"/>
                                                                 <constraint firstAttribute="height" constant="40" id="avatar-height"/>
+                                                                <constraint firstAttribute="bottom" secondItem="avatar-label-001" secondAttribute="bottom" id="avatar-label-bottom"/>
                                                                 <constraint firstItem="avatar-label-001" firstAttribute="leading" secondItem="avatar-circle-001" secondAttribute="leading" id="avatar-label-leading"/>
                                                                 <constraint firstItem="avatar-label-001" firstAttribute="top" secondItem="avatar-circle-001" secondAttribute="top" id="avatar-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="avatar-label-001" secondAttribute="trailing" id="avatar-label-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="avatar-label-001" secondAttribute="bottom" id="avatar-label-bottom"/>
+                                                                <constraint firstAttribute="width" constant="40" id="avatar-width"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -125,14 +112,12 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        
-                                                        <!--Live Status Indicator-->
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="status-indicator-001">
-                                                            <rect key="frame" x="44" y="10" width="12" height="12"/>
+                                                            <rect key="frame" x="44" y="6" width="12" height="12"/>
                                                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="12" id="status-width"/>
                                                                 <constraint firstAttribute="height" constant="12" id="status-height"/>
+                                                                <constraint firstAttribute="width" constant="12" id="status-width"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -146,83 +131,94 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        
-                                                        <!--Member Name Label-->
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alice Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="name-label-001">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Alice Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="name-label-001">
                                                             <rect key="frame" x="64" y="14" width="229" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        
-                                                        <!--Location Status Label-->
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="status-label-001">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Location Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="status-label-001">
                                                             <rect key="frame" x="64" y="36" width="229" height="14"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        
-                                                        <!--Navigate Icon-->
                                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="paperplane.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="navigate-icon-001">
-                                                            <rect key="frame" x="317" y="20" width="20" height="20"/>
+                                                            <rect key="frame" x="317" y="16" width="20" height="20"/>
                                                             <color key="tintColor" systemColor="systemBlueColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="navigate-width"/>
                                                                 <constraint firstAttribute="height" constant="20" id="navigate-height"/>
+                                                                <constraint firstAttribute="width" constant="20" id="navigate-width"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="avatar-circle-001" firstAttribute="leading" secondItem="cell-member-content-001" secondAttribute="leading" constant="16" id="avatar-leading"/>
                                                         <constraint firstItem="avatar-circle-001" firstAttribute="centerY" secondItem="cell-member-content-001" secondAttribute="centerY" id="avatar-centerY"/>
-                                                        <constraint firstItem="status-indicator-001" firstAttribute="leading" secondItem="avatar-circle-001" secondAttribute="trailing" constant="-12" id="status-leading"/>
-                                                        <constraint firstItem="status-indicator-001" firstAttribute="top" secondItem="avatar-circle-001" secondAttribute="top" id="status-top"/>
+                                                        <constraint firstItem="avatar-circle-001" firstAttribute="leading" secondItem="cell-member-content-001" secondAttribute="leading" constant="16" id="avatar-leading"/>
                                                         <constraint firstItem="name-label-001" firstAttribute="leading" secondItem="avatar-circle-001" secondAttribute="trailing" constant="8" id="name-leading"/>
                                                         <constraint firstItem="name-label-001" firstAttribute="top" secondItem="cell-member-content-001" secondAttribute="top" constant="14" id="name-top"/>
                                                         <constraint firstItem="navigate-icon-001" firstAttribute="leading" secondItem="name-label-001" secondAttribute="trailing" constant="24" id="name-trailing"/>
+                                                        <constraint firstItem="navigate-icon-001" firstAttribute="centerY" secondItem="cell-member-content-001" secondAttribute="centerY" id="navigate-centerY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="navigate-icon-001" secondAttribute="trailing" constant="24" id="navigate-trailing"/>
                                                         <constraint firstItem="status-label-001" firstAttribute="leading" secondItem="name-label-001" secondAttribute="leading" id="status-label-leading"/>
                                                         <constraint firstItem="status-label-001" firstAttribute="top" secondItem="name-label-001" secondAttribute="bottom" constant="2" id="status-label-top"/>
                                                         <constraint firstItem="status-label-001" firstAttribute="trailing" secondItem="name-label-001" secondAttribute="trailing" id="status-label-trailing"/>
-                                                        <constraint firstItem="navigate-icon-001" firstAttribute="centerY" secondItem="cell-member-content-001" secondAttribute="centerY" id="navigate-centerY"/>
-                                                        <constraint firstAttribute="trailing" secondItem="navigate-icon-001" secondAttribute="trailing" constant="24" id="navigate-trailing"/>
+                                                        <constraint firstAttribute="bottom" secondItem="status-label-001" secondAttribute="bottom" constant="2" id="status-label-bottom"/>
+                                                        <constraint firstItem="status-indicator-001" firstAttribute="leading" secondItem="avatar-circle-001" secondAttribute="trailing" constant="-12" id="status-leading"/>
+                                                        <constraint firstItem="status-indicator-001" firstAttribute="top" secondItem="avatar-circle-001" secondAttribute="top" id="status-top"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="avatarInitialsLabel" destination="avatar-label-001" id="outlet-avatar-initials"/>
+                                                    <outlet property="avatarView" destination="avatar-circle-001" id="outlet-avatar-view"/>
+                                                    <outlet property="nameLabel" destination="name-label-001" id="outlet-name-label"/>
+                                                    <outlet property="navigateIcon" destination="navigate-icon-001" id="outlet-navigate-icon"/>
+                                                    <outlet property="statusIndicator" destination="status-indicator-001" id="outlet-status-indicator"/>
+                                                    <outlet property="statusLabel" destination="status-label-001" id="outlet-status-label"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    
-                                    <!--Subgroup Table View-->
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="table-subgroups-001">
-                                        <rect key="frame" x="0.0" y="64" width="361" height="296"/>
+                                        <rect key="frame" x="0.0" y="63" width="361" height="17"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <!--Subgroup Cell-->
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubgroupCell" textLabel="subgroup-text-001" detailTextLabel="subgroup-detail-001" style="IBUITableViewCellStyleValue1" id="cell-subgroup-001">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubgroupCell" id="cell-subgroup-001" customClass="SubgroupMapCell" customModule="TripSync" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="361" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-subgroup-001" id="cell-subgroup-content-001">
-                                                    <rect key="frame" x="0.0" y="0.0" width="330.66666666666669" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="342.66666666666669" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Food Explorers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="subgroup-text-001">
-                                                            <rect key="frame" x="20" y="17" width="128.33333333333334" height="20.333333333333332"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Explorers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-text-001">
+                                                            <rect key="frame" x="16" y="16" width="210" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="2 Members" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="subgroup-detail-001">
-                                                            <rect key="frame" x="237.66666666666666" y="22" width="85" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-detail-001">
+                                                            <rect key="frame" x="16" y="38.333333333333336" width="210" height="14.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="subgroup-text-001" firstAttribute="leading" secondItem="cell-subgroup-content-001" secondAttribute="leading" constant="16" id="subgroup-text-leading"/>
+                                                        <constraint firstItem="subgroup-text-001" firstAttribute="top" secondItem="cell-subgroup-content-001" secondAttribute="top" constant="16" id="subgroup-text-top"/>
+                                                        <constraint firstItem="subgroup-detail-001" firstAttribute="leading" secondItem="subgroup-text-001" secondAttribute="leading" id="subgroup-detail-leading"/>
+                                                        <constraint firstItem="subgroup-detail-001" firstAttribute="top" secondItem="subgroup-text-001" secondAttribute="bottom" constant="2" id="subgroup-detail-top"/>
+                                                        <constraint firstItem="subgroup-detail-001" firstAttribute="trailing" secondItem="subgroup-text-001" secondAttribute="trailing" id="subgroup-detail-trailing"/>
+                                                        <constraint firstAttribute="bottom" secondItem="subgroup-detail-001" secondAttribute="bottom" constant="8" id="subgroup-detail-bottom"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="subgroup-text-001" secondAttribute="trailing" constant="16" id="subgroup-text-trailing"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="detailLabel" destination="subgroup-detail-001" id="outlet-subgroup-detail"/>
+                                                    <outlet property="nameLabel" destination="subgroup-text-001" id="outlet-subgroup-name"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -233,14 +229,14 @@
                                     <constraint firstItem="segment-control-001" firstAttribute="leading" secondItem="menu-container-001" secondAttribute="leading" constant="16" id="segment-leading"/>
                                     <constraint firstItem="segment-control-001" firstAttribute="top" secondItem="menu-container-001" secondAttribute="top" constant="16" id="segment-top"/>
                                     <constraint firstAttribute="trailing" secondItem="segment-control-001" secondAttribute="trailing" constant="16" id="segment-trailing"/>
+                                    <constraint firstAttribute="bottom" secondItem="table-members-001" secondAttribute="bottom" id="table-members-bottom"/>
                                     <constraint firstItem="table-members-001" firstAttribute="leading" secondItem="menu-container-001" secondAttribute="leading" id="table-members-leading"/>
                                     <constraint firstItem="table-members-001" firstAttribute="top" secondItem="segment-control-001" secondAttribute="bottom" constant="16" id="table-members-top"/>
                                     <constraint firstAttribute="trailing" secondItem="table-members-001" secondAttribute="trailing" id="table-members-trailing"/>
-                                    <constraint firstAttribute="bottom" secondItem="table-members-001" secondAttribute="bottom" constant="0" id="table-members-bottom"/>
+                                    <constraint firstAttribute="bottom" secondItem="table-subgroups-001" secondAttribute="bottom" id="table-subgroups-bottom"/>
                                     <constraint firstItem="table-subgroups-001" firstAttribute="leading" secondItem="menu-container-001" secondAttribute="leading" id="table-subgroups-leading"/>
                                     <constraint firstItem="table-subgroups-001" firstAttribute="top" secondItem="segment-control-001" secondAttribute="bottom" constant="16" id="table-subgroups-top"/>
                                     <constraint firstAttribute="trailing" secondItem="table-subgroups-001" secondAttribute="trailing" id="table-subgroups-trailing"/>
-                                    <constraint firstAttribute="bottom" secondItem="table-subgroups-001" secondAttribute="bottom" constant="0" id="table-subgroups-bottom"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -252,24 +248,17 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <!--Map View Constraints-->
+                            <constraint firstItem="menu-container-001" firstAttribute="top" secondItem="btn-focus-all-001" secondAttribute="bottom" constant="3" id="focus-to-menu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="btn-focus-all-001" secondAttribute="trailing" constant="20" id="focus-trailing"/>
+                            <constraint firstItem="btn-location-001" firstAttribute="top" secondItem="btn-focus-all-001" secondAttribute="bottom" constant="16" id="location-top"/>
+                            <constraint firstItem="btn-location-001" firstAttribute="trailing" secondItem="btn-focus-all-001" secondAttribute="trailing" id="location-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="map-view-001" secondAttribute="bottom" id="map-bottom"/>
                             <constraint firstItem="map-view-001" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="map-leading"/>
                             <constraint firstItem="map-view-001" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="map-top"/>
                             <constraint firstAttribute="trailing" secondItem="map-view-001" secondAttribute="trailing" id="map-trailing"/>
-                            <constraint firstAttribute="bottom" secondItem="map-view-001" secondAttribute="bottom" id="map-bottom"/>
-                            
-                            <!--Focus All Button Constraints-->
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="btn-focus-all-001" secondAttribute="trailing" constant="20" id="focus-trailing"/>
-                            <constraint firstItem="menu-container-001" firstAttribute="top" secondItem="btn-focus-all-001" secondAttribute="bottom" constant="3" id="focus-to-menu"/>
-                            
-                            <!--Current Location Button Constraints-->
-                            <constraint firstItem="btn-location-001" firstAttribute="trailing" secondItem="btn-focus-all-001" secondAttribute="trailing" id="location-trailing"/>
-                            <constraint firstItem="btn-location-001" firstAttribute="top" secondItem="btn-focus-all-001" secondAttribute="bottom" constant="16" id="location-top"/>
-                            
-                            <!--Menu Container Constraints-->
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="menu-container-001" secondAttribute="bottom" constant="16" id="menu-bottom"/>
                             <constraint firstItem="menu-container-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="menu-leading"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="menu-container-001" secondAttribute="trailing" constant="16" id="menu-trailing"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="menu-container-001" secondAttribute="bottom" constant="16" id="menu-bottom"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="nav-item-001">
@@ -296,27 +285,27 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="viewfinder.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="CardColor">
-            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.9686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
