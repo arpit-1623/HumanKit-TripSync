@@ -16,6 +16,8 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var dateSmallLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     // MARK: - Properties
     private var selectedStartDate: Date?
@@ -56,18 +58,50 @@ class CreateTripViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func didTapDateCard(_ sender: UIButton) {
-        // TODO: Push SD01_DatePickerVC
-        print("Date card tapped")
+        presentDatePicker()
+    }
+    
+    private func presentDatePicker() {
+        let storyboard = UIStoryboard(name: "SD02_DatePicker", bundle: nil)
+        guard let datePickerVC = storyboard.instantiateViewController(withIdentifier: "CD02_DatePickerVC") as? CD02_DatePickerVC else {
+            return
+        }
+        
+        datePickerVC.delegate = self
+        datePickerVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = datePickerVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+        
+        present(datePickerVC, animated: true)
     }
     
     @IBAction func didTapLocation(_ sender: UIButton) {
-        // TODO: Push SD01_LocationPickerVC
-        print("Location button tapped")
+        presentLocationPicker()
+    }
+    
+    private func presentLocationPicker() {
+        let storyboard = UIStoryboard(name: "SD03_LocationPicker", bundle: nil)
+        guard let locationPickerVC = storyboard.instantiateViewController(withIdentifier: "CD03_LocationPickerVC") as? CD03_LocationPickerVC else {
+            return
+        }
+        
+        locationPickerVC.delegate = self
+        locationPickerVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = locationPickerVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+        
+        present(locationPickerVC, animated: true)
     }
     
     @IBAction func didTapImage(_ sender: UIButton) {
-        // TODO: Present PHPickerViewController
-        print("Image button tapped")
         presentImagePicker()
     }
     
@@ -97,48 +131,33 @@ class CreateTripViewController: UIViewController {
             return
         }
         
-        // Create trip
-        createTrip(name: tripName, location: location, startDate: startDate, endDate: endDate)
+        // Navigate to summary screen
+        let summaryVC = CD05_SummaryVC()
+        summaryVC.tripName = tripName
+        summaryVC.dateRange = (start: startDate, end: endDate)
+        summaryVC.location = location
+        summaryVC.coverImage = backgroundImageView.image ?? UIImage(named: "createTripBg")
+        navigationController?.pushViewController(summaryVC, animated: true)
     }
     
     // MARK: - Helper Methods
-    private func createTrip(name: String, location: String, startDate: Date, endDate: Date) {
-        // Get current user
-        guard let currentUser = DataModel.shared.getCurrentUser() else {
-            showAlert(title: "Error", message: "Unable to get current user.")
+    
+    private func presentImagePicker() {
+        let storyboard = UIStoryboard(name: "SD04_ImagePicker", bundle: nil)
+        guard let imagePickerVC = storyboard.instantiateInitialViewController() as? CD04_ImagePickerVC else {
             return
         }
         
-        // Create new trip
-        var newTrip = Trip(
-            name: name,
-            description: nil,
-            location: location,
-            startDate: startDate,
-            endDate: endDate,
-            createdByUserId: currentUser.id
-        )
+        imagePickerVC.delegate = self
+        imagePickerVC.modalPresentationStyle = .pageSheet
         
-        // Add cover image if selected
-        if let imageData = selectedImageData {
-            newTrip.coverImageData = imageData
+        if let sheet = imagePickerVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
         }
         
-        // Save trip
-        DataModel.shared.saveTrip(newTrip)
-        
-        // Navigate back
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func presentImagePicker() {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        configuration.selectionLimit = 1
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        present(picker, animated: true)
+        present(imagePickerVC, animated: true)
     }
     
     private func showAlert(title: String, message: String) {
@@ -156,20 +175,48 @@ extension CreateTripViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - PHPickerViewControllerDelegate
-extension CreateTripViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
+// MARK: - ImagePickerDelegate
+extension CreateTripViewController: ImagePickerDelegate {
+    func didSelectImage(_ image: UIImage, photoData: UnsplashPhoto) {
+        backgroundImageView.image = image
+        selectedImageData = image.jpegData(compressionQuality: 0.8)
+    }
+}
+
+// MARK: - DateRangePickerDelegate
+extension CreateTripViewController: DateRangePickerDelegate {
+    func didSelectDateRange(start: Date, end: Date) {
+        selectedStartDate = start
+        selectedEndDate = end
         
-        guard let result = results.first else { return }
+        // Update the date label
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM"
         
-        result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
-            if let image = object as? UIImage {
-                DispatchQueue.main.async {
-                    self?.selectedImageData = image.jpegData(compressionQuality: 0.8)
-                    print("Image selected")
-                }
-            }
+        let calendar = Calendar.current
+        let startYear = calendar.component(.year, from: start)
+        let endYear = calendar.component(.year, from: end)
+        
+        var dateRangeText: String
+        if startYear == endYear {
+            // Same year: "5 Jan - 11 Jan 2025"
+            dateRangeText = "\(formatter.string(from: start)) - \(formatter.string(from: end)) \(startYear)"
+        } else {
+            // Different years: "28 Dec 2024 - 3 Jan 2025"
+            formatter.dateFormat = "d MMM yyyy"
+            dateRangeText = "\(formatter.string(from: start)) - \(formatter.string(from: end))"
         }
+        
+        dateSmallLabel.text = dateRangeText
+        dateSmallLabel.textColor = .label
+    }
+}
+
+// MARK: - LocationPickerDelegate
+extension CreateTripViewController: LocationPickerDelegate {
+    func locationPicker(_ picker: CD03_LocationPickerVC, didSelectLocationDisplayName name: String) {
+        selectedLocation = name
+        locationLabel.text = name
+        locationLabel.textColor = .label
     }
 }

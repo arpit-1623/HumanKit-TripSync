@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Picker-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="CD04_ImagePickerVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5QZ-0B-iV0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <!-- Grabber Handle -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grabber-view">
+                                <rect key="frame" x="176.66666666666666" y="12" width="40" height="5"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="grabber-width"/>
+                                    <constraint firstAttribute="height" constant="5" id="grabber-height"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="2.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            
+                            <!-- Header Container -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header-container">
+                                <rect key="frame" x="0.0" y="29" width="393" height="60"/>
+                                <subviews>
+                                    <!-- Cancel Button -->
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cancel-btn">
+                                        <rect key="frame" x="16" y="15" width="70" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cancel-action"/>
+                                        </connections>
+                                    </button>
+                                    
+                                    <!-- Title Label -->
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-label">
+                                        <rect key="frame" x="136.33333333333334" y="15" width="120.33333333333334" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    
+                                    <!-- Confirm Button -->
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="confirm-btn">
+                                        <rect key="frame" x="307" y="15" width="70" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="confirm-action"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="header-height"/>
+                                    <constraint firstItem="cancel-btn" firstAttribute="leading" secondItem="header-container" secondAttribute="leading" constant="16" id="cancel-leading"/>
+                                    <constraint firstItem="cancel-btn" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="cancel-centerY"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerX" secondItem="header-container" secondAttribute="centerX" id="title-centerX"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="title-centerY"/>
+                                    <constraint firstAttribute="trailing" secondItem="confirm-btn" secondAttribute="trailing" constant="16" id="confirm-trailing"/>
+                                    <constraint firstItem="confirm-btn" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="confirm-centerY"/>
+                                </constraints>
+                            </view>
+                            
+                            <!-- Search Field Container -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-container">
+                                <rect key="frame" x="16" y="97" width="361" height="48"/>
+                                <subviews>
+                                    <!-- Magnifying Glass Icon -->
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon">
+                                        <rect key="frame" x="12" y="14" width="20" height="20"/>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="search-icon-width"/>
+                                            <constraint firstAttribute="height" constant="20" id="search-icon-height"/>
+                                        </constraints>
+                                    </imageView>
+                                    
+                                    <!-- Search Text Field -->
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search images..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield">
+                                        <rect key="frame" x="40" y="0.0" width="281" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    </textField>
+                                    
+                                    <!-- Mic Icon -->
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mic-icon">
+                                        <rect key="frame" x="329" y="14" width="20" height="20"/>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="mic-icon-width"/>
+                                            <constraint firstAttribute="height" constant="20" id="mic-icon-height"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="search-container-height"/>
+                                    <constraint firstItem="search-icon" firstAttribute="leading" secondItem="search-container" secondAttribute="leading" constant="12" id="search-icon-leading"/>
+                                    <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="search-icon-centerY"/>
+                                    <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="search-icon" secondAttribute="trailing" constant="8" id="textfield-leading"/>
+                                    <constraint firstItem="search-textfield" firstAttribute="top" secondItem="search-container" secondAttribute="top" id="textfield-top"/>
+                                    <constraint firstItem="search-textfield" firstAttribute="bottom" secondItem="search-container" secondAttribute="bottom" id="textfield-bottom"/>
+                                    <constraint firstItem="mic-icon" firstAttribute="leading" secondItem="search-textfield" secondAttribute="trailing" constant="8" id="mic-leading"/>
+                                    <constraint firstAttribute="trailing" secondItem="mic-icon" secondAttribute="trailing" constant="12" id="mic-trailing"/>
+                                    <constraint firstItem="mic-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="mic-centerY"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            
+                            <!-- Collection View -->
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="collection-view">
+                                <rect key="frame" x="0.0" y="153" width="393" height="665"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="8" minimumInteritemSpacing="8" id="flow-layout">
+                                    <size key="itemSize" width="110" height="110"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="8" maxX="16" maxY="8"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <!-- Grabber Constraints -->
+                            <constraint firstItem="grabber-view" firstAttribute="centerX" secondItem="5QZ-0B-iV0" secondAttribute="centerX" id="grabber-centerX"/>
+                            <constraint firstItem="grabber-view" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="grabber-top"/>
+                            
+                            <!-- Header Constraints -->
+                            <constraint firstItem="header-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="header-leading"/>
+                            <constraint firstItem="header-container" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="header-trailing"/>
+                            <constraint firstItem="header-container" firstAttribute="top" secondItem="grabber-view" secondAttribute="bottom" constant="12" id="header-top"/>
+                            
+                            <!-- Search Container Constraints -->
+                            <constraint firstItem="search-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="search-leading"/>
+                            <constraint firstItem="search-container" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-16" id="search-trailing"/>
+                            <constraint firstItem="search-container" firstAttribute="top" secondItem="header-container" secondAttribute="bottom" constant="8" id="search-top"/>
+                            
+                            <!-- Collection View Constraints -->
+                            <constraint firstItem="collection-view" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="collection-leading"/>
+                            <constraint firstItem="collection-view" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="collection-trailing"/>
+                            <constraint firstItem="collection-view" firstAttribute="top" secondItem="search-container" secondAttribute="bottom" constant="8" id="collection-top"/>
+                            <constraint firstItem="collection-view" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="collection-bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchTextField" destination="search-textfield" id="outlet-search-textfield"/>
+                        <outlet property="collectionView" destination="collection-view" id="outlet-collection-view"/>
+                        <outlet property="cancelButton" destination="cancel-btn" id="outlet-cancel-btn"/>
+                        <outlet property="confirmButton" destination="confirm-btn" id="outlet-confirm-btn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="116"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="mic.fill" catalog="system" width="108" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.8" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

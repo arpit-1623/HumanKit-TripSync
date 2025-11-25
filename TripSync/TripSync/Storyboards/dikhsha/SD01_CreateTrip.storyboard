@@ -55,7 +55,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="date-small-label">
-                                                        <rect key="frame" x="99.666666666666671" y="34.666666666666664" width="229.33333333333331" height="20.333333333333329"/>
+                                                        <rect key="frame" x="99.666666666666671" y="35" width="229.33333333333331" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -76,8 +76,8 @@
                                                     <constraint firstItem="calendar-icon" firstAttribute="centerY" secondItem="date-card" secondAttribute="centerY" id="calendar-centerY"/>
                                                     <constraint firstItem="calendar-icon" firstAttribute="leading" secondItem="date-card" secondAttribute="leading" constant="50" id="calendar-leading"/>
                                                     <constraint firstAttribute="height" constant="90" id="date-card-height"/>
-                                                    <constraint firstItem="date-small-label" firstAttribute="leading" secondItem="calendar-icon" secondAttribute="trailing" constant="17.5" id="small-label-leading"/>
                                                     <constraint firstItem="date-small-label" firstAttribute="centerY" secondItem="date-card" secondAttribute="centerY" id="small-label-centerY"/>
+                                                    <constraint firstItem="date-small-label" firstAttribute="leading" secondItem="calendar-icon" secondAttribute="trailing" constant="17.5" id="small-label-leading"/>
                                                     <constraint firstAttribute="trailing" secondItem="date-small-label" secondAttribute="trailing" constant="16" id="small-label-trailing"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -225,10 +225,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kzz-4r-zhY"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="r0a-Tu-VMM" id="outlet-background-image"/>
                         <outlet property="dateCardButton" destination="date-card-button" id="outlet-date-card-button"/>
                         <outlet property="dateSmallLabel" destination="date-small-label" id="outlet-date-small-label"/>
                         <outlet property="imageButton" destination="image-button" id="outlet-image-button"/>
                         <outlet property="locationButton" destination="location-button" id="outlet-location-button"/>
+                        <outlet property="locationLabel" destination="location-label" id="outlet-location-label"/>
                         <outlet property="tripNameField" destination="jac-Oq-nhO" id="outlet-trip-name-field"/>
                     </connections>
                 </viewController>
@@ -249,10 +251,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
