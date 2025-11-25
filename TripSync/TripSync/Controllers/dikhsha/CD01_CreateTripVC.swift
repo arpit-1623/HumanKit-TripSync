@@ -19,6 +19,9 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
+    
+    @IBOutlet weak var createRightBarButton: UIBarButtonItem!
+    
     // MARK: - Properties
     private var selectedStartDate: Date?
     private var selectedEndDate: Date?
@@ -29,36 +32,22 @@ class CreateTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
     }
     
     // MARK: - Setup
     private func setupUI() {
-        // Configure trip name field
         tripNameField.delegate = self
         tripNameField.becomeFirstResponder()
         
-        // Configure date label
         dateSmallLabel.text = "Set Dates"
         dateSmallLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         dateSmallLabel.textColor = UIColor(white: 0.33, alpha: 1.0)
     }
     
-    private func setupNavigationBar() {
-        title = "Create Trip"
-        
-        // Add cancel button
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
-        navigationItem.leftBarButtonItem = cancelButton
-        
-        // Add create button
-        let createButton = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(createButtonTapped))
-        navigationItem.rightBarButtonItem = createButton
-    }
-    
     // MARK: - Actions
     @IBAction func didTapDateCard(_ sender: UIButton) {
         presentDatePicker()
+//        performSegue(withIdentifier: "createTripToDatePicker", sender: nil)
     }
     
     private func presentDatePicker() {
@@ -80,7 +69,8 @@ class CreateTripViewController: UIViewController {
     }
     
     @IBAction func didTapLocation(_ sender: UIButton) {
-        presentLocationPicker()
+//        presentLocationPicker()
+        performSegue(withIdentifier: "createTripToLocationPicker", sender: nil)
     }
     
     private func presentLocationPicker() {
@@ -102,7 +92,8 @@ class CreateTripViewController: UIViewController {
     }
     
     @IBAction func didTapImage(_ sender: UIButton) {
-        presentImagePicker()
+//        presentImagePicker()
+        performSegue(withIdentifier: "createTripToImagePicker", sender: nil)
     }
     
     @objc private func cancelButtonTapped() {
@@ -132,11 +123,16 @@ class CreateTripViewController: UIViewController {
         }
         
         // Navigate to summary screen
-        let summaryVC = CD05_SummaryVC()
+        let storyboard = UIStoryboard(name: "SD05_Summary", bundle: nil)
+        guard let summaryVC = storyboard.instantiateInitialViewController() as? CD05_SummaryVC else {
+            return
+        }
+        
         summaryVC.tripName = tripName
         summaryVC.dateRange = (start: startDate, end: endDate)
         summaryVC.location = location
         summaryVC.coverImage = backgroundImageView.image ?? UIImage(named: "createTripBg")
+        
         navigationController?.pushViewController(summaryVC, animated: true)
     }
     

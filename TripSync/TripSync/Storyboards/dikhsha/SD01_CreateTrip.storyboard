@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Trip View Controller-->
+        <!--Create Trip-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="CreateTripViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
@@ -223,20 +223,59 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ui5-f6-MDk" secondAttribute="trailing" id="wPF-tm-hIq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Kzz-4r-zhY"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Create Trip" id="Kzz-4r-zhY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa"/>
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="R2D-kd-Ayw"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="r0a-Tu-VMM" id="outlet-background-image"/>
+                        <outlet property="createRightBarButton" destination="R2D-kd-Ayw" id="SgW-wT-qBd"/>
                         <outlet property="dateCardButton" destination="date-card-button" id="outlet-date-card-button"/>
                         <outlet property="dateSmallLabel" destination="date-small-label" id="outlet-date-small-label"/>
                         <outlet property="imageButton" destination="image-button" id="outlet-image-button"/>
                         <outlet property="locationButton" destination="location-button" id="outlet-location-button"/>
                         <outlet property="locationLabel" destination="location-label" id="outlet-location-label"/>
                         <outlet property="tripNameField" destination="jac-Oq-nhO" id="outlet-trip-name-field"/>
+                        <segue destination="Xg8-J7-qvh" kind="presentation" identifier="createTripToDatePicker" id="RDE-zP-3TE"/>
+                        <segue destination="Aug-Xa-Omv" kind="presentation" identifier="createTripToLocationPicker" id="ggf-Z3-nY1"/>
+                        <segue destination="xSu-kQ-8nH" kind="presentation" identifier="createTripToImagePicker" id="Xvi-rg-Oyz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1064.885496183206" y="130.98591549295776"/>
+        </scene>
+        <!--SD02_SetDate-->
+        <scene sceneID="Soh-hG-7zD">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SD02_SetDate" storyboardName="SD02_SetDate" id="Xg8-J7-qvh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9JG-Of-BBW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddR-Kz-zON" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1858" y="35"/>
+        </scene>
+        <!--SD03_LocationPicker-->
+        <scene sceneID="OGL-Yz-fod">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SD03_LocationPicker" id="Aug-Xa-Omv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3po-xK-CRN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pY-8a-9Oy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="131"/>
+        </scene>
+        <!--SD04_ImagePicker-->
+        <scene sceneID="NIk-nf-C9W">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SD04_ImagePicker" id="xSu-kQ-8nH" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="RZ0-qH-N6N"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ywh-wH-3Dp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857" y="246"/>
         </scene>
     </scenes>
     <resources>
