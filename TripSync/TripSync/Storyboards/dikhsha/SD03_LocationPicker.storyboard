@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LocationPickerVC">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Location Picker View Controller-->
+        <scene sceneID="location-picker-scene">
+            <objects>
+                <viewController storyboardIdentifier="CD03_LocationPickerVC" id="LocationPickerVC" customClass="CD03_LocationPickerVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="location-picker-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <!-- Grabber -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grabber-view">
+                                <rect key="frame" x="178.66666666666666" y="8" width="36" height="4"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="grabber-width"/>
+                                    <constraint firstAttribute="height" constant="4" id="grabber-height"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            
+                            <!-- Header Container -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header-container">
+                                <rect key="frame" x="0.0" y="20" width="393" height="50"/>
+                                <subviews>
+                                    <!-- Cancel Button -->
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cancel-button">
+                                        <rect key="frame" x="20" y="10" width="70" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="cancel-height"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCancel:" destination="LocationPickerVC" eventType="touchUpInside" id="cancel-action"/>
+                                        </connections>
+                                    </button>
+                                    
+                                    <!-- Title Label -->
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-label">
+                                        <rect key="frame" x="146.66666666666666" y="13" width="100" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="header-height"/>
+                                    <constraint firstItem="cancel-button" firstAttribute="leading" secondItem="header-container" secondAttribute="leading" constant="20" id="cancel-leading"/>
+                                    <constraint firstItem="cancel-button" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="cancel-centerY"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerX" secondItem="header-container" secondAttribute="centerX" id="title-centerX"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="title-centerY"/>
+                                </constraints>
+                            </view>
+                            
+                            <!-- Search Field Container -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-container">
+                                <rect key="frame" x="20" y="86" width="353" height="52"/>
+                                <subviews>
+                                    <!-- Search Icon (Left View) -->
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon">
+                                        <rect key="frame" x="14" y="16.666666666666664" width="20" height="19"/>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="search-icon-width"/>
+                                            <constraint firstAttribute="height" constant="20" id="search-icon-height"/>
+                                        </constraints>
+                                    </imageView>
+                                    
+                                    <!-- Microphone Icon (Right View) -->
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mic-icon">
+                                        <rect key="frame" x="319" y="14.333333333333336" width="20" height="22.666666666666664"/>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="mic-icon-width"/>
+                                            <constraint firstAttribute="height" constant="22" id="mic-icon-height"/>
+                                        </constraints>
+                                    </imageView>
+                                    
+                                    <!-- Text Field -->
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tokyo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield">
+                                        <rect key="frame" x="44" y="11" width="265" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="search-container-height"/>
+                                    <constraint firstItem="search-icon" firstAttribute="leading" secondItem="search-container" secondAttribute="leading" constant="14" id="search-icon-leading"/>
+                                    <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="search-icon-centerY"/>
+                                    <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="search-icon" secondAttribute="trailing" constant="10" id="textfield-leading"/>
+                                    <constraint firstItem="search-textfield" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="textfield-centerY"/>
+                                    <constraint firstItem="mic-icon" firstAttribute="leading" secondItem="search-textfield" secondAttribute="trailing" constant="10" id="mic-leading"/>
+                                    <constraint firstItem="mic-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="mic-centerY"/>
+                                    <constraint firstAttribute="trailing" secondItem="mic-icon" secondAttribute="trailing" constant="14" id="mic-trailing"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            
+                            <!-- Results Label -->
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="results-label">
+                                <rect key="frame" x="20" y="158" width="353" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            
+                            <!-- Table View -->
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="results-tableview">
+                                <rect key="frame" x="0.0" y="196" width="393" height="656"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" textLabel="cell-title" detailTextLabel="cell-subtitle" imageView="cell-image" style="IBUITableViewCellStyleSubtitle" id="location-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="location-cell" id="cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cell-title">
+                                                    <rect key="frame" x="61.333333333333336" y="6" width="32.333333333333336" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cell-subtitle">
+                                                    <rect key="frame" x="61.333333333333336" y="28.333333333333336" width="43.666666666666664" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="mappin.circle.fill" catalog="system" id="cell-image">
+                                                    <rect key="frame" x="20" y="10.666666666666666" width="24" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <!-- Grabber -->
+                            <constraint firstItem="grabber-view" firstAttribute="centerX" secondItem="location-picker-view" secondAttribute="centerX" id="grabber-centerX"/>
+                            <constraint firstItem="grabber-view" firstAttribute="top" secondItem="location-picker-view" secondAttribute="top" constant="8" id="grabber-top"/>
+                            
+                            <!-- Header -->
+                            <constraint firstItem="header-container" firstAttribute="top" secondItem="grabber-view" secondAttribute="bottom" constant="8" id="header-top"/>
+                            <constraint firstItem="header-container" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" id="header-leading"/>
+                            <constraint firstItem="header-container" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" id="header-trailing"/>
+                            
+                            <!-- Search Container -->
+                            <constraint firstItem="search-container" firstAttribute="top" secondItem="header-container" secondAttribute="bottom" constant="16" id="search-top"/>
+                            <constraint firstItem="search-container" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="search-leading"/>
+                            <constraint firstItem="search-container" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="search-trailing"/>
+                            
+                            <!-- Results Label -->
+                            <constraint firstItem="results-label" firstAttribute="top" secondItem="search-container" secondAttribute="bottom" constant="20" id="results-top"/>
+                            <constraint firstItem="results-label" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="results-leading"/>
+                            <constraint firstItem="results-label" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="results-trailing"/>
+                            
+                            <!-- Table View -->
+                            <constraint firstItem="results-tableview" firstAttribute="top" secondItem="results-label" secondAttribute="bottom" constant="20" id="table-top"/>
+                            <constraint firstItem="results-tableview" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" id="table-leading"/>
+                            <constraint firstItem="results-tableview" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" id="table-trailing"/>
+                            <constraint firstItem="results-tableview" firstAttribute="bottom" secondItem="location-picker-view" secondAttribute="bottom" id="table-bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="cancel-button" id="outlet-cancel"/>
+                        <outlet property="resultsTableView" destination="results-tableview" id="outlet-table"/>
+                        <outlet property="searchTextField" destination="search-textfield" id="outlet-search"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="100"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="mic.fill" catalog="system" width="108" height="128"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

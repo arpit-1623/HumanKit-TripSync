@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DatePickerVC">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Date Picker View Controller-->
+        <scene sceneID="date-picker-scene">
+            <objects>
+                <viewController storyboardIdentifier="CD02_DatePickerVC" id="DatePickerVC" customClass="CD02_DatePickerVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="date-picker-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <!-- Header Container -->
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header-container">
+                                <rect key="frame" x="0.0" y="59" width="393" height="60"/>
+                                <subviews>
+                                    <!-- Cancel Button -->
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cancel-button">
+                                        <rect key="frame" x="20" y="15" width="80" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="cancel-width"/>
+                                            <constraint firstAttribute="height" constant="30" id="cancel-height"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="DatePickerVC" eventType="touchUpInside" id="cancel-action"/>
+                                        </connections>
+                                    </button>
+                                    
+                                    <!-- Title Label -->
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-label">
+                                        <rect key="frame" x="146.33333333333334" y="18.666666666666664" width="100.33333333333334" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    
+                                    <!-- Confirm Button -->
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="confirm-button">
+                                        <rect key="frame" x="293" y="15" width="80" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="confirm-width"/>
+                                            <constraint firstAttribute="height" constant="30" id="confirm-height"/>
+                                        </constraints>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="DatePickerVC" eventType="touchUpInside" id="confirm-action"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="header-height"/>
+                                    
+                                    <!-- Cancel Button Constraints -->
+                                    <constraint firstItem="cancel-button" firstAttribute="leading" secondItem="header-container" secondAttribute="leading" constant="20" id="cancel-leading"/>
+                                    <constraint firstItem="cancel-button" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="cancel-centerY"/>
+                                    
+                                    <!-- Title Label Constraints -->
+                                    <constraint firstItem="title-label" firstAttribute="centerX" secondItem="header-container" secondAttribute="centerX" id="title-centerX"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="title-centerY"/>
+                                    
+                                    <!-- Confirm Button Constraints -->
+                                    <constraint firstAttribute="trailing" secondItem="confirm-button" secondAttribute="trailing" constant="20" id="confirm-trailing"/>
+                                    <constraint firstItem="confirm-button" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="confirm-centerY"/>
+                                </constraints>
+                            </view>
+                            
+                            <!-- Scroll View -->
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scroll-view">
+                                <rect key="frame" x="0.0" y="119" width="393" height="733"/>
+                                <subviews>
+                                    <!-- Content Stack View -->
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="fill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="months-stack-view">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="733"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <!-- Stack View Constraints -->
+                                    <constraint firstItem="months-stack-view" firstAttribute="leading" secondItem="scroll-view-content-guide" secondAttribute="leading" id="stack-leading"/>
+                                    <constraint firstItem="months-stack-view" firstAttribute="trailing" secondItem="scroll-view-content-guide" secondAttribute="trailing" id="stack-trailing"/>
+                                    <constraint firstItem="months-stack-view" firstAttribute="top" secondItem="scroll-view-content-guide" secondAttribute="top" id="stack-top"/>
+                                    <constraint firstItem="months-stack-view" firstAttribute="bottom" secondItem="scroll-view-content-guide" secondAttribute="bottom" id="stack-bottom"/>
+                                    
+                                    <!-- Width Constraint -->
+                                    <constraint firstItem="months-stack-view" firstAttribute="width" secondItem="scroll-view-frame-guide" secondAttribute="width" id="stack-width"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="scroll-view-content-guide"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="scroll-view-frame-guide"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-area"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <!-- Header Constraints -->
+                            <constraint firstItem="header-container" firstAttribute="top" secondItem="safe-area" secondAttribute="top" id="header-top"/>
+                            <constraint firstItem="header-container" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" id="header-leading"/>
+                            <constraint firstItem="header-container" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" id="header-trailing"/>
+                            
+                            <!-- Scroll View Constraints -->
+                            <constraint firstItem="scroll-view" firstAttribute="top" secondItem="header-container" secondAttribute="bottom" id="scroll-top"/>
+                            <constraint firstItem="scroll-view" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" id="scroll-leading"/>
+                            <constraint firstItem="scroll-view" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" id="scroll-trailing"/>
+                            <constraint firstItem="scroll-view" firstAttribute="bottom" secondItem="date-picker-view" secondAttribute="bottom" id="scroll-bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="cancel-button" id="outlet-cancel"/>
+                        <outlet property="confirmButton" destination="confirm-button" id="outlet-confirm"/>
+                        <outlet property="monthsStackView" destination="months-stack-view" id="outlet-stack"/>
+                        <outlet property="scrollView" destination="scroll-view" id="outlet-scroll"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="100"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
