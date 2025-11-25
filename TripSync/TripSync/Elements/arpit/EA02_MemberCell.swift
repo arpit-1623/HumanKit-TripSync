@@ -33,7 +33,7 @@ class MemberTableViewCell: UITableViewCell {
         profileImageView.backgroundColor = .systemGray5
         
         // Configure menu button
-        menuButton.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
+        menuButton?.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
     }
     
     // MARK: - Configuration
