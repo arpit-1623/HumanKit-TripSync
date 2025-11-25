@@ -11,10 +11,15 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+            
+        if !hasLaunchedBefore {
+            SampleData.shared.populateDataModel()
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+        }
+        
         return true
     }
 

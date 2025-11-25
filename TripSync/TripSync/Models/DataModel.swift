@@ -50,7 +50,11 @@ class DataModel {
         
         loadData()
         
-        currentUser = SampleData.shared.currentUser
+        // Populate sample data on first launch
+//        if users.isEmpty || trips.isEmpty {
+//            SampleData.shared.populateDataModel()
+//            loadData()
+//        }
     }
     
     // MARK: - Load Data
@@ -214,7 +218,6 @@ class DataModel {
         guard let trip = getTrip(byId: tripId) else { return 0 }
         return trip.memberIds.count
     }
-
     
     // MARK: - Subgroup Data Model
     private func loadSubgroupsFromFile() -> [Subgroup] {
