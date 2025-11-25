@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nav-controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nav-bar">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -37,47 +37,46 @@
                             <tableViewSection headerTitle="SUBGROUP INFORMATION" id="section-info">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="cell-name">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="393" height="50"/>
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-name" id="content-name">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subgroup Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="name-textfield">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="50"/>
+                                                    <rect key="frame" x="16" y="0.0" width="321" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="name-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-trailing"/>
-                                                <constraint firstItem="name-textfield" firstAttribute="top" secondItem="content-name" secondAttribute="top" id="name-top"/>
                                                 <constraint firstAttribute="bottom" secondItem="name-textfield" secondAttribute="bottom" id="name-bottom"/>
+                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="name-leading"/>
+                                                <constraint firstItem="name-textfield" firstAttribute="top" secondItem="content-name" secondAttribute="top" id="name-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="cell-desc">
-                                        <rect key="frame" x="0.0" y="105.33333206176758" width="393" height="100"/>
+                                        <rect key="frame" x="20" y="105.33333206176758" width="353" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-desc" id="content-desc">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textview">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="100"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description (Optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textview">
+                                                    <rect key="frame" x="16" y="0.0" width="321" height="100"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                                    <string key="text">Description (Optional)</string>
                                                     <color key="textColor" systemColor="placeholderTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-trailing"/>
-                                                <constraint firstItem="desc-textview" firstAttribute="top" secondItem="content-desc" secondAttribute="top" id="desc-top"/>
                                                 <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" id="desc-bottom"/>
+                                                <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-leading"/>
+                                                <constraint firstItem="desc-textview" firstAttribute="top" secondItem="content-desc" secondAttribute="top" id="desc-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -85,123 +84,127 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="COLOR" id="section-color">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="180" id="cell-colors">
-                                        <rect key="frame" x="0.0" y="255.33333206176758" width="393" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="210" id="cell-colors">
+                                        <rect key="frame" x="20" y="261.33333015441895" width="353" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-colors" id="content-colors">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-1">
-                                                    <rect key="frame" x="36" y="15" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color1-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color1-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-2">
-                                                    <rect key="frame" x="96" y="15" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color2-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color2-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-3">
-                                                    <rect key="frame" x="156" y="15" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color3-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color3-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-4">
-                                                    <rect key="frame" x="216" y="15" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color4-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color4-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-5">
-                                                    <rect key="frame" x="276" y="15" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color5-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color5-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-6">
-                                                    <rect key="frame" x="36" y="75" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color6-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color6-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-7">
-                                                    <rect key="frame" x="96" y="75" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color7-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color7-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-8">
-                                                    <rect key="frame" x="156" y="75" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color8-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color8-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-9">
-                                                    <rect key="frame" x="216" y="75" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color9-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color9-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-10">
-                                                    <rect key="frame" x="276" y="75" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color10-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color10-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-11">
-                                                    <rect key="frame" x="36" y="135" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color11-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color11-height"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-12">
-                                                    <rect key="frame" x="96" y="135" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="color12-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="color12-height"/>
-                                                    </constraints>
-                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-vertical-stack">
+                                                    <rect key="frame" x="36" y="20" width="290" height="170"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color1-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color1-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-2">
+                                                                    <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color2-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color2-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-3">
+                                                                    <rect key="frame" x="120" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color3-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color3-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-4">
+                                                                    <rect key="frame" x="180" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color4-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color4-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-5">
+                                                                    <rect key="frame" x="240" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color5-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color5-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-2">
+                                                            <rect key="frame" x="0.0" y="60" width="290" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-6">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color6-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color6-width"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="40"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-7">
+                                                                    <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color7-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color7-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-8">
+                                                                    <rect key="frame" x="120" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color8-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color8-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-9">
+                                                                    <rect key="frame" x="180" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color9-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color9-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-10">
+                                                                    <rect key="frame" x="240" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color10-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color10-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-3">
+                                                            <rect key="frame" x="0.0" y="120" width="110" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-11">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color11-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color11-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-12">
+                                                                    <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="color12-height"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="color12-width"/>
+                                                                    </constraints>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="color-btn-1" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="color1-leading"/>
-                                                <constraint firstItem="color-btn-2" firstAttribute="leading" secondItem="color-btn-1" secondAttribute="trailing" constant="10" id="color2-spacing"/>
-                                                <constraint firstItem="color-btn-3" firstAttribute="leading" secondItem="color-btn-2" secondAttribute="trailing" constant="10" id="color3-spacing"/>
-                                                <constraint firstItem="color-btn-4" firstAttribute="leading" secondItem="color-btn-3" secondAttribute="trailing" constant="10" id="color4-spacing"/>
-                                                <constraint firstItem="color-btn-5" firstAttribute="leading" secondItem="color-btn-4" secondAttribute="trailing" constant="10" id="color5-spacing"/>
-                                                <constraint firstItem="color-btn-6" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="color6-leading"/>
-                                                <constraint firstItem="color-btn-7" firstAttribute="leading" secondItem="color-btn-6" secondAttribute="trailing" constant="10" id="color7-spacing"/>
-                                                <constraint firstItem="color-btn-8" firstAttribute="leading" secondItem="color-btn-7" secondAttribute="trailing" constant="10" id="color8-spacing"/>
-                                                <constraint firstItem="color-btn-9" firstAttribute="leading" secondItem="color-btn-8" secondAttribute="trailing" constant="10" id="color9-spacing"/>
-                                                <constraint firstItem="color-btn-10" firstAttribute="leading" secondItem="color-btn-9" secondAttribute="trailing" constant="10" id="color10-spacing"/>
-                                                <constraint firstItem="color-btn-11" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="color11-leading"/>
-                                                <constraint firstItem="color-btn-12" firstAttribute="leading" secondItem="color-btn-11" secondAttribute="trailing" constant="10" id="color12-spacing"/>
-                                                <constraint firstItem="color-btn-1" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color1-top"/>
-                                                <constraint firstItem="color-btn-2" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color2-top"/>
-                                                <constraint firstItem="color-btn-3" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color3-top"/>
-                                                <constraint firstItem="color-btn-4" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color4-top"/>
-                                                <constraint firstItem="color-btn-5" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="15" id="color5-top"/>
-                                                <constraint firstItem="color-btn-6" firstAttribute="top" secondItem="color-btn-1" secondAttribute="bottom" constant="10" id="color6-top"/>
-                                                <constraint firstItem="color-btn-7" firstAttribute="top" secondItem="color-btn-2" secondAttribute="bottom" constant="10" id="color7-top"/>
-                                                <constraint firstItem="color-btn-8" firstAttribute="top" secondItem="color-btn-3" secondAttribute="bottom" constant="10" id="color8-top"/>
-                                                <constraint firstItem="color-btn-9" firstAttribute="top" secondItem="color-btn-4" secondAttribute="bottom" constant="10" id="color9-top"/>
-                                                <constraint firstItem="color-btn-10" firstAttribute="top" secondItem="color-btn-5" secondAttribute="bottom" constant="10" id="color10-top"/>
-                                                <constraint firstItem="color-btn-11" firstAttribute="top" secondItem="color-btn-6" secondAttribute="bottom" constant="10" id="color11-top"/>
-                                                <constraint firstItem="color-btn-12" firstAttribute="top" secondItem="color-btn-7" secondAttribute="bottom" constant="10" id="color12-top"/>
+                                                <constraint firstAttribute="bottom" secondItem="color-vertical-stack" secondAttribute="bottom" constant="20" id="stack-bottom"/>
+                                                <constraint firstItem="color-vertical-stack" firstAttribute="leading" secondItem="content-colors" secondAttribute="leading" constant="36" id="stack-leading"/>
+                                                <constraint firstItem="color-vertical-stack" firstAttribute="top" secondItem="content-colors" secondAttribute="top" constant="20" id="stack-top"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -210,58 +213,58 @@
                             <tableViewSection headerTitle="DETAILS" id="section-details">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-members-count">
-                                        <rect key="frame" x="0.0" y="230" width="393" height="44"/>
+                                        <rect key="frame" x="20" y="527.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-members-count" id="content-members-count">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="members-title-label">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="73.333333333333329" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.999999999999998" width="72" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="members-count-label">
-                                                    <rect key="frame" x="361" y="11.666666666666664" width="16" height="20.333333333333336"/>
+                                                    <rect key="frame" x="326.33333333333331" y="11.999999999999998" width="10.666666666666686" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
-                                                <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
-                                                <constraint firstAttribute="trailing" secondItem="members-count-label" secondAttribute="trailing" constant="16" id="members-count-trailing"/>
                                                 <constraint firstItem="members-count-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-count-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="members-count-label" secondAttribute="trailing" constant="16" id="members-count-trailing"/>
+                                                <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
+                                                <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-created-date">
-                                        <rect key="frame" x="0.0" y="274" width="393" height="44"/>
+                                        <rect key="frame" x="20" y="571.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-created-date" id="content-created-date">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="created-title-label">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="65" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.999999999999998" width="61" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November 23, 2025" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="created-date-label">
-                                                    <rect key="frame" x="214.33333333333334" y="11.666666666666664" width="162.66666666666666" height="20.333333333333336"/>
+                                                    <rect key="frame" x="185" y="11.999999999999998" width="152" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
-                                                <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
-                                                <constraint firstAttribute="trailing" secondItem="created-date-label" secondAttribute="trailing" constant="16" id="created-date-trailing"/>
                                                 <constraint firstItem="created-date-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-date-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="created-date-label" secondAttribute="trailing" constant="16" id="created-date-trailing"/>
+                                                <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
+                                                <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -270,20 +273,19 @@
                             <tableViewSection id="section-delete">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="cell-delete">
-                                        <rect key="frame" x="0.0" y="336" width="393" height="80"/>
+                                        <rect key="frame" x="20" y="651.33333015441895" width="353" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-delete" id="content-delete">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-button">
-                                                    <rect key="frame" x="16" y="10" width="361" height="44"/>
+                                                    <rect key="frame" x="16" y="10" width="321" height="44"/>
                                                     <color key="backgroundColor" systemColor="systemRedColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="delete-button-height"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="Delete Subgroup">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -292,7 +294,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This action cannot be undone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="delete-warning-label">
-                                                    <rect key="frame" x="16" y="58" width="361" height="14.333333333333336"/>
+                                                    <rect key="frame" x="16" y="58.000000000000007" width="321" height="14.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -300,45 +302,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="delete-button" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-button-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="delete-button" secondAttribute="trailing" constant="16" id="delete-button-trailing"/>
                                                 <constraint firstItem="delete-button" firstAttribute="top" secondItem="content-delete" secondAttribute="top" constant="10" id="delete-button-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="delete-button" secondAttribute="trailing" constant="16" id="delete-button-trailing"/>
                                                 <constraint firstItem="delete-warning-label" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-warning-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="delete-warning-label" secondAttribute="trailing" constant="16" id="delete-warning-trailing"/>
                                                 <constraint firstItem="delete-warning-label" firstAttribute="top" secondItem="delete-button" secondAttribute="bottom" constant="4" id="delete-warning-top"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="SELECT MEMBERS" footerTitle="Select at least one member to create a subgroup" id="section-members">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemberCell" rowHeight="70" id="cell-member">
-                                        <rect key="frame" x="0.0" y="485.33333206176758" width="393" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-member" id="content-member">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="avatar-view">
-                                                    <rect key="frame" x="16" y="10" width="50" height="50"/>
-                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="avatar-width"/>
-                                                        <constraint firstAttribute="height" constant="50" id="avatar-height"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alice Johnson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="member-name-label">
-                                                    <rect key="frame" x="76" y="24.666666666666664" width="105.66666666666667" height="20.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="avatar-view" firstAttribute="leading" secondItem="content-member" secondAttribute="leading" constant="16" id="avatar-leading"/>
-                                                <constraint firstItem="avatar-view" firstAttribute="centerY" secondItem="content-member" secondAttribute="centerY" id="avatar-centerY"/>
-                                                <constraint firstItem="member-name-label" firstAttribute="leading" secondItem="avatar-view" secondAttribute="trailing" constant="10" id="member-name-leading"/>
-                                                <constraint firstItem="member-name-label" firstAttribute="centerY" secondItem="content-member" secondAttribute="centerY" id="member-name-centerY"/>
+                                                <constraint firstAttribute="trailing" secondItem="delete-warning-label" secondAttribute="trailing" constant="16" id="delete-warning-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -352,6 +320,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item"/>
                     <connections>
+                        <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
+                        <outlet property="color11Button" destination="color-btn-11" id="color11-outlet"/>
+                        <outlet property="color12Button" destination="color-btn-12" id="color12-outlet"/>
                         <outlet property="color1Button" destination="color-btn-1" id="color1-outlet"/>
                         <outlet property="color2Button" destination="color-btn-2" id="color2-outlet"/>
                         <outlet property="color3Button" destination="color-btn-3" id="color3-outlet"/>
@@ -361,9 +332,6 @@
                         <outlet property="color7Button" destination="color-btn-7" id="color7-outlet"/>
                         <outlet property="color8Button" destination="color-btn-8" id="color8-outlet"/>
                         <outlet property="color9Button" destination="color-btn-9" id="color9-outlet"/>
-                        <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
-                        <outlet property="color11Button" destination="color-btn-11" id="color11-outlet"/>
-                        <outlet property="color12Button" destination="color-btn-12" id="color12-outlet"/>
                         <outlet property="createdDateLabel" destination="created-date-label" id="created-date-outlet"/>
                         <outlet property="descriptionTextView" destination="desc-textview" id="desc-outlet"/>
                         <outlet property="membersCountLabel" destination="members-count-label" id="members-count-outlet"/>
@@ -392,7 +360,7 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

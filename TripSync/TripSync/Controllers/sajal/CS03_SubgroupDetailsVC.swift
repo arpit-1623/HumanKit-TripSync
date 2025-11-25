@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
+class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, InviteSubgroupMembersDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -15,10 +15,9 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
     @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var itineraryButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var itineraryButton: UIView!
+    @IBOutlet weak var chatButton: UIView!
     @IBOutlet weak var membersTableView: UITableView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     var subgroup: Subgroup?
@@ -43,7 +42,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
         navigationItem.rightBarButtonItem = editButton
         
         // Configure logo view
-        logoView.layer.cornerRadius = 30 // 60pt diameter / 2
+        logoView.layer.cornerRadius = 30
         logoView.layer.masksToBounds = true
         
         // Configure logo label
@@ -59,28 +58,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
         descriptionLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         descriptionLabel.textColor = .secondaryLabel
         descriptionLabel.numberOfLines = 0
-        
-        // Configure action buttons
-        configureActionButton(itineraryButton, title: "Itinerary", icon: "list.bullet")
-        configureActionButton(chatButton, title: "Chat", icon: "message.fill")
-    }
-    
-    private func configureActionButton(_ button: UIButton, title: String, icon: String) {
-        var config = UIButton.Configuration.filled()
-        config.title = title
-        config.image = UIImage(systemName: icon)
-        config.imagePadding = 8
-        config.imagePlacement = .top
-        config.baseBackgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1) // Sky blue
-        config.baseForegroundColor = .darkGray
-        config.cornerStyle = .medium
-        config.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 24, bottom: 20, trailing: 24)
-        
-        button.configuration = config
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.1
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 4
     }
     
     private func setupTableView() {
@@ -109,25 +86,12 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
             logoLabel.text = String(firstLetter).uppercased()
         }
         
-        // Load members from trip or subgroup
-        if let trip = trip {
-            members = trip.memberIds.compactMap { memberId in
-                DataModel.shared.getUser(byId: memberId)
-            }
-        } else {
-            members = subgroup.memberIds.compactMap { memberId in
-                DataModel.shared.getUser(byId: memberId)
-            }
+        // Load members from subgroup
+        members = subgroup.memberIds.compactMap { memberId in
+            DataModel.shared.getUser(byId: memberId)
         }
         
         membersTableView.reloadData()
-        updateTableHeight()
-    }
-    
-    private func updateTableHeight() {
-        let rowHeight: CGFloat = 88
-        let totalHeight = CGFloat(members.count) * rowHeight
-        tableHeightConstraint.constant = totalHeight
     }
     
     // MARK: - Actions
@@ -135,14 +99,14 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
         performSegue(withIdentifier: "subgroupDetailsToEdit", sender: subgroup)
     }
     
-    @IBAction func itineraryButtonTapped(_ sender: UIButton) {
+    @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
         guard let subgroup = subgroup else { return }
         
         // Navigate to itinerary with subgroup filter
         performSegue(withIdentifier: "subgroupDetailsToItinerary", sender: subgroup)
     }
     
-    @IBAction func chatButtonTapped(_ sender: UIButton) {
+    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
         guard let subgroup = subgroup else { return }
         
         // Navigate to chat with subgroup filter
@@ -150,45 +114,32 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
     }
     
     @IBAction func inviteButtonTapped(_ sender: UIButton) {
-        // Show invite options
-        let alert = UIAlertController(title: "Invite Members", message: "Choose an invite method", preferredStyle: .actionSheet)
+        // Navigate to invite members modal
+        let storyboard = UIStoryboard(name: "SS05_InviteSubgroupMembers", bundle: nil)
+        guard let navController = storyboard.instantiateInitialViewController() as? UINavigationController,
+              let inviteVC = navController.topViewController as? CS05_InviteSubgroupMembersVC else {
+            return
+        }
         
-        alert.addAction(UIAlertAction(title: "Share QR Code", style: .default) { _ in
-            self.showQRCode()
-        })
+        inviteVC.trip = trip
+        inviteVC.subgroup = subgroup
+        inviteVC.delegate = self
         
-        alert.addAction(UIAlertAction(title: "Share Link", style: .default) { _ in
-            self.shareInviteLink()
-        })
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        present(alert, animated: true)
-    }
-    
-    private func showQRCode() {
-        // TODO: Implement QR code display
-        print("Show QR Code for subgroup invitation")
-    }
-    
-    private func shareInviteLink() {
-        guard let subgroup = subgroup else { return }
-        
-        let inviteText = "Join \(subgroup.name) on TripSync!"
-        let activityVC = UIActivityViewController(activityItems: [inviteText], applicationActivities: nil)
-        present(activityVC, animated: true)
+        present(navController, animated: true)
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "subgroupDetailsToItinerary",
+           let itineraryVC = segue.destination as? CS02_ItineraryVC,
            let subgroup = sender as? Subgroup {
-            // TODO: Pass subgroup filter to itinerary when view controller is ready
-            print("Navigate to itinerary for subgroup: \(subgroup.name)")
+            itineraryVC.trip = trip
+            itineraryVC.selectedSubgroupId = subgroup.id
         } else if segue.identifier == "subgroupDetailsToChat",
+                  let chatVC = segue.destination as? GeneralChatViewController,
                   let subgroup = sender as? Subgroup {
-            // TODO: Pass subgroup filter to chat when view controller is ready
-            print("Navigate to chat for subgroup: \(subgroup.name)")
+            chatVC.trip = trip
+            // TODO: Add subgroup filter property to chat when implemented
         } else if segue.identifier == "subgroupDetailsToEdit",
                   let navController = segue.destination as? UINavigationController,
                   let formVC = navController.topViewController as? CS04_SubgroupFormVC,
@@ -196,7 +147,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
             formVC.existingSubgroup = subgroup
             formVC.trip = trip
             formVC.tripId = trip?.id
-            formVC.tripMembers = members
             formVC.delegate = self
         }
     }
@@ -212,6 +162,24 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate {
         
         // Update DataModel (saveSubgroup handles both create and update)
         DataModel.shared.saveSubgroup(subgroup)
+        
+        // Reload UI
+        loadData()
+    }
+    
+    // MARK: - InviteSubgroupMembersDelegate
+    func didUpdateMembers(_ memberIds: [UUID]) {
+        guard var subgroup = subgroup else { return }
+        
+        // Update subgroup with new members
+        subgroup.memberIds = memberIds
+        subgroup.updatedAt = Date()
+        
+        // Save to DataModel
+        DataModel.shared.saveSubgroup(subgroup)
+        
+        // Update local reference
+        self.subgroup = subgroup
         
         // Reload UI
         loadData()
@@ -244,6 +212,29 @@ extension SubgroupDetailsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO: Show member details if needed
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard var subgroup = subgroup else { return }
+            
+            let member = members[indexPath.row]
+            
+            // Remove member from subgroup
+            subgroup.memberIds.removeAll { $0 == member.id }
+            subgroup.updatedAt = Date()
+            
+            // Update DataModel
+            DataModel.shared.saveSubgroup(subgroup)
+            
+            // Update local reference
+            self.subgroup = subgroup
+            
+            // Update local members array
+            members.remove(at: indexPath.row)
+            
+            // Delete row from table
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
