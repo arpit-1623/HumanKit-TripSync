@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nav-controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nav-bar">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -43,40 +43,66 @@
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subgroup Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="name-textfield">
-                                                    <rect key="frame" x="16" y="0.0" width="321" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="name-label">
+                                                    <rect key="frame" x="16" y="14.666666666666664" width="45" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Enter name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="name-textfield">
+                                                    <rect key="frame" x="110" y="0.0" width="227" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="name-separator">
+                                                    <rect key="frame" x="16" y="49.5" width="321" height="0.5"/>
+                                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="separator-height"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="name-textfield" secondAttribute="bottom" id="name-bottom"/>
-                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="name-leading"/>
-                                                <constraint firstItem="name-textfield" firstAttribute="top" secondItem="content-name" secondAttribute="top" id="name-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-trailing"/>
+                                                <constraint firstItem="name-label" firstAttribute="centerY" secondItem="content-name" secondAttribute="centerY" id="name-label-centery"/>
+                                                <constraint firstItem="name-label" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="name-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-textfield-trailing"/>
+                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="name-label" secondAttribute="trailing" constant="49" id="name-textfield-leading"/>
+                                                <constraint firstItem="name-textfield" firstAttribute="centerY" secondItem="content-name" secondAttribute="centerY" id="name-textfield-centery"/>
+                                                <constraint firstItem="name-separator" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="separator-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="name-separator" secondAttribute="trailing" constant="16" id="separator-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="name-separator" secondAttribute="bottom" id="separator-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="cell-desc">
-                                        <rect key="frame" x="20" y="105.33333206176758" width="353" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="cell-desc">
+                                        <rect key="frame" x="20" y="105.33333206176758" width="353" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-desc" id="content-desc">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="desc-label">
+                                                    <rect key="frame" x="16" y="8" width="321" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description (Optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textview">
-                                                    <rect key="frame" x="16" y="0.0" width="321" height="100"/>
+                                                    <rect key="frame" x="16" y="36.333333333333343" width="321" height="75.666666666666657"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <color key="textColor" systemColor="placeholderTextColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" id="desc-bottom"/>
-                                                <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-leading"/>
-                                                <constraint firstItem="desc-textview" firstAttribute="top" secondItem="content-desc" secondAttribute="top" id="desc-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-trailing"/>
+                                                <constraint firstItem="desc-label" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-label-leading"/>
+                                                <constraint firstItem="desc-label" firstAttribute="top" secondItem="content-desc" secondAttribute="top" constant="8" id="desc-label-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="desc-label" secondAttribute="trailing" constant="16" id="desc-label-trailing"/>
+                                                <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-textview-leading"/>
+                                                <constraint firstItem="desc-textview" firstAttribute="top" secondItem="desc-label" secondAttribute="bottom" constant="8" id="desc-textview-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-textview-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" constant="8" id="desc-textview-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -84,15 +110,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="COLOR" id="section-color">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="210" id="cell-colors">
-                                        <rect key="frame" x="20" y="261.33333015441895" width="353" height="210"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="cell-colors">
+                                        <rect key="frame" x="20" y="281.33333015441895" width="353" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-colors" id="content-colors">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-vertical-stack">
-                                                    <rect key="frame" x="36" y="20" width="290" height="170"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-vertical-stack">
+                                                    <rect key="frame" x="20" y="20" width="313" height="110"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-1">
                                                             <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
@@ -179,25 +205,6 @@
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-3">
-                                                            <rect key="frame" x="0.0" y="120" width="110" height="50"/>
-                                                            <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-11">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="color11-height"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="color11-width"/>
-                                                                    </constraints>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="color-btn-12">
-                                                                    <rect key="frame" x="60" y="0.0" width="50" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="color12-height"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="color12-width"/>
-                                                                    </constraints>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -231,12 +238,22 @@
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="members-separator">
+                                                    <rect key="frame" x="16" y="43.5" width="321" height="0.5"/>
+                                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="members-separator-height"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="members-count-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-count-centery"/>
                                                 <constraint firstAttribute="trailing" secondItem="members-count-label" secondAttribute="trailing" constant="16" id="members-count-trailing"/>
                                                 <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
                                                 <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
+                                                <constraint firstItem="members-separator" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-separator-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="members-separator" secondAttribute="trailing" constant="16" id="members-separator-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="members-separator" secondAttribute="bottom" id="members-separator-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -259,12 +276,22 @@
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="created-separator">
+                                                    <rect key="frame" x="16" y="43.5" width="321" height="0.5"/>
+                                                    <color key="backgroundColor" systemColor="separatorColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="created-separator-height"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="created-date-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-date-centery"/>
                                                 <constraint firstAttribute="trailing" secondItem="created-date-label" secondAttribute="trailing" constant="16" id="created-date-trailing"/>
                                                 <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
                                                 <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
+                                                <constraint firstItem="created-separator" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-separator-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="created-separator" secondAttribute="trailing" constant="16" id="created-separator-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="created-separator" secondAttribute="bottom" id="created-separator-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -280,33 +307,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-button">
-                                                    <rect key="frame" x="16" y="10" width="321" height="44"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <rect key="frame" x="16" y="10" width="321" height="60"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="delete-button-height"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="9l5-vk-6ao"/>
+                                                        <constraint firstAttribute="height" constant="30" id="delete-button-height"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Delete Subgroup">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleColor" systemColor="systemRedColor"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="deleteSubgroupTapped:" destination="subgroup-form-vc" eventType="touchUpInside" id="delete-action"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This action cannot be undone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="delete-warning-label">
-                                                    <rect key="frame" x="16" y="58.000000000000007" width="321" height="14.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="delete-button" secondAttribute="bottom" constant="10" id="dc2-9g-bZX"/>
                                                 <constraint firstItem="delete-button" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-button-leading"/>
                                                 <constraint firstItem="delete-button" firstAttribute="top" secondItem="content-delete" secondAttribute="top" constant="10" id="delete-button-top"/>
                                                 <constraint firstAttribute="trailing" secondItem="delete-button" secondAttribute="trailing" constant="16" id="delete-button-trailing"/>
-                                                <constraint firstItem="delete-warning-label" firstAttribute="leading" secondItem="content-delete" secondAttribute="leading" constant="16" id="delete-warning-leading"/>
-                                                <constraint firstItem="delete-warning-label" firstAttribute="top" secondItem="delete-button" secondAttribute="bottom" constant="4" id="delete-warning-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="delete-warning-label" secondAttribute="trailing" constant="16" id="delete-warning-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -321,8 +341,6 @@
                     <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item"/>
                     <connections>
                         <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
-                        <outlet property="color11Button" destination="color-btn-11" id="color11-outlet"/>
-                        <outlet property="color12Button" destination="color-btn-12" id="color12-outlet"/>
                         <outlet property="color1Button" destination="color-btn-1" id="color1-outlet"/>
                         <outlet property="color2Button" destination="color-btn-2" id="color2-outlet"/>
                         <outlet property="color3Button" destination="color-btn-3" id="color3-outlet"/>
@@ -345,22 +363,22 @@
     </scenes>
     <resources>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
