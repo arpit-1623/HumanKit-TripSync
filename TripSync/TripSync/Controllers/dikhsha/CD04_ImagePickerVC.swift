@@ -35,8 +35,7 @@ class CD04_ImagePickerVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var confirmBarButton: UIBarButtonItem!
     
     // MARK: - Properties
     weak var delegate: ImagePickerDelegate?
@@ -60,7 +59,7 @@ class CD04_ImagePickerVC: UIViewController {
     private func setupUI() {
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(searchTextDidChange), for: .editingChanged)
-        confirmButton.isEnabled = false
+        confirmBarButton.isEnabled = false
     }
     
     private func setupCollectionView() {
@@ -82,11 +81,11 @@ class CD04_ImagePickerVC: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func cancelTapped(_ sender: UIButton) {
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    @IBAction func confirmTapped(_ sender: UIButton) {
+    @IBAction func confirmTapped(_ sender: UIBarButtonItem) {
         guard let image = selectedImage, let photoData = selectedPhotoData else { return }
         delegate?.didSelectImage(image, photoData: photoData)
         dismiss(animated: true)
@@ -131,7 +130,7 @@ class CD04_ImagePickerVC: UIViewController {
                     self.selectedIndexPath = nil
                     self.selectedImage = nil
                     self.selectedPhotoData = nil
-                    self.confirmButton.isEnabled = false
+                    self.confirmBarButton.isEnabled = false
                     self.collectionView.reloadData()
                 }
             } catch {
@@ -209,7 +208,7 @@ extension CD04_ImagePickerVC: UICollectionViewDelegate {
         
         loadImage(from: photos[indexPath.item].urls.regular) { [weak self] image in
             self?.selectedImage = image
-            self?.confirmButton.isEnabled = (image != nil)
+            self?.confirmBarButton.isEnabled = (image != nil)
         }
         
         var indexPathsToReload: [IndexPath] = [indexPath]

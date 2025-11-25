@@ -19,7 +19,6 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-    
     @IBOutlet weak var createRightBarButton: UIBarButtonItem!
     
     // MARK: - Properties
@@ -38,129 +37,62 @@ class CreateTripViewController: UIViewController {
     private func setupUI() {
         tripNameField.delegate = self
         tripNameField.becomeFirstResponder()
-        
-        dateSmallLabel.text = "Set Dates"
-        dateSmallLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-        dateSmallLabel.textColor = UIColor(white: 0.33, alpha: 1.0)
+        updateCreateButtonState()
+    }
+    
+    private func updateCreateButtonState() {
+        let hasValidData = selectedStartDate != nil && 
+                          selectedEndDate != nil && 
+                          selectedLocation != nil
+        createRightBarButton.isEnabled = hasValidData
     }
     
     // MARK: - Actions
     @IBAction func didTapDateCard(_ sender: UIButton) {
-        presentDatePicker()
-//        performSegue(withIdentifier: "createTripToDatePicker", sender: nil)
-    }
-    
-    private func presentDatePicker() {
-        let storyboard = UIStoryboard(name: "SD02_DatePicker", bundle: nil)
-        guard let datePickerVC = storyboard.instantiateViewController(withIdentifier: "CD02_DatePickerVC") as? CD02_DatePickerVC else {
-            return
-        }
-        
-        datePickerVC.delegate = self
-        datePickerVC.modalPresentationStyle = .pageSheet
-        
-        if let sheet = datePickerVC.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-        
-        present(datePickerVC, animated: true)
+        performSegue(withIdentifier: "createTripToDatePicker", sender: nil)
     }
     
     @IBAction func didTapLocation(_ sender: UIButton) {
-//        presentLocationPicker()
         performSegue(withIdentifier: "createTripToLocationPicker", sender: nil)
     }
     
-    private func presentLocationPicker() {
-        let storyboard = UIStoryboard(name: "SD03_LocationPicker", bundle: nil)
-        guard let locationPickerVC = storyboard.instantiateViewController(withIdentifier: "CD03_LocationPickerVC") as? CD03_LocationPickerVC else {
-            return
-        }
-        
-        locationPickerVC.delegate = self
-        locationPickerVC.modalPresentationStyle = .pageSheet
-        
-        if let sheet = locationPickerVC.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-        
-        present(locationPickerVC, animated: true)
-    }
-    
     @IBAction func didTapImage(_ sender: UIButton) {
-//        presentImagePicker()
         performSegue(withIdentifier: "createTripToImagePicker", sender: nil)
     }
     
-    @objc private func cancelButtonTapped() {
-        // Dismiss or pop based on presentation
-        if let navigationController = navigationController, navigationController.viewControllers.count > 1 {
-            navigationController.popViewController(animated: true)
-        } else {
-            dismiss(animated: true)
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createTripToDatePicker" {
+            if let navController = segue.destination as? UINavigationController,
+               let datePickerVC = navController.topViewController as? CD02_DatePickerVC {
+                datePickerVC.delegate = self
+            }
+        } else if segue.identifier == "createTripToLocationPicker" {
+            if let navController = segue.destination as? UINavigationController,
+               let locationPickerVC = navController.topViewController as? CD03_LocationPickerVC {
+                locationPickerVC.delegate = self
+            }
+        } else if segue.identifier == "createTripToImagePicker" {
+            if let navController = segue.destination as? UINavigationController,
+               let imagePickerVC = navController.topViewController as? CD04_ImagePickerVC {
+                imagePickerVC.delegate = self
+            }
+        } else if segue.identifier == "createTripToSummary" {
+            if let summaryVC = segue.destination as? CD05_SummaryVC,
+               let tripName = tripNameField.text, !tripName.isEmpty,
+               let startDate = selectedStartDate,
+               let endDate = selectedEndDate,
+               let location = selectedLocation {
+                
+                summaryVC.tripName = tripName
+                summaryVC.dateRange = (start: startDate, end: endDate)
+                summaryVC.location = location
+                summaryVC.coverImage = backgroundImageView.image ?? UIImage(named: "createTripBg")
+            }
         }
     }
     
-    @objc private func createButtonTapped() {
-        // Validate inputs
-        guard let tripName = tripNameField.text, !tripName.isEmpty else {
-            showAlert(title: "Missing Information", message: "Please enter a trip name.")
-            return
-        }
-        
-        guard let startDate = selectedStartDate, let endDate = selectedEndDate else {
-            showAlert(title: "Missing Information", message: "Please select trip dates.")
-            return
-        }
-        
-        guard let location = selectedLocation, !location.isEmpty else {
-            showAlert(title: "Missing Information", message: "Please select a location.")
-            return
-        }
-        
-        // Navigate to summary screen
-        let storyboard = UIStoryboard(name: "SD05_Summary", bundle: nil)
-        guard let summaryVC = storyboard.instantiateInitialViewController() as? CD05_SummaryVC else {
-            return
-        }
-        
-        summaryVC.tripName = tripName
-        summaryVC.dateRange = (start: startDate, end: endDate)
-        summaryVC.location = location
-        summaryVC.coverImage = backgroundImageView.image ?? UIImage(named: "createTripBg")
-        
-        navigationController?.pushViewController(summaryVC, animated: true)
-    }
-    
-    // MARK: - Helper Methods
-    
-    private func presentImagePicker() {
-        let storyboard = UIStoryboard(name: "SD04_ImagePicker", bundle: nil)
-        guard let imagePickerVC = storyboard.instantiateInitialViewController() as? CD04_ImagePickerVC else {
-            return
-        }
-        
-        imagePickerVC.delegate = self
-        imagePickerVC.modalPresentationStyle = .pageSheet
-        
-        if let sheet = imagePickerVC.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 20
-        }
-        
-        present(imagePickerVC, animated: true)
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
+
 }
 
 // MARK: - UITextFieldDelegate
@@ -205,6 +137,8 @@ extension CreateTripViewController: DateRangePickerDelegate {
         
         dateSmallLabel.text = dateRangeText
         dateSmallLabel.textColor = .label
+        
+        updateCreateButtonState()
     }
 }
 
@@ -214,5 +148,7 @@ extension CreateTripViewController: LocationPickerDelegate {
         selectedLocation = name
         locationLabel.text = name
         locationLabel.textColor = .label
+        
+        updateCreateButtonState()
     }
 }

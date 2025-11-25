@@ -151,6 +151,10 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "homeToMembers", sender: trip)
     }
     
+    @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {
+        
+    }
+    
     // MARK: - Helper Methods
     private func showNoCurrentTripAlert() {
         let alert = UIAlertController(title: "No Current Trip", message: "You need to have an active trip to access this feature.", preferredStyle: .alert)
