@@ -14,6 +14,8 @@ class GeneralChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
+    var trip: Trip?
+    
     struct ChatMessage {
         let name: String
         let message: String

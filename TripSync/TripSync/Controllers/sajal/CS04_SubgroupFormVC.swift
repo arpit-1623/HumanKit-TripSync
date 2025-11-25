@@ -40,11 +40,10 @@ class CS04_SubgroupFormVC: UITableViewController {
     weak var delegate: SubgroupFormDelegate?
     var trip: Trip?
     var tripId: UUID?
-    var tripMembers: [User] = []
     var existingSubgroup: Subgroup?
     
-    private var selectedColorHex: String = "#FF6B6B" // Default pink
-    private var selectedMemberIds: Set<UUID> = []
+    private var selectedColorHex: String = "#FF6B6B"
+    private var selectedMemberIds = Set<UUID>()
     private var isEditMode: Bool {
         return existingSubgroup != nil
     }
@@ -58,6 +57,7 @@ class CS04_SubgroupFormVC: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupNavigationBar()
         setupColorButtons()
@@ -132,6 +132,7 @@ class CS04_SubgroupFormVC: UITableViewController {
             let colorHex = availableColors[index]
             button.backgroundColor = UIColor(hex: colorHex)
             button.layer.cornerRadius = 25
+            button.clipsToBounds = true
             button.tag = index
             button.addTarget(self, action: #selector(colorButtonTapped(_:)), for: .touchUpInside)
             
@@ -178,36 +179,28 @@ class CS04_SubgroupFormVC: UITableViewController {
             return
         }
         
-        // Only validate member selection in create mode
-        if !isEditMode {
-            guard !selectedMemberIds.isEmpty else {
-                showAlert(title: "Error", message: "Please select at least one member")
-                return
-            }
-        }
-        
         guard let tripId = tripId else { return }
         
         let description = descriptionTextView.text == "Description (Optional)" ? nil : descriptionTextView.text
         
         if let existingSubgroup = existingSubgroup {
-            // Update existing subgroup
+            // Update existing subgroup - keep current members
             var updatedSubgroup = existingSubgroup
             updatedSubgroup.name = name
             updatedSubgroup.description = description
             updatedSubgroup.colorHex = selectedColorHex
-            updatedSubgroup.memberIds = Array(selectedMemberIds)
+            // memberIds unchanged in edit mode
             updatedSubgroup.updatedAt = Date()
             
             delegate?.didUpdateSubgroup(updatedSubgroup)
         } else {
-            // Create new subgroup
+            // Create new subgroup - start with empty members
             let newSubgroup = Subgroup(
                 name: name,
                 description: description,
                 colorHex: selectedColorHex,
                 tripId: tripId,
-                memberIds: Array(selectedMemberIds)
+                memberIds: []  // Empty initially, members added via invite modal
             )
             
             delegate?.didCreateSubgroup(newSubgroup)
@@ -296,7 +289,7 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     // MARK: - TableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return isEditMode ? 4 : 3 // Edit: Information, Color, Details, Delete | Create: Information, Color, Members
+        return isEditMode ? 4 : 2 // Edit: Information, Color, Details, Delete | Create: Information, Color
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -312,7 +305,6 @@ class CS04_SubgroupFormVC: UITableViewController {
             switch section {
             case 0: return 2 // Name, Description
             case 1: return 1 // Color selector
-            case 2: return tripMembers.count // Member list
             default: return 0
             }
         }
@@ -331,81 +323,38 @@ class CS04_SubgroupFormVC: UITableViewController {
             switch section {
             case 0: return "SUBGROUP INFORMATION"
             case 1: return "COLOR"
-            case 2: return "SELECT MEMBERS"
             default: return nil
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if isEditMode {
-            if section == 3 {
-                return "Deleting this subgroup will remove it from the trip permanently."
-            }
-        } else {
-            if section == 2 {
-                return "Select at least one member to create a subgroup"
-            }
+        if isEditMode && section == 3 {
+            return "Deleting this subgroup will remove it from the trip permanently."
         }
         return nil
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isEditMode {
-            // In edit mode, section 2 is Details, section 3 is Delete
-            if indexPath.section == 3 {
-                // Delete button cell
-                let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                
-                // Style the delete button
-                if let deleteButton = cell.contentView.subviews.first(where: { $0 is UIButton }) as? UIButton {
-                    deleteButton.layer.cornerRadius = 12
-                    deleteButton.layer.masksToBounds = true
-                }
-                
-                return cell
+        // In edit mode, section 3 is Delete - style the delete button
+        if isEditMode && indexPath.section == 3 {
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            
+            // Style the delete button
+            if let deleteButton = cell.contentView.subviews.first(where: { $0 is UIButton }) as? UIButton {
+                deleteButton.layer.cornerRadius = 12
+                deleteButton.layer.masksToBounds = true
             }
-        } else {
-            // In create mode, section 2 is Members
-            if indexPath.section == 2 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath)
-                let member = tripMembers[indexPath.row]
-                
-                // Configure avatar view
-                if let avatarView = cell.contentView.viewWithTag(100) {
-                    avatarView.backgroundColor = .systemGray4
-                    avatarView.layer.cornerRadius = 25
-                }
-                
-                // Configure name label
-                if let nameLabel = cell.contentView.viewWithTag(101) as? UILabel {
-                    nameLabel.text = member.fullName
-                }
-                
-                // Configure checkmark
-                cell.accessoryType = selectedMemberIds.contains(member.id) ? .checkmark : .none
-                
-                return cell
-            }
+            
+            return cell
         }
         
+        // All other cells (sections 0, 1, and 2 in edit mode) are static
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.section == 2 {
-            let member = tripMembers[indexPath.row]
-            
-            if selectedMemberIds.contains(member.id) {
-                selectedMemberIds.remove(member.id)
-            } else {
-                selectedMemberIds.insert(member.id)
-            }
-            
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -414,11 +363,11 @@ class CS04_SubgroupFormVC: UITableViewController {
             case 0:
                 return indexPath.row == 0 ? 50 : 100 // Name field, Description text view
             case 1:
-                return 180 // Color buttons grid
+                return 210 // Color buttons grid
             case 2:
-                return 50 // Details cells
+                return 44 // Details cells
             case 3:
-                return 60 // Delete button
+                return 80 // Delete button
             default:
                 return 44
             }
@@ -427,9 +376,7 @@ class CS04_SubgroupFormVC: UITableViewController {
             case 0:
                 return indexPath.row == 0 ? 50 : 100 // Name field, Description text view
             case 1:
-                return 180 // Color buttons grid
-            case 2:
-                return 70 // Member cells
+                return 210 // Color buttons grid
             default:
                 return 44
             }
