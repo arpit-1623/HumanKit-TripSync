@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Date PickerVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="CD02_DatePickerVC" id="Y6W-OH-hqX" customClass="CD02_DatePickerVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grabber-view">
+                                <rect key="frame" x="176.66666666666666" y="130" width="40" height="5"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="grabber-height"/>
+                                    <constraint firstAttribute="width" constant="40" id="grabber-width"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="2.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header-container">
+                                <rect key="frame" x="0.0" y="147" width="393" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cancel-btn">
+                                        <rect key="frame" x="16" y="13.666666666666657" width="53" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cancel-action"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-label">
+                                        <rect key="frame" x="156.33333333333334" y="18" width="80.333333333333343" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="confirm-btn">
+                                        <rect key="frame" x="311" y="13.666666666666657" width="66" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" systemColor="systemOrangeColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="confirm-action"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="cancel-btn" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="cancel-centerY"/>
+                                    <constraint firstItem="cancel-btn" firstAttribute="leading" secondItem="header-container" secondAttribute="leading" constant="16" id="cancel-leading"/>
+                                    <constraint firstItem="confirm-btn" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="confirm-centerY"/>
+                                    <constraint firstAttribute="trailing" secondItem="confirm-btn" secondAttribute="trailing" constant="16" id="confirm-trailing"/>
+                                    <constraint firstAttribute="height" constant="60" id="header-height"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerX" secondItem="header-container" secondAttribute="centerX" id="title-centerX"/>
+                                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="header-container" secondAttribute="centerY" id="title-centerY"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="weekday-stack">
+                                <rect key="frame" x="16" y="215" width="361" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sun-label">
+                                        <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mon-label">
+                                        <rect key="frame" x="51.666666666666671" y="0.0" width="51.333333333333329" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tue-label">
+                                        <rect key="frame" x="103.00000000000001" y="0.0" width="51.666666666666671" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wed-label">
+                                        <rect key="frame" x="154.66666666666666" y="0.0" width="51.666666666666657" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thu-label">
+                                        <rect key="frame" x="206.33333333333334" y="0.0" width="51.666666666666657" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fri-label">
+                                        <rect key="frame" x="258" y="0.0" width="51.333333333333314" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sat-label">
+                                        <rect key="frame" x="309.33333333333331" y="0.0" width="51.666666666666686" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="weekday-height"/>
+                                </constraints>
+                            </stackView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="calendar-scrollview">
+                                <rect key="frame" x="0.0" y="243" width="393" height="541"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="months-stack">
+                                        <rect key="frame" x="16" y="0.0" width="361" height="500"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="500" id="Iqy-Mx-MBX"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="months-stack" firstAttribute="bottom" secondItem="calendar-scrollview" secondAttribute="bottom" id="stack-bottom"/>
+                                    <constraint firstItem="months-stack" firstAttribute="leading" secondItem="calendar-scrollview" secondAttribute="leading" constant="16" id="stack-leading"/>
+                                    <constraint firstItem="months-stack" firstAttribute="top" secondItem="calendar-scrollview" secondAttribute="top" id="stack-top"/>
+                                    <constraint firstItem="months-stack" firstAttribute="trailing" secondItem="calendar-scrollview" secondAttribute="trailing" constant="-16" id="stack-trailing"/>
+                                    <constraint firstItem="months-stack" firstAttribute="width" secondItem="calendar-scrollview" secondAttribute="width" constant="-32" id="stack-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="grabber-view" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="grabber-centerX"/>
+                            <constraint firstItem="grabber-view" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="grabber-top"/>
+                            <constraint firstItem="header-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="header-leading"/>
+                            <constraint firstItem="header-container" firstAttribute="top" secondItem="grabber-view" secondAttribute="bottom" constant="12" id="header-top"/>
+                            <constraint firstItem="header-container" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="header-trailing"/>
+                            <constraint firstItem="calendar-scrollview" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="scroll-bottom"/>
+                            <constraint firstItem="calendar-scrollview" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="scroll-leading"/>
+                            <constraint firstItem="calendar-scrollview" firstAttribute="top" secondItem="weekday-stack" secondAttribute="bottom" constant="8" id="scroll-top"/>
+                            <constraint firstItem="calendar-scrollview" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="scroll-trailing"/>
+                            <constraint firstItem="weekday-stack" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="weekday-leading"/>
+                            <constraint firstItem="weekday-stack" firstAttribute="top" secondItem="header-container" secondAttribute="bottom" constant="8" id="weekday-top"/>
+                            <constraint firstItem="weekday-stack" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-16" id="weekday-trailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="cancel-btn" id="outlet-cancel"/>
+                        <outlet property="confirmButton" destination="confirm-btn" id="outlet-confirm"/>
+                        <outlet property="monthsStackView" destination="months-stack" id="outlet-months-stack"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="116"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
