@@ -17,8 +17,8 @@ class CD02_DatePickerVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var monthsStackView: UIStackView!
-    @IBOutlet weak var confirmButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var confirmButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: - Properties
     weak var delegate: DateRangePickerDelegate?
@@ -31,23 +31,11 @@ class CD02_DatePickerVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+
         generateMonthViews()
     }
     
     // MARK: - Setup
-    private func setupView() {
-        view.backgroundColor = .systemBackground
-        
-        // Configure confirm button
-        confirmButton.setTitleColor(.systemOrange, for: .normal)
-        confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        
-        // Configure cancel button
-        cancelButton.setTitleColor(.systemOrange, for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-    }
-    
     private func generateMonthViews() {
         let calendar = Calendar.current
         let currentDate = Date()
@@ -74,7 +62,7 @@ class CD02_DatePickerVC: UIViewController {
             monthViews.append(monthView)
             
             // Add height constraint for proper layout
-            monthView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+            monthView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         }
     }
     
@@ -116,7 +104,7 @@ class CD02_DatePickerVC: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func confirmButtonTapped(_ sender: UIButton) {
+    @IBAction func confirmButtonTapped(_ sender: UIBarButtonItem) {
         guard let start = startDate, let end = endDate else {
             // Show alert if dates not selected
             let alert = UIAlertController(
@@ -133,7 +121,7 @@ class CD02_DatePickerVC: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }

@@ -18,7 +18,6 @@ class CD03_LocationPickerVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var resultsTableView: UITableView!
-    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
     weak var delegate: LocationPickerDelegate?
@@ -43,10 +42,6 @@ class CD03_LocationPickerVC: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         
-        // Configure cancel button
-        cancelButton.setTitleColor(.systemOrange, for: .normal)
-        cancelButton.titleLabel?.font = .systemFont(ofSize: 17)
-        
         // Configure search text field
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
@@ -69,7 +64,7 @@ class CD03_LocationPickerVC: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func didTapCancel(_ sender: UIButton) {
+    @IBAction func didTapCancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }

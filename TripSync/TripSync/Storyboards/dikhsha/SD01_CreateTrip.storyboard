@@ -225,8 +225,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Create Trip" id="Kzz-4r-zhY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa"/>
-                        <barButtonItem key="rightBarButtonItem" title="Create" id="R2D-kd-Ayw"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa">
+                            <connections>
+                                <segue destination="4ld-PP-h31" kind="unwind" identifier="unwindToHomeWithCancel" unwindAction="unwindToHome:" id="IIB-5c-uvd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="R2D-kd-Ayw">
+                            <connections>
+                                <segue destination="FJl-YB-wNh" kind="show" identifier="createTripToSummary" id="wdF-0g-iXl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -238,12 +246,13 @@
                         <outlet property="locationButton" destination="location-button" id="outlet-location-button"/>
                         <outlet property="locationLabel" destination="location-label" id="outlet-location-label"/>
                         <outlet property="tripNameField" destination="jac-Oq-nhO" id="outlet-trip-name-field"/>
-                        <segue destination="Xg8-J7-qvh" kind="presentation" identifier="createTripToDatePicker" id="RDE-zP-3TE"/>
+                        <segue destination="Xg8-J7-qvh" kind="presentation" identifier="createTripToDatePicker" modalPresentationStyle="automatic" id="RDE-zP-3TE"/>
                         <segue destination="Aug-Xa-Omv" kind="presentation" identifier="createTripToLocationPicker" id="ggf-Z3-nY1"/>
                         <segue destination="xSu-kQ-8nH" kind="presentation" identifier="createTripToImagePicker" id="Xvi-rg-Oyz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4ld-PP-h31" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1064.885496183206" y="130.98591549295776"/>
         </scene>
@@ -255,7 +264,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddR-Kz-zON" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1858" y="35"/>
+            <point key="canvasLocation" x="1825" y="49"/>
         </scene>
         <!--SD03_LocationPicker-->
         <scene sceneID="OGL-Yz-fod">
@@ -275,7 +284,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ywh-wH-3Dp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="246"/>
+            <point key="canvasLocation" x="1846" y="215"/>
+        </scene>
+        <!--SD05_Summary-->
+        <scene sceneID="fpM-ZK-rkN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SD05_Summary" id="FJl-YB-wNh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="x78-pV-aWD"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aah-Nv-j95" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1846" y="-41"/>
         </scene>
     </scenes>
     <resources>
@@ -290,10 +309,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -11,7 +11,6 @@ class MonthView: UIView {
     
     // MARK: - Properties
     private let monthLabel = UILabel()
-    private let weekdayStackView = UIStackView()
     private let daysContainerStackView = UIStackView()
     
     private var dateToButtonMap: [Date: UIButton] = [:]
@@ -39,23 +38,6 @@ class MonthView: UIView {
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(monthLabel)
         
-        // Weekday header
-        weekdayStackView.axis = .horizontal
-        weekdayStackView.distribution = .fillEqually
-        weekdayStackView.spacing = 0
-        weekdayStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(weekdayStackView)
-        
-        let weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
-        for day in weekdays {
-            let label = UILabel()
-            label.text = day
-            label.textAlignment = .center
-            label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-            label.textColor = UIColor(white: 0.6, alpha: 1.0)
-            weekdayStackView.addArrangedSubview(label)
-        }
-        
         // Days container
         daysContainerStackView.axis = .vertical
         daysContainerStackView.distribution = .fillEqually
@@ -66,17 +48,12 @@ class MonthView: UIView {
         // Constraints
         NSLayoutConstraint.activate([
             monthLabel.topAnchor.constraint(equalTo: topAnchor),
-            monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            monthLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            monthLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            weekdayStackView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 16),
-            weekdayStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            weekdayStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            weekdayStackView.heightAnchor.constraint(equalToConstant: 30),
-            
-            daysContainerStackView.topAnchor.constraint(equalTo: weekdayStackView.bottomAnchor, constant: 8),
-            daysContainerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            daysContainerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            daysContainerStackView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 12),
+            daysContainerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            daysContainerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             daysContainerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
