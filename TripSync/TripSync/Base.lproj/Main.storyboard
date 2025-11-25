@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="3716" y="406"/>
         </scene>
-        <!--TAB01_Home-->
+        <!--SM02_Home-->
         <scene sceneID="xVt-hn-SHE">
             <objects>
-                <viewControllerPlaceholder storyboardName="TAB01_Home" id="S1G-0g-Rzm" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SM02_Home" id="S1G-0g-Rzm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dck-R3-qqw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYk-l5-NyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -736,7 +736,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
