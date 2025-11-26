@@ -112,7 +112,6 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
-                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="l1a-ha-lu0" secondAttribute="height" multiplier="1:1" id="BcV-3j-49w"/>
                                                             <constraint firstItem="H7Z-u7-4EZ" firstAttribute="centerY" secondItem="l1a-ha-lu0" secondAttribute="centerY" id="Xz4-90-EbS"/>
@@ -160,7 +159,6 @@
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="CardColor"/>
-                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstItem="Ktc-Qi-dY3" firstAttribute="centerX" secondItem="POG-25-jXy" secondAttribute="centerX" id="0fu-Rx-f9z"/>
                                                             <constraint firstAttribute="width" secondItem="POG-25-jXy" secondAttribute="height" multiplier="1:1" id="A1m-Mf-sdf"/>
@@ -204,6 +202,9 @@
                                                         <buttonConfiguration key="configuration" style="filled" image="person.badge.plus" catalog="system" title="Invite">
                                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="inviteButtonTapped:" destination="GxH-BE-WPK" eventType="touchUpInside" id="invite-button-action"/>
+                                                        </connections>
                                                     </button>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="frN-gl-8at">
                                                         <rect key="frame" x="0.0" y="72" width="361" height="304.33333333333331"/>
@@ -325,6 +326,7 @@
                         <segue destination="48u-Ns-FWh" kind="show" identifier="subgroupDetailsToItinerary" id="aF8-4Z-2O8"/>
                         <segue destination="edit-form-reference" kind="presentation" identifier="subgroupDetailsToEdit" id="acU-BK-qnd"/>
                         <segue destination="CqG-4x-ivi" kind="show" identifier="subgroupDetailsToChat" id="RH8-pF-zZq"/>
+                        <segue destination="invite-members-reference" kind="presentation" identifier="showInviteMembers" modalPresentationStyle="formSheet" id="invite-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdW-IN-cpa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -340,6 +342,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFM-xI-ZsO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2083" y="82"/>
+        </scene>
+        <!--SS05_InviteSubgroupMembers-->
+        <scene sceneID="invite-members-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SS05_InviteSubgroupMembers" id="invite-members-reference" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="invite-nav-item"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="invite-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2083" y="180"/>
         </scene>
     </scenes>
     <resources>
