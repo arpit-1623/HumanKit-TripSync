@@ -17,6 +17,23 @@ class ChatTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         selectionStyle = .none
+        bubbleView.layer.cornerRadius = 12
+        bubbleView.layer.masksToBounds = true
+    }
+    
+    func configure(with message: Message, isOutgoing: Bool) {
+        messageLabel.text = message.content
+        
+        if isOutgoing {
+            nameLabel.text = "You"
+        } else {
+            // Get sender's name
+            if let sender = DataModel.shared.getUser(byId: message.senderUserId) {
+                nameLabel.text = sender.fullName
+            } else {
+                nameLabel.text = "Unknown"
+            }
+        }
     }
     
     func dummy(_ name: String, _ message: String) {

@@ -1,13 +1,13 @@
 //
-//  GeneralChatVC.swift
+//  CS01_SubgroupChatVC.swift
 //  TripSync
 //
-//  Created by Sajal Garg on 19/11/25.
+//  Created by GitHub Copilot on 26/11/25.
 //
 
 import UIKit
 
-class GeneralChatViewController: UIViewController {
+class SubgroupChatViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -15,11 +15,13 @@ class GeneralChatViewController: UIViewController {
     
     // MARK: - Properties
     var trip: Trip?
+    var subgroup: Subgroup?
     private var messages: [Message] = []
     private var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationTitle()
         setupTableView()
         loadCurrentUser()
         loadMessages()
@@ -31,6 +33,10 @@ class GeneralChatViewController: UIViewController {
     }
     
     // MARK: - Setup
+    private func setupNavigationTitle() {
+        title = subgroup?.name ?? "Subgroup Chat"
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -42,12 +48,12 @@ class GeneralChatViewController: UIViewController {
     }
     
     private func loadMessages() {
-        guard let trip = trip else { return }
+        guard let trip = trip, let subgroup = subgroup else { return }
         
-        // Load general messages (subgroupId is nil)
-        messages = DataModel.shared.getMessages(forTripId: trip.id, subgroupId: nil)
+        // Load messages for this specific subgroup
+        messages = DataModel.shared.getMessages(forTripId: trip.id, subgroupId: subgroup.id)
         
-        // Filter out announcements (they appear in Alerts tab)
+        // Filter out announcements
         messages = messages.filter { !$0.isAnnouncement }
         
         tableView.reloadData()
@@ -63,6 +69,7 @@ class GeneralChatViewController: UIViewController {
     // MARK: - Actions
     @IBAction func sendButtonTapped(_ sender: Any) {
         guard let trip = trip,
+              let subgroup = subgroup,
               let currentUser = currentUser,
               let messageText = messageTextField.text,
               !messageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
@@ -74,7 +81,7 @@ class GeneralChatViewController: UIViewController {
             content: messageText,
             senderUserId: currentUser.id,
             tripId: trip.id,
-            subgroupId: nil
+            subgroupId: subgroup.id
         )
         
         DataModel.shared.saveMessage(newMessage)
@@ -89,7 +96,7 @@ class GeneralChatViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate & DataSource
-extension GeneralChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension SubgroupChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
