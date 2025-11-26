@@ -29,8 +29,6 @@ class CS04_SubgroupFormVC: UITableViewController {
     @IBOutlet weak var color8Button: UIButton!
     @IBOutlet weak var color9Button: UIButton!
     @IBOutlet weak var color10Button: UIButton!
-    @IBOutlet weak var color11Button: UIButton!
-    @IBOutlet weak var color12Button: UIButton!
     
     // Details section (for edit mode)
     @IBOutlet weak var membersCountLabel: UILabel!
@@ -49,9 +47,8 @@ class CS04_SubgroupFormVC: UITableViewController {
     }
     
     private let availableColors = [
-        "#FF6B9D", "#4ECDC4", "#45B7D1", "#F4A259",
-        "#95E1D3", "#F7DC6F", "#B19CD9", "#5DADE2",
-        "#58D68D", "#F5B041", "#EC7063", "#A569BD"
+        "#FF6B6B", "#4ECDC4", "#FFD93D", "#6BCB77", "#C77DFF",
+        "#FF8787", "#4D96FF", "#FFB84D", "#A8E6CF", "#FF6AC1"
     ]
     
     // MARK: - Lifecycle
@@ -124,7 +121,7 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     private func setupColorButtons() {
         let buttons = [color1Button, color2Button, color3Button, color4Button, color5Button,
-                      color6Button, color7Button, color8Button, color9Button, color10Button, color11Button, color12Button]
+                      color6Button, color7Button, color8Button, color9Button, color10Button]
         
         for (index, button) in buttons.enumerated() {
             guard let button = button, index < availableColors.count else { continue }
@@ -159,7 +156,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         // Update color button selection
         if let colorIndex = availableColors.firstIndex(of: subgroup.colorHex) {
             let buttons = [color1Button, color2Button, color3Button, color4Button, color5Button,
-                          color6Button, color7Button, color8Button, color9Button, color10Button, color11Button, color12Button]
+                          color6Button, color7Button, color8Button, color9Button, color10Button]
             
             buttons.forEach { removeCheckmark(from: $0) }
             if let button = buttons[colorIndex] {
@@ -211,7 +208,7 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     @objc private func colorButtonTapped(_ sender: UIButton) {
         let buttons = [color1Button, color2Button, color3Button, color4Button, color5Button,
-                      color6Button, color7Button, color8Button, color9Button, color10Button, color11Button, color12Button]
+                      color6Button, color7Button, color8Button, color9Button, color10Button]
         
         // Remove checkmarks from all buttons
         buttons.forEach { removeCheckmark(from: $0) }
@@ -361,22 +358,22 @@ class CS04_SubgroupFormVC: UITableViewController {
         if isEditMode {
             switch indexPath.section {
             case 0:
-                return indexPath.row == 0 ? 50 : 100 // Name field, Description text view
+                return indexPath.row == 0 ? 50 : 120 // Name field, Description text view
             case 1:
-                return 210 // Color buttons grid
+                return 150 // Color buttons grid
             case 2:
                 return 44 // Details cells
             case 3:
-                return 80 // Delete button
+                return 60 // Delete button
             default:
                 return 44
             }
         } else {
             switch indexPath.section {
             case 0:
-                return indexPath.row == 0 ? 50 : 100 // Name field, Description text view
+                return indexPath.row == 0 ? 50 : 120 // Name field, Description text view
             case 1:
-                return 210 // Color buttons grid
+                return 150 // Color buttons grid
             default:
                 return 44
             }
