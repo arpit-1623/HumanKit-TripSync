@@ -224,7 +224,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Create Trip" id="Kzz-4r-zhY">
+                    <navigationItem key="navigationItem" title="Create Trip" largeTitleDisplayMode="never" id="Kzz-4r-zhY">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa">
                             <connections>
                                 <segue destination="4ld-PP-h31" kind="unwind" identifier="unwindToHomeWithCancel" unwindAction="unwindToHome:" id="IIB-5c-uvd"/>

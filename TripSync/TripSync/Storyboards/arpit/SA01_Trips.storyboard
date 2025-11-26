@@ -31,8 +31,8 @@
                                                 </connections>
                                             </searchBar>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7z-zj-MpJ">
-                                                <rect key="frame" x="19.999999999999993" y="80" width="101.33333333333331" height="21.666666666666671"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <rect key="frame" x="19.999999999999993" y="80" width="104.33333333333331" height="21.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -122,6 +122,7 @@
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="CardColor"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="cTr-Ip-8hN" firstAttribute="leading" secondItem="Pmr-Oi-quV" secondAttribute="leading" constant="16" id="0dl-jB-mxZ"/>
                                                     <constraint firstItem="pSL-Vq-2KH" firstAttribute="leading" secondItem="cTr-Ip-8hN" secondAttribute="trailing" constant="12" id="6nS-JQ-Ns0"/>
@@ -149,10 +150,13 @@
                                                         <size key="value" width="0.0" height="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="current-trip-tap-gesture" appends="YES" id="current-trip-tap-connection"/>
+                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hn9-fG-8zL">
-                                                <rect key="frame" x="19.999999999999993" y="255.66666666666666" width="94.333333333333314" height="21.666666666666657"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <rect key="frame" x="20.000000000000007" y="255.66666666666666" width="96.666666666666686" height="21.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -292,6 +296,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="currentTripCard" destination="Pmr-Oi-quV" id="JbE-bd-6Ng"/>
                         <outlet property="currentTripDateRangeLabel" destination="zEK-eu-IVZ" id="Gvb-fm-8ns"/>
@@ -307,6 +312,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="current-trip-tap-gesture">
+                    <connections>
+                        <action selector="currentTripCardTapped:" destination="Y6W-OH-hqX" id="current-trip-tap-action"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1037.3134328358208" y="3.432494279176201"/>
         </scene>
