@@ -55,11 +55,7 @@ class TripsViewController: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         searchBar.delegate = self
-        
-        // Add tap gesture to current trip card
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(currentTripCardTapped))
-        currentTripCard.addGestureRecognizer(tapGesture)
-        currentTripCard.isUserInteractionEnabled = true
+        // Tap gesture is now configured in storyboard
     }
     
     private func setupTableView() {
@@ -93,12 +89,6 @@ class TripsViewController: UIViewController {
         print("Filter changed to index: \(sender.selectedSegmentIndex)")
     }
     
-    @objc private func currentTripCardTapped() {
-        guard let trip = currentTrip else { return }
-        performSegue(withIdentifier: "tripsToTripDetails", sender: trip)
-    }
-    
-    
     @IBAction func segmentedControlChanged(_ sender: Any) {
         switch filterSegmentedControl.selectedSegmentIndex {
         case 0:
@@ -114,6 +104,11 @@ class TripsViewController: UIViewController {
             break
         }
         tripsTableView.reloadData()
+    }
+    
+    @IBAction func currentTripCardTapped(_ sender: UITapGestureRecognizer) {
+        guard let trip = currentTrip else { return }
+        performSegue(withIdentifier: "tripsToTripDetails", sender: trip)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
