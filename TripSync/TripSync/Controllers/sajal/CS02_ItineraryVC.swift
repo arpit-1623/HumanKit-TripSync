@@ -19,6 +19,10 @@ class CS02_ItineraryVC: UIViewController {
     var groupedStops: [(date: Date, stops: [ItineraryStop])] = []
     var subgroups: [Subgroup] = []
     var selectedSubgroupId: UUID? = nil // nil means "All"
+    var currentUserId: UUID = UUID() // Current logged in user
+    
+    // Special UUID for MY filter
+    private let myItineraryFilterId = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
     
     // Date formatter
     let dateFormatter: DateFormatter = {
@@ -83,6 +87,7 @@ class CS02_ItineraryVC: UIViewController {
     private func loadDummyData() {
         // Create dummy trip
         let userId = UUID()
+        currentUserId = userId // Set current user
         currentTrip = Trip(
             name: "Tokyo Adventure",
             description: "Amazing trip to Tokyo",
@@ -143,7 +148,9 @@ class CS02_ItineraryVC: UIViewController {
             time: day1Time1,
             tripId: currentTrip!.id,
             subgroupId: subgroups[3].id, // Culture Vultures
-            createdByUserId: userId
+            createdByUserId: userId,
+            isInMyItinerary: true,
+            addedToMyItineraryByUserId: userId
         ))
         
         allItineraryStops.append(ItineraryStop(
@@ -229,7 +236,13 @@ class CS02_ItineraryVC: UIViewController {
         var filteredStops = allItineraryStops
         
         if let selectedId = selectedSubgroupId {
-            filteredStops = allItineraryStops.filter { $0.subgroupId == selectedId }
+            if selectedId == myItineraryFilterId {
+                // Filter by MY itinerary
+                filteredStops = allItineraryStops.filter { $0.isInMyItinerary && $0.addedToMyItineraryByUserId == currentUserId }
+            } else {
+                // Filter by specific subgroup
+                filteredStops = allItineraryStops.filter { $0.subgroupId == selectedId }
+            }
         }
         
         // Group by date
@@ -251,6 +264,71 @@ class CS02_ItineraryVC: UIViewController {
             .sorted { $0.date < $1.date }
         
         itineraryTableView.reloadData()
+    }
+    
+    // MARK: - My Itinerary Actions
+    private func addToMyItinerary(stop: ItineraryStop) {
+        if let index = allItineraryStops.firstIndex(where: { $0.id == stop.id }) {
+            allItineraryStops[index].isInMyItinerary = true
+            allItineraryStops[index].addedToMyItineraryByUserId = currentUserId
+            
+            // Show feedback
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            // Refresh view
+            itineraryTableView.reloadData()
+            
+            // Show toast message
+            showToast(message: "Added to My Itinerary")
+        }
+    }
+    
+    private func removeFromMyItinerary(stop: ItineraryStop, at indexPath: IndexPath) {
+        if let index = allItineraryStops.firstIndex(where: { $0.id == stop.id }) {
+            allItineraryStops[index].isInMyItinerary = false
+            allItineraryStops[index].addedToMyItineraryByUserId = nil
+            
+            // Show feedback
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            // Refresh view - need to filter again
+            filterAndGroupStops()
+            
+            // Show toast message
+            showToast(message: "Removed from My Itinerary")
+        }
+    }
+    
+    private func showToast(message: String) {
+        let toastLabel = UILabel()
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastLabel.textColor = .white
+        toastLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        toastLabel.textAlignment = .center
+        toastLabel.text = message
+        toastLabel.alpha = 0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        
+        let width: CGFloat = message.size(withAttributes: [.font: toastLabel.font!]).width + 40
+        toastLabel.frame = CGRect(x: (view.frame.width - width) / 2,
+                                  y: view.frame.height - 150,
+                                  width: width,
+                                  height: 35)
+        
+        view.addSubview(toastLabel)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            toastLabel.alpha = 1.0
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 1.5, options: .curveEaseOut, animations: {
+                toastLabel.alpha = 0.0
+            }, completion: { _ in
+                toastLabel.removeFromSuperview()
+            })
+        })
     }
     
     // MARK: - Actions
@@ -305,7 +383,7 @@ extension CS02_ItineraryVC: AddItineraryStopDelegate {
 extension CS02_ItineraryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return subgroups.count + 1 // +1 for "All" option
+        return subgroups.count + 2 // +1 for "All", +1 for "MY"
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -315,8 +393,12 @@ extension CS02_ItineraryVC: UICollectionViewDelegate, UICollectionViewDataSource
             // "All" option
             let isSelected = selectedSubgroupId == nil
             cell.configure(name: "All", colorHex: "#007AFF", isSelected: isSelected, showStar: true)
+        } else if indexPath.item == 1 {
+            // "MY" option
+            let isSelected = selectedSubgroupId == myItineraryFilterId
+            cell.configure(name: "MY", colorHex: "#FF2D55", isSelected: isSelected, showStar: false)
         } else {
-            let subgroup = subgroups[indexPath.item - 1]
+            let subgroup = subgroups[indexPath.item - 2]
             let isSelected = selectedSubgroupId == subgroup.id
             cell.configure(name: subgroup.name, colorHex: subgroup.colorHex, isSelected: isSelected, showStar: false)
         }
@@ -326,9 +408,14 @@ extension CS02_ItineraryVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
+            // Select "All"
             selectedSubgroupId = nil
+        } else if indexPath.item == 1 {
+            // Select "MY"
+            selectedSubgroupId = myItineraryFilterId
         } else {
-            selectedSubgroupId = subgroups[indexPath.item - 1].id
+            // Select specific subgroup
+            selectedSubgroupId = subgroups[indexPath.item - 2].id
         }
         
         collectionView.reloadData()
@@ -337,9 +424,13 @@ extension CS02_ItineraryVC: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == 0 {
+            // "All" filter
             return CGSize(width: 80, height: 50)
+        } else if indexPath.item == 1 {
+            // "MY" filter
+            return CGSize(width: 70, height: 50)
         } else {
-            let subgroup = subgroups[indexPath.item - 1]
+            let subgroup = subgroups[indexPath.item - 2]
             let width = subgroup.name.size(withAttributes: [.font: UIFont.systemFont(ofSize: 15, weight: .medium)]).width + 40
             return CGSize(width: max(100, width), height: 50)
         }
@@ -411,6 +502,36 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let stop = groupedStops[indexPath.section].stops[indexPath.row]
+        
+        if selectedSubgroupId == myItineraryFilterId {
+            // When viewing MY itinerary, show "Remove from My" action
+            let removeAction = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, completionHandler) in
+                self?.removeFromMyItinerary(stop: stop, at: indexPath)
+                completionHandler(true)
+            }
+            removeAction.backgroundColor = .systemRed
+            removeAction.image = UIImage(systemName: "heart.slash.fill")
+            
+            return UISwipeActionsConfiguration(actions: [removeAction])
+        } else {
+            // When viewing ALL or subgroups, show "Add to My" action if not already in MY
+            if !stop.isInMyItinerary {
+                let addAction = UIContextualAction(style: .normal, title: "Add to My") { [weak self] (_, _, completionHandler) in
+                    self?.addToMyItinerary(stop: stop)
+                    completionHandler(true)
+                }
+                addAction.backgroundColor = .systemPink
+                addAction.image = UIImage(systemName: "heart.fill")
+                
+                return UISwipeActionsConfiguration(actions: [addAction])
+            }
+        }
+        
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

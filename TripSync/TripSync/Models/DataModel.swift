@@ -306,6 +306,28 @@ class DataModel {
         saveItineraryStopsToFile()
     }
     
+    public func addStopToMyItinerary(_ stopId: UUID, userId: UUID) {
+        if let index = itineraryStops.firstIndex(where: { $0.id == stopId }) {
+            itineraryStops[index].isInMyItinerary = true
+            itineraryStops[index].addedToMyItineraryByUserId = userId
+            saveItineraryStopsToFile()
+        }
+    }
+    
+    public func removeStopFromMyItinerary(_ stopId: UUID, userId: UUID) {
+        if let index = itineraryStops.firstIndex(where: { $0.id == stopId }) {
+            itineraryStops[index].isInMyItinerary = false
+            itineraryStops[index].addedToMyItineraryByUserId = nil
+            saveItineraryStopsToFile()
+        }
+    }
+    
+    public func getMyItineraryStops(forUserId userId: UUID, tripId: UUID) -> [ItineraryStop] {
+        return itineraryStops
+            .filter { $0.tripId == tripId && $0.isInMyItinerary && $0.addedToMyItineraryByUserId == userId }
+            .sorted { $0.date < $1.date }
+    }
+    
     // MARK: - Message Data Model
     
     private func loadMessagesFromFile() -> [Message] {

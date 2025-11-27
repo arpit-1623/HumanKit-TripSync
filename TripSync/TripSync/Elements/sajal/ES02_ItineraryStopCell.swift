@@ -78,8 +78,14 @@ class ES02_ItineraryStopCell: UITableViewCell {
         locationLabel.text = stop.location
         timeLabel.text = timeFormatter.string(from: stop.time)
         
-        // Set icon
-        iconImageView.image = UIImage(systemName: "mappin.circle.fill")
+        // Set icon - show heart if in MY itinerary, otherwise location pin
+        if stop.isInMyItinerary {
+            iconImageView.image = UIImage(systemName: "heart.circle.fill")
+            iconImageView.tintColor = .systemPink
+        } else {
+            iconImageView.image = UIImage(systemName: "mappin.circle.fill")
+            iconImageView.tintColor = .systemOrange
+        }
         
         // Configure color bar and subgroup pill
         if let subgroup = subgroup {
