@@ -30,6 +30,17 @@ struct Subgroup: Codable {
         self.updatedAt = createdAt
     }
     
+    init(id: UUID, name: String, description: String?, colorHex: String, tripId: UUID, memberIds: [UUID]) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.colorHex = colorHex
+        self.tripId = tripId
+        self.memberIds = memberIds
+        self.createdAt = Date()
+        self.updatedAt = createdAt
+    }
+    
     var color: UIColor {
         return UIColor(hex: colorHex) ?? .systemBlue
     }

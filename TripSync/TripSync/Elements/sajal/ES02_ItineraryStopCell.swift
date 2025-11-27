@@ -95,11 +95,20 @@ class ES02_ItineraryStopCell: UITableViewCell {
             subgroupPillView.backgroundColor = color
             subgroupLabel.text = subgroup.name
         } else {
-            // "All" - use blue color
-            colorBarView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
-            subgroupPillView.isHidden = false
-            subgroupPillView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-            subgroupLabel.text = "All"
+            // Check if it's in MY itinerary
+            if stop.isInMyItinerary {
+                // "MY" - use pink color
+                colorBarView.backgroundColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1) // #FF2D55
+                subgroupPillView.isHidden = false
+                subgroupPillView.backgroundColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
+                subgroupLabel.text = "MY"
+            } else {
+                // "All" - use blue color
+                colorBarView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
+                subgroupPillView.isHidden = false
+                subgroupPillView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+                subgroupLabel.text = "All"
+            }
         }
     }
 }

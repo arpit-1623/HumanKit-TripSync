@@ -167,6 +167,14 @@ class DataModel {
         return trips.filter { $0.memberIds.contains(userId) }
     }
     
+    public func getCurrentTrip() -> Trip? {
+        return trips.first(where: { $0.status == .current })
+    }
+    
+    public func getNonCurrentTrips() -> [Trip] {
+        return trips.filter { $0.status != .current }
+    }
+    
     public func deleteTrip(byId id: UUID) {
         trips.removeAll(where: { $0.id == id })
         saveTripsToFile()

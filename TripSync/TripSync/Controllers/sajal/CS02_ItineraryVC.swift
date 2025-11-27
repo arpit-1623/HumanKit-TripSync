@@ -19,7 +19,7 @@ class CS02_ItineraryVC: UIViewController {
     var groupedStops: [(date: Date, stops: [ItineraryStop])] = []
     var subgroups: [Subgroup] = []
     var selectedSubgroupId: UUID? = nil // nil means "All"
-    var currentUserId: UUID = UUID() // Current logged in user
+    var currentUserId: UUID = DataModel.shared.getCurrentUser()?.id ?? UUID() // Current logged in user
     
     // Special UUID for MY filter
     private let myItineraryFilterId = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
@@ -46,6 +46,9 @@ class CS02_ItineraryVC: UIViewController {
         setupCollectionView()
         setupTableView()
         filterAndGroupStops()
+        
+        // Scroll to selected subgroup if pre-set (from navigation)
+        scrollToSelectedFilter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +56,7 @@ class CS02_ItineraryVC: UIViewController {
         // Reload data in case itinerary was modified
         loadTripData()
         filterAndGroupStops()
+        subgroupCollectionView.reloadData()
     }
     
     // MARK: - Setup
@@ -101,6 +105,19 @@ class CS02_ItineraryVC: UIViewController {
         allItineraryStops = DataModel.shared.getItineraryStops(forTripId: trip.id)
     }
     
+    private func scrollToSelectedFilter() {
+        guard let selectedId = selectedSubgroupId else { return }
+        
+        // Find the index of the selected subgroup
+        if let index = subgroups.firstIndex(where: { $0.id == selectedId }) {
+            let indexPath = IndexPath(item: index + 2, section: 0) // +2 for ALL and MY
+            subgroupCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        } else if selectedId == myItineraryFilterId {
+            let indexPath = IndexPath(item: 1, section: 0) // MY is at index 1
+            subgroupCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        }
+    }
+    
     private func filterAndGroupStops() {
         // Filter by selected subgroup
         var filteredStops = allItineraryStops
@@ -142,6 +159,10 @@ class CS02_ItineraryVC: UIViewController {
             allItineraryStops[index].isInMyItinerary = true
             allItineraryStops[index].addedToMyItineraryByUserId = currentUserId
             
+            // Save to DataModel
+            DataModel.shared.addStopToMyItinerary(stop.id, userId: currentUserId)
+            DataModel.shared.saveItineraryStop(allItineraryStops[index])
+            
             // Show feedback
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
@@ -159,9 +180,13 @@ class CS02_ItineraryVC: UIViewController {
             allItineraryStops[index].isInMyItinerary = false
             allItineraryStops[index].addedToMyItineraryByUserId = nil
             
+            // Save to DataModel
+            DataModel.shared.removeStopFromMyItinerary(stop.id, userId: currentUserId)
+            DataModel.shared.saveItineraryStop(allItineraryStops[index])
+            
             // Show feedback
             let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.success)
+            generator.notificationOccurred(.warning)
             
             // Refresh view - need to filter again
             filterAndGroupStops()
@@ -374,6 +399,53 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     
+    // MARK: - Leading Swipe Actions (Swipe RIGHT: left-to-right)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let stop = groupedStops[indexPath.section].stops[indexPath.row]
+        
+        if selectedSubgroupId == myItineraryFilterId {
+            // When viewing MY itinerary, show "Remove from My" action
+            let removeAction = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, completionHandler) in
+                self?.removeFromMyItinerary(stop: stop, at: indexPath)
+                completionHandler(true)
+            }
+            removeAction.backgroundColor = .systemRed
+            removeAction.image = UIImage(systemName: "heart.slash.fill")
+            
+            let configuration = UISwipeActionsConfiguration(actions: [removeAction])
+            configuration.performsFirstActionWithFullSwipe = true
+            return configuration
+        } else {
+            // When viewing ALL or subgroups, show appropriate action
+            if stop.isInMyItinerary {
+                // Already in MY - show remove action
+                let removeAction = UIContextualAction(style: .destructive, title: "Remove from My") { [weak self] (_, _, completionHandler) in
+                    self?.removeFromMyItinerary(stop: stop, at: indexPath)
+                    completionHandler(true)
+                }
+                removeAction.backgroundColor = .systemRed
+                removeAction.image = UIImage(systemName: "heart.slash.fill")
+                
+                let configuration = UISwipeActionsConfiguration(actions: [removeAction])
+                configuration.performsFirstActionWithFullSwipe = true
+                return configuration
+            } else {
+                // Not in MY - show add action
+                let addAction = UIContextualAction(style: .normal, title: "Add to My") { [weak self] (_, _, completionHandler) in
+                    self?.addToMyItinerary(stop: stop)
+                    completionHandler(true)
+                }
+                addAction.backgroundColor = .systemPink
+                addAction.image = UIImage(systemName: "heart.fill")
+                
+                let configuration = UISwipeActionsConfiguration(actions: [addAction])
+                configuration.performsFirstActionWithFullSwipe = true
+                return configuration
+            }
+        }
+    }
+    
+    // MARK: - Trailing Swipe Actions (Swipe LEFT: right-to-left)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let stop = groupedStops[indexPath.section].stops[indexPath.row]
         
@@ -388,8 +460,19 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
             
             return UISwipeActionsConfiguration(actions: [removeAction])
         } else {
-            // When viewing ALL or subgroups, show "Add to My" action if not already in MY
-            if !stop.isInMyItinerary {
+            // When viewing ALL or subgroups, show appropriate action
+            if stop.isInMyItinerary {
+                // Already in MY - show remove action
+                let removeAction = UIContextualAction(style: .destructive, title: "Remove from My") { [weak self] (_, _, completionHandler) in
+                    self?.removeFromMyItinerary(stop: stop, at: indexPath)
+                    completionHandler(true)
+                }
+                removeAction.backgroundColor = .systemRed
+                removeAction.image = UIImage(systemName: "heart.slash.fill")
+                
+                return UISwipeActionsConfiguration(actions: [removeAction])
+            } else {
+                // Not in MY - show add action
                 let addAction = UIContextualAction(style: .normal, title: "Add to My") { [weak self] (_, _, completionHandler) in
                     self?.addToMyItinerary(stop: stop)
                     completionHandler(true)
@@ -400,8 +483,6 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
                 return UISwipeActionsConfiguration(actions: [addAction])
             }
         }
-        
-        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -276,7 +276,7 @@ class CS04_SubgroupFormVC: UITableViewController {
             guard let self = self, let subgroup = self.existingSubgroup else { return }
             
             // Remove subgroup from trip
-            DataModel.shared.deleteSubgroup(subgroup)
+            DataModel.shared.deleteSubgroup(byId: subgroup.id)
             
             self.dismiss(animated: true)
         })
