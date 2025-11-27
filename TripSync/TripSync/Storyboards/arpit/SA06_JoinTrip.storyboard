@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OuE-ip-FrB">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Join Trip-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="JoinTripViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="segmented-control">
+                                <rect key="frame" x="16" y="188" width="361" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="segmented-height"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Scan QR Code"/>
+                                    <segment title="Enter Code"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="segment-action"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scan-container">
+                                <rect key="frame" x="0.0" y="236" width="393" height="616"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="scan-stack">
+                                        <rect key="frame" x="20" y="40" width="353" height="441"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qr-card-view">
+                                                <rect key="frame" x="26.666666666666657" y="0.0" width="300" height="300"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="camera-preview-view">
+                                                        <rect key="frame" x="24" y="24" width="252" height="252"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viewfinder-overlay">
+                                                                <rect key="frame" x="26" y="26" width="200" height="200"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="200" id="viewfinder-height"/>
+                                                                    <constraint firstAttribute="width" constant="200" id="viewfinder-width"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstItem="viewfinder-overlay" firstAttribute="centerX" secondItem="camera-preview-view" secondAttribute="centerX" id="viewfinder-centerX"/>
+                                                            <constraint firstItem="viewfinder-overlay" firstAttribute="centerY" secondItem="camera-preview-view" secondAttribute="centerY" id="viewfinder-centerY"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode.viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="camera-placeholder-icon">
+                                                        <rect key="frame" x="102" y="103" width="96" height="94"/>
+                                                        <color key="tintColor" systemColor="systemGray3Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="96" id="icon-height"/>
+                                                            <constraint firstAttribute="width" constant="96" id="icon-width"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="CardColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="camera-preview-view" firstAttribute="top" secondItem="qr-card-view" secondAttribute="top" constant="24" id="Z6Z-or-qdl"/>
+                                                    <constraint firstItem="camera-preview-view" firstAttribute="centerX" secondItem="qr-card-view" secondAttribute="centerX" id="camera-centerX"/>
+                                                    <constraint firstItem="camera-preview-view" firstAttribute="centerY" secondItem="qr-card-view" secondAttribute="centerY" id="camera-centerY"/>
+                                                    <constraint firstItem="camera-placeholder-icon" firstAttribute="centerX" secondItem="qr-card-view" secondAttribute="centerX" id="icon-centerX"/>
+                                                    <constraint firstItem="camera-placeholder-icon" firstAttribute="centerY" secondItem="qr-card-view" secondAttribute="centerY" id="icon-centerY"/>
+                                                    <constraint firstItem="camera-preview-view" firstAttribute="leading" secondItem="qr-card-view" secondAttribute="leading" constant="24" id="qEi-DC-8Vj"/>
+                                                    <constraint firstAttribute="height" constant="300" id="qr-card-height"/>
+                                                    <constraint firstAttribute="width" constant="300" id="qr-card-width"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.10000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0.0" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point camera at QR code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scan-instruction-label">
+                                                <rect key="frame" x="96.333333333333329" y="332" width="160.33333333333337" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scan-join-button">
+                                                <rect key="frame" x="0.0" y="381" width="353" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="scan-join-height"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                <state key="normal" title="Join Trip">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageReference key="image" image="checkmark.circle.fill" catalog="system" renderingMode="hierarchical">
+                                                        <hierarchicalColors>
+                                                            <color systemColor="tintColor"/>
+                                                            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </hierarchicalColors>
+                                                    </imageReference>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="joinTripTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="scan-join-action"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="scan-join-button" firstAttribute="leading" secondItem="scan-stack" secondAttribute="leading" id="scan-join-leading"/>
+                                            <constraint firstItem="scan-join-button" firstAttribute="trailing" secondItem="scan-stack" secondAttribute="trailing" id="scan-join-trailing"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="scan-stack" firstAttribute="leading" secondItem="scan-container" secondAttribute="leading" constant="20" id="scan-stack-leading"/>
+                                    <constraint firstItem="scan-stack" firstAttribute="top" secondItem="scan-container" secondAttribute="top" constant="40" id="scan-stack-top"/>
+                                    <constraint firstAttribute="trailing" secondItem="scan-stack" secondAttribute="trailing" constant="20" id="scan-stack-trailing"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="code-container">
+                                <rect key="frame" x="0.0" y="236" width="393" height="616"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="code-stack">
+                                        <rect key="frame" x="20" y="40" width="353" height="409"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="code-title-label">
+                                                <rect key="frame" x="138.66666666666666" y="0.0" width="75.666666666666657" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="code-card-view">
+                                                <rect key="frame" x="26.666666666666657" y="44.333333333333314" width="300" height="200"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="invite-code-textfield">
+                                                        <rect key="frame" x="24" y="70" width="252" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="textfield-height"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" name="CardColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="code-card-height"/>
+                                                    <constraint firstAttribute="width" constant="300" id="code-card-width"/>
+                                                    <constraint firstItem="invite-code-textfield" firstAttribute="centerY" secondItem="code-card-view" secondAttribute="centerY" id="textfield-centerY"/>
+                                                    <constraint firstItem="invite-code-textfield" firstAttribute="leading" secondItem="code-card-view" secondAttribute="leading" constant="24" id="textfield-leading"/>
+                                                    <constraint firstAttribute="trailing" secondItem="invite-code-textfield" secondAttribute="trailing" constant="24" id="textfield-trailing"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.10000000000000001"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0.0" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code shown on your friend's device" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="code-helper-label">
+                                                <rect key="frame" x="0.0" y="268.33333333333337" width="353" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="code-join-button">
+                                                <rect key="frame" x="0.0" y="349" width="353" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="code-join-height"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                <state key="normal" title="Join Trip">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageReference key="image" image="checkmark.circle.fill" catalog="system" renderingMode="hierarchical">
+                                                        <hierarchicalColors>
+                                                            <color systemColor="tintColor"/>
+                                                            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </hierarchicalColors>
+                                                    </imageReference>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="joinTripTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="code-join-action"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example - TOKYO2025" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="code-example-label">
+                                                <rect key="frame" x="106.33333333333333" y="309.33333333333337" width="140.33333333333337" height="15.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="code-join-button" firstAttribute="leading" secondItem="code-stack" secondAttribute="leading" id="code-join-leading"/>
+                                            <constraint firstItem="code-join-button" firstAttribute="trailing" secondItem="code-stack" secondAttribute="trailing" id="code-join-trailing"/>
+                                            <constraint firstItem="code-helper-label" firstAttribute="leading" secondItem="code-stack" secondAttribute="leading" id="helper-leading"/>
+                                            <constraint firstItem="code-helper-label" firstAttribute="trailing" secondItem="code-stack" secondAttribute="trailing" id="helper-trailing"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="code-stack" firstAttribute="leading" secondItem="code-container" secondAttribute="leading" constant="20" id="code-stack-leading"/>
+                                    <constraint firstItem="code-stack" firstAttribute="top" secondItem="code-container" secondAttribute="top" constant="40" id="code-stack-top"/>
+                                    <constraint firstAttribute="trailing" secondItem="code-stack" secondAttribute="trailing" constant="20" id="code-stack-trailing"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="code-container" secondAttribute="bottom" id="code-bottom"/>
+                            <constraint firstItem="code-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="code-leading"/>
+                            <constraint firstItem="code-container" firstAttribute="top" secondItem="segmented-control" secondAttribute="bottom" constant="16" id="code-top"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="code-container" secondAttribute="trailing" id="code-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="scan-container" secondAttribute="bottom" id="scan-bottom"/>
+                            <constraint firstItem="scan-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="scan-leading"/>
+                            <constraint firstItem="scan-container" firstAttribute="top" secondItem="segmented-control" secondAttribute="bottom" constant="16" id="scan-top"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="scan-container" secondAttribute="trailing" id="scan-trailing"/>
+                            <constraint firstItem="segmented-control" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="segmented-leading"/>
+                            <constraint firstItem="segmented-control" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="segmented-top"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="segmented-control" secondAttribute="trailing" constant="16" id="segmented-trailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Join Trip" id="YIU-FK-RQg">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="close-button">
+                            <connections>
+                                <action selector="closeTapped:" destination="Y6W-OH-hqX" id="close-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraPreviewView" destination="camera-preview-view" id="camera-outlet"/>
+                        <outlet property="codeContainerView" destination="code-container" id="code-container-outlet"/>
+                        <outlet property="inviteCodeTextField" destination="invite-code-textfield" id="textfield-outlet"/>
+                        <outlet property="scanContainerView" destination="scan-container" id="scan-container-outlet"/>
+                        <outlet property="segmentedControl" destination="segmented-control" id="segmented-outlet"/>
+                        <outlet property="viewfinderOverlay" destination="viewfinder-overlay" id="viewfinder-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064.885496183206" y="130.98591549295776"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iic-fi-uwJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OuE-ip-FrB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ab-pW-S33">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Xjf-YM-KcQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tTr-9o-z12" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="CardColor">
+            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

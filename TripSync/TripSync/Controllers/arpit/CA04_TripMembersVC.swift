@@ -32,14 +32,17 @@ class TripMembersViewController: UIViewController {
     }
     
     private func loadMembers() {
-        // TODO: Load actual members from trip.memberIds
-        // For now, using dummy data
-        members = [
-            User(fullName: "Aditya Singh", email: "aditya@example.com"),
-            User(fullName: "Alice Johnson", email: "alice@example.com"),
-            User(fullName: "Bob Smith", email: "bob@example.com"),
-            User(fullName: "John Doe", email: "john@example.com")
-        ]
+        guard let trip = trip else {
+            members = []
+            membersTableView.reloadData()
+            return
+        }
+        
+        // Load actual members from trip.memberIds
+        members = trip.memberIds.compactMap { memberId in
+            DataModel.shared.getUser(byId: memberId)
+        }
+        
         membersTableView.reloadData()
     }
     
@@ -73,7 +76,7 @@ extension TripMembersViewController: UITableViewDataSource {
         let member = members[indexPath.row]
         
         // Determine role based on trip creator
-        let role = indexPath.row == 0 ? "Admin" : "Member"
+        let role = (trip?.createdByUserId == member.id) ? "Admin" : "Member"
         
         cell.configure(with: member, role: role)
         cell.menuButtonTapped = { [weak self] in

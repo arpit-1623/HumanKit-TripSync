@@ -38,9 +38,11 @@ class EditTripTableViewController: UITableViewController {
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.dateFormat = "d MMMM yyyy"
+        formatter.dateFormat = "dd MMM yyyy"
         return formatter
     }()
+    
+    var trip: Trip?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -48,21 +50,23 @@ class EditTripTableViewController: UITableViewController {
         
         setupUI()
         updateDateLabels()
-        
-        // Add actions
-        startDatePicker.addTarget(self, action: #selector(startDateChanged), for: .valueChanged)
-        endDatePicker.addTarget(self, action: #selector(endDateChanged), for: .valueChanged)
     }
     
     // MARK: - Setup
     private func setupUI() {
-        // Set initial date picker dates
-        let calendar = Calendar.current
-        if let startDate = calendar.date(from: DateComponents(year: 2025, month: 10, day: 29)),
-           let endDate = calendar.date(from: DateComponents(year: 2025, month: 11, day: 5)) {
-            startDatePicker.date = startDate
-            endDatePicker.date = endDate
+        guard let trip = trip else {
+            dismiss(animated: true)
+            return
         }
+        
+        // Populate fields from trip
+        tripNameField.text = trip.name
+        tripDescView.text = trip.description
+        tripLocationField.text = trip.location
+        startDatePicker.date = trip.startDate
+        endDatePicker.date = trip.endDate
+        inviteCodeValueLabel.text = trip.inviteCode
+        createdDateValueLabel.text = dateFormatter.string(from: trip.createdAt)
     }
     
     private func updateDateLabels() {
@@ -80,11 +84,12 @@ class EditTripTableViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    @objc private func startDateChanged() {
+    
+    @IBAction func startDatePickerChanged(_ sender: Any) {
         updateDateLabels()
     }
     
-    @objc private func endDateChanged() {
+    @IBAction func endDatePickerChanged(_ sender: Any) {
         updateDateLabels()
     }
     
@@ -93,7 +98,29 @@ class EditTripTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        // TODO: Save trip changes
+        guard var trip = trip,
+              let name = tripNameField.text, !name.isEmpty,
+              let location = tripLocationField.text, !location.isEmpty else {
+            let alert = UIAlertController(
+                title: "Invalid Input",
+                message: "Please fill in all required fields.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+        
+        // Update trip properties
+        trip.name = name
+        trip.description = tripDescView.text
+        trip.location = location
+        trip.startDate = startDatePicker.date
+        trip.endDate = endDatePicker.date
+        
+        // Save to DataModel
+        DataModel.shared.saveTrip(trip)
+        
         dismiss(animated: true)
     }
     
@@ -105,9 +132,15 @@ class EditTripTableViewController: UITableViewController {
         )
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-            // TODO: Delete trip
-            self.dismiss(animated: true)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self, let trip = self.trip else { return }
+            
+            DataModel.shared.deleteTrip(byId: trip.id)
+            
+            // Dismiss edit screen and pop to root
+            self.dismiss(animated: true) {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         })
         
         present(alert, animated: true)

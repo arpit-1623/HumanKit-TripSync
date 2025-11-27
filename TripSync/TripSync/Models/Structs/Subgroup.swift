@@ -31,6 +31,6 @@ struct Subgroup: Codable {
     }
     
     var color: UIColor {
-        return UIColor(named: colorHex) ?? .systemBlue
+        return UIColor(hex: colorHex) ?? .systemBlue
     }
 }

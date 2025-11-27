@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="3716" y="406"/>
         </scene>
-        <!--TAB01_Home-->
+        <!--SM02_Home-->
         <scene sceneID="xVt-hn-SHE">
             <objects>
-                <viewControllerPlaceholder storyboardName="TAB01_Home" id="S1G-0g-Rzm" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SM02_Home" id="S1G-0g-Rzm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dck-R3-qqw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYk-l5-NyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,8 +81,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="Zpn-Cu-RWe">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TripSync =)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bD4-xY-P8D">
-                                <rect key="frame" x="99.666666666666686" y="212" width="194" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TripSync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bD4-xY-P8D">
+                                <rect key="frame" x="122.66666666666669" y="212" width="148" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

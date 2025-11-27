@@ -15,20 +15,21 @@ class InviteQRViewController: UIViewController {
     @IBOutlet weak var inviteCodeLabel: UILabel!
     
     // MARK: - Properties
-    var tripName: String = "Trip Name"
-    var inviteCode: String = "CODE123"
+    var trip: Trip?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         generateQRCode()
     }
     
     // MARK: - Setup
     private func setupUI() {
-        tripNameLabel.text = tripName
-        inviteCodeLabel.text = formatInviteCode(inviteCode)
+        guard let trip = trip else { return }
+        tripNameLabel.text = trip.name
+        inviteCodeLabel.text = formatInviteCode(trip.inviteCode)
     }
     
     private func formatInviteCode(_ code: String) -> String {
@@ -36,16 +37,38 @@ class InviteQRViewController: UIViewController {
     }
     
     private func generateQRCode() {
-        guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return }
-        let data = inviteCode.data(using: .ascii)
+        guard let trip = trip else {
+            showQRGenerationError("Trip data is missing")
+            return
+        }
+        
+        // Validate invite code format
+        guard isValidInviteCode(trip.inviteCode) else {
+            showQRGenerationError("Invalid invite code format")
+            return
+        }
+        
+        guard let filter = CIFilter(name: "CIQRCodeGenerator") else {
+            showQRGenerationError("QR code generator unavailable")
+            return
+        }
+        
+        guard let data = trip.inviteCode.data(using: .ascii) else {
+            showQRGenerationError("Failed to encode invite code")
+            return
+        }
+        
         filter.setValue(data, forKey: "inputMessage")
         filter.setValue("H", forKey: "inputCorrectionLevel")
         
-        if let outputImage = filter.outputImage {
-            let transform = CGAffineTransform(scaleX: 10, y: 10)
-            let scaledImage = outputImage.transformed(by: transform)
-            qrCodeImageView.image = UIImage(ciImage: scaledImage)
+        guard let outputImage = filter.outputImage else {
+            showQRGenerationError("Failed to generate QR code")
+            return
         }
+        
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledImage = outputImage.transformed(by: transform)
+        qrCodeImageView.image = UIImage(ciImage: scaledImage)
     }
     
     // MARK: - Actions
@@ -54,7 +77,8 @@ class InviteQRViewController: UIViewController {
     }
     
     @IBAction func copyCodeTapped(_ sender: UIButton) {
-        UIPasteboard.general.string = inviteCode
+        guard let trip = trip else { return }
+        UIPasteboard.general.string = trip.inviteCode
         
         // Show feedback
         let alert = UIAlertController(title: "Copied!", message: "Invite code copied to clipboard", preferredStyle: .alert)
@@ -65,7 +89,8 @@ class InviteQRViewController: UIViewController {
     }
     
     @IBAction func shareInviteTapped(_ sender: UIButton) {
-        let shareText = "Join my trip '\(tripName)' on TripSync!\n\nInvite Code: \(inviteCode)"
+        guard let trip = trip else { return }
+        let shareText = "Join my trip '\(trip.name)' on TripSync!\n\nInvite Code: \(trip.inviteCode)"
         
         let activityVC = UIActivityViewController(
             activityItems: [shareText],
@@ -79,5 +104,42 @@ class InviteQRViewController: UIViewController {
         }
         
         present(activityVC, animated: true)
+    }
+    
+    // MARK: - Error Handling
+    private func showErrorAndDismiss() {
+        let alert = UIAlertController(
+            title: "Error",
+            message: "Unable to load trip invitation. Please try again.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        })
+        present(alert, animated: true)
+    }
+    
+    private func showQRGenerationError(_ message: String) {
+        print("QR Generation Error: \(message)")
+        // Set a placeholder or error state for the QR code image
+        qrCodeImageView.image = UIImage(systemName: "exclamationmark.triangle")
+        qrCodeImageView.tintColor = .systemRed
+        
+        let alert = UIAlertController(
+            title: "QR Code Error",
+            message: "Unable to generate QR code. \(message)",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    // MARK: - Validation
+    private func isValidInviteCode(_ code: String) -> Bool {
+        // Invite codes should be 8 alphanumeric characters
+        let pattern = "^[A-Z0-9]{8}$"
+        let regex = try? NSRegularExpression(pattern: pattern)
+        let range = NSRange(location: 0, length: code.utf16.count)
+        return regex?.firstMatch(in: code, range: range) != nil
     }
 }

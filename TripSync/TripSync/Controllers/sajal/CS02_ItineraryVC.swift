@@ -14,7 +14,7 @@ class CS02_ItineraryVC: UIViewController {
     @IBOutlet weak var itineraryTableView: UITableView!
     
     // MARK: - Properties
-    var currentTrip: Trip?
+    var trip: Trip?
     var allItineraryStops: [ItineraryStop] = []
     var groupedStops: [(date: Date, stops: [ItineraryStop])] = []
     var subgroups: [Subgroup] = []
@@ -42,9 +42,16 @@ class CS02_ItineraryVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        loadDummyData()
+        loadTripData()
         setupCollectionView()
         setupTableView()
+        filterAndGroupStops()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Reload data in case itinerary was modified
+        loadTripData()
         filterAndGroupStops()
     }
     
@@ -84,151 +91,14 @@ class CS02_ItineraryVC: UIViewController {
         itineraryTableView.clipsToBounds = true
     }
     
-    private func loadDummyData() {
-        // Create dummy trip
-        let userId = UUID()
-        currentUserId = userId // Set current user
-        currentTrip = Trip(
-            name: "Tokyo Adventure",
-            description: "Amazing trip to Tokyo",
-            location: "Tokyo, Japan",
-            startDate: Date(timeIntervalSince1970: 1730102400), // Oct 28, 2025
-            endDate: Date(timeIntervalSince1970: 1730361600),   // Oct 31, 2025
-            createdByUserId: userId
-        )
+    private func loadTripData() {
+        guard let trip = trip else { return }
         
-        // Create dummy subgroups
-        let foodExplorersId = UUID()
-        let mountainTrekId = UUID()
-        let beachLoversId = UUID()
-        let cultureVulturesId = UUID()
+        // Load subgroups for this trip
+        subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
         
-        subgroups = [
-            Subgroup(
-                name: "Food Explorers",
-                description: "For food lovers",
-                colorHex: "#FF6B6B",
-                tripId: currentTrip!.id,
-                memberIds: [userId]
-            ),
-            Subgroup(
-                name: "Mountain Trek",
-                description: "For adventure seekers",
-                colorHex: "#9B59B6",
-                tripId: currentTrip!.id,
-                memberIds: [userId]
-            ),
-            Subgroup(
-                name: "Beach Lovers",
-                description: "For beach enthusiasts",
-                colorHex: "#3498DB",
-                tripId: currentTrip!.id,
-                memberIds: [userId]
-            ),
-            Subgroup(
-                name: "Culture Vultures",
-                description: "For culture seekers",
-                colorHex: "#E67E22",
-                tripId: currentTrip!.id,
-                memberIds: [userId]
-            )
-        ]
-        
-        // Create dummy itinerary stops
-        // Day 1 - Oct 29, 2025
-        let day1Date = Date(timeIntervalSince1970: 1730188800) // Oct 29, 2025 00:00
-        let day1Time1 = Date(timeIntervalSince1970: 1730241600) // 2:40 PM
-        let day1Time2 = Date(timeIntervalSince1970: 1730246400) // 4:00 PM
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Sensoji Temple",
-            location: "Asakusa, Tokyo",
-            address: "2-3-1 Asakusa, Taito City, Tokyo",
-            date: day1Date,
-            time: day1Time1,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[3].id, // Culture Vultures
-            createdByUserId: userId,
-            isInMyItinerary: true,
-            addedToMyItineraryByUserId: userId
-        ))
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Ueno Restaurant",
-            location: "Odaiba, Tokyo",
-            address: "1-7-1 Daiba, Minato City, Tokyo",
-            date: day1Date,
-            time: day1Time2,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[0].id, // Food Explorers
-            createdByUserId: userId
-        ))
-        
-        // Day 2 - Oct 30, 2025
-        let day2Date = Date(timeIntervalSince1970: 1730275200) // Oct 30, 2025 00:00
-        let day2Time1 = Date(timeIntervalSince1970: 1730304000) // 8:00 AM
-        let day2Time2 = Date(timeIntervalSince1970: 1730318400) // 12:00 PM
-        let day2Time3 = Date(timeIntervalSince1970: 1730332800) // 4:00 PM
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Mount Takao Trail",
-            location: "Hachioji, Tokyo",
-            address: "Takaomachi, Hachioji, Tokyo",
-            date: day2Date,
-            time: day2Time1,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[1].id, // Mountain Trek
-            createdByUserId: userId
-        ))
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Tsukiji Fish Market",
-            location: "Chuo City, Tokyo",
-            address: "5 Chome-2-1 Tsukiji, Chuo City, Tokyo",
-            date: day2Date,
-            time: day2Time2,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[0].id, // Food Explorers
-            createdByUserId: userId
-        ))
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Odaiba Beach",
-            location: "Odaiba, Tokyo",
-            address: "1 Chome Daiba, Minato City, Tokyo",
-            date: day2Date,
-            time: day2Time3,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[2].id, // Beach Lovers
-            createdByUserId: userId
-        ))
-        
-        // Day 3 - Oct 31, 2025
-        let day3Date = Date(timeIntervalSince1970: 1730361600) // Oct 31, 2025 00:00
-        let day3Time1 = Date(timeIntervalSince1970: 1730394000) // 9:00 AM
-        let day3Time2 = Date(timeIntervalSince1970: 1730408400) // 1:00 PM
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Tokyo National Museum",
-            location: "Ueno Park, Tokyo",
-            address: "13-9 Uenokoen, Taito City, Tokyo",
-            date: day3Date,
-            time: day3Time1,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[3].id, // Culture Vultures
-            createdByUserId: userId
-        ))
-        
-        allItineraryStops.append(ItineraryStop(
-            title: "Meiji Shrine",
-            location: "Shibuya City, Tokyo",
-            address: "1-1 Yoyogikamizonocho, Shibuya City, Tokyo",
-            date: day3Date,
-            time: day3Time2,
-            tripId: currentTrip!.id,
-            subgroupId: subgroups[3].id, // Culture Vultures
-            createdByUserId: userId
-        ))
+        // Load itinerary stops for this trip
+        allItineraryStops = DataModel.shared.getItineraryStops(forTripId: trip.id)
     }
     
     private func filterAndGroupStops() {
@@ -342,7 +212,7 @@ class CS02_ItineraryVC: UIViewController {
             if let navController = segue.destination as? UINavigationController,
                let addStopVC = navController.topViewController as? CS03_AddItineraryStopVC {
                 addStopVC.delegate = self
-                addStopVC.tripId = currentTrip?.id
+                addStopVC.tripId = trip?.id
                 addStopVC.availableSubgroups = subgroups
             }
         } else if segue.identifier == "showEditStop" {
@@ -351,7 +221,7 @@ class CS02_ItineraryVC: UIViewController {
                let indexPath = sender as? IndexPath {
                 let stop = groupedStops[indexPath.section].stops[indexPath.row]
                 addStopVC.delegate = self
-                addStopVC.tripId = currentTrip?.id
+                addStopVC.tripId = trip?.id
                 addStopVC.availableSubgroups = subgroups
                 addStopVC.existingStop = stop
             }

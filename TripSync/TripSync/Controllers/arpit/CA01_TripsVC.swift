@@ -10,43 +10,72 @@ import UIKit
 class TripsViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var currentTripLabel: UILabel!
     @IBOutlet weak var currentTripCard: UIView!
-    @IBOutlet weak var otherTripsLabel: UILabel!
-    @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var tripsTableView: UITableView!
     @IBOutlet weak var currentTripImageView: UIImageView!
+    @IBOutlet weak var currentTripNameLabel: UILabel!
+    @IBOutlet weak var currentTripLocationLabel: UILabel!
+    @IBOutlet weak var currentTripDateRangeLabel: UILabel!
+    @IBOutlet weak var currentTripMembersLabel: UILabel!
+    
+    @IBOutlet weak var otherTripsLabel: UILabel!
+    
+    @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var tripsTableView: UITableView!
     
     // MARK: - Properties
-    // Dummy data for testing
-    private let dummyTrips: [(name: String, location: String, date: String)] = [
-        ("Paris Adventure", "Paris, France", "Dec 10 - Dec 17"),
-        ("Tokyo Explorer", "Tokyo, Japan", "Jan 5 - Jan 12"),
-        ("New York City Break", "New York, USA", "Oct 20 - Oct 23"),
-        ("Bali Beach Vacation", "Bali, Indonesia", "Feb 15 - Mar 1"),
-        ("London History Tour", "London, UK", "Sep 8 - Sep 15")
-    ]
-    
+    private var currentTrip: Trip?
+    private var otherTrips: [Trip] = []
+    private var filteredTrips: [Trip] = []
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupUI()
         setupTableView()
+        
+        loadData()
+    }
+
+    // MARK: - Data Loading
+    private func loadData() {
+        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+        
+        currentTrip = DataModel.shared.getCurrentTrip()
+        otherTrips = DataModel.shared.getNonCurrentTrips()
+        filteredTrips = otherTrips
+        
+        configureCurrentTripUI()
+        tripsTableView.reloadData()
     }
     
     // MARK: - Setup
     private func setupUI() {
-        // Configure UI elements
         searchBar.delegate = self
-        
-        // Set placeholder image for current trip
-        currentTripImageView.image = UIImage(systemName: "photo")
-        currentTripImageView.tintColor = .systemGray3
+        // Tap gesture is now configured in storyboard
     }
     
     private func setupTableView() {
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
+    }
+    
+    func configureCurrentTripUI() {
+        guard let trip = currentTrip else {
+            currentTripCard.isHidden = true
+            currentTripLabel.text = "No current trip"
+            return
+        }
+        
+        currentTripCard.isHidden = false
+        currentTripImageView.image = UIImage(systemName: "photo")
+        currentTripNameLabel.text = trip.name
+        currentTripLocationLabel.text = trip.location
+        currentTripDateRangeLabel.text = trip.dateRangeString
+        currentTripMembersLabel.text = String(trip.memberCount)
     }
     
     // MARK: - Actions
@@ -59,20 +88,59 @@ class TripsViewController: UIViewController {
         // Handle filter change
         print("Filter changed to index: \(sender.selectedSegmentIndex)")
     }
+    
+    @IBAction func segmentedControlChanged(_ sender: Any) {
+        switch filterSegmentedControl.selectedSegmentIndex {
+        case 0:
+            // All Trips
+            filteredTrips = otherTrips
+        case 1:
+            // Upcoming Trips
+            filteredTrips = otherTrips.filter { $0.status == .upcoming }
+        case 2:
+            // Past Trips
+            filteredTrips = otherTrips.filter { $0.status == .past }
+        default:
+            break
+        }
+        tripsTableView.reloadData()
+    }
+    
+    @IBAction func currentTripCardTapped(_ sender: UITapGestureRecognizer) {
+        guard let trip = currentTrip else { return }
+        performSegue(withIdentifier: "tripsToTripDetails", sender: trip)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tripsToTripDetails",
+           let tripDetailsVC = segue.destination as? TripDetailsViewController {
+            // Handle trip from both table view selection and current trip card tap
+            if let trip = sender as? Trip {
+                tripDetailsVC.trip = trip
+            }
+        }
+    }
 }
 
 // MARK: - UISearchBarDelegate
 extension TripsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Handle search
-        print("Searching for: \(searchText)")
+        if searchText.isEmpty {
+            filteredTrips = otherTrips
+        } else {
+            filteredTrips = otherTrips.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.location.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        tripsTableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate & DataSource
 extension TripsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyTrips.count
+        return filteredTrips.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,17 +148,14 @@ extension TripsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let trip = dummyTrips[indexPath.row]
-        
-        // Use the dummy function to populate the cell
-        cell.dummy(trip.name, trip.location, trip.date)
+        let trip = filteredTrips[indexPath.row]
+        cell.update(with: trip)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let selectedTrip = dummyTrips[indexPath.row]
-        print("Selected trip: \(selectedTrip.name)")
+        let selectedTrip = filteredTrips[indexPath.row]
+        performSegue(withIdentifier: "tripsToTripDetails", sender: selectedTrip)
     }
 }
