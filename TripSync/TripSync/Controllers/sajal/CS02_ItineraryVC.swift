@@ -349,7 +349,9 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let stop = groupedStops[indexPath.section].stops[indexPath.row]
         let subgroup = subgroups.first { $0.id == stop.subgroupId }
         
-        cell.configure(with: stop, subgroup: subgroup, timeFormatter: timeFormatter)
+        // Pass flag to indicate if we're currently viewing MY itinerary filter
+        let isViewingMyItinerary = (selectedSubgroupId == myItineraryFilterId)
+        cell.configure(with: stop, subgroup: subgroup, timeFormatter: timeFormatter, isViewingMyItinerary: isViewingMyItinerary)
         
         return cell
     }

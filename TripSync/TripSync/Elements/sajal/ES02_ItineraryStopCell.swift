@@ -73,13 +73,15 @@ class ES02_ItineraryStopCell: UITableViewCell {
     }
     
     // MARK: - Configuration
-    func configure(with stop: ItineraryStop, subgroup: Subgroup?, timeFormatter: DateFormatter) {
+    func configure(with stop: ItineraryStop, subgroup: Subgroup?, timeFormatter: DateFormatter, isViewingMyItinerary: Bool = false) {
         titleLabel.text = stop.title
         locationLabel.text = stop.location
         timeLabel.text = timeFormatter.string(from: stop.time)
         
-        // Set icon - show heart if in MY itinerary, otherwise location pin
-        if stop.isInMyItinerary {
+        // Set icon based on current view context
+        // Show heart icon ONLY when viewing MY itinerary filter
+        // Show location pin icon when viewing ALL or specific subgroups
+        if isViewingMyItinerary {
             iconImageView.image = UIImage(systemName: "heart.circle.fill")
             iconImageView.tintColor = .systemPink
         } else {
@@ -87,29 +89,38 @@ class ES02_ItineraryStopCell: UITableViewCell {
             iconImageView.tintColor = .systemOrange
         }
         
-        // Configure color bar and subgroup pill
+        // Configure color bar and subgroup pill with multiple tags
+        var tags: [String] = []
+        var primaryColor: UIColor = .systemBlue
+        
+        // Add MY tag if in MY itinerary
+        if stop.isInMyItinerary {
+            tags.append("MY")
+            primaryColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1) // #FF2D55 pink
+        }
+        
+        // Add subgroup tag if it belongs to a subgroup
         if let subgroup = subgroup {
-            let color = UIColor(hex: subgroup.colorHex) ?? .systemBlue
-            colorBarView.backgroundColor = color
-            subgroupPillView.isHidden = false
-            subgroupPillView.backgroundColor = color
-            subgroupLabel.text = subgroup.name
-        } else {
-            // Check if it's in MY itinerary
-            if stop.isInMyItinerary {
-                // "MY" - use pink color
-                colorBarView.backgroundColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1) // #FF2D55
-                subgroupPillView.isHidden = false
-                subgroupPillView.backgroundColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1)
-                subgroupLabel.text = "MY"
-            } else {
-                // "All" - use blue color
-                colorBarView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
-                subgroupPillView.isHidden = false
-                subgroupPillView.backgroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-                subgroupLabel.text = "All"
+            tags.append(subgroup.name)
+            // If not in MY, use subgroup color as primary
+            if !stop.isInMyItinerary {
+                primaryColor = UIColor(hex: subgroup.colorHex) ?? .systemBlue
             }
         }
+        
+        // If no tags, show "All"
+        if tags.isEmpty {
+            tags.append("All")
+            primaryColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF blue
+        }
+        
+        // Set color bar to primary color
+        colorBarView.backgroundColor = primaryColor
+        
+        // Display tags
+        subgroupPillView.isHidden = false
+        subgroupPillView.backgroundColor = primaryColor
+        subgroupLabel.text = tags.joined(separator: " • ")
     }
 }
 
