@@ -147,9 +147,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U673S8NTA3;
+				DEVELOPMENT_TEAM = TQ9BZ42XJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripSync/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "TripSync needs camera access to scan QR codes for joining trips.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "TripSync needs access to your location to keep your trip members updated even when the app is in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "TripSync needs access to your location to share it with your trip members and display everyone on the map.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -160,7 +163,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.humankit.TripSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TripSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -178,9 +181,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U673S8NTA3;
+				DEVELOPMENT_TEAM = TQ9BZ42XJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripSync/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "TripSync needs camera access to scan QR codes for joining trips.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "TripSync needs access to your location to keep your trip members updated even when the app is in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "TripSync needs access to your location to share it with your trip members and display everyone on the map.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -191,7 +197,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.humankit.TripSync;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TripSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

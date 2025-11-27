@@ -5,7 +5,6 @@
 //  Created by Arpit Garg on 31/10/25.
 //
 
-
 import Foundation
 
 class DataModel {
