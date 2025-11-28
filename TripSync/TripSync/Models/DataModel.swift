@@ -49,12 +49,6 @@ class DataModel {
         usersURL = documentDir.appendingPathComponent("users_data").appendingPathExtension("json")
         
         loadData()
-        
-        // Populate sample data on first launch
-//        if users.isEmpty || trips.isEmpty {
-//            SampleData.shared.populateDataModel()
-//            loadData()
-//        }
     }
     
     // MARK: - Load Data

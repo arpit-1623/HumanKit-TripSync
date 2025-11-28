@@ -16,7 +16,7 @@ struct ItineraryStop: Codable {
     var date: Date
     var time: Date
     var tripId: UUID
-    var subgroupId: UUID?
+    var subgroupId: UUID? // -
     var createdByUserId: UUID
     
     init(title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID) {

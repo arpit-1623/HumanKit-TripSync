@@ -21,7 +21,7 @@ struct Trip: Codable {
     var location: String
     var startDate: Date
     var endDate: Date
-    var coverImageData: Data?
+    var coverImageData: Data? // string or url
     var inviteCode: String
     var createdAt: Date
     var createdByUserId: UUID
