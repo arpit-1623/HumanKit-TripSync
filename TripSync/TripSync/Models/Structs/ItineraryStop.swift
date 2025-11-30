@@ -18,8 +18,10 @@ struct ItineraryStop: Codable {
     var tripId: UUID
     var subgroupId: UUID? // -
     var createdByUserId: UUID
+    var isInMyItinerary: Bool
+    var addedToMyItineraryByUserId: UUID?
     
-    init(title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID) {
+    init(title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil) {
         self.id = UUID()
         self.title = title
         self.location = location
@@ -29,9 +31,11 @@ struct ItineraryStop: Codable {
         self.tripId = tripId
         self.subgroupId = subgroupId
         self.createdByUserId = createdByUserId
+        self.isInMyItinerary = isInMyItinerary
+        self.addedToMyItineraryByUserId = addedToMyItineraryByUserId
     }
     
-    init(id: UUID, title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID) {
+    init(id: UUID, title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil) {
         self.id = id
         self.title = title
         self.location = location
@@ -41,6 +45,8 @@ struct ItineraryStop: Codable {
         self.tripId = tripId
         self.subgroupId = subgroupId
         self.createdByUserId = createdByUserId
+        self.isInMyItinerary = isInMyItinerary
+        self.addedToMyItineraryByUserId = addedToMyItineraryByUserId
     }
     
     var timeString: String {
