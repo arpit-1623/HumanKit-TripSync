@@ -23,11 +23,5 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array/>
-	<key>NSCameraUsageDescription</key>
-	<string>TripSync needs camera access to scan QR codes for joining trips.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>TripSync needs access to your location to share it with your trip members and display everyone on the map.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>TripSync needs access to your location to keep your trip members updated even when the app is in the background.</string>
 </dict>
 </plist>

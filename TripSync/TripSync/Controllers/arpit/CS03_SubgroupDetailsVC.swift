@@ -31,7 +31,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
         setupUI()
         loadData()
         setupTableView()
-        setupGestureRecognizers()
     }
     
     // MARK: - Setup
@@ -66,18 +65,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
         membersTableView.dataSource = self
         membersTableView.isScrollEnabled = false
         membersTableView.separatorInset = UIEdgeInsets(top: 0, left: 80, bottom: 0, right: 0)
-    }
-    
-    private func setupGestureRecognizers() {
-        // Add tap gesture to itinerary button
-        let itineraryTap = UITapGestureRecognizer(target: self, action: #selector(itineraryButtonTapped(_:)))
-        itineraryButton.addGestureRecognizer(itineraryTap)
-        itineraryButton.isUserInteractionEnabled = true
-        
-        // Add tap gesture to chat button
-        let chatTap = UITapGestureRecognizer(target: self, action: #selector(chatButtonTapped(_:)))
-        chatButton.addGestureRecognizer(chatTap)
-        chatButton.isUserInteractionEnabled = true
     }
     
     private func loadData() {
@@ -127,8 +114,18 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     }
     
     @IBAction func inviteButtonTapped(_ sender: UIButton) {
-        // Navigate to invite members modal via segue
-        performSegue(withIdentifier: "showInviteMembers", sender: subgroup)
+        // Navigate to invite members modal
+        let storyboard = UIStoryboard(name: "SS05_InviteSubgroupMembers", bundle: nil)
+        guard let navController = storyboard.instantiateInitialViewController() as? UINavigationController,
+              let inviteVC = navController.topViewController as? CS05_InviteSubgroupMembersVC else {
+            return
+        }
+        
+        inviteVC.trip = trip
+        inviteVC.subgroup = subgroup
+        inviteVC.delegate = self
+        
+        present(navController, animated: true)
     }
     
     // MARK: - Navigation
@@ -151,13 +148,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
             formVC.trip = trip
             formVC.tripId = trip?.id
             formVC.delegate = self
-        } else if segue.identifier == "showInviteMembers",
-                  let navController = segue.destination as? UINavigationController,
-                  let inviteVC = navController.topViewController as? CS05_InviteSubgroupMembersVC,
-                  let subgroup = sender as? Subgroup {
-            inviteVC.trip = trip
-            inviteVC.subgroup = subgroup
-            inviteVC.delegate = self
         }
     }
     
