@@ -333,10 +333,10 @@
             </objects>
             <point key="canvasLocation" x="1379.3893129770993" y="-13.380281690140846"/>
         </scene>
-        <!--SS01_ChatGeneral-->
+        <!--SA07_ChatGeneral-->
         <scene sceneID="jWr-cP-NEI">
             <objects>
-                <viewControllerPlaceholder storyboardName="SS01_ChatGeneral" referencedIdentifier="SubgroupChatViewController" id="CqG-4x-ivi" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SA07_ChatGeneral" referencedIdentifier="SubgroupChatViewController" id="CqG-4x-ivi" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Y24-5a-o6e"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFM-xI-ZsO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

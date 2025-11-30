@@ -40,7 +40,7 @@ class ChatContainerViewController: UIViewController {
     
     private func setupChildViewControllers() {
         // Load all child VCs from storyboard
-        let chatStoryboard = UIStoryboard(name: "SS01_ChatGeneral", bundle: nil)
+        let chatStoryboard = UIStoryboard(name: "SA07_ChatGeneral", bundle: nil)
         
         if let generalVC = chatStoryboard.instantiateViewController(withIdentifier: "GeneralChatViewController") as? GeneralChatViewController {
             generalVC.trip = self.trip
