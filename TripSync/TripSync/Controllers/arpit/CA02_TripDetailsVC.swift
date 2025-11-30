@@ -164,7 +164,7 @@ extension TripDetailsViewController {
                   let mapVC = segue.destination as? TripMapViewController {
             mapVC.trip = self.trip
         } else if segue.identifier == "tripDetailsToChat",
-                  let chatVC = segue.destination as? GeneralChatViewController {
+                  let chatVC = segue.destination as? ChatContainerViewController {
             chatVC.trip = self.trip
         } else if segue.identifier == "tripDetailsToItinerary",
                   let itineraryVC = segue.destination as? CS02_ItineraryVC {

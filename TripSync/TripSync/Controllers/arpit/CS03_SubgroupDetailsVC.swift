@@ -136,10 +136,10 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
             itineraryVC.trip = trip
             itineraryVC.selectedSubgroupId = subgroup.id
         } else if segue.identifier == "subgroupDetailsToChat",
-                  let chatVC = segue.destination as? GeneralChatViewController,
+                  let chatVC = segue.destination as? SubgroupChatViewController,
                   let subgroup = sender as? Subgroup {
             chatVC.trip = trip
-            // TODO: Add subgroup filter property to chat when implemented
+            chatVC.subgroup = subgroup
         } else if segue.identifier == "subgroupDetailsToEdit",
                   let navController = segue.destination as? UINavigationController,
                   let formVC = navController.topViewController as? CS04_SubgroupFormVC,

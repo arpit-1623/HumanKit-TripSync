@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ChatContainer-ID">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chat-->
+        <scene sceneID="ChatContainer-Scene">
+            <objects>
+                <viewController storyboardIdentifier="ChatContainerViewController" id="ChatContainer-ID" customClass="ChatContainerViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ChatContainer-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ChatContainer-SegmentControl">
+                                <rect key="frame" x="16" y="126" width="361" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="ChatContainer-SegmentHeight"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="General"/>
+                                    <segment title="Subgroups"/>
+                                    <segment title="Alerts"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="ChatContainer-ID" eventType="valueChanged" id="ChatContainer-SegmentAction"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChatContainer-ContainerView">
+                                <rect key="frame" x="0.0" y="166" width="393" height="618"/>
+                                <connections>
+                                    <segue destination="Y6W-OH-hqX" kind="embed" id="ChatContainer-EmbedSegue"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ChatContainer-SafeArea"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ChatContainer-SafeArea" firstAttribute="bottom" secondItem="ChatContainer-ContainerView" secondAttribute="bottom" id="ChatContainer-ContainerBottom"/>
+                            <constraint firstItem="ChatContainer-ContainerView" firstAttribute="leading" secondItem="ChatContainer-SafeArea" secondAttribute="leading" id="ChatContainer-ContainerLeading"/>
+                            <constraint firstItem="ChatContainer-ContainerView" firstAttribute="top" secondItem="ChatContainer-SegmentControl" secondAttribute="bottom" constant="8" id="ChatContainer-ContainerTop"/>
+                            <constraint firstItem="ChatContainer-SafeArea" firstAttribute="trailing" secondItem="ChatContainer-ContainerView" secondAttribute="trailing" id="ChatContainer-ContainerTrailing"/>
+                            <constraint firstItem="ChatContainer-SegmentControl" firstAttribute="leading" secondItem="ChatContainer-SafeArea" secondAttribute="leading" constant="16" id="ChatContainer-SegmentLeading"/>
+                            <constraint firstItem="ChatContainer-SegmentControl" firstAttribute="top" secondItem="ChatContainer-SafeArea" secondAttribute="top" constant="8" id="ChatContainer-SegmentTop"/>
+                            <constraint firstItem="ChatContainer-SafeArea" firstAttribute="trailing" secondItem="ChatContainer-SegmentControl" secondAttribute="trailing" constant="16" id="ChatContainer-SegmentTrailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat" id="ChatContainer-NavItem"/>
+                    <connections>
+                        <outlet property="containerView" destination="ChatContainer-ContainerView" id="ChatContainer-ContainerOutlet"/>
+                        <outlet property="segmentedControl" destination="ChatContainer-SegmentControl" id="ChatContainer-SegmentOutlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ChatContainer-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="0.0"/>
+        </scene>
+        <!--General Chat View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="GeneralChatViewController" id="Y6W-OH-hqX" customClass="GeneralChatViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="giO-zF-LcO">
+                                <rect key="frame" x="0.0" y="118" width="393" height="391"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="194" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="194"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01x-2u-1P3" id="CCc-lX-Pf5">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aJ-97-ggg" userLabel="Name Label">
+                                                    <rect key="frame" x="36" y="23" width="237" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="KlH-ha-szY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igk-3m-Es6" userLabel="Bubble view">
+                                                    <rect key="frame" x="36" y="43" width="237" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi my name is Sajal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqV-Jb-NXp">
+                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                    <constraints>
+                                                        <constraint firstItem="PqV-Jb-NXp" firstAttribute="top" secondItem="Igk-3m-Es6" secondAttribute="top" constant="8" id="5p1-3v-GDY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PqV-Jb-NXp" secondAttribute="trailing" constant="12" id="DOb-Ba-jJU"/>
+                                                        <constraint firstItem="PqV-Jb-NXp" firstAttribute="leading" secondItem="Igk-3m-Es6" secondAttribute="leading" constant="12" id="SOQ-J9-KGc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="PqV-Jb-NXp" secondAttribute="bottom" constant="8" id="knA-V2-3QD"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Igk-3m-Es6" secondAttribute="bottom" constant="8" id="17M-th-tqy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Igk-3m-Es6" secondAttribute="trailing" constant="100" id="2yH-fD-xh5"/>
+                                                <constraint firstItem="Igk-3m-Es6" firstAttribute="leading" secondItem="CCc-lX-Pf5" secondAttribute="leadingMargin" constant="16" id="55w-EN-BQg"/>
+                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="leading" secondItem="CCc-lX-Pf5" secondAttribute="leadingMargin" constant="16" id="8mq-LD-WlO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2aJ-97-ggg" secondAttribute="trailing" constant="100" id="HC6-uM-r61"/>
+                                                <constraint firstItem="Igk-3m-Es6" firstAttribute="top" secondItem="2aJ-97-ggg" secondAttribute="bottom" constant="4" id="IqX-4J-kJY"/>
+                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="top" secondItem="CCc-lX-Pf5" secondAttribute="topMargin" constant="8" id="gMm-0v-d9A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bubbleView" destination="Igk-3m-Es6" id="zEa-7q-JfN"/>
+                                            <outlet property="messageLabel" destination="PqV-Jb-NXp" id="paN-SG-BV5"/>
+                                            <outlet property="nameLabel" destination="2aJ-97-ggg" id="eCN-m9-Rmy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="194" id="ktk-mg-UA2" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="244" width="393" height="194"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ktk-mg-UA2" id="7dw-z7-VPa">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-X2-agC" userLabel="Name Label">
+                                                    <rect key="frame" x="120" y="23" width="237" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="0Ai-Rg-YfT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEh-n6-ObH" userLabel="Bubble View">
+                                                    <rect key="frame" x="120" y="43" width="237" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hi my name is arpit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoK-rJ-pGO">
+                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="XoK-rJ-pGO" secondAttribute="trailing" constant="12" id="4wh-if-0OF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XoK-rJ-pGO" secondAttribute="bottom" constant="8" id="MlQ-mX-Fx8"/>
+                                                        <constraint firstItem="XoK-rJ-pGO" firstAttribute="top" secondItem="dEh-n6-ObH" secondAttribute="top" constant="8" id="jhH-Dv-dNq"/>
+                                                        <constraint firstItem="XoK-rJ-pGO" firstAttribute="leading" secondItem="dEh-n6-ObH" secondAttribute="leading" constant="12" id="kcb-fO-DIc"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RSD-X2-agC" firstAttribute="leading" secondItem="7dw-z7-VPa" secondAttribute="leadingMargin" constant="100" id="04y-Ic-3ft"/>
+                                                <constraint firstItem="dEh-n6-ObH" firstAttribute="top" secondItem="RSD-X2-agC" secondAttribute="bottom" constant="4" id="PCL-Gw-HAD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RSD-X2-agC" secondAttribute="trailing" constant="16" id="U6G-b6-9Ye"/>
+                                                <constraint firstItem="RSD-X2-agC" firstAttribute="top" secondItem="7dw-z7-VPa" secondAttribute="topMargin" constant="8" id="V2G-Dx-vHm"/>
+                                                <constraint firstItem="dEh-n6-ObH" firstAttribute="leading" secondItem="7dw-z7-VPa" secondAttribute="leadingMargin" constant="100" id="iOh-3g-cKV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dEh-n6-ObH" secondAttribute="trailing" constant="16" id="jwO-sG-03c"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dEh-n6-ObH" secondAttribute="bottom" constant="8" id="oI6-Dr-xRE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bubbleView" destination="dEh-n6-ObH" id="zOS-MO-ZZp"/>
+                                            <outlet property="messageLabel" destination="XoK-rJ-pGO" id="TkO-f8-70a"/>
+                                            <outlet property="nameLabel" destination="RSD-X2-agC" id="pcq-vj-0oz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView">
+                                <rect key="frame" x="0.0" y="509" width="393" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3">
+                                        <rect key="frame" x="16" y="9" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="0TS-x8-XjC"/>
+                                            <constraint firstAttribute="height" constant="42" id="MdU-4Y-u5G"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+" cornerStyle="capsule">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="26"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-tk-pJy" userLabel="message">
+                                        <rect key="frame" x="70" y="10" width="253" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="aL1-Hj-Yfd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR">
+                                        <rect key="frame" x="335" y="9" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="hlz-S7-guO"/>
+                                            <constraint firstAttribute="width" constant="42" id="qrf-Mj-eWT"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NwJ-Bp-RTf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstItem="AaM-tk-pJy" firstAttribute="leading" secondItem="bQz-Ry-oS3" secondAttribute="trailing" constant="12" id="7QK-8G-KOM"/>
+                                    <constraint firstItem="AaM-tk-pJy" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="DhW-Xu-mSh"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Ci-ma-waR" secondAttribute="trailing" constant="16" id="Ev8-qP-fWm"/>
+                                    <constraint firstItem="bQz-Ry-oS3" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="J6x-TT-GhS"/>
+                                    <constraint firstAttribute="height" constant="60" id="TRF-5f-8eK"/>
+                                    <constraint firstItem="4Ci-ma-waR" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="dDm-bl-PBb"/>
+                                    <constraint firstItem="4Ci-ma-waR" firstAttribute="leading" secondItem="AaM-tk-pJy" secondAttribute="trailing" constant="12" id="e40-ux-Cs0"/>
+                                    <constraint firstItem="bQz-Ry-oS3" firstAttribute="leading" secondItem="mfu-fg-94K" secondAttribute="leading" constant="16" id="lW3-xb-xUl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="giO-zF-LcO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="78B-6d-nem"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="giO-zF-LcO" secondAttribute="trailing" id="JWh-0h-EGq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="mfu-fg-94K" secondAttribute="bottom" constant="15" id="PFn-k9-qIc"/>
+                            <constraint firstItem="mfu-fg-94K" firstAttribute="top" secondItem="giO-zF-LcO" secondAttribute="bottom" id="WDb-hX-c8h"/>
+                            <constraint firstItem="mfu-fg-94K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XpU-4b-RMC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mfu-fg-94K" secondAttribute="trailing" id="h0y-lu-OTc"/>
+                            <constraint firstItem="giO-zF-LcO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="hym-Mw-AmZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="AaM-tk-pJy" id="GeneralChat-MessageTextField-Outlet"/>
+                        <outlet property="tableView" destination="giO-zF-LcO" id="95y-vg-Trs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
+        </scene>
+        <!--Subgroups List View Controller-->
+        <scene sceneID="SubgroupsList-Scene">
+            <objects>
+                <viewController storyboardIdentifier="SubgroupsListViewController" id="SubgroupsList-ID" customClass="SubgroupsListViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SubgroupsList-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupsList-TableView">
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubgroupListCell" rowHeight="80" id="SubgroupListCell-ID" customClass="SubgroupListCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupListCell-ID" id="SubgroupListCell-Content">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupListCell-ColorIndicator">
+                                                    <rect key="frame" x="16" y="10" width="60" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupListCell-AvatarIcon">
+                                                            <rect key="frame" x="18" y="19.666666666666664" width="24" height="22"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="SubgroupListCell-IconHeight"/>
+                                                                <constraint firstAttribute="width" constant="24" id="SubgroupListCell-IconWidth"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="SubgroupListCell-ColorHeight"/>
+                                                        <constraint firstAttribute="width" constant="60" id="SubgroupListCell-ColorWidth"/>
+                                                        <constraint firstItem="SubgroupListCell-AvatarIcon" firstAttribute="centerX" secondItem="SubgroupListCell-ColorIndicator" secondAttribute="centerX" id="SubgroupListCell-IconCenterX"/>
+                                                        <constraint firstItem="SubgroupListCell-AvatarIcon" firstAttribute="centerY" secondItem="SubgroupListCell-ColorIndicator" secondAttribute="centerY" id="SubgroupListCell-IconCenterY"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupListCell-NameLabel">
+                                                    <rect key="frame" x="91.999999999999986" y="18" width="254.66666666666663" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupListCell-DescLabel">
+                                                    <rect key="frame" x="91.999999999999986" y="39.333333333333336" width="254.66666666666663" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupListCell-MemberLabel">
+                                                    <rect key="frame" x="91.999999999999986" y="58.333333333333336" width="254.66666666666663" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="SubgroupListCell-ColorIndicator" secondAttribute="bottom" constant="10" id="SubgroupListCell-ColorBottom"/>
+                                                <constraint firstItem="SubgroupListCell-ColorIndicator" firstAttribute="leading" secondItem="SubgroupListCell-Content" secondAttribute="leading" constant="16" id="SubgroupListCell-ColorLeading"/>
+                                                <constraint firstItem="SubgroupListCell-ColorIndicator" firstAttribute="top" secondItem="SubgroupListCell-Content" secondAttribute="top" constant="10" id="SubgroupListCell-ColorTop"/>
+                                                <constraint firstItem="SubgroupListCell-DescLabel" firstAttribute="leading" secondItem="SubgroupListCell-NameLabel" secondAttribute="leading" id="SubgroupListCell-DescLeading"/>
+                                                <constraint firstItem="SubgroupListCell-DescLabel" firstAttribute="top" secondItem="SubgroupListCell-NameLabel" secondAttribute="bottom" constant="2" id="SubgroupListCell-DescTop"/>
+                                                <constraint firstItem="SubgroupListCell-DescLabel" firstAttribute="trailing" secondItem="SubgroupListCell-NameLabel" secondAttribute="trailing" id="SubgroupListCell-DescTrailing"/>
+                                                <constraint firstItem="SubgroupListCell-MemberLabel" firstAttribute="leading" secondItem="SubgroupListCell-NameLabel" secondAttribute="leading" id="SubgroupListCell-MemberLeading"/>
+                                                <constraint firstItem="SubgroupListCell-MemberLabel" firstAttribute="top" secondItem="SubgroupListCell-DescLabel" secondAttribute="bottom" constant="2" id="SubgroupListCell-MemberTop"/>
+                                                <constraint firstItem="SubgroupListCell-MemberLabel" firstAttribute="trailing" secondItem="SubgroupListCell-NameLabel" secondAttribute="trailing" id="SubgroupListCell-MemberTrailing"/>
+                                                <constraint firstItem="SubgroupListCell-NameLabel" firstAttribute="leading" secondItem="SubgroupListCell-ColorIndicator" secondAttribute="trailing" constant="16" id="SubgroupListCell-NameLeading"/>
+                                                <constraint firstItem="SubgroupListCell-NameLabel" firstAttribute="top" secondItem="SubgroupListCell-Content" secondAttribute="top" constant="18" id="SubgroupListCell-NameTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupListCell-NameLabel" secondAttribute="trailing" constant="16" id="SubgroupListCell-NameTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="colorIndicatorView" destination="SubgroupListCell-ColorIndicator" id="SubgroupListCell-ColorOutlet"/>
+                                            <outlet property="descriptionLabel" destination="SubgroupListCell-DescLabel" id="SubgroupListCell-DescOutlet"/>
+                                            <outlet property="memberCountLabel" destination="SubgroupListCell-MemberLabel" id="SubgroupListCell-MemberOutlet"/>
+                                            <outlet property="nameLabel" destination="SubgroupListCell-NameLabel" id="SubgroupListCell-NameOutlet"/>
+                                            <segue destination="SubgroupChat-ID" kind="show" identifier="subgroupsListToSubgroupChat" id="SubgroupsList-ChatSegue"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SubgroupsList-SafeArea"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SubgroupsList-SafeArea" firstAttribute="bottom" secondItem="SubgroupsList-TableView" secondAttribute="bottom" id="SubgroupsList-TableBottom"/>
+                            <constraint firstItem="SubgroupsList-TableView" firstAttribute="leading" secondItem="SubgroupsList-SafeArea" secondAttribute="leading" id="SubgroupsList-TableLeading"/>
+                            <constraint firstItem="SubgroupsList-TableView" firstAttribute="top" secondItem="SubgroupsList-SafeArea" secondAttribute="top" id="SubgroupsList-TableTop"/>
+                            <constraint firstItem="SubgroupsList-SafeArea" firstAttribute="trailing" secondItem="SubgroupsList-TableView" secondAttribute="trailing" id="SubgroupsList-TableTrailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="SubgroupsList-TableView" id="SubgroupsList-TableOutlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SubgroupsList-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="800"/>
+        </scene>
+        <!--Alerts View Controller-->
+        <scene sceneID="Alerts-Scene">
+            <objects>
+                <viewController storyboardIdentifier="AlertsViewController" id="Alerts-ID" customClass="AlertsViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Alerts-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Alerts-TableView">
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnnouncementCell" rowHeight="100" id="AnnouncementCell-ID" customClass="AnnouncementCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AnnouncementCell-ID" id="AnnouncementCell-Content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Container">
+                                                    <rect key="frame" x="20" y="8" width="353" height="84"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megaphone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Icon">
+                                                            <rect key="frame" x="12" y="27.333333333333329" width="30" height="29.666666666666671"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="AnnouncementCell-IconHeight"/>
+                                                                <constraint firstAttribute="width" constant="30" id="AnnouncementCell-IconWidth"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Announcement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Title">
+                                                            <rect key="frame" x="54" y="12" width="287" height="19.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Message content goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Message">
+                                                            <rect key="frame" x="54" y="35.333333333333343" width="287" height="28.666666666666657"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nov 26, 3:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Timestamp">
+                                                            <rect key="frame" x="54" y="68" width="287" height="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="AnnouncementCell-Icon" firstAttribute="centerY" secondItem="AnnouncementCell-Container" secondAttribute="centerY" id="AnnouncementCell-IconCenterY"/>
+                                                        <constraint firstItem="AnnouncementCell-Icon" firstAttribute="leading" secondItem="AnnouncementCell-Container" secondAttribute="leading" constant="12" id="AnnouncementCell-IconLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="leading" secondItem="AnnouncementCell-Title" secondAttribute="leading" id="AnnouncementCell-MessageLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="top" secondItem="AnnouncementCell-Title" secondAttribute="bottom" constant="4" id="AnnouncementCell-MessageTop"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" id="AnnouncementCell-MessageTrailing"/>
+                                                        <constraint firstAttribute="bottom" secondItem="AnnouncementCell-Timestamp" secondAttribute="bottom" constant="4" id="AnnouncementCell-TimestampBottom"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="leading" secondItem="AnnouncementCell-Title" secondAttribute="leading" id="AnnouncementCell-TimestampLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="top" secondItem="AnnouncementCell-Message" secondAttribute="bottom" constant="4" id="AnnouncementCell-TimestampTop"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" id="AnnouncementCell-TimestampTrailing"/>
+                                                        <constraint firstItem="AnnouncementCell-Title" firstAttribute="leading" secondItem="AnnouncementCell-Icon" secondAttribute="trailing" constant="12" id="AnnouncementCell-TitleLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Title" firstAttribute="top" secondItem="AnnouncementCell-Container" secondAttribute="top" constant="12" id="AnnouncementCell-TitleTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" constant="12" id="AnnouncementCell-TitleTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="AnnouncementCell-Container" secondAttribute="bottom" constant="8" id="AnnouncementCell-ContainerBottom"/>
+                                                <constraint firstItem="AnnouncementCell-Container" firstAttribute="leading" secondItem="AnnouncementCell-Content" secondAttribute="leadingMargin" id="AnnouncementCell-ContainerLeading"/>
+                                                <constraint firstItem="AnnouncementCell-Container" firstAttribute="top" secondItem="AnnouncementCell-Content" secondAttribute="top" constant="8" id="AnnouncementCell-ContainerTop"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AnnouncementCell-Container" secondAttribute="trailing" id="AnnouncementCell-ContainerTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="containerView" destination="AnnouncementCell-Container" id="AnnouncementCell-ContainerOutlet"/>
+                                            <outlet property="iconImageView" destination="AnnouncementCell-Icon" id="AnnouncementCell-IconOutlet"/>
+                                            <outlet property="messageLabel" destination="AnnouncementCell-Message" id="AnnouncementCell-MessageOutlet"/>
+                                            <outlet property="timestampLabel" destination="AnnouncementCell-Timestamp" id="AnnouncementCell-TimestampOutlet"/>
+                                            <outlet property="titleLabel" destination="AnnouncementCell-Title" id="AnnouncementCell-TitleOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alerts-EmptyState">
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megaphone" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Alerts-EmptyIcon">
+                                        <rect key="frame" x="166.66666666666666" y="263.33333333333331" width="60" height="59.666666666666686"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Alerts-EmptyIconHeight"/>
+                                            <constraint firstAttribute="width" constant="60" id="Alerts-EmptyIconWidth"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Announcements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alerts-EmptyLabel">
+                                        <rect key="frame" x="123.33333333333333" y="339" width="146.66666666666669" height="19.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Alerts-EmptyIcon" firstAttribute="centerX" secondItem="Alerts-EmptyState" secondAttribute="centerX" id="Alerts-EmptyIconCenterX"/>
+                                    <constraint firstItem="Alerts-EmptyIcon" firstAttribute="centerY" secondItem="Alerts-EmptyState" secondAttribute="centerY" constant="-40" id="Alerts-EmptyIconCenterY"/>
+                                    <constraint firstItem="Alerts-EmptyLabel" firstAttribute="centerX" secondItem="Alerts-EmptyState" secondAttribute="centerX" id="Alerts-EmptyLabelCenterX"/>
+                                    <constraint firstItem="Alerts-EmptyLabel" firstAttribute="top" secondItem="Alerts-EmptyIcon" secondAttribute="bottom" constant="16" id="Alerts-EmptyLabelTop"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alerts-FAB">
+                                <rect key="frame" x="321" y="712" width="56" height="56"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Alerts-FABHeight"/>
+                                    <constraint firstAttribute="width" constant="56" id="Alerts-FABWidth"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="plus" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="semibold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="createAnnouncementTapped" destination="Alerts-ID" eventType="touchUpInside" id="Alerts-FABAction"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Alerts-SafeArea"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="bottom" secondItem="Alerts-EmptyState" secondAttribute="bottom" id="Alerts-EmptyBottom"/>
+                            <constraint firstItem="Alerts-EmptyState" firstAttribute="leading" secondItem="Alerts-SafeArea" secondAttribute="leading" id="Alerts-EmptyLeading"/>
+                            <constraint firstItem="Alerts-EmptyState" firstAttribute="top" secondItem="Alerts-SafeArea" secondAttribute="top" id="Alerts-EmptyTop"/>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="trailing" secondItem="Alerts-EmptyState" secondAttribute="trailing" id="Alerts-EmptyTrailing"/>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="bottom" secondItem="Alerts-FAB" secondAttribute="bottom" constant="16" id="Alerts-FABBottom"/>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="trailing" secondItem="Alerts-FAB" secondAttribute="trailing" constant="16" id="Alerts-FABTrailing"/>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="bottom" secondItem="Alerts-TableView" secondAttribute="bottom" id="Alerts-TableBottom"/>
+                            <constraint firstItem="Alerts-TableView" firstAttribute="leading" secondItem="Alerts-SafeArea" secondAttribute="leading" id="Alerts-TableLeading"/>
+                            <constraint firstItem="Alerts-TableView" firstAttribute="top" secondItem="Alerts-SafeArea" secondAttribute="top" id="Alerts-TableTop"/>
+                            <constraint firstItem="Alerts-SafeArea" firstAttribute="trailing" secondItem="Alerts-TableView" secondAttribute="trailing" id="Alerts-TableTrailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="createAnnouncementButton" destination="Alerts-FAB" id="Alerts-FABOutlet"/>
+                        <outlet property="emptyStateImageView" destination="Alerts-EmptyIcon" id="Alerts-EmptyIconOutlet"/>
+                        <outlet property="emptyStateLabel" destination="Alerts-EmptyLabel" id="Alerts-EmptyLabelOutlet"/>
+                        <outlet property="emptyStateView" destination="Alerts-EmptyState" id="Alerts-EmptyStateOutlet"/>
+                        <outlet property="tableView" destination="Alerts-TableView" id="Alerts-TableOutlet"/>
+                        <segue destination="CreateAnnouncement-NavController" kind="presentation" identifier="alertsToCreateAnnouncement" modalPresentationStyle="pageSheet" id="Alerts-CreateAnnouncementSegue"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Alerts-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="1500"/>
+        </scene>
+        <!--Subgroup Chat View Controller-->
+        <scene sceneID="SubgroupChat-Scene">
+            <objects>
+                <viewController storyboardIdentifier="SubgroupChatViewController" id="SubgroupChat-ID" customClass="SubgroupChatViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SubgroupChat-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TableView">
+                                <rect key="frame" x="0.0" y="59" width="393" height="659"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="194" id="SubgroupChat-IncomingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="194"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupChat-IncomingCell" id="SubgroupChat-IncomingContent">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingName">
+                                                    <rect key="frame" x="36" y="23" width="237" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="SubgroupChat-IncomingNameHeight"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingBubble">
+                                                    <rect key="frame" x="36" y="43" width="237" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingMessage">
+                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="SubgroupChat-IncomingMessage" secondAttribute="bottom" constant="8" id="SubgroupChat-IncomingMessageBottom"/>
+                                                        <constraint firstItem="SubgroupChat-IncomingMessage" firstAttribute="leading" secondItem="SubgroupChat-IncomingBubble" secondAttribute="leading" constant="12" id="SubgroupChat-IncomingMessageLeading"/>
+                                                        <constraint firstItem="SubgroupChat-IncomingMessage" firstAttribute="top" secondItem="SubgroupChat-IncomingBubble" secondAttribute="top" constant="8" id="SubgroupChat-IncomingMessageTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupChat-IncomingMessage" secondAttribute="trailing" constant="12" id="SubgroupChat-IncomingMessageTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="SubgroupChat-IncomingBubble" secondAttribute="bottom" constant="8" id="SubgroupChat-IncomingBubbleBottom"/>
+                                                <constraint firstItem="SubgroupChat-IncomingBubble" firstAttribute="leading" secondItem="SubgroupChat-IncomingContent" secondAttribute="leadingMargin" constant="16" id="SubgroupChat-IncomingBubbleLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingBubble" firstAttribute="top" secondItem="SubgroupChat-IncomingName" secondAttribute="bottom" constant="4" id="SubgroupChat-IncomingBubbleTop"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-IncomingBubble" secondAttribute="trailing" constant="100" id="SubgroupChat-IncomingBubbleTrailing"/>
+                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="leading" secondItem="SubgroupChat-IncomingContent" secondAttribute="leadingMargin" constant="16" id="SubgroupChat-IncomingNameLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="top" secondItem="SubgroupChat-IncomingContent" secondAttribute="topMargin" constant="8" id="SubgroupChat-IncomingNameTop"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-IncomingName" secondAttribute="trailing" constant="100" id="SubgroupChat-IncomingNameTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bubbleView" destination="SubgroupChat-IncomingBubble" id="SubgroupChat-IncomingBubbleOutlet"/>
+                                            <outlet property="messageLabel" destination="SubgroupChat-IncomingMessage" id="SubgroupChat-IncomingMessageOutlet"/>
+                                            <outlet property="nameLabel" destination="SubgroupChat-IncomingName" id="SubgroupChat-IncomingNameOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="194" id="SubgroupChat-OutgoingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="244" width="393" height="194"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupChat-OutgoingCell" id="SubgroupChat-OutgoingContent">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingName">
+                                                    <rect key="frame" x="120" y="23" width="237" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="SubgroupChat-OutgoingNameHeight"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingBubble">
+                                                    <rect key="frame" x="120" y="43" width="237" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingMessage">
+                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="SubgroupChat-OutgoingMessage" secondAttribute="bottom" constant="8" id="SubgroupChat-OutgoingMessageBottom"/>
+                                                        <constraint firstItem="SubgroupChat-OutgoingMessage" firstAttribute="leading" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="leading" constant="12" id="SubgroupChat-OutgoingMessageLeading"/>
+                                                        <constraint firstItem="SubgroupChat-OutgoingMessage" firstAttribute="top" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="top" constant="8" id="SubgroupChat-OutgoingMessageTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupChat-OutgoingMessage" secondAttribute="trailing" constant="12" id="SubgroupChat-OutgoingMessageTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="bottom" constant="8" id="SubgroupChat-OutgoingBubbleBottom"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingBubble" firstAttribute="leading" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leadingMargin" constant="100" id="SubgroupChat-OutgoingBubbleLeading"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingBubble" firstAttribute="top" secondItem="SubgroupChat-OutgoingName" secondAttribute="bottom" constant="4" id="SubgroupChat-OutgoingBubbleTop"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingBubbleTrailing"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="leading" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leadingMargin" constant="100" id="SubgroupChat-OutgoingNameLeading"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="top" secondItem="SubgroupChat-OutgoingContent" secondAttribute="topMargin" constant="8" id="SubgroupChat-OutgoingNameTop"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-OutgoingName" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingNameTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bubbleView" destination="SubgroupChat-OutgoingBubble" id="SubgroupChat-OutgoingBubbleOutlet"/>
+                                            <outlet property="messageLabel" destination="SubgroupChat-OutgoingMessage" id="SubgroupChat-OutgoingMessageOutlet"/>
+                                            <outlet property="nameLabel" destination="SubgroupChat-OutgoingName" id="SubgroupChat-OutgoingNameOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-InputView">
+                                <rect key="frame" x="0.0" y="718" width="393" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-PlusButton">
+                                        <rect key="frame" x="16" y="9" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="SubgroupChat-PlusHeight"/>
+                                            <constraint firstAttribute="width" constant="42" id="SubgroupChat-PlusWidth"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="+" cornerStyle="capsule">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="26"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TextField">
+                                        <rect key="frame" x="70" y="10" width="253" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="SubgroupChat-TextFieldHeight"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-SendButton">
+                                        <rect key="frame" x="335" y="9" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="SubgroupChat-SendHeight"/>
+                                            <constraint firstAttribute="width" constant="42" id="SubgroupChat-SendWidth"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="SubgroupChat-ID" eventType="touchUpInside" id="SubgroupChat-SendAction"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="SubgroupChat-InputHeight"/>
+                                    <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-PlusCenterY"/>
+                                    <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="leading" secondItem="SubgroupChat-InputView" secondAttribute="leading" constant="16" id="SubgroupChat-PlusLeading"/>
+                                    <constraint firstItem="SubgroupChat-SendButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-SendCenterY"/>
+                                    <constraint firstItem="SubgroupChat-SendButton" firstAttribute="leading" secondItem="SubgroupChat-TextField" secondAttribute="trailing" constant="12" id="SubgroupChat-SendLeading"/>
+                                    <constraint firstAttribute="trailing" secondItem="SubgroupChat-SendButton" secondAttribute="trailing" constant="16" id="SubgroupChat-SendTrailing"/>
+                                    <constraint firstItem="SubgroupChat-TextField" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-TextFieldCenterY"/>
+                                    <constraint firstItem="SubgroupChat-TextField" firstAttribute="leading" secondItem="SubgroupChat-PlusButton" secondAttribute="trailing" constant="12" id="SubgroupChat-TextFieldLeading"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SubgroupChat-SafeArea"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="bottom" secondItem="SubgroupChat-InputView" secondAttribute="bottom" constant="15" id="SubgroupChat-InputBottom"/>
+                            <constraint firstItem="SubgroupChat-InputView" firstAttribute="leading" secondItem="SubgroupChat-SafeArea" secondAttribute="leading" id="SubgroupChat-InputLeading"/>
+                            <constraint firstItem="SubgroupChat-InputView" firstAttribute="top" secondItem="SubgroupChat-TableView" secondAttribute="bottom" id="SubgroupChat-InputTop"/>
+                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="trailing" secondItem="SubgroupChat-InputView" secondAttribute="trailing" id="SubgroupChat-InputTrailing"/>
+                            <constraint firstItem="SubgroupChat-TableView" firstAttribute="leading" secondItem="SubgroupChat-SafeArea" secondAttribute="leading" id="SubgroupChat-TableLeading"/>
+                            <constraint firstItem="SubgroupChat-TableView" firstAttribute="top" secondItem="SubgroupChat-SafeArea" secondAttribute="top" id="SubgroupChat-TableTop"/>
+                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="trailing" secondItem="SubgroupChat-TableView" secondAttribute="trailing" id="SubgroupChat-TableTrailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="SubgroupChat-TextField" id="SubgroupChat-TextFieldOutlet"/>
+                        <outlet property="tableView" destination="SubgroupChat-TableView" id="SubgroupChat-TableOutlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SubgroupChat-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="2200"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CreateAnnouncement-NavScene">
+            <objects>
+                <navigationController storyboardIdentifier="CreateAnnouncementNavController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="pageSheet" id="CreateAnnouncement-NavController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CreateAnnouncement-NavBar">
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CreateAnnouncement-ID" kind="relationship" relationship="rootViewController" id="CreateAnnouncement-RootSegue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CreateAnnouncement-NavResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="1500"/>
+        </scene>
+        <!--Announcement-->
+        <scene sceneID="CreateAnnouncement-Scene">
+            <objects>
+                <viewController storyboardIdentifier="CreateAnnouncementViewController" id="CreateAnnouncement-ID" customClass="CreateAnnouncementViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CreateAnnouncement-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Announcement title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-TitleField">
+                                <rect key="frame" x="16" y="86" width="361" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CreateAnnouncement-TitleHeight"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-MessageView">
+                                <rect key="frame" x="16" y="142" width="361" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="CreateAnnouncement-MessageHeight"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-SwitchStack">
+                                <rect key="frame" x="16" y="358" width="361" height="28"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-SwitchLabel">
+                                        <rect key="frame" x="0.0" y="4" width="288" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-Switch">
+                                        <rect key="frame" x="300" y="0.0" width="63" height="28"/>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements will appear at the top of the homepage for all members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-DescLabel">
+                                <rect key="frame" x="16" y="402" width="361" height="28.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CreateAnnouncement-SafeArea"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CreateAnnouncement-DescLabel" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-DescLeading"/>
+                            <constraint firstItem="CreateAnnouncement-DescLabel" firstAttribute="top" secondItem="CreateAnnouncement-SwitchStack" secondAttribute="bottom" constant="16" id="CreateAnnouncement-DescTop"/>
+                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-DescLabel" secondAttribute="trailing" constant="16" id="CreateAnnouncement-DescTrailing"/>
+                            <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-MessageLeading"/>
+                            <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="top" secondItem="CreateAnnouncement-TitleField" secondAttribute="bottom" constant="16" id="CreateAnnouncement-MessageTop"/>
+                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-MessageView" secondAttribute="trailing" constant="16" id="CreateAnnouncement-MessageTrailing"/>
+                            <constraint firstItem="CreateAnnouncement-SwitchStack" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-SwitchLeading"/>
+                            <constraint firstItem="CreateAnnouncement-SwitchStack" firstAttribute="top" secondItem="CreateAnnouncement-MessageView" secondAttribute="bottom" constant="16" id="CreateAnnouncement-SwitchTop"/>
+                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-SwitchStack" secondAttribute="trailing" constant="16" id="CreateAnnouncement-SwitchTrailing"/>
+                            <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-TitleLeading"/>
+                            <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="top" secondItem="CreateAnnouncement-SafeArea" secondAttribute="top" constant="16" id="CreateAnnouncement-TitleTop"/>
+                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-TitleField" secondAttribute="trailing" constant="16" id="CreateAnnouncement-TitleTrailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Announcement" id="CreateAnnouncement-NavItem">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="CreateAnnouncement-CancelButton">
+                            <connections>
+                                <action selector="cancelTapped" destination="CreateAnnouncement-ID" id="CreateAnnouncement-CancelAction"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" style="done" id="CreateAnnouncement-SendButton">
+                            <connections>
+                                <action selector="sendTapped" destination="CreateAnnouncement-ID" id="CreateAnnouncement-SendAction"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messageTextView" destination="CreateAnnouncement-MessageView" id="CreateAnnouncement-MessageOutlet"/>
+                        <outlet property="notificationDescriptionLabel" destination="CreateAnnouncement-DescLabel" id="CreateAnnouncement-DescOutlet"/>
+                        <outlet property="sendNotificationSwitch" destination="CreateAnnouncement-Switch" id="CreateAnnouncement-SwitchOutlet"/>
+                        <outlet property="titleTextField" destination="CreateAnnouncement-TitleField" id="CreateAnnouncement-TitleOutlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CreateAnnouncement-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="1500"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="megaphone" catalog="system" width="128" height="112"/>
+        <image name="megaphone.fill" catalog="system" width="128" height="112"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
+        <image name="person.3.fill" catalog="system" width="128" height="66"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
