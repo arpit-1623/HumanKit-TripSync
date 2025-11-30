@@ -132,6 +132,21 @@ class CS03_AddItineraryStopVC: UITableViewController {
             self?.updateSubgroupLabel()
         })
         
+        // Add "MY" option
+        let mySubgroup = Subgroup(
+            id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+            name: "MY",
+            description: "My personal itinerary",
+            colorHex: "#FF2D55",
+            tripId: tripId ?? UUID(),
+            memberIds: []
+        )
+        let myTitle = "MY" + (selectedSubgroup?.name == "MY" ? " ✓" : "")
+        alert.addAction(UIAlertAction(title: myTitle, style: .default) { [weak self] _ in
+            self?.selectedSubgroup = mySubgroup
+            self?.updateSubgroupLabel()
+        })
+        
         // Add subgroup options
         for subgroup in availableSubgroups {
             let title = subgroup.name + (selectedSubgroup?.id == subgroup.id ? " ✓" : "")
@@ -319,9 +334,13 @@ class CS03_AddItineraryStopVC: UITableViewController {
         guard validateForm() else { return }
         guard let tripId = tripId else { return }
         
+        let myItineraryFilterId = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
+        let currentUserId = DataModel.shared.getCurrentUser()?.id ?? UUID()
+        let isMySubgroup = selectedSubgroup?.id == myItineraryFilterId
+        
         if let existingStop = existingStop {
             // Edit mode - update existing stop
-            let updatedStop = ItineraryStop(
+            var updatedStop = ItineraryStop(
                 id: existingStop.id,
                 title: titleTextField.text ?? "",
                 location: locationTextField.text ?? "",
@@ -329,22 +348,36 @@ class CS03_AddItineraryStopVC: UITableViewController {
                 date: datePicker.date,
                 time: timePicker.date,
                 tripId: tripId,
-                subgroupId: selectedSubgroup?.id,
+                subgroupId: isMySubgroup ? nil : selectedSubgroup?.id,
                 createdByUserId: existingStop.createdByUserId
             )
+            
+            // Mark as MY itinerary if MY subgroup was selected
+            if isMySubgroup {
+                updatedStop.isInMyItinerary = true
+                updatedStop.addedToMyItineraryByUserId = currentUserId
+            }
+            
             delegate?.didUpdateItineraryStop(updatedStop)
         } else {
             // Add mode - create new stop
-            let newStop = ItineraryStop(
+            var newStop = ItineraryStop(
                 title: titleTextField.text ?? "",
                 location: titleTextField.text ?? "",
                 address: locationTextField.text ?? "",
                 date: datePicker.date,
                 time: timePicker.date,
                 tripId: tripId,
-                subgroupId: selectedSubgroup?.id,
-                createdByUserId: UUID()
+                subgroupId: isMySubgroup ? nil : selectedSubgroup?.id,
+                createdByUserId: currentUserId
             )
+            
+            // Mark as MY itinerary if MY subgroup was selected
+            if isMySubgroup {
+                newStop.isInMyItinerary = true
+                newStop.addedToMyItineraryByUserId = currentUserId
+            }
+            
             delegate?.didAddItineraryStop(newStop)
         }
         

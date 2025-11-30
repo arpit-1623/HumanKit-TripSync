@@ -5,6 +5,7 @@
 //  Created by Arpit Garg on 31/10/25.
 //
 
+
 import Foundation
 
 class DataModel {
@@ -48,12 +49,6 @@ class DataModel {
         usersURL = documentDir.appendingPathComponent("users_data").appendingPathExtension("json")
         
         loadData()
-        
-        // Populate sample data on first launch
-//        if users.isEmpty || trips.isEmpty {
-//            SampleData.shared.populateDataModel()
-//            loadData()
-//        }
     }
     
     // MARK: - Load Data
@@ -167,15 +162,17 @@ class DataModel {
     public func getTrip(byId id: UUID) -> Trip? {
         return trips.first(where: { $0.id == id })
     }
-
-    public func getTrip(byInviteCode inviteCode: String) -> Trip? {
-        return trips.first {
-            $0.inviteCode.uppercased() == inviteCode.uppercased()
-        }
-    }
     
     public func getTrips(forUserId userId: UUID) -> [Trip] {
         return trips.filter { $0.memberIds.contains(userId) }
+    }
+    
+    public func getCurrentTrip() -> Trip? {
+        return trips.first(where: { $0.status == .current })
+    }
+    
+    public func getNonCurrentTrips() -> [Trip] {
+        return trips.filter { $0.status != .current }
     }
     
     public func deleteTrip(byId id: UUID) {
@@ -189,33 +186,6 @@ class DataModel {
         deleteLocations(forTripId: id)
         deleteMemories(forTripId: id)
         deleteInvitations(forTripId: id)
-    }
-
-    public func addMember(_ userId: UUID, toTripId tripId: UUID) {
-        guard var trip = getTrip(byId: tripId) else { return }
-        if !trip.memberIds.contains(userId) {
-            trip.memberIds.append(userId)
-            saveTrip(trip)
-        }
-    }
-
-    public func removeMember(_ userId: UUID, fromTripId tripId: UUID) {
-        guard var trip = getTrip(byId: tripId) else { return }
-        trip.memberIds.removeAll { $0 == userId }
-        saveTrip(trip)
-    }
-
-    public func getCurrentTrip() -> Trip? {
-        return trips.first(where: { $0.status == .current })
-    }
-
-    public func getNonCurrentTrips() -> [Trip] {
-        return trips.filter { $0.status != .current }
-    }
-
-    public func getMemberCount(forTripId tripId: UUID) -> Int {
-        guard let trip = getTrip(byId: tripId) else { return 0 }
-        return trip.memberIds.count
     }
     
     // MARK: - Subgroup Data Model
@@ -261,10 +231,6 @@ class DataModel {
         return subgroups.first(where: { $0.id == id })
     }
     
-    public func deleteSubgroup(_ subgroup: Subgroup) {
-        deleteSubgroup(byId: subgroup.id)
-    }
-    
     public func deleteSubgroup(byId id: UUID) {
         guard let subgroup = getSubgroup(byId: id) else { return }
         
@@ -283,26 +249,6 @@ class DataModel {
         subgroups.removeAll(where: { $0.tripId == tripId })
         saveSubgroupsToFile()
     }
-
-    public func addMember(_ userId: UUID, toSubgroupId subgroupId: UUID) {
-        guard var subgroup = getSubgroup(byId: subgroupId) else { return }
-        if !subgroup.memberIds.contains(userId) {
-            subgroup.memberIds.append(userId)
-            saveSubgroup(subgroup)
-        }
-    }
-
-    public func removeMember(_ userId: UUID, fromSubgroupId subgroupId: UUID) {
-        guard var subgroup = getSubgroup(byId: subgroupId) else { return }
-        subgroup.memberIds.removeAll { $0 == userId }
-        saveSubgroup(subgroup)
-    }
-
-    public func getMemberCount(forSubgroupId subgroupId: UUID) -> Int {
-        guard let subgroup = getSubgroup(byId: subgroupId) else { return 0 }
-        return subgroup.memberIds.count
-    }
-
     
     // MARK: - Itinerary Data Model
     private func loadItineraryStopsFromFile() -> [ItineraryStop] {
@@ -345,18 +291,6 @@ class DataModel {
             .sorted { $0.date < $1.date }
     }
     
-    public func getItineraryStops(forTripId tripId: UUID,
-                                  subgroupId: UUID?) -> [ItineraryStop] {
-        return itineraryStops.filter { stop in
-            guard stop.tripId == tripId else { return false }
-            if let subgroupId = subgroupId {
-                return stop.subgroupId == subgroupId
-            } else {
-                return true
-            }
-        }
-    }
-    
     public func getItineraryStop(byId id: UUID) -> ItineraryStop? {
         return itineraryStops.first(where: { $0.id == id })
     }
@@ -378,6 +312,28 @@ class DataModel {
     public func deleteItineraryStops(forTripId tripId: UUID) {
         itineraryStops.removeAll(where: { $0.tripId == tripId })
         saveItineraryStopsToFile()
+    }
+    
+    public func addStopToMyItinerary(_ stopId: UUID, userId: UUID) {
+        if let index = itineraryStops.firstIndex(where: { $0.id == stopId }) {
+            itineraryStops[index].isInMyItinerary = true
+            itineraryStops[index].addedToMyItineraryByUserId = userId
+            saveItineraryStopsToFile()
+        }
+    }
+    
+    public func removeStopFromMyItinerary(_ stopId: UUID, userId: UUID) {
+        if let index = itineraryStops.firstIndex(where: { $0.id == stopId }) {
+            itineraryStops[index].isInMyItinerary = false
+            itineraryStops[index].addedToMyItineraryByUserId = nil
+            saveItineraryStopsToFile()
+        }
+    }
+    
+    public func getMyItineraryStops(forUserId userId: UUID, tripId: UUID) -> [ItineraryStop] {
+        return itineraryStops
+            .filter { $0.tripId == tripId && $0.isInMyItinerary && $0.addedToMyItineraryByUserId == userId }
+            .sorted { $0.date < $1.date }
     }
     
     // MARK: - Message Data Model
@@ -511,18 +467,8 @@ class DataModel {
         }
     }
     
-    public func getInvitations(forTripId tripId: UUID) -> [Invitation] {
-        return invitations.filter { $0.tripId == tripId }
-    }
-    
     public func getInvitation(byId id: UUID) -> Invitation? {
         return invitations.first(where: { $0.id == id })
-    }
-    
-    public func updateInvitationStatus(id: UUID, to status: InvitationStatus) {
-        guard let idx = invitations.firstIndex(where: { $0.id == id }) else { return }
-        invitations[idx].status = status
-        saveInvitationsToFile()
     }
     
     public func deleteInvitation(byId id: UUID) {
