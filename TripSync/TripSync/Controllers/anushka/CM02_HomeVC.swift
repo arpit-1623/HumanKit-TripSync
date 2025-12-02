@@ -17,12 +17,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripRedirectButton: UIButton!
     @IBOutlet weak var emptyStateView: UIStackView!
     
-    // MARK: - Outlets - Action Buttons
-    @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
-    @IBOutlet weak var itineraryButton: UIButton!
-    @IBOutlet weak var membersButton: UIButton!
-    
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingTripsTableView: UITableView!
     
@@ -70,16 +64,6 @@ class HomeViewController: UIViewController {
             currentTripLocationLabel?.isHidden = true
             currentTripRedirectButton?.isHidden = true
             emptyStateView?.isHidden = false
-            
-            // Disable action buttons
-            mapButton?.isEnabled = false
-            mapButton?.alpha = 0.5
-            chatButton?.isEnabled = false
-            chatButton?.alpha = 0.5
-            itineraryButton?.isEnabled = false
-            itineraryButton?.alpha = 0.5
-            membersButton?.isEnabled = false
-            membersButton?.alpha = 0.5
             return
         }
         
@@ -89,16 +73,6 @@ class HomeViewController: UIViewController {
         currentTripLocationLabel?.isHidden = false
         currentTripRedirectButton?.isHidden = false
         emptyStateView?.isHidden = true
-        
-        // Enable action buttons
-        mapButton?.isEnabled = true
-        mapButton?.alpha = 1.0
-        chatButton?.isEnabled = true
-        chatButton?.alpha = 1.0
-        itineraryButton?.isEnabled = true
-        itineraryButton?.alpha = 1.0
-        membersButton?.isEnabled = true
-        membersButton?.alpha = 1.0
         
         // Configure current trip display
         currentTripImageView?.image = UIImage(named: "createTripBg")
@@ -112,47 +86,8 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "homeToTripDetails", sender: trip)
     }
     
-    @IBAction func mapButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToMap", sender: trip)
-    }
-    
-    @IBAction func chatButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToChat", sender: trip)
-    }
-    
-    @IBAction func itineraryButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToItinerary", sender: trip)
-    }
-    
-    @IBAction func membersButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToMembers", sender: trip)
-    }
-    
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {
         
-    }
-    
-    // MARK: - Helper Methods
-    private func showNoCurrentTripAlert() {
-        let alert = UIAlertController(title: "No Current Trip", message: "You need to have an active trip to access this feature.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
     
     // MARK: - Navigation
@@ -161,26 +96,6 @@ class HomeViewController: UIViewController {
             if let tripDetailsVC = segue.destination as? TripDetailsViewController,
                let trip = sender as? Trip {
                 tripDetailsVC.trip = trip
-            }
-        } else if segue.identifier == "homeToMap" {
-            // TODO: Pass trip to map view controller when implemented
-            if let trip = sender as? Trip {
-                // mapVC.trip = trip
-            }
-        } else if segue.identifier == "homeToChat" {
-            // TODO: Pass trip to chat view controller when implemented
-            if let trip = sender as? Trip {
-                // chatVC.trip = trip
-            }
-        } else if segue.identifier == "homeToItinerary" {
-            // TODO: Pass trip to itinerary view controller when implemented
-            if let trip = sender as? Trip {
-                // itineraryVC.trip = trip
-            }
-        } else if segue.identifier == "homeToMembers" {
-            // TODO: Pass trip to members view controller when implemented
-            if let trip = sender as? Trip {
-                // membersVC.trip = trip
             }
         }
     }
