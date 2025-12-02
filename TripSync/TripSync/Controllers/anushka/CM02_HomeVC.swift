@@ -14,8 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripImageView: UIImageView!
     @IBOutlet weak var currentTripNameLabel: UILabel!
     @IBOutlet weak var currentTripLocationLabel: UILabel!
-    @IBOutlet weak var currentTripDateLabel: UILabel!
-    @IBOutlet weak var currentTripMembersLabel: UILabel!
+    @IBOutlet weak var currentTripRedirectButton: UIButton!
     @IBOutlet weak var emptyStateView: UIStackView!
     
     // MARK: - Outlets - Action Buttons
@@ -45,10 +44,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        // Add tap gesture to current trip card
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(currentTripCardTapped))
-        currentTripCard.addGestureRecognizer(tapGesture)
-        currentTripCard.isUserInteractionEnabled = true
+        // UI setup completed in storyboard
     }
     
     private func setupTableView() {
@@ -72,8 +68,7 @@ class HomeViewController: UIViewController {
             currentTripImageView?.isHidden = true
             currentTripNameLabel?.isHidden = true
             currentTripLocationLabel?.isHidden = true
-            currentTripDateLabel?.isHidden = true
-            currentTripMembersLabel?.isHidden = true
+            currentTripRedirectButton?.isHidden = true
             emptyStateView?.isHidden = false
             
             // Disable action buttons
@@ -92,8 +87,7 @@ class HomeViewController: UIViewController {
         currentTripImageView?.isHidden = false
         currentTripNameLabel?.isHidden = false
         currentTripLocationLabel?.isHidden = false
-        currentTripDateLabel?.isHidden = false
-        currentTripMembersLabel?.isHidden = false
+        currentTripRedirectButton?.isHidden = false
         emptyStateView?.isHidden = true
         
         // Enable action buttons
@@ -106,15 +100,14 @@ class HomeViewController: UIViewController {
         membersButton?.isEnabled = true
         membersButton?.alpha = 1.0
         
+        // Configure current trip display
         currentTripImageView?.image = UIImage(named: "createTripBg")
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
-        currentTripDateLabel?.text = trip.dateRangeString
-        currentTripMembersLabel?.text = "\(trip.memberCount) Members"
     }
     
     // MARK: - Actions
-    @objc private func currentTripCardTapped() {
+    @IBAction func currentTripCardTapped(_ sender: UIButton) {
         guard let trip = currentTrip else { return }
         performSegue(withIdentifier: "homeToTripDetails", sender: trip)
     }
