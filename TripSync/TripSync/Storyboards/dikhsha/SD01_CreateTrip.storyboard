@@ -232,7 +232,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="R2D-kd-Ayw">
                             <connections>
-                                <action selector="didTapCreate:" destination="Create-Trip-VC" id="create-action-connection"/>
                                 <segue destination="FJl-YB-wNh" kind="show" identifier="createTripToSummary" id="wdF-0g-iXl"/>
                             </connections>
                         </barButtonItem>
