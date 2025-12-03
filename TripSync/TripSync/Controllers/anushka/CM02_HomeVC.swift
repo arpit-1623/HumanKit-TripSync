@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     private var currentTrip: Trip?
     private var upcomingTrips: [Trip] = []
+    private var tableViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -37,6 +38,34 @@ class HomeViewController: UIViewController {
         loadData()
     }
     
+    deinit {
+        upcomingTripsTableView?.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
+    // MARK: - KVO
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if let tableView = object as? UITableView {
+                updateTableViewHeight(tableView)
+            }
+        }
+    }
+    
+    private func updateTableViewHeight(_ tableView: UITableView) {
+        // Remove existing height constraint if it exists
+        if let heightConstraint = tableViewHeightConstraint {
+            heightConstraint.isActive = false
+        }
+        
+        // Create new height constraint based on content size
+        let height = tableView.contentSize.height
+        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: height)
+        tableViewHeightConstraint?.isActive = true
+        
+        // Trigger layout update
+        view.layoutIfNeeded()
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         // UI setup completed in storyboard
@@ -45,6 +74,12 @@ class HomeViewController: UIViewController {
     private func setupTableView() {
         upcomingTripsTableView.delegate = self
         upcomingTripsTableView.dataSource = self
+        
+        // Disable table view scrolling since we want the outer scroll view to handle scrolling
+        upcomingTripsTableView.isScrollEnabled = false
+        
+        // Add observer for content size changes
+        upcomingTripsTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
     // MARK: - Data Loading
@@ -54,6 +89,11 @@ class HomeViewController: UIViewController {
         
         updateCurrentTripUI()
         upcomingTripsTableView.reloadData()
+        
+        // Ensure table view height is updated after data reload
+        DispatchQueue.main.async {
+            self.updateTableViewHeight(self.upcomingTripsTableView)
+        }
     }
     
     // MARK: - UI Update

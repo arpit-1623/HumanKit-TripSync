@@ -408,7 +408,6 @@
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="top" secondItem="mth-ql-0cY" secondAttribute="bottom" constant="12" id="cpG-Wb-S4M"/>
                                             <constraint firstAttribute="trailing" secondItem="DeJ-8a-bjH" secondAttribute="trailing" constant="16" id="dWL-yR-ZRa"/>
                                             <constraint firstItem="mth-ql-0cY" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="qk1-Qw-Gir"/>
-                                            <constraint firstAttribute="height" constant="1154" id="scG-DF-0a5"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="t70-3G-fhK"/>
                                         </constraints>
                                     </view>
