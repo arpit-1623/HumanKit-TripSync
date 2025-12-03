@@ -14,6 +14,7 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
+    @IBOutlet weak var tripMembersLabel: UILabel!
     
     // MARK: - Properties
     var trip: Trip?
@@ -58,6 +59,11 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
         tripNameLabel?.text = trip.name
         tripLocationLabel?.text = trip.location
         tripDateRangeLabel?.text = trip.dateRangeString
+        
+        // Update member count
+        let memberCount = trip.memberIds.count
+        let memberText = memberCount == 1 ? "1 Member" : "\(memberCount) Members"
+        tripMembersLabel?.text = memberText
         
         setupSubgroupsTableView()
     }
