@@ -43,16 +43,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blurContainerView">
-                                                        <rect key="frame" x="12" y="144" width="337" height="120"/>
+                                                        <rect key="frame" x="12" y="124" width="337" height="140"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="blurContentView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="337" height="120"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="337" height="140"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VhU-Fg-KPa">
-                                                                    <rect key="frame" x="15" y="10" width="307" height="100"/>
+                                                                    <rect key="frame" x="15" y="10" width="307" height="120"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="B6A-13-BiY">
-                                                                            <rect key="frame" x="0.0" y="21.666666666666657" width="255" height="57"/>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="B6A-13-BiY">
+                                                                            <rect key="frame" x="0.0" y="16.666666666666657" width="255" height="87"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure 2025" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-UI-fSE">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="246.33333333333334" height="28.666666666666668"/>
@@ -60,25 +60,48 @@
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kmf-HA-TrU">
-                                                                                    <rect key="frame" x="0.0" y="36.666666666666657" width="65.333333333333329" height="20.333333333333329"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Coa-x3-npj">
+                                                                                    <rect key="frame" x="0.0" y="40.666666666666686" width="255" height="46.333333333333343"/>
                                                                                     <subviews>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eEQ-6e-D5w">
-                                                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="20" height="18.666666666666664"/>
-                                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        </imageView>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2u-Ma-DfK">
-                                                                                            <rect key="frame" x="24.000000000000004" y="0.0" width="41.333333333333343" height="20.333333333333332"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                            <nil key="textColor"/>
-                                                                                            <nil key="highlightedColor"/>
-                                                                                        </label>
+                                                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kmf-HA-TrU">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="20.333333333333332"/>
+                                                                                            <subviews>
+                                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eEQ-6e-D5w">
+                                                                                                    <rect key="frame" x="0.0" y="0.99999999999999822" width="20" height="18.666666666666664"/>
+                                                                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                </imageView>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2u-Ma-DfK">
+                                                                                                    <rect key="frame" x="24" y="0.0" width="231" height="20.333333333333332"/>
+                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                                    <nil key="textColor"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                            </subviews>
+                                                                                        </stackView>
+                                                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="date-range-stack">
+                                                                                            <rect key="frame" x="0.0" y="26.333333333333343" width="255" height="20"/>
+                                                                                            <subviews>
+                                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="date-range-icon">
+                                                                                                    <rect key="frame" x="0.0" y="1.6666666666666643" width="20" height="17.000000000000004"/>
+                                                                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                                                                    <constraints>
+                                                                                                        <constraint firstAttribute="height" constant="20" id="date-icon-height"/>
+                                                                                                        <constraint firstAttribute="width" constant="20" id="date-icon-width"/>
+                                                                                                    </constraints>
+                                                                                                </imageView>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 October 2025 - 5 November 2025" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="currentTripDateLabel">
+                                                                                                    <rect key="frame" x="24" y="0.0" width="231" height="20"/>
+                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                            </subviews>
+                                                                                        </stackView>
                                                                                     </subviews>
                                                                                 </stackView>
                                                                             </subviews>
                                                                         </stackView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yu-JI-Wmz">
-                                                                            <rect key="frame" x="267" y="30" width="40" height="40"/>
+                                                                            <rect key="frame" x="267" y="40" width="40" height="40"/>
                                                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="40" id="redirect-height"/>
@@ -110,7 +133,7 @@
                                                             </constraints>
                                                         </view>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="120" id="blurContainer-height"/>
+                                                            <constraint firstAttribute="height" constant="140" id="blurContainer-height"/>
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
                                                         <userDefinedRuntimeAttributes>
@@ -416,6 +439,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentTripCard" destination="DeJ-8a-bjH" id="card-outlet"/>
+                        <outlet property="currentTripDateLabel" destination="currentTripDateLabel" id="date-label-outlet"/>
                         <outlet property="currentTripImageView" destination="currentTripImage" id="img-outlet"/>
                         <outlet property="currentTripLocationLabel" destination="k2u-Ma-DfK" id="location-outlet"/>
                         <outlet property="currentTripNameLabel" destination="kd3-UI-fSE" id="name-outlet"/>
@@ -533,6 +557,7 @@
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="110"/>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="createTripBg" width="401" height="874"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
@@ -543,6 +568,9 @@
         <namedColor name="CardColor">
             <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

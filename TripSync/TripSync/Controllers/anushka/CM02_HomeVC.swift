@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripImageView: UIImageView!
     @IBOutlet weak var currentTripNameLabel: UILabel!
     @IBOutlet weak var currentTripLocationLabel: UILabel!
+    @IBOutlet weak var currentTripDateLabel: UILabel!
     @IBOutlet weak var currentTripRedirectButton: UIButton!
     @IBOutlet weak var emptyStateView: UIStackView!
     
@@ -62,6 +63,7 @@ class HomeViewController: UIViewController {
             currentTripImageView?.isHidden = true
             currentTripNameLabel?.isHidden = true
             currentTripLocationLabel?.isHidden = true
+            currentTripDateLabel?.isHidden = true
             currentTripRedirectButton?.isHidden = true
             emptyStateView?.isHidden = false
             return
@@ -71,6 +73,7 @@ class HomeViewController: UIViewController {
         currentTripImageView?.isHidden = false
         currentTripNameLabel?.isHidden = false
         currentTripLocationLabel?.isHidden = false
+        currentTripDateLabel?.isHidden = false
         currentTripRedirectButton?.isHidden = false
         emptyStateView?.isHidden = true
         
@@ -78,6 +81,7 @@ class HomeViewController: UIViewController {
         currentTripImageView?.image = UIImage(named: "createTripBg")
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
+        currentTripDateLabel?.text = trip.dateRangeString
     }
     
     // MARK: - Actions
