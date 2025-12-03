@@ -25,6 +25,17 @@ class InviteQRViewController: UIViewController {
         generateQRCode()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh trip data in case it was edited
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            setupUI()
+        }
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         guard let trip = trip else { return }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
+class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTripDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var subgroupsTableView: UITableView!
@@ -162,6 +162,7 @@ extension TripDetailsViewController {
                   let navController = segue.destination as? UINavigationController,
                   let editVC = navController.topViewController as? EditTripTableViewController {
             editVC.trip = self.trip
+            editVC.delegate = self
         } else if segue.identifier == "tripDetailsToInviteQR",
                   let navController = segue.destination as? UINavigationController,
                   let inviteVC = navController.topViewController as? InviteQRViewController {
@@ -214,5 +215,17 @@ extension TripDetailsViewController {
         
         // Reload subgroups
         loadData()
+    }
+}
+
+// MARK: - EditTripDelegate
+extension TripDetailsViewController {
+    func didUpdateTrip() {
+        // Refresh trip data after edit
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            setupUI()
+        }
     }
 }

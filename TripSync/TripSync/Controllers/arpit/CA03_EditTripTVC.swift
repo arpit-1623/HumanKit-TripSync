@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol EditTripDelegate: AnyObject {
+    func didUpdateTrip()
+}
+
 class EditTripTableViewController: UITableViewController {
     
     // MARK: - Outlets
@@ -44,6 +48,7 @@ class EditTripTableViewController: UITableViewController {
     }()
     
     var trip: Trip?
+    weak var delegate: EditTripDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -120,6 +125,9 @@ class EditTripTableViewController: UITableViewController {
         
         // Save to DataModel
         DataModel.shared.saveTrip(trip)
+        
+        // Notify delegate
+        delegate?.didUpdateTrip()
         
         dismiss(animated: true)
     }

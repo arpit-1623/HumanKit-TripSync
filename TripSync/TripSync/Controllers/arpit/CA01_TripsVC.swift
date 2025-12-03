@@ -39,6 +39,13 @@ class TripsViewController: UIViewController {
         
         loadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh trip data when returning from trip details or edit screens
+        loadData()
+    }
 
     // MARK: - Data Loading
     private func loadData() {

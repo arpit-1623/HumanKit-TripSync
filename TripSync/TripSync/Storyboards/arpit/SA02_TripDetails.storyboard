@@ -564,7 +564,7 @@
                         <outlet property="tripLocationLabel" destination="Njw-pN-cfk" id="zzP-iE-gnJ"/>
                         <outlet property="tripMembersLabel" destination="trip-members-label" id="trip-members-outlet"/>
                         <outlet property="tripNameLabel" destination="UPk-Yw-hha" id="E5z-7M-qho"/>
-                        <segue destination="edit-nav-controller" kind="show" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
+                        <segue destination="edit-nav-controller" kind="presentation" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
                         <segue destination="fzT-z3-qEK" kind="show" identifier="tripDetailsToInviteQR" id="Su7-dq-ayw"/>
                         <segue destination="SA04-members-placeholder" kind="show" identifier="tripDetailsToMembers" id="members-segue"/>
                         <segue destination="Ovq-4a-p51" kind="show" identifier="tripDetailsToMap" id="map-segue"/>
