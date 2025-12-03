@@ -46,7 +46,17 @@ struct Trip: Codable {
         self.createdAt = Date()
         self.createdByUserId = createdByUserId
         self.memberIds = [createdByUserId]
-        self.status = .current
+        
+        // Calculate status based on dates
+        let now = Date()
+        if startDate > now {
+            self.status = .upcoming
+        } else if endDate < now {
+            self.status = .past
+        } else {
+            self.status = .current
+        }
+        
         self.subgroupIds = []
         self.itineraryStopIds = []
         self.memoryIds = []

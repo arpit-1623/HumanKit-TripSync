@@ -8,6 +8,23 @@
 
 import Foundation
 
+enum DataModelError: LocalizedError {
+    case invalidTripName
+    case invalidDateRange
+    case saveFailed(String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidTripName:
+            return "Trip name cannot be empty."
+        case .invalidDateRange:
+            return "Start date must be before or equal to end date."
+        case .saveFailed(let message):
+            return "Failed to save data: \(message)"
+        }
+    }
+}
+
 class DataModel {
     
     // MARK: - Singleton
@@ -77,11 +94,15 @@ class DataModel {
     }
     
     private func saveCurrentUserToFile() {
-        if let user = currentUser {
-            guard let data = try? JSONEncoder().encode(user) else { return }
-            try? data.write(to: currentUserURL, options: .atomic)
-        } else {
-            try? FileManager.default.removeItem(at: currentUserURL)
+        do {
+            if let user = currentUser {
+                let data = try JSONEncoder().encode(user)
+                try data.write(to: currentUserURL, options: .atomic)
+            } else {
+                try FileManager.default.removeItem(at: currentUserURL)
+            }
+        } catch {
+            print("Error saving current user to file: \(error.localizedDescription)")
         }
     }
     
@@ -104,8 +125,12 @@ class DataModel {
     }
     
     private func saveUsersToFile() {
-        guard let data = try? JSONEncoder().encode(users) else { return }
-        try? data.write(to: usersURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(users)
+            try data.write(to: usersURL, options: .atomic)
+        } catch {
+            print("Error saving users to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveUser(_ user: User) {
@@ -142,8 +167,12 @@ class DataModel {
     }
     
     private func saveTripsToFile() {
-        guard let data = try? JSONEncoder().encode(trips) else { return }
-        try? data.write(to: tripsURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(trips)
+            try data.write(to: tripsURL, options: .atomic)
+        } catch {
+            print("Error saving trips to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveTrip(_ trip: Trip) {
@@ -153,6 +182,34 @@ class DataModel {
             trips.append(trip)
         }
         saveTripsToFile()
+    }
+    
+    public func saveTripWithValidation(_ trip: Trip) throws {
+        // Validate trip data
+        guard !trip.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            throw DataModelError.invalidTripName
+        }
+        
+        guard trip.startDate <= trip.endDate else {
+            throw DataModelError.invalidDateRange
+        }
+        
+        // Save the trip
+        if let index = trips.firstIndex(where: { $0.id == trip.id }) {
+            trips[index] = trip
+        } else {
+            trips.append(trip)
+        }
+        
+        // Attempt to save to file
+        do {
+            let data = try JSONEncoder().encode(trips)
+            try data.write(to: tripsURL, options: .atomic)
+        } catch {
+            // Rollback the change if save failed
+            trips.removeAll(where: { $0.id == trip.id })
+            throw DataModelError.saveFailed(error.localizedDescription)
+        }
     }
     
     public func getAllTrips() -> [Trip] {
@@ -199,8 +256,12 @@ class DataModel {
     }
     
     private func saveSubgroupsToFile() {
-        guard let data = try? JSONEncoder().encode(subgroups) else { return }
-        try? data.write(to: subgroupsURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(subgroups)
+            try data.write(to: subgroupsURL, options: .atomic)
+        } catch {
+            print("Error saving subgroups to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveSubgroup(_ subgroup: Subgroup) {
@@ -261,8 +322,12 @@ class DataModel {
     }
     
     private func saveItineraryStopsToFile() {
-        guard let data = try? JSONEncoder().encode(itineraryStops) else { return }
-        try? data.write(to: itineraryStopsURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(itineraryStops)
+            try data.write(to: itineraryStopsURL, options: .atomic)
+        } catch {
+            print("Error saving itinerary stops to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveItineraryStop(_ stop: ItineraryStop) {
@@ -348,8 +413,12 @@ class DataModel {
     }
     
     private func saveMessagesToFile() {
-        guard let data = try? JSONEncoder().encode(messages) else { return }
-        try? data.write(to: messagesURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(messages)
+            try data.write(to: messagesURL, options: .atomic)
+        } catch {
+            print("Error saving messages to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveMessage(_ message: Message) {
@@ -397,8 +466,12 @@ class DataModel {
     }
     
     private func saveLocationsToFile() {
-        guard let data = try? JSONEncoder().encode(locations) else { return }
-        try? data.write(to: locationsURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(locations)
+            try data.write(to: locationsURL, options: .atomic)
+        } catch {
+            print("Error saving locations to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveLocation(_ location: UserLocation) {
@@ -444,8 +517,12 @@ class DataModel {
     }
     
     private func saveInvitationsToFile() {
-        guard let data = try? JSONEncoder().encode(invitations) else { return }
-        try? data.write(to: invitationsURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(invitations)
+            try data.write(to: invitationsURL, options: .atomic)
+        } catch {
+            print("Error saving invitations to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveInvitation(_ invitation: Invitation) {
@@ -493,8 +570,12 @@ class DataModel {
     }
     
     private func saveMemoriesToFile() {
-        guard let data = try? JSONEncoder().encode(memories) else { return }
-        try? data.write(to: memoriesURL, options: .atomic)
+        do {
+            let data = try JSONEncoder().encode(memories)
+            try data.write(to: memoriesURL, options: .atomic)
+        } catch {
+            print("Error saving memories to file: \(error.localizedDescription)")
+        }
     }
     
     public func saveMemory(_ memory: Memory) {
