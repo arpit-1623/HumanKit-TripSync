@@ -23,12 +23,14 @@ class CS03_AddItineraryStopVC: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var subgroupValueLabel: UILabel!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     // MARK: - Properties
     weak var delegate: AddItineraryStopDelegate?
     var tripId: UUID?
     var availableSubgroups: [Subgroup] = []
     var selectedSubgroup: Subgroup?
+    var selectedCategory: (name: String, icon: String)? = ("Travel Place", "mappin.and.ellipse")
     var existingStop: ItineraryStop?
     var isEditMode: Bool { existingStop != nil }
     
@@ -81,6 +83,10 @@ class CS03_AddItineraryStopVC: UITableViewController {
             if let subgroupId = stop.subgroupId {
                 selectedSubgroup = availableSubgroups.first { $0.id == subgroupId }
             }
+            
+            if let category = stop.category {
+                selectedCategory = categoryForIcon(category)
+            }
         }
         
         // Configure date picker
@@ -100,6 +106,9 @@ class CS03_AddItineraryStopVC: UITableViewController {
         
         // Setup subgroup label
         updateSubgroupLabel()
+        
+        // Setup category collection view
+        setupCategoryCollectionView()
     }
     
     private func updateDateTimeLabels() {
@@ -120,6 +129,35 @@ class CS03_AddItineraryStopVC: UITableViewController {
             subgroupValueLabel.text = selectedSubgroup.name
         } else {
             subgroupValueLabel.text = "None"
+        }
+    }
+    
+    private let categories: [(name: String, icon: String)] = [
+        ("Shopping", "bag.fill"),
+        ("Travel Place", "mappin.and.ellipse"),
+        ("Group Collab", "person.2.fill"),
+        ("Food", "fork.knife"),
+        ("Transport Stop", "bus.fill"),
+        ("Nature", "leaf.fill"),
+        ("Stay / Hotel", "bed.double.fill"),
+        ("Events / Activities", "sparkles")
+    ]
+    
+    private func categoryForIcon(_ icon: String) -> (name: String, icon: String)? {
+        return categories.first { $0.icon == icon }
+    }
+    
+    private func setupCategoryCollectionView() {
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.register(ES04_CategoryIconCell.self, forCellWithReuseIdentifier: "CategoryIconCell")
+        categoryCollectionView.backgroundColor = .clear
+        categoryCollectionView.isScrollEnabled = false
+        
+        if let layout = categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumInteritemSpacing = 8
+            layout.minimumLineSpacing = 8
+            layout.sectionInset = .zero
         }
     }
     
@@ -235,10 +273,10 @@ class CS03_AddItineraryStopVC: UITableViewController {
                 // Time label cell tapped
                 toggleTimePicker()
             }
-        } else if indexPath.section == 2 && indexPath.row == 0 {
+        } else if indexPath.section == 3 && indexPath.row == 0 {
             // Subgroup cell tapped
             showSubgroupPicker()
-        } else if indexPath.section == 3 && indexPath.row == 0 && isEditMode {
+        } else if indexPath.section == 4 && indexPath.row == 0 && isEditMode {
             // Delete button tapped
             deleteTapped()
         }
@@ -256,8 +294,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
             }
         }
         
-        // Section 3: Delete button - hide in add mode
-        if indexPath.section == 3 && !isEditMode {
+        // Section 4: Delete button - hide in add mode
+        if indexPath.section == 4 && !isEditMode {
             return 0
         }
         
@@ -266,7 +304,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // Hide delete section header in add mode
-        if section == 3 && !isEditMode {
+        if section == 4 && !isEditMode {
             return 0.01
         }
         return super.tableView(tableView, heightForHeaderInSection: section)
@@ -274,7 +312,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // Hide delete section footer in add mode
-        if section == 3 && !isEditMode {
+        if section == 4 && !isEditMode {
             return 0.01
         }
         return super.tableView(tableView, heightForFooterInSection: section)
@@ -349,7 +387,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
                 time: timePicker.date,
                 tripId: tripId,
                 subgroupId: isMySubgroup ? nil : selectedSubgroup?.id,
-                createdByUserId: existingStop.createdByUserId
+                createdByUserId: existingStop.createdByUserId,
+                category: selectedCategory?.icon
             )
             
             // Mark as MY itinerary if MY subgroup was selected
@@ -369,7 +408,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
                 time: timePicker.date,
                 tripId: tripId,
                 subgroupId: isMySubgroup ? nil : selectedSubgroup?.id,
-                createdByUserId: currentUserId
+                createdByUserId: currentUserId,
+                category: selectedCategory?.icon
             )
             
             // Mark as MY itinerary if MY subgroup was selected
@@ -407,5 +447,37 @@ extension CS03_AddItineraryStopVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension CS03_AddItineraryStopVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryIconCell", for: indexPath) as! ES04_CategoryIconCell
+        let category = categories[indexPath.item]
+        let isSelected = selectedCategory?.icon == category.icon
+        cell.configure(iconName: category.icon, isSelected: isSelected)
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension CS03_AddItineraryStopVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedCategory = categories[indexPath.item]
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CS03_AddItineraryStopVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let totalSpacing: CGFloat = 8 * 3 // 3 gaps for 4 items per row
+        let width = (collectionView.bounds.width - totalSpacing) / 4
+        return CGSize(width: width, height: 58)
     }
 }
