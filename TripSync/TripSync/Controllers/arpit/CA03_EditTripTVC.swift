@@ -11,7 +11,6 @@ class EditTripTableViewController: UITableViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tripNameField: UITextField!
-    @IBOutlet weak var tripDescView: UITextView!
     @IBOutlet weak var tripLocationField: UITextField!
     
     @IBOutlet weak var startDateValueLabel: UILabel!
@@ -61,7 +60,6 @@ class EditTripTableViewController: UITableViewController {
         
         // Populate fields from trip
         tripNameField.text = trip.name
-        tripDescView.text = trip.description
         tripLocationField.text = trip.location
         startDatePicker.date = trip.startDate
         endDatePicker.date = trip.endDate
@@ -113,7 +111,6 @@ class EditTripTableViewController: UITableViewController {
         
         // Update trip properties
         trip.name = name
-        trip.description = tripDescView.text
         trip.location = location
         trip.startDate = startDatePicker.date
         trip.endDate = endDatePicker.date

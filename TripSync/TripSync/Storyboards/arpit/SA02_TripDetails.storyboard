@@ -719,35 +719,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="trip-desc-cell">
-                                        <rect key="frame" x="20" y="115.33333206176758" width="353" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="trip-desc-cell" id="trip-desc-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Exploring the vibrant city of Tokyo with friends" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="trip-desc-view">
-                                                    <rect key="frame" x="16" y="10" width="321" height="80"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="trip-desc-height"/>
-                                                    </constraints>
-                                                    <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="trip-desc-view" firstAttribute="centerY" secondItem="trip-desc-content" secondAttribute="centerY" id="trip-desc-center"/>
-                                                <constraint firstItem="trip-desc-view" firstAttribute="leading" secondItem="trip-desc-content" secondAttribute="leading" constant="16" id="trip-desc-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="trip-desc-view" secondAttribute="trailing" constant="16" id="trip-desc-trailing"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="trip-location-cell">
                                         <rect key="frame" x="20" y="215.33333206176758" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1074,7 +1045,6 @@
                         <outlet property="numberOfDaysLabel" destination="number-of-days-value-label" id="number-of-days-outlet"/>
                         <outlet property="startDatePicker" destination="start-date-picker" id="start-picker-outlet"/>
                         <outlet property="startDateValueLabel" destination="start-date-value-label" id="start-value-label-outlet"/>
-                        <outlet property="tripDescView" destination="trip-desc-view" id="trip-desc-outlet"/>
                         <outlet property="tripLocationField" destination="trip-location-field" id="trip-location-outlet"/>
                         <outlet property="tripNameField" destination="trip-name-field" id="trip-name-outlet"/>
                     </connections>

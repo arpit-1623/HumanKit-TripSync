@@ -52,7 +52,6 @@ class CD05_SummaryVC: UIViewController {
         // Create trip with image data
         var newTrip = Trip(
             name: tripName,
-            description: nil,
             location: location,
             startDate: dateRange.start,
             endDate: dateRange.end,
