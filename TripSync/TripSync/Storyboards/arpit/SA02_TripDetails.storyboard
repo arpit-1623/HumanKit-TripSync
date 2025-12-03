@@ -35,7 +35,7 @@
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trip-info-blur-card" userLabel="Trip Info Blur Card">
                                                 <rect key="frame" x="20" y="74.999999999999986" width="353" height="208.66666666666663"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="trip-info-blur-content">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="208.66666666666663"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eBp-6D-7mX" userLabel="Trip Info Stack">

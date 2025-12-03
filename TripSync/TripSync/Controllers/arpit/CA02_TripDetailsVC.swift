@@ -120,6 +120,9 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     }
     
     // MARK: - Navigation
+    @IBAction func unwindToTripDetails(segue: UIStoryboardSegue) {
+        
+    }
 }
 
 // MARK: - UITableViewDelegate & DataSource
