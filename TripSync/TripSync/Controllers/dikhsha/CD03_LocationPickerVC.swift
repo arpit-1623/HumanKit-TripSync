@@ -21,6 +21,7 @@ class CD03_LocationPickerVC: UIViewController {
     
     // MARK: - Properties
     weak var delegate: LocationPickerDelegate?
+    var initialLocation: String? // Pre-populate search with existing location
     
     private let searchCompleter = MKLocalSearchCompleter()
     private var completions: [MKLocalSearchCompletion] = []
@@ -45,6 +46,12 @@ class CD03_LocationPickerVC: UIViewController {
         // Configure search text field
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        
+        // Pre-populate with initial location if provided
+        if let initialLocation = initialLocation {
+            searchTextField.text = initialLocation
+            searchCompleter.queryFragment = initialLocation
+        }
     }
     
     private func setupSearchCompleter() {

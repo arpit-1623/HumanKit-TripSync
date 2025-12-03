@@ -1047,11 +1047,22 @@
                         <outlet property="startDateValueLabel" destination="start-date-value-label" id="start-value-label-outlet"/>
                         <outlet property="tripLocationField" destination="trip-location-field" id="trip-location-outlet"/>
                         <outlet property="tripNameField" destination="trip-name-field" id="trip-name-outlet"/>
+                        <segue destination="edit-trip-location-picker" kind="presentation" identifier="editTripToLocationPicker" id="edit-trip-location-segue"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Di4-JT-f0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861.8320610687022" y="866.90140845070425"/>
+        </scene>
+        <!--SD03_LocationPicker-->
+        <scene sceneID="edit-trip-location-picker-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SD03_LocationPicker" id="edit-trip-location-picker" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="edit-trip-location-nav"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edit-trip-location-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2600" y="867"/>
         </scene>
     </scenes>
     <resources>

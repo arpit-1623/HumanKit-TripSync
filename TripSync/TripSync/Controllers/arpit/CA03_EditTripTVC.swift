@@ -28,6 +28,8 @@ class EditTripTableViewController: UITableViewController {
     private var isStartDatePickerVisible = false
     private var isEndDatePickerVisible = false
     
+    private let locationCellIndexPath = IndexPath(row: 1, section: 0)
+    
     private let startDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
     private let startDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     private let endDateLabelCellIndexPath = IndexPath(row: 2, section: 1)
@@ -61,6 +63,7 @@ class EditTripTableViewController: UITableViewController {
         // Populate fields from trip
         tripNameField.text = trip.name
         tripLocationField.text = trip.location
+        tripLocationField.isUserInteractionEnabled = false // Force use of location picker
         startDatePicker.date = trip.startDate
         endDatePicker.date = trip.endDate
         inviteCodeValueLabel.text = trip.inviteCode
@@ -147,8 +150,12 @@ class EditTripTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        // Handle location cell tap
+        if indexPath == locationCellIndexPath {
+            performSegue(withIdentifier: "editTripToLocationPicker", sender: nil)
+        }
         // Handle date cell taps
-        if indexPath == startDateLabelCellIndexPath {
+        else if indexPath == startDateLabelCellIndexPath {
             toggleDatePicker(isStart: true)
         } else if indexPath == endDateLabelCellIndexPath {
             toggleDatePicker(isStart: false)
@@ -189,5 +196,24 @@ class EditTripTableViewController: UITableViewController {
         }
         
         tableView.endUpdates()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editTripToLocationPicker" {
+            if let navController = segue.destination as? UINavigationController,
+               let locationPickerVC = navController.topViewController as? CD03_LocationPickerVC {
+                locationPickerVC.delegate = self
+                locationPickerVC.initialLocation = tripLocationField.text
+            }
+        }
+    }
+}
+
+// MARK: - LocationPickerDelegate
+extension EditTripTableViewController: LocationPickerDelegate {
+    func locationPicker(_ picker: CD03_LocationPickerVC, didSelectLocationDisplayName name: String) {
+        tripLocationField.text = name
+        trip?.location = name
     }
 }
