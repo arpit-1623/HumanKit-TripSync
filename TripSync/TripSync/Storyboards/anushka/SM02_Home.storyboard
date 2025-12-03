@@ -312,8 +312,8 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Jn9-De-Jkg">
                                                                             <rect key="frame" x="106" y="16" width="231" height="78"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Autumn Mountain Retreat" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo8-KN-dzD">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="203.33333333333334" height="34"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Autumn Mountain Retreat" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo8-KN-dzD">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="203.33333333333334" height="38"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -338,7 +338,7 @@
                                                                                     </subviews>
                                                                                 </stackView>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GdL-tU-m7c">
-                                                                                    <rect key="frame" x="0.0" y="60" width="93.333333333333329" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="64" width="93.333333333333329" height="14"/>
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gGJ-Ye-Omd">
                                                                                             <rect key="frame" x="0.0" y="1.6666666666666661" width="14" height="12"/>
@@ -362,7 +362,6 @@
                                                                     <color key="backgroundColor" name="CardColor"/>
                                                                     <constraints>
                                                                         <constraint firstItem="Jn9-De-Jkg" firstAttribute="top" secondItem="6rl-VT-jmD" secondAttribute="top" constant="16" id="6Gv-ea-Qsw"/>
-                                                                        <constraint firstAttribute="height" constant="110" id="OIN-hh-qzq"/>
                                                                         <constraint firstItem="tripImg-cell" firstAttribute="leading" secondItem="6rl-VT-jmD" secondAttribute="leading" constant="16" id="img-L-01"/>
                                                                         <constraint firstItem="tripImg-cell" firstAttribute="top" secondItem="6rl-VT-jmD" secondAttribute="top" constant="16" id="img-T-01"/>
                                                                         <constraint firstAttribute="bottom" secondItem="Jn9-De-Jkg" secondAttribute="bottom" constant="16" id="qO3-jy-oU8"/>
