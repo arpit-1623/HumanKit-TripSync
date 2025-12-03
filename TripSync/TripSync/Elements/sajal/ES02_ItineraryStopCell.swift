@@ -78,14 +78,17 @@ class ES02_ItineraryStopCell: UITableViewCell {
         locationLabel.text = stop.location
         timeLabel.text = timeFormatter.string(from: stop.time)
         
-        // Set icon based on current view context
-        // Show heart icon ONLY when viewing MY itinerary filter
-        // Show location pin icon when viewing ALL or specific subgroups
-        if isViewingMyItinerary {
+        // Set icon based on category
+        // If stop has a category, use that SF Symbol
+        // Otherwise, show heart for MY itinerary view or default mappin
+        if let category = stop.category {
+            iconImageView.image = UIImage(systemName: category)
+            iconImageView.tintColor = .systemOrange
+        } else if isViewingMyItinerary {
             iconImageView.image = UIImage(systemName: "heart.circle.fill")
             iconImageView.tintColor = .systemPink
         } else {
-            iconImageView.image = UIImage(systemName: "mappin.circle.fill")
+            iconImageView.image = UIImage(systemName: "mappin.and.ellipse")
             iconImageView.tintColor = .systemOrange
         }
         
