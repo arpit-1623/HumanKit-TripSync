@@ -41,7 +41,9 @@ class CreateTripViewController: UIViewController {
     }
     
     private func updateCreateButtonState() {
-        let hasValidData = selectedStartDate != nil && 
+        let hasValidName = !(tripNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        let hasValidData = hasValidName &&
+                          selectedStartDate != nil && 
                           selectedEndDate != nil && 
                           selectedLocation != nil
         createRightBarButton.isEnabled = hasValidData
@@ -60,7 +62,38 @@ class CreateTripViewController: UIViewController {
         performSegue(withIdentifier: "createTripToImagePicker", sender: nil)
     }
     
+    @IBAction func didTapCreate(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "createTripToSummary", sender: nil)
+    }
+    
     // MARK: - Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // Prevent segue if validation fails
+        if identifier == "createTripToSummary" {
+            // Validate trip name
+            guard let tripName = tripNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !tripName.isEmpty else {
+                showValidationAlert(message: "Please enter a trip name.")
+                return false
+            }
+            
+            // Validate dates
+            guard selectedStartDate != nil, selectedEndDate != nil else {
+                showValidationAlert(message: "Please select trip dates.")
+                return false
+            }
+            
+            // Validate location
+            guard selectedLocation != nil else {
+                showValidationAlert(message: "Please select a location.")
+                return false
+            }
+            
+            return true
+        }
+        
+        return true
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "createTripToDatePicker" {
             if let navController = segue.destination as? UINavigationController,
@@ -78,27 +111,43 @@ class CreateTripViewController: UIViewController {
                 imagePickerVC.delegate = self
             }
         } else if segue.identifier == "createTripToSummary" {
-            if let summaryVC = segue.destination as? CD05_SummaryVC,
-               let tripName = tripNameField.text, !tripName.isEmpty,
-               let startDate = selectedStartDate,
-               let endDate = selectedEndDate,
-               let location = selectedLocation {
-                
-                summaryVC.tripName = tripName
-                summaryVC.dateRange = (start: startDate, end: endDate)
-                summaryVC.location = location
-                summaryVC.coverImage = backgroundImageView.image ?? UIImage(named: "createTripBg")
-            }
+            guard let summaryVC = segue.destination as? CD05_SummaryVC else { return }
+            
+            // Data is already validated in shouldPerformSegue
+            // Safe to force unwrap here since validation passed
+            let tripName = tripNameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let startDate = selectedStartDate!
+            let endDate = selectedEndDate!
+            let location = selectedLocation!
+            
+            // Pass data to summary screen
+            summaryVC.tripName = tripName
+            summaryVC.dateRange = (start: startDate, end: endDate)
+            summaryVC.location = location
+            summaryVC.coverImageData = selectedImageData
         }
     }
     
-
+    // MARK: - Helper Methods
+    private func showValidationAlert(message: String) {
+        let alert = UIAlertController(title: "Missing Information", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 // MARK: - UITextFieldDelegate
 extension CreateTripViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Update button state when text changes
+        DispatchQueue.main.async {
+            self.updateCreateButtonState()
+        }
         return true
     }
 }

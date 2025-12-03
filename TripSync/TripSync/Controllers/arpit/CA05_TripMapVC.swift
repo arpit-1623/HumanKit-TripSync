@@ -56,6 +56,14 @@ class TripMapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Refresh trip data when returning
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            loadTripData()
+        }
+        
         startLocationUpdates()
     }
     

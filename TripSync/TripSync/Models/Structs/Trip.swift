@@ -17,7 +17,6 @@ enum TripStatus: String, Codable {
 struct Trip: Codable {
     let id: UUID
     var name: String
-    var description: String?
     var location: String
     var startDate: Date
     var endDate: Date
@@ -35,10 +34,9 @@ struct Trip: Codable {
         return memberIds.count
     }
     
-    init(name: String, description: String?, location: String, startDate: Date, endDate: Date, createdByUserId: UUID) {
+    init(name: String, location: String, startDate: Date, endDate: Date, createdByUserId: UUID) {
         self.id = UUID()
         self.name = name
-        self.description = description
         self.location = location
         self.startDate = startDate
         self.endDate = endDate
@@ -46,7 +44,17 @@ struct Trip: Codable {
         self.createdAt = Date()
         self.createdByUserId = createdByUserId
         self.memberIds = [createdByUserId]
-        self.status = .current
+        
+        // Calculate status based on dates
+        let now = Date()
+        if startDate > now {
+            self.status = .upcoming
+        } else if endDate < now {
+            self.status = .past
+        } else {
+            self.status = .current
+        }
+        
         self.subgroupIds = []
         self.itineraryStopIds = []
         self.memoryIds = []

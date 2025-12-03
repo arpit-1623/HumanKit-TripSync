@@ -15,14 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripNameLabel: UILabel!
     @IBOutlet weak var currentTripLocationLabel: UILabel!
     @IBOutlet weak var currentTripDateLabel: UILabel!
-    @IBOutlet weak var currentTripMembersLabel: UILabel!
+    @IBOutlet weak var currentTripRedirectButton: UIButton!
     @IBOutlet weak var emptyStateView: UIStackView!
-    
-    // MARK: - Outlets - Action Buttons
-    @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var chatButton: UIButton!
-    @IBOutlet weak var itineraryButton: UIButton!
-    @IBOutlet weak var membersButton: UIButton!
     
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingTripsTableView: UITableView!
@@ -30,6 +24,7 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     private var currentTrip: Trip?
     private var upcomingTrips: [Trip] = []
+    private var tableViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -43,17 +38,48 @@ class HomeViewController: UIViewController {
         loadData()
     }
     
+    deinit {
+        upcomingTripsTableView?.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
+    // MARK: - KVO
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if let tableView = object as? UITableView {
+                updateTableViewHeight(tableView)
+            }
+        }
+    }
+    
+    private func updateTableViewHeight(_ tableView: UITableView) {
+        // Remove existing height constraint if it exists
+        if let heightConstraint = tableViewHeightConstraint {
+            heightConstraint.isActive = false
+        }
+        
+        // Create new height constraint based on content size
+        let height = tableView.contentSize.height
+        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: height)
+        tableViewHeightConstraint?.isActive = true
+        
+        // Trigger layout update
+        view.layoutIfNeeded()
+    }
+    
     // MARK: - Setup
     private func setupUI() {
-        // Add tap gesture to current trip card
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(currentTripCardTapped))
-        currentTripCard.addGestureRecognizer(tapGesture)
-        currentTripCard.isUserInteractionEnabled = true
+        // UI setup completed in storyboard
     }
     
     private func setupTableView() {
         upcomingTripsTableView.delegate = self
         upcomingTripsTableView.dataSource = self
+        
+        // Disable table view scrolling since we want the outer scroll view to handle scrolling
+        upcomingTripsTableView.isScrollEnabled = false
+        
+        // Add observer for content size changes
+        upcomingTripsTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
     // MARK: - Data Loading
@@ -63,6 +89,11 @@ class HomeViewController: UIViewController {
         
         updateCurrentTripUI()
         upcomingTripsTableView.reloadData()
+        
+        // Ensure table view height is updated after data reload
+        DispatchQueue.main.async {
+            self.updateTableViewHeight(self.upcomingTripsTableView)
+        }
     }
     
     // MARK: - UI Update
@@ -73,18 +104,8 @@ class HomeViewController: UIViewController {
             currentTripNameLabel?.isHidden = true
             currentTripLocationLabel?.isHidden = true
             currentTripDateLabel?.isHidden = true
-            currentTripMembersLabel?.isHidden = true
+            currentTripRedirectButton?.isHidden = true
             emptyStateView?.isHidden = false
-            
-            // Disable action buttons
-            mapButton?.isEnabled = false
-            mapButton?.alpha = 0.5
-            chatButton?.isEnabled = false
-            chatButton?.alpha = 0.5
-            itineraryButton?.isEnabled = false
-            itineraryButton?.alpha = 0.5
-            membersButton?.isEnabled = false
-            membersButton?.alpha = 0.5
             return
         }
         
@@ -93,73 +114,24 @@ class HomeViewController: UIViewController {
         currentTripNameLabel?.isHidden = false
         currentTripLocationLabel?.isHidden = false
         currentTripDateLabel?.isHidden = false
-        currentTripMembersLabel?.isHidden = false
+        currentTripRedirectButton?.isHidden = false
         emptyStateView?.isHidden = true
         
-        // Enable action buttons
-        mapButton?.isEnabled = true
-        mapButton?.alpha = 1.0
-        chatButton?.isEnabled = true
-        chatButton?.alpha = 1.0
-        itineraryButton?.isEnabled = true
-        itineraryButton?.alpha = 1.0
-        membersButton?.isEnabled = true
-        membersButton?.alpha = 1.0
-        
+        // Configure current trip display
         currentTripImageView?.image = UIImage(named: "createTripBg")
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
         currentTripDateLabel?.text = trip.dateRangeString
-        currentTripMembersLabel?.text = "\(trip.memberCount) Members"
     }
     
     // MARK: - Actions
-    @objc private func currentTripCardTapped() {
+    @IBAction func currentTripCardTapped(_ sender: UIButton) {
         guard let trip = currentTrip else { return }
         performSegue(withIdentifier: "homeToTripDetails", sender: trip)
     }
     
-    @IBAction func mapButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToMap", sender: trip)
-    }
-    
-    @IBAction func chatButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToChat", sender: trip)
-    }
-    
-    @IBAction func itineraryButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToItinerary", sender: trip)
-    }
-    
-    @IBAction func membersButtonTapped(_ sender: UIButton) {
-        guard let trip = currentTrip else {
-            showNoCurrentTripAlert()
-            return
-        }
-        performSegue(withIdentifier: "homeToMembers", sender: trip)
-    }
-    
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {
         
-    }
-    
-    // MARK: - Helper Methods
-    private func showNoCurrentTripAlert() {
-        let alert = UIAlertController(title: "No Current Trip", message: "You need to have an active trip to access this feature.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
     
     // MARK: - Navigation
@@ -168,26 +140,6 @@ class HomeViewController: UIViewController {
             if let tripDetailsVC = segue.destination as? TripDetailsViewController,
                let trip = sender as? Trip {
                 tripDetailsVC.trip = trip
-            }
-        } else if segue.identifier == "homeToMap" {
-            // TODO: Pass trip to map view controller when implemented
-            if let trip = sender as? Trip {
-                // mapVC.trip = trip
-            }
-        } else if segue.identifier == "homeToChat" {
-            // TODO: Pass trip to chat view controller when implemented
-            if let trip = sender as? Trip {
-                // chatVC.trip = trip
-            }
-        } else if segue.identifier == "homeToItinerary" {
-            // TODO: Pass trip to itinerary view controller when implemented
-            if let trip = sender as? Trip {
-                // itineraryVC.trip = trip
-            }
-        } else if segue.identifier == "homeToMembers" {
-            // TODO: Pass trip to members view controller when implemented
-            if let trip = sender as? Trip {
-                // membersVC.trip = trip
             }
         }
     }

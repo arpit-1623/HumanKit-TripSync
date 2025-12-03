@@ -7,13 +7,14 @@
 
 import UIKit
 
-class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
+class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTripDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var subgroupsTableView: UITableView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
+    @IBOutlet weak var tripMembersLabel: UILabel!
     
     // MARK: - Properties
     var trip: Trip?
@@ -58,6 +59,11 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
         tripNameLabel?.text = trip.name
         tripLocationLabel?.text = trip.location
         tripDateRangeLabel?.text = trip.dateRangeString
+        
+        // Update member count
+        let memberCount = trip.memberIds.count
+        let memberText = memberCount == 1 ? "1 Member" : "\(memberCount) Members"
+        tripMembersLabel?.text = memberText
         
         setupSubgroupsTableView()
     }
@@ -114,6 +120,9 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate {
     }
     
     // MARK: - Navigation
+    @IBAction func unwindToTripDetails(segue: UIStoryboardSegue) {
+        
+    }
 }
 
 // MARK: - UITableViewDelegate & DataSource
@@ -156,6 +165,7 @@ extension TripDetailsViewController {
                   let navController = segue.destination as? UINavigationController,
                   let editVC = navController.topViewController as? EditTripTableViewController {
             editVC.trip = self.trip
+            editVC.delegate = self
         } else if segue.identifier == "tripDetailsToInviteQR",
                   let navController = segue.destination as? UINavigationController,
                   let inviteVC = navController.topViewController as? InviteQRViewController {
@@ -208,5 +218,17 @@ extension TripDetailsViewController {
         
         // Reload subgroups
         loadData()
+    }
+}
+
+// MARK: - EditTripDelegate
+extension TripDetailsViewController {
+    func didUpdateTrip() {
+        // Refresh trip data after edit
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            setupUI()
+        }
     }
 }

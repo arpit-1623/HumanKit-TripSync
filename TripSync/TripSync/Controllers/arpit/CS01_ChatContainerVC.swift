@@ -29,6 +29,20 @@ class ChatContainerViewController: UIViewController {
         showViewController(at: 0)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh trip data when returning
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            // Update child VCs with refreshed trip data
+            generalChatVC?.trip = trip
+            subgroupsListVC?.trip = trip
+            alertsVC?.trip = trip
+        }
+    }
+    
     // MARK: - Setup
     private func setupSegmentedControl() {
         segmentedControl.removeAllSegments()

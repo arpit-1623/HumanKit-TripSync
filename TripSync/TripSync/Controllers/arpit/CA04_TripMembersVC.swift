@@ -23,6 +23,17 @@ class TripMembersViewController: UIViewController {
         loadMembers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh trip and members data when returning
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+            loadMembers()
+        }
+    }
+    
     // MARK: - Setup
     private func setupTableView() {
         membersTableView.delegate = self

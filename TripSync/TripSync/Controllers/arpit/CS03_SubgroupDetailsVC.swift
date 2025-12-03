@@ -33,6 +33,23 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Refresh subgroup and trip data when returning
+        if let subgroupId = subgroup?.id,
+           let updatedSubgroup = DataModel.shared.getSubgroup(byId: subgroupId) {
+            subgroup = updatedSubgroup
+        }
+        
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+        }
+        
+        loadData()
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         title = "Subgroup Details"

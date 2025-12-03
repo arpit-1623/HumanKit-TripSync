@@ -12,7 +12,7 @@ class CD05_SummaryVC: UIViewController {
     var tripName: String!
     var dateRange: (start: Date, end: Date)!
     var location: String!
-    var coverImage: UIImage!
+    var coverImageData: Data?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -22,7 +22,13 @@ class CD05_SummaryVC: UIViewController {
     
     // MARK: - Configuration
     private func configureData() {
-        backgroundImageView.image = coverImage
+        // Set background image
+        if let imageData = coverImageData, let image = UIImage(data: imageData) {
+            backgroundImageView.image = image
+        } else {
+            backgroundImageView.image = UIImage(named: "createTripBg")
+        }
+        
         tripNameLabel.text = tripName
         
         // Format dates
@@ -43,25 +49,24 @@ class CD05_SummaryVC: UIViewController {
             return
         }
         
-        // Convert image to data
-        let imageData = coverImage.jpegData(compressionQuality: 0.8)
-        
-        // Create trip
+        // Create trip with image data
         var newTrip = Trip(
             name: tripName,
-            description: nil,
             location: location,
             startDate: dateRange.start,
             endDate: dateRange.end,
             createdByUserId: currentUser.id
         )
-        newTrip.coverImageData = imageData
+        newTrip.coverImageData = coverImageData
         
         // Save to DataModel
-        DataModel.shared.saveTrip(newTrip)
-        
-        // Navigate back to home
-        navigationController?.popToRootViewController(animated: true)
+        do {
+            try DataModel.shared.saveTripWithValidation(newTrip)
+            // Navigate back to home
+            navigationController?.popToRootViewController(animated: true)
+        } catch {
+            showErrorAlert(message: "Failed to save trip: \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Helper Methods

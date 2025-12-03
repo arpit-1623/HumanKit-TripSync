@@ -61,7 +61,6 @@ class SampleData {
         // Current Trip
         var tokyo = Trip(
             name: "Tokyo Adventure 2025",
-            description: "Exploring the vibrant city of Tokyo with friends",
             location: "Tokyo, Japan",
             startDate: dateFromString("2025-10-29")!,
             endDate: dateFromString("2025-11-05")!,
@@ -75,7 +74,6 @@ class SampleData {
         // Upcoming Trips
         var mountain = Trip(
             name: "Autumn Mountain Retreat",
-            description: "Hiking and relaxation in the beautiful autumn mountains",
             location: "Mountains",
             startDate: dateFromString("2025-12-10")!,
             endDate: dateFromString("2025-12-15")!,
@@ -87,7 +85,6 @@ class SampleData {
         
         var island = Trip(
             name: "Tropical Island Getaway",
-            description: "Sun, sand, and relaxation on a tropical paradise",
             location: "Island",
             startDate: dateFromString("2026-02-20")!,
             endDate: dateFromString("2026-02-27")!,
@@ -100,7 +97,6 @@ class SampleData {
         // Past Trips
         var europe = Trip(
             name: "European City Explorer",
-            description: "Discovering historic cities across Europe",
             location: "Europe",
             startDate: dateFromString("2023-08-20")!,
             endDate: dateFromString("2023-09-05")!,
@@ -112,7 +108,6 @@ class SampleData {
         
         var coastal = Trip(
             name: "Coastal Road Trip Adventure",
-            description: "Scenic drives along the beautiful coastline",
             location: "Coast",
             startDate: dateFromString("2023-07-01")!,
             endDate: dateFromString("2023-07-07")!,
@@ -124,7 +119,6 @@ class SampleData {
         
         var desert = Trip(
             name: "Desert Camping Expedition",
-            description: "Under the stars in the vast desert wilderness",
             location: "Desert",
             startDate: dateFromString("2023-04-12")!,
             endDate: dateFromString("2023-04-14")!,
