@@ -177,7 +177,8 @@ class SampleData {
             time: timeFromString("14:40")!,
             tripId: tokyoTrip.id,
             subgroupId: nil,
-            createdByUserId: users[0].id
+            createdByUserId: users[0].id,
+            category: "mappin.and.ellipse"
         )
         stops.append(sensojiTemple)
         
@@ -189,7 +190,8 @@ class SampleData {
             time: timeFromString("16:00")!,
             tripId: tokyoTrip.id,
             subgroupId: foodExplorersSubgroup.id,
-            createdByUserId: users[1].id
+            createdByUserId: users[1].id,
+            category: "fork.knife"
         )
         stops.append(uenoRestaurant)
         
@@ -202,7 +204,8 @@ class SampleData {
             time: timeFromString("08:00")!,
             tripId: tokyoTrip.id,
             subgroupId: mountainTrekSubgroup.id,
-            createdByUserId: users[3].id
+            createdByUserId: users[3].id,
+            category: "leaf.fill"
         )
         stops.append(mountTakao)
         
@@ -214,7 +217,8 @@ class SampleData {
             time: timeFromString("16:00")!,
             tripId: tokyoTrip.id,
             subgroupId: nil,
-            createdByUserId: users[0].id
+            createdByUserId: users[0].id,
+            category: "mappin.and.ellipse"
         )
         stops.append(tokyoSkytree)
         
@@ -226,7 +230,8 @@ class SampleData {
             time: timeFromString("18:15")!,
             tripId: tokyoTrip.id,
             subgroupId: nil,
-            createdByUserId: users[0].id
+            createdByUserId: users[0].id,
+            category: "leaf.fill"
         )
         stops.append(uenoPark)
         
@@ -238,7 +243,8 @@ class SampleData {
             time: timeFromString("20:00")!,
             tripId: tokyoTrip.id,
             subgroupId: nil,
-            createdByUserId: users[2].id
+            createdByUserId: users[2].id,
+            category: "bag.fill"
         )
         stops.append(akihabara)
         
@@ -250,7 +256,8 @@ class SampleData {
             time: timeFromString("10:30")!,
             tripId: tokyoTrip.id,
             subgroupId: nil,
-            createdByUserId: users[1].id
+            createdByUserId: users[1].id,
+            category: "leaf.fill"
         )
         stops.append(shinjukuGyoen)
         
