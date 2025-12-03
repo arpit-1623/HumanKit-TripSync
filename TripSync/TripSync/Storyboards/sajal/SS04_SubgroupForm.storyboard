@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,10 +10,11 @@
         <!--Navigation Controller-->
         <scene sceneID="nav-scene">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nav-controller" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" keyboardType="off" id="nav-controller" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nav-bar">
-                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -30,7 +31,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CS04_SubgroupFormVC" id="subgroup-form-vc" customClass="CS04_SubgroupFormVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="table-view">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <sections>
@@ -44,18 +45,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="name-label">
-                                                    <rect key="frame" x="16" y="14.666666666666664" width="45" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="14.999999999999998" width="45" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Enter name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="name-textfield">
-                                                    <rect key="frame" x="110" y="0.0" width="227" height="50"/>
+                                                    <rect key="frame" x="110" y="14" width="227" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="name-separator">
-                                                    <rect key="frame" x="16" y="49.5" width="321" height="0.5"/>
+                                                    <rect key="frame" x="16" y="49.666666666666664" width="321" height="0.3333333333333357"/>
                                                     <color key="backgroundColor" systemColor="separatorColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="separator-height"/>
@@ -65,12 +66,12 @@
                                             <constraints>
                                                 <constraint firstItem="name-label" firstAttribute="centerY" secondItem="content-name" secondAttribute="centerY" id="name-label-centery"/>
                                                 <constraint firstItem="name-label" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="name-label-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-textfield-trailing"/>
-                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="name-label" secondAttribute="trailing" constant="49" id="name-textfield-leading"/>
                                                 <constraint firstItem="name-textfield" firstAttribute="centerY" secondItem="content-name" secondAttribute="centerY" id="name-textfield-centery"/>
+                                                <constraint firstItem="name-textfield" firstAttribute="leading" secondItem="name-label" secondAttribute="trailing" constant="49" id="name-textfield-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="name-textfield" secondAttribute="trailing" constant="16" id="name-textfield-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="name-separator" secondAttribute="bottom" id="separator-bottom"/>
                                                 <constraint firstItem="name-separator" firstAttribute="leading" secondItem="content-name" secondAttribute="leading" constant="16" id="separator-leading"/>
                                                 <constraint firstAttribute="trailing" secondItem="name-separator" secondAttribute="trailing" constant="16" id="separator-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="name-separator" secondAttribute="bottom" id="separator-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -82,13 +83,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="desc-label">
-                                                    <rect key="frame" x="16" y="8" width="321" height="20.333333333333332"/>
+                                                    <rect key="frame" x="16" y="7.9999999999999982" width="321" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description (Optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textview">
-                                                    <rect key="frame" x="16" y="36.333333333333343" width="321" height="75.666666666666657"/>
+                                                    <rect key="frame" x="16" y="36.333333333333336" width="321" height="75.666666666666657"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <color key="textColor" systemColor="placeholderTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -99,10 +100,10 @@
                                                 <constraint firstItem="desc-label" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-label-leading"/>
                                                 <constraint firstItem="desc-label" firstAttribute="top" secondItem="content-desc" secondAttribute="top" constant="8" id="desc-label-top"/>
                                                 <constraint firstAttribute="trailing" secondItem="desc-label" secondAttribute="trailing" constant="16" id="desc-label-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" constant="8" id="desc-textview-bottom"/>
                                                 <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-textview-leading"/>
                                                 <constraint firstItem="desc-textview" firstAttribute="top" secondItem="desc-label" secondAttribute="bottom" constant="8" id="desc-textview-top"/>
                                                 <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-textview-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" constant="8" id="desc-textview-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -118,7 +119,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-vertical-stack">
-                                                    <rect key="frame" x="20" y="20" width="313" height="110"/>
+                                                    <rect key="frame" x="36" y="20" width="290" height="110"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="color-row-1">
                                                             <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
@@ -220,7 +221,7 @@
                             <tableViewSection headerTitle="DETAILS" id="section-details">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-members-count">
-                                        <rect key="frame" x="20" y="527.33333015441895" width="353" height="44"/>
+                                        <rect key="frame" x="20" y="487.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-members-count" id="content-members-count">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
@@ -239,7 +240,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="members-separator">
-                                                    <rect key="frame" x="16" y="43.5" width="321" height="0.5"/>
+                                                    <rect key="frame" x="16" y="43.666666666666664" width="321" height="0.3333333333333357"/>
                                                     <color key="backgroundColor" systemColor="separatorColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="members-separator-height"/>
@@ -249,16 +250,16 @@
                                             <constraints>
                                                 <constraint firstItem="members-count-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-count-centery"/>
                                                 <constraint firstAttribute="trailing" secondItem="members-count-label" secondAttribute="trailing" constant="16" id="members-count-trailing"/>
-                                                <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
-                                                <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
+                                                <constraint firstAttribute="bottom" secondItem="members-separator" secondAttribute="bottom" id="members-separator-bottom"/>
                                                 <constraint firstItem="members-separator" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-separator-leading"/>
                                                 <constraint firstAttribute="trailing" secondItem="members-separator" secondAttribute="trailing" constant="16" id="members-separator-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="members-separator" secondAttribute="bottom" id="members-separator-bottom"/>
+                                                <constraint firstItem="members-title-label" firstAttribute="centerY" secondItem="content-members-count" secondAttribute="centerY" id="members-title-centery"/>
+                                                <constraint firstItem="members-title-label" firstAttribute="leading" secondItem="content-members-count" secondAttribute="leading" constant="16" id="members-title-leading"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-created-date">
-                                        <rect key="frame" x="20" y="571.33333015441895" width="353" height="44"/>
+                                        <rect key="frame" x="20" y="531.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-created-date" id="content-created-date">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
@@ -277,7 +278,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="created-separator">
-                                                    <rect key="frame" x="16" y="43.5" width="321" height="0.5"/>
+                                                    <rect key="frame" x="16" y="43.666666666666664" width="321" height="0.3333333333333357"/>
                                                     <color key="backgroundColor" systemColor="separatorColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="created-separator-height"/>
@@ -287,11 +288,11 @@
                                             <constraints>
                                                 <constraint firstItem="created-date-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-date-centery"/>
                                                 <constraint firstAttribute="trailing" secondItem="created-date-label" secondAttribute="trailing" constant="16" id="created-date-trailing"/>
-                                                <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
-                                                <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
+                                                <constraint firstAttribute="bottom" secondItem="created-separator" secondAttribute="bottom" id="created-separator-bottom"/>
                                                 <constraint firstItem="created-separator" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-separator-leading"/>
                                                 <constraint firstAttribute="trailing" secondItem="created-separator" secondAttribute="trailing" constant="16" id="created-separator-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="created-separator" secondAttribute="bottom" id="created-separator-bottom"/>
+                                                <constraint firstItem="created-title-label" firstAttribute="centerY" secondItem="content-created-date" secondAttribute="centerY" id="created-title-centery"/>
+                                                <constraint firstItem="created-title-label" firstAttribute="leading" secondItem="content-created-date" secondAttribute="leading" constant="16" id="created-title-leading"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -300,7 +301,7 @@
                             <tableViewSection id="section-delete">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="cell-delete">
-                                        <rect key="frame" x="20" y="651.33333015441895" width="353" height="80"/>
+                                        <rect key="frame" x="20" y="611.33333015441895" width="353" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-delete" id="content-delete">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
@@ -308,7 +309,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-button">
                                                     <rect key="frame" x="16" y="10" width="321" height="60"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="9l5-vk-6ao"/>
                                                         <constraint firstAttribute="height" constant="30" id="delete-button-height"/>
@@ -368,11 +369,11 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="separatorColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
