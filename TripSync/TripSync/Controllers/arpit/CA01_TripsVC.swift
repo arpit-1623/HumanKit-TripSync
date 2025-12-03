@@ -24,6 +24,7 @@ class TripsViewController: UIViewController {
     @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var tripsTableView: UITableView!
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -46,6 +47,13 @@ class TripsViewController: UIViewController {
         // Refresh trip data when returning from trip details or edit screens
         loadData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Update table height to fit all content
+        updateTableViewHeight()
+    }
 
     // MARK: - Data Loading
     private func loadData() {
@@ -57,6 +65,7 @@ class TripsViewController: UIViewController {
         
         configureCurrentTripUI()
         tripsTableView.reloadData()
+        updateTableViewHeight()
     }
     
     // MARK: - Setup
@@ -68,6 +77,23 @@ class TripsViewController: UIViewController {
     private func setupTableView() {
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
+    }
+    
+    private func updateTableViewHeight() {
+        // Calculate the required height for all table rows
+        let rowCount = filteredTrips.count
+        
+        // Account for row height (110) + section spacing for insetGrouped style
+        // Each row gets approximately 110pt height
+        let estimatedHeight = CGFloat(rowCount) * 110.0
+        
+        // Add padding for section insets (approximately 35pt per section in insetGrouped style)
+        let totalHeight = estimatedHeight + 35.0
+        
+        // Set minimum height to 400 for consistent UI when few trips
+        let finalHeight = max(totalHeight, 400)
+        
+        tableViewHeightConstraint.constant = finalHeight
     }
     
     func configureCurrentTripUI() {
@@ -111,6 +137,7 @@ class TripsViewController: UIViewController {
             break
         }
         tripsTableView.reloadData()
+        updateTableViewHeight()
     }
     
     @IBAction func currentTripCardTapped(_ sender: UITapGestureRecognizer) {
@@ -127,6 +154,10 @@ class TripsViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindToTrips(segue: UIStoryboardSegue) {
+        
+    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -141,6 +172,7 @@ extension TripsViewController: UISearchBarDelegate {
             }
         }
         tripsTableView.reloadData()
+        updateTableViewHeight()
     }
 }
 
