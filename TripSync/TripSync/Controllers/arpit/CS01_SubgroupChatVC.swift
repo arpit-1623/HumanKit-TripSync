@@ -48,6 +48,8 @@ class SubgroupChatViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     private func loadCurrentUser() {
