@@ -389,8 +389,8 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let dateLabel = UILabel()
         let dateString = dateFormatter.string(from: groupedStops[section].date)
         dateLabel.text = dateString
-        dateLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        dateLabel.textColor = .secondaryLabel
+        dateLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        dateLabel.textColor = .label
         dateLabel.textAlignment = .right
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(dateLabel)

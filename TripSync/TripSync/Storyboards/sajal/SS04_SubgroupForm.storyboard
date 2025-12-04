@@ -75,35 +75,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="cell-desc">
-                                        <rect key="frame" x="20" y="105.33333206176758" width="353" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="cell-desc">
+                                        <rect key="frame" x="20" y="105.33333206176758" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-desc" id="content-desc">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="desc-label">
-                                                    <rect key="frame" x="16" y="7.9999999999999982" width="321" height="20.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="desc-label">
+                                                    <rect key="frame" x="16" y="14.999999999999998" width="87.666666666666671" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description (Optional)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textview">
-                                                    <rect key="frame" x="16" y="36.333333333333336" width="321" height="75.666666666666657"/>
-                                                    <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                                    <color key="textColor" systemColor="placeholderTextColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Description" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textfield">
+                                                    <rect key="frame" x="110" y="14" width="227" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="desc-label" firstAttribute="centerY" secondItem="content-desc" secondAttribute="centerY" id="desc-label-centery"/>
                                                 <constraint firstItem="desc-label" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-label-leading"/>
-                                                <constraint firstItem="desc-label" firstAttribute="top" secondItem="content-desc" secondAttribute="top" constant="8" id="desc-label-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="desc-label" secondAttribute="trailing" constant="16" id="desc-label-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="desc-textview" secondAttribute="bottom" constant="8" id="desc-textview-bottom"/>
-                                                <constraint firstItem="desc-textview" firstAttribute="leading" secondItem="content-desc" secondAttribute="leading" constant="16" id="desc-textview-leading"/>
-                                                <constraint firstItem="desc-textview" firstAttribute="top" secondItem="desc-label" secondAttribute="bottom" constant="8" id="desc-textview-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="desc-textview" secondAttribute="trailing" constant="16" id="desc-textview-trailing"/>
+                                                <constraint firstItem="desc-textfield" firstAttribute="centerY" secondItem="content-desc" secondAttribute="centerY" id="desc-textfield-centery"/>
+                                                <constraint firstItem="desc-textfield" firstAttribute="leading" secondItem="desc-label" secondAttribute="trailing" constant="20" id="desc-textfield-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="desc-textfield" secondAttribute="trailing" constant="16" id="desc-textfield-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -352,7 +348,7 @@
                         <outlet property="color8Button" destination="color-btn-8" id="color8-outlet"/>
                         <outlet property="color9Button" destination="color-btn-9" id="color9-outlet"/>
                         <outlet property="createdDateLabel" destination="created-date-label" id="created-date-outlet"/>
-                        <outlet property="descriptionTextView" destination="desc-textview" id="desc-outlet"/>
+                        <outlet property="descriptionTextField" destination="desc-textfield" id="desc-outlet"/>
                         <outlet property="membersCountLabel" destination="members-count-label" id="members-count-outlet"/>
                         <outlet property="nameTextField" destination="name-textfield" id="name-outlet"/>
                     </connections>

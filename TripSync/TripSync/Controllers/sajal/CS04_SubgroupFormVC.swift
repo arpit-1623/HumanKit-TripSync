@@ -16,7 +16,7 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     // Color buttons (11 colors)
     @IBOutlet weak var color1Button: UIButton!
@@ -86,13 +86,9 @@ class CS04_SubgroupFormVC: UITableViewController {
         nameTextField.placeholder = "Subgroup Name"
         nameTextField.borderStyle = .none
         
-        // Description text view
-        descriptionTextView.text = "Description (Optional)"
-        descriptionTextView.textColor = .placeholderText
-        descriptionTextView.font = .systemFont(ofSize: 16)
-        descriptionTextView.delegate = self
-        descriptionTextView.layer.cornerRadius = 8
-        descriptionTextView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+        // Description text field
+        descriptionTextField.placeholder = "Description"
+        descriptionTextField.borderStyle = .none
         
         tableView.backgroundColor = .systemGroupedBackground
         tableView.separatorStyle = .none
@@ -144,11 +140,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         guard let subgroup = existingSubgroup else { return }
         
         nameTextField.text = subgroup.name
-        
-        if let description = subgroup.description, !description.isEmpty {
-            descriptionTextView.text = description
-            descriptionTextView.textColor = .label
-        }
+        descriptionTextField.text = subgroup.description ?? ""
         
         selectedColorHex = subgroup.colorHex
         selectedMemberIds = Set(subgroup.memberIds)
@@ -178,7 +170,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         
         guard let tripId = tripId else { return }
         
-        let description = descriptionTextView.text == "Description (Optional)" ? nil : descriptionTextView.text
+        let description = descriptionTextField.text?.isEmpty == false ? descriptionTextField.text : nil
         
         if let existingSubgroup = existingSubgroup {
             // Update existing subgroup - keep current members
@@ -326,9 +318,6 @@ class CS04_SubgroupFormVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if isEditMode && section == 3 {
-            return "Deleting this subgroup will remove it from the trip permanently."
-        }
         return nil
     }
     
@@ -358,7 +347,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         if isEditMode {
             switch indexPath.section {
             case 0:
-                return indexPath.row == 0 ? 50 : 120 // Name field, Description text view
+                return 50 // Name field, Description field
             case 1:
                 return 150 // Color buttons grid
             case 2:
@@ -371,7 +360,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         } else {
             switch indexPath.section {
             case 0:
-                return indexPath.row == 0 ? 50 : 120 // Name field, Description text view
+                return 50 // Name field, Description field
             case 1:
                 return 150 // Color buttons grid
             default:
@@ -381,19 +370,4 @@ class CS04_SubgroupFormVC: UITableViewController {
     }
 }
 
-// MARK: - UITextViewDelegate
-extension CS04_SubgroupFormVC: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == .placeholderText {
-            textView.text = ""
-            textView.textColor = .label
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Description (Optional)"
-            textView.textColor = .placeholderText
-        }
-    }
-}
+
