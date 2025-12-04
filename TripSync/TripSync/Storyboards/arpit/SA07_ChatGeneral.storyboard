@@ -69,31 +69,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="giO-zF-LcO">
-                                <rect key="frame" x="0.0" y="118" width="393" height="381"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="416"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="194" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="01x-2u-1P3" id="CCc-lX-Pf5">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aJ-97-ggg" userLabel="Name Label">
-                                                    <rect key="frame" x="36" y="23" width="237" height="16"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Avatar-Incoming">
+                                                    <rect key="frame" x="12" y="8" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="KlH-ha-szY"/>
+                                                        <constraint firstAttribute="height" constant="32" id="Avatar-Incoming-Height"/>
+                                                        <constraint firstAttribute="width" constant="32" id="Avatar-Incoming-Width"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Sender Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aJ-97-ggg" userLabel="Name Label">
+                                                    <rect key="frame" x="52.000000000000007" y="8" width="76.666666666666686" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igk-3m-Es6" userLabel="Bubble view">
-                                                    <rect key="frame" x="36" y="43" width="237" height="128"/>
+                                                    <rect key="frame" x="52" y="26.000000000000004" width="121" height="35.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi my name is Sajal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqV-Jb-NXp">
-                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqV-Jb-NXp">
+                                                            <rect key="frame" x="12" y="7.9999999999999982" width="97" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -106,46 +110,54 @@
                                                         <constraint firstAttribute="bottom" secondItem="PqV-Jb-NXp" secondAttribute="bottom" constant="8" id="knA-V2-3QD"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Just now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Timestamp-Incoming">
+                                                    <rect key="frame" x="52" y="65.333333333333329" width="47" height="13.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Igk-3m-Es6" secondAttribute="bottom" constant="8" id="17M-th-tqy"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Igk-3m-Es6" secondAttribute="trailing" constant="100" id="2yH-fD-xh5"/>
-                                                <constraint firstItem="Igk-3m-Es6" firstAttribute="leading" secondItem="CCc-lX-Pf5" secondAttribute="leadingMargin" constant="16" id="55w-EN-BQg"/>
-                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="leading" secondItem="CCc-lX-Pf5" secondAttribute="leadingMargin" constant="16" id="8mq-LD-WlO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="2aJ-97-ggg" secondAttribute="trailing" constant="100" id="HC6-uM-r61"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Timestamp-Incoming" secondAttribute="bottom" constant="8" id="17M-th-tqy"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Igk-3m-Es6" secondAttribute="trailing" constant="72" id="2yH-fD-xh5"/>
+                                                <constraint firstItem="Igk-3m-Es6" firstAttribute="leading" secondItem="Avatar-Incoming" secondAttribute="trailing" constant="8" id="55w-EN-BQg"/>
+                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="leading" secondItem="Avatar-Incoming" secondAttribute="trailing" constant="8" id="8mq-LD-WlO"/>
+                                                <constraint firstItem="Avatar-Incoming" firstAttribute="leading" secondItem="CCc-lX-Pf5" secondAttribute="leading" constant="12" id="Avatar-Incoming-Leading"/>
+                                                <constraint firstItem="Avatar-Incoming" firstAttribute="top" secondItem="CCc-lX-Pf5" secondAttribute="top" constant="8" id="Avatar-Incoming-Top"/>
                                                 <constraint firstItem="Igk-3m-Es6" firstAttribute="top" secondItem="2aJ-97-ggg" secondAttribute="bottom" constant="4" id="IqX-4J-kJY"/>
-                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="top" secondItem="CCc-lX-Pf5" secondAttribute="topMargin" constant="8" id="gMm-0v-d9A"/>
+                                                <constraint firstItem="Timestamp-Incoming" firstAttribute="leading" secondItem="Avatar-Incoming" secondAttribute="trailing" constant="8" id="Timestamp-Incoming-Leading"/>
+                                                <constraint firstItem="Timestamp-Incoming" firstAttribute="top" secondItem="Igk-3m-Es6" secondAttribute="bottom" constant="4" id="Timestamp-Incoming-Top"/>
+                                                <constraint firstItem="2aJ-97-ggg" firstAttribute="top" secondItem="CCc-lX-Pf5" secondAttribute="top" constant="8" id="gMm-0v-d9A"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatarImageView" destination="Avatar-Incoming" id="Avatar-Incoming-Outlet"/>
                                             <outlet property="bubbleView" destination="Igk-3m-Es6" id="zEa-7q-JfN"/>
                                             <outlet property="messageLabel" destination="PqV-Jb-NXp" id="paN-SG-BV5"/>
                                             <outlet property="nameLabel" destination="2aJ-97-ggg" id="eCN-m9-Rmy"/>
+                                            <outlet property="timestampLabel" destination="Timestamp-Incoming" id="Timestamp-Incoming-Outlet"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="194" id="ktk-mg-UA2" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="244" width="393" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="90" id="ktk-mg-UA2" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="140" width="393" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ktk-mg-UA2" id="7dw-z7-VPa">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-X2-agC" userLabel="Name Label">
-                                                    <rect key="frame" x="120" y="23" width="237" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="0Ai-Rg-YfT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-X2-agC" userLabel="Name Label">
+                                                    <rect key="frame" x="72" y="8" width="305" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEh-n6-ObH" userLabel="Bubble View">
-                                                    <rect key="frame" x="120" y="43" width="237" height="128"/>
+                                                    <rect key="frame" x="250.66666666666666" y="26.000000000000004" width="126.33333333333334" height="35.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hi my name is arpit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoK-rJ-pGO">
-                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XoK-rJ-pGO">
+                                                            <rect key="frame" x="12.000000000000028" y="7.9999999999999982" width="102.33333333333333" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -157,42 +169,51 @@
                                                         <constraint firstItem="XoK-rJ-pGO" firstAttribute="leading" secondItem="dEh-n6-ObH" secondAttribute="leading" constant="12" id="kcb-fO-DIc"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Just now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Timestamp-Outgoing">
+                                                    <rect key="frame" x="330" y="65.333333333333329" width="47" height="13.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RSD-X2-agC" firstAttribute="leading" secondItem="7dw-z7-VPa" secondAttribute="leadingMargin" constant="100" id="04y-Ic-3ft"/>
+                                                <constraint firstItem="RSD-X2-agC" firstAttribute="leading" secondItem="7dw-z7-VPa" secondAttribute="leading" constant="72" id="04y-Ic-3ft"/>
                                                 <constraint firstItem="dEh-n6-ObH" firstAttribute="top" secondItem="RSD-X2-agC" secondAttribute="bottom" constant="4" id="PCL-Gw-HAD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="RSD-X2-agC" secondAttribute="trailing" constant="16" id="U6G-b6-9Ye"/>
-                                                <constraint firstItem="RSD-X2-agC" firstAttribute="top" secondItem="7dw-z7-VPa" secondAttribute="topMargin" constant="8" id="V2G-Dx-vHm"/>
-                                                <constraint firstItem="dEh-n6-ObH" firstAttribute="leading" secondItem="7dw-z7-VPa" secondAttribute="leadingMargin" constant="100" id="iOh-3g-cKV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dEh-n6-ObH" secondAttribute="trailing" constant="16" id="jwO-sG-03c"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dEh-n6-ObH" secondAttribute="bottom" constant="8" id="oI6-Dr-xRE"/>
+                                                <constraint firstItem="Timestamp-Outgoing" firstAttribute="top" secondItem="dEh-n6-ObH" secondAttribute="bottom" constant="4" id="Timestamp-Outgoing-Top"/>
+                                                <constraint firstAttribute="trailing" secondItem="Timestamp-Outgoing" secondAttribute="trailing" constant="16" id="Timestamp-Outgoing-Trailing"/>
+                                                <constraint firstAttribute="trailing" secondItem="RSD-X2-agC" secondAttribute="trailing" constant="16" id="U6G-b6-9Ye"/>
+                                                <constraint firstItem="RSD-X2-agC" firstAttribute="top" secondItem="7dw-z7-VPa" secondAttribute="top" constant="8" id="V2G-Dx-vHm"/>
+                                                <constraint firstItem="dEh-n6-ObH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7dw-z7-VPa" secondAttribute="leading" constant="72" id="iOh-3g-cKV"/>
+                                                <constraint firstAttribute="trailing" secondItem="dEh-n6-ObH" secondAttribute="trailing" constant="16" id="jwO-sG-03c"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Timestamp-Outgoing" secondAttribute="bottom" constant="8" id="oI6-Dr-xRE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bubbleView" destination="dEh-n6-ObH" id="zOS-MO-ZZp"/>
                                             <outlet property="messageLabel" destination="XoK-rJ-pGO" id="TkO-f8-70a"/>
                                             <outlet property="nameLabel" destination="RSD-X2-agC" id="pcq-vj-0oz"/>
+                                            <outlet property="timestampLabel" destination="Timestamp-Outgoing" id="Timestamp-Outgoing-Outlet"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView">
-                                <rect key="frame" x="0.0" y="499" width="393" height="70"/>
+                                <rect key="frame" x="0.0" y="534" width="393" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3">
-                                        <rect key="frame" x="16" y="14" width="42" height="42"/>
+                                        <rect key="frame" x="16" y="7" width="36" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="0TS-x8-XjC"/>
-                                            <constraint firstAttribute="height" constant="42" id="MdU-4Y-u5G"/>
+                                            <constraint firstAttribute="width" constant="36" id="0TS-x8-XjC"/>
+                                            <constraint firstAttribute="height" constant="36" id="MdU-4Y-u5G"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeneralChat-TextFieldContainer">
-                                        <rect key="frame" x="70" y="13" width="253" height="44"/>
+                                        <rect key="frame" x="64" y="7" width="265" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-tk-pJy" userLabel="message">
-                                                <rect key="frame" x="16" y="0.0" width="221" height="44"/>
+                                                <rect key="frame" x="16" y="0.0" width="233" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -203,19 +224,19 @@
                                             <constraint firstItem="AaM-tk-pJy" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="leading" constant="16" id="GeneralChat-TextField-Leading"/>
                                             <constraint firstItem="AaM-tk-pJy" firstAttribute="top" secondItem="GeneralChat-TextFieldContainer" secondAttribute="top" id="GeneralChat-TextField-Top"/>
                                             <constraint firstAttribute="trailing" secondItem="AaM-tk-pJy" secondAttribute="trailing" constant="16" id="GeneralChat-TextField-Trailing"/>
-                                            <constraint firstAttribute="height" constant="44" id="GeneralChat-TextFieldContainer-Height"/>
+                                            <constraint firstAttribute="height" constant="36" id="GeneralChat-TextFieldContainer-Height"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="22"/>
+                                                <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR">
-                                        <rect key="frame" x="335" y="14" width="42" height="42"/>
+                                        <rect key="frame" x="341" y="7" width="36" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="hlz-S7-guO"/>
-                                            <constraint firstAttribute="width" constant="42" id="qrf-Mj-eWT"/>
+                                            <constraint firstAttribute="height" constant="36" id="hlz-S7-guO"/>
+                                            <constraint firstAttribute="width" constant="36" id="qrf-Mj-eWT"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
@@ -230,7 +251,7 @@
                                     <constraint firstItem="GeneralChat-TextFieldContainer" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="DhW-Xu-mSh"/>
                                     <constraint firstAttribute="trailing" secondItem="4Ci-ma-waR" secondAttribute="trailing" constant="16" id="Ev8-qP-fWm"/>
                                     <constraint firstItem="bQz-Ry-oS3" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="J6x-TT-GhS"/>
-                                    <constraint firstAttribute="height" constant="70" id="TRF-5f-8eK"/>
+                                    <constraint firstAttribute="height" constant="50" id="TRF-5f-8eK"/>
                                     <constraint firstItem="4Ci-ma-waR" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="dDm-bl-PBb"/>
                                     <constraint firstItem="4Ci-ma-waR" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="trailing" constant="12" id="e40-ux-Cs0"/>
                                     <constraint firstItem="bQz-Ry-oS3" firstAttribute="leading" secondItem="mfu-fg-94K" secondAttribute="leading" constant="16" id="lW3-xb-xUl"/>
@@ -241,9 +262,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="giO-zF-LcO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="78B-6d-nem"/>
-                        <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="giO-zF-LcO" secondAttribute="trailing" id="JWh-0h-EGq"/>
-                        <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="mfu-fg-94K" secondAttribute="bottom" constant="0" id="PFn-k9-qIc"/>
-                        <constraint firstItem="mfu-fg-94K" firstAttribute="top" secondItem="giO-zF-LcO" secondAttribute="bottom" id="WDb-hX-c8h"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="giO-zF-LcO" secondAttribute="trailing" id="JWh-0h-EGq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="mfu-fg-94K" secondAttribute="bottom" id="PFn-k9-qIc"/>
+                            <constraint firstItem="mfu-fg-94K" firstAttribute="top" secondItem="giO-zF-LcO" secondAttribute="bottom" id="WDb-hX-c8h"/>
                             <constraint firstItem="mfu-fg-94K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XpU-4b-RMC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mfu-fg-94K" secondAttribute="trailing" id="h0y-lu-OTc"/>
                             <constraint firstItem="giO-zF-LcO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="hym-Mw-AmZ"/>
@@ -299,7 +320,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="30"/>
+                                                            <integer key="value" value="50"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -549,28 +570,32 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="649"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="194" id="SubgroupChat-IncomingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="SubgroupChat-IncomingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupChat-IncomingCell" id="SubgroupChat-IncomingContent">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingName">
-                                                    <rect key="frame" x="36" y="23" width="237" height="16"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingAvatar">
+                                                    <rect key="frame" x="12" y="8" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="SubgroupChat-IncomingNameHeight"/>
+                                                        <constraint firstAttribute="height" constant="32" id="SubgroupChat-IncomingAvatarHeight"/>
+                                                        <constraint firstAttribute="width" constant="32" id="SubgroupChat-IncomingAvatarWidth"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Sender Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingName">
+                                                    <rect key="frame" x="52.000000000000007" y="8" width="76.666666666666686" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingBubble">
-                                                    <rect key="frame" x="36" y="43" width="237" height="128"/>
+                                                    <rect key="frame" x="52" y="26.000000000000004" width="121" height="35.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingMessage">
-                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingMessage">
+                                                            <rect key="frame" x="12" y="7.9999999999999982" width="97" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -583,46 +608,54 @@
                                                         <constraint firstAttribute="trailing" secondItem="SubgroupChat-IncomingMessage" secondAttribute="trailing" constant="12" id="SubgroupChat-IncomingMessageTrailing"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Just now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-IncomingTimestamp">
+                                                    <rect key="frame" x="52" y="65.333333333333329" width="47" height="13.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="SubgroupChat-IncomingBubble" secondAttribute="bottom" constant="8" id="SubgroupChat-IncomingBubbleBottom"/>
-                                                <constraint firstItem="SubgroupChat-IncomingBubble" firstAttribute="leading" secondItem="SubgroupChat-IncomingContent" secondAttribute="leadingMargin" constant="16" id="SubgroupChat-IncomingBubbleLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingAvatar" firstAttribute="leading" secondItem="SubgroupChat-IncomingContent" secondAttribute="leading" constant="12" id="SubgroupChat-IncomingAvatarLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingAvatar" firstAttribute="top" secondItem="SubgroupChat-IncomingContent" secondAttribute="top" constant="8" id="SubgroupChat-IncomingAvatarTop"/>
+                                                <constraint firstItem="SubgroupChat-IncomingBubble" firstAttribute="leading" secondItem="SubgroupChat-IncomingAvatar" secondAttribute="trailing" constant="8" id="SubgroupChat-IncomingBubbleLeading"/>
                                                 <constraint firstItem="SubgroupChat-IncomingBubble" firstAttribute="top" secondItem="SubgroupChat-IncomingName" secondAttribute="bottom" constant="4" id="SubgroupChat-IncomingBubbleTop"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-IncomingBubble" secondAttribute="trailing" constant="100" id="SubgroupChat-IncomingBubbleTrailing"/>
-                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="leading" secondItem="SubgroupChat-IncomingContent" secondAttribute="leadingMargin" constant="16" id="SubgroupChat-IncomingNameLeading"/>
-                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="top" secondItem="SubgroupChat-IncomingContent" secondAttribute="topMargin" constant="8" id="SubgroupChat-IncomingNameTop"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-IncomingName" secondAttribute="trailing" constant="100" id="SubgroupChat-IncomingNameTrailing"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SubgroupChat-IncomingBubble" secondAttribute="trailing" constant="72" id="SubgroupChat-IncomingBubbleTrailing"/>
+                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="leading" secondItem="SubgroupChat-IncomingAvatar" secondAttribute="trailing" constant="8" id="SubgroupChat-IncomingNameLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingName" firstAttribute="top" secondItem="SubgroupChat-IncomingContent" secondAttribute="top" constant="8" id="SubgroupChat-IncomingNameTop"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SubgroupChat-IncomingTimestamp" secondAttribute="bottom" constant="8" id="SubgroupChat-IncomingTimestampBottom"/>
+                                                <constraint firstItem="SubgroupChat-IncomingTimestamp" firstAttribute="leading" secondItem="SubgroupChat-IncomingAvatar" secondAttribute="trailing" constant="8" id="SubgroupChat-IncomingTimestampLeading"/>
+                                                <constraint firstItem="SubgroupChat-IncomingTimestamp" firstAttribute="top" secondItem="SubgroupChat-IncomingBubble" secondAttribute="bottom" constant="4" id="SubgroupChat-IncomingTimestampTop"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatarImageView" destination="SubgroupChat-IncomingAvatar" id="SubgroupChat-IncomingAvatarOutlet"/>
                                             <outlet property="bubbleView" destination="SubgroupChat-IncomingBubble" id="SubgroupChat-IncomingBubbleOutlet"/>
                                             <outlet property="messageLabel" destination="SubgroupChat-IncomingMessage" id="SubgroupChat-IncomingMessageOutlet"/>
                                             <outlet property="nameLabel" destination="SubgroupChat-IncomingName" id="SubgroupChat-IncomingNameOutlet"/>
+                                            <outlet property="timestampLabel" destination="SubgroupChat-IncomingTimestamp" id="SubgroupChat-IncomingTimestampOutlet"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="194" id="SubgroupChat-OutgoingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="244" width="393" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OutgoingMessageCell" rowHeight="90" id="SubgroupChat-OutgoingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="140" width="393" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupChat-OutgoingCell" id="SubgroupChat-OutgoingContent">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingName">
-                                                    <rect key="frame" x="120" y="23" width="237" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="SubgroupChat-OutgoingNameHeight"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingName">
+                                                    <rect key="frame" x="72" y="8" width="305" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingBubble">
-                                                    <rect key="frame" x="120" y="43" width="237" height="128"/>
+                                                    <rect key="frame" x="250.66666666666666" y="26.000000000000004" width="126.33333333333334" height="35.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingMessage">
-                                                            <rect key="frame" x="12" y="8" width="213" height="112"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingMessage">
+                                                            <rect key="frame" x="12.000000000000028" y="7.9999999999999982" width="102.33333333333333" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -634,21 +667,30 @@
                                                         <constraint firstAttribute="trailing" secondItem="SubgroupChat-OutgoingMessage" secondAttribute="trailing" constant="12" id="SubgroupChat-OutgoingMessageTrailing"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Just now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-OutgoingTimestamp">
+                                                    <rect key="frame" x="330" y="65.333333333333329" width="47" height="13.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="bottom" constant="8" id="SubgroupChat-OutgoingBubbleBottom"/>
-                                                <constraint firstItem="SubgroupChat-OutgoingBubble" firstAttribute="leading" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leadingMargin" constant="100" id="SubgroupChat-OutgoingBubbleLeading"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingBubble" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leading" constant="72" id="SubgroupChat-OutgoingBubbleLeading"/>
                                                 <constraint firstItem="SubgroupChat-OutgoingBubble" firstAttribute="top" secondItem="SubgroupChat-OutgoingName" secondAttribute="bottom" constant="4" id="SubgroupChat-OutgoingBubbleTop"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingBubbleTrailing"/>
-                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="leading" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leadingMargin" constant="100" id="SubgroupChat-OutgoingNameLeading"/>
-                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="top" secondItem="SubgroupChat-OutgoingContent" secondAttribute="topMargin" constant="8" id="SubgroupChat-OutgoingNameTop"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SubgroupChat-OutgoingName" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingNameTrailing"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingBubbleTrailing"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="leading" secondItem="SubgroupChat-OutgoingContent" secondAttribute="leading" constant="72" id="SubgroupChat-OutgoingNameLeading"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingName" firstAttribute="top" secondItem="SubgroupChat-OutgoingContent" secondAttribute="top" constant="8" id="SubgroupChat-OutgoingNameTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupChat-OutgoingName" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingNameTrailing"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SubgroupChat-OutgoingTimestamp" secondAttribute="bottom" constant="8" id="SubgroupChat-OutgoingTimestampBottom"/>
+                                                <constraint firstItem="SubgroupChat-OutgoingTimestamp" firstAttribute="top" secondItem="SubgroupChat-OutgoingBubble" secondAttribute="bottom" constant="4" id="SubgroupChat-OutgoingTimestampTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupChat-OutgoingTimestamp" secondAttribute="trailing" constant="16" id="SubgroupChat-OutgoingTimestampTrailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bubbleView" destination="SubgroupChat-OutgoingBubble" id="SubgroupChat-OutgoingBubbleOutlet"/>
                                             <outlet property="messageLabel" destination="SubgroupChat-OutgoingMessage" id="SubgroupChat-OutgoingMessageOutlet"/>
                                             <outlet property="nameLabel" destination="SubgroupChat-OutgoingName" id="SubgroupChat-OutgoingNameOutlet"/>
+                                            <outlet property="timestampLabel" destination="SubgroupChat-OutgoingTimestamp" id="SubgroupChat-OutgoingTimestampOutlet"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
