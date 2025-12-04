@@ -13,7 +13,7 @@ class ES04_CategoryIconCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 12
-        view.backgroundColor = UIColor(white: 0.3, alpha: 1)
+        view.backgroundColor = .systemGray4
         return view
     }()
     
@@ -47,8 +47,8 @@ class ES04_CategoryIconCell: UICollectionViewCell {
             
             iconImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             iconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 28),
-            iconImageView.heightAnchor.constraint(equalToConstant: 28)
+            iconImageView.widthAnchor.constraint(equalToConstant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -59,7 +59,7 @@ class ES04_CategoryIconCell: UICollectionViewCell {
             containerView.backgroundColor = .systemBlue
             iconImageView.tintColor = .white
         } else {
-            containerView.backgroundColor = UIColor(white: 0.3, alpha: 1)
+            containerView.backgroundColor = .systemGray4
             iconImageView.tintColor = .white
         }
     }
