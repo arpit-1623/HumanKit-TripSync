@@ -130,7 +130,7 @@
         <!--Create Account-->
         <scene sceneID="t6Q-rP-OP6">
             <objects>
-                <viewController title="Create Account" id="p0V-Kb-bhT" customClass="CM01_CreateAccountVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Account" id="p0V-Kb-bhT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d6F-1k-NI3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,7 +329,7 @@
         <!--Welcome Back-->
         <scene sceneID="db4-bM-hcV">
             <objects>
-                <viewController title="Welcome Back" id="l66-vZ-XtO" customClass="CM01_LoginVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Welcome Back" id="l66-vZ-XtO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UEU-Os-ytX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -535,7 +535,7 @@
         <!--Forgot Password-->
         <scene sceneID="X5O-bQ-bJx">
             <objects>
-                <viewController title="Forgot Password" id="gUP-Ae-be4" customClass="CM01_ForgotPasswordVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Forgot Password" id="gUP-Ae-be4" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ONH-RJ-Xg3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
