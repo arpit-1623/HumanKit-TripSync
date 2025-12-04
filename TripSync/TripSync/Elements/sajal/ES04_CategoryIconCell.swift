@@ -57,10 +57,10 @@ class ES04_CategoryIconCell: UICollectionViewCell {
         
         if isSelected {
             containerView.backgroundColor = .systemBlue
-            iconImageView.tintColor = .white
+            iconImageView.tintColor = .label
         } else {
             containerView.backgroundColor = .systemGray4
-            iconImageView.tintColor = .white
+            iconImageView.tintColor = .label
         }
     }
 }

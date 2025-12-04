@@ -23,8 +23,14 @@ class UpcomingTripCell: UITableViewCell {
         tripDateLabel.text = trip.dateRangeString
         tripMembersLabel.text = "\(trip.memberCount) members"
         
-        // Set trip image or placeholder
-        tripImageView.image = UIImage(named: "createTripBg")
+        // Load image from URL or show placeholder
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: tripImageView)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            tripImageView.image = image
+        } else {
+            tripImageView.image = UIImage(named: "createTripBg")
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

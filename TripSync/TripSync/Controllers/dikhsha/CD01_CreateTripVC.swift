@@ -25,7 +25,9 @@ class CreateTripViewController: UIViewController {
     private var selectedStartDate: Date?
     private var selectedEndDate: Date?
     private var selectedLocation: String?
-    private var selectedImageData: Data?
+    private var selectedImageData: Data? // Deprecated: for backward compatibility
+    private var selectedImageURL: String?
+    private var selectedPhotographerName: String?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -125,6 +127,8 @@ class CreateTripViewController: UIViewController {
             summaryVC.dateRange = (start: startDate, end: endDate)
             summaryVC.location = location
             summaryVC.coverImageData = selectedImageData
+            summaryVC.coverImageURL = selectedImageURL
+            summaryVC.coverImagePhotographerName = selectedPhotographerName
         }
     }
     
@@ -156,7 +160,9 @@ extension CreateTripViewController: UITextFieldDelegate {
 extension CreateTripViewController: ImagePickerDelegate {
     func didSelectImage(_ image: UIImage, photoData: UnsplashPhoto) {
         backgroundImageView.image = image
-        selectedImageData = image.jpegData(compressionQuality: 0.8)
+        selectedImageData = image.jpegData(compressionQuality: 0.8) // Kept for backward compatibility
+        selectedImageURL = photoData.urls.regular
+        selectedPhotographerName = photoData.user.name
     }
 }
 

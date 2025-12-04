@@ -12,6 +12,7 @@ class SubgroupChatViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var messageInputBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     var trip: Trip?
@@ -30,6 +31,12 @@ class SubgroupChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadMessages()
+        registerKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterKeyboardNotifications()
     }
     
     // MARK: - Setup
@@ -41,6 +48,8 @@ class SubgroupChatViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     private func loadCurrentUser() {
@@ -60,10 +69,58 @@ class SubgroupChatViewController: UIViewController {
         scrollToBottom()
     }
     
-    private func scrollToBottom() {
+    private func scrollToBottom(animated: Bool = false) {
         guard messages.count > 0 else { return }
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+    }
+    
+    // MARK: - Keyboard Handling
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unregisterKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+              let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+              let curveValue = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else { return }
+        
+        let keyboardHeight = keyboardFrame.height
+        let safeAreaBottom = view.safeAreaInsets.bottom
+        
+        // Adjust constraint: keyboard height minus safe area (to avoid double counting)
+        messageInputBottomConstraint.constant = keyboardHeight - safeAreaBottom
+        
+        let animationCurve = UIView.AnimationCurve(rawValue: Int(curveValue)) ?? .easeInOut
+        let animator = UIViewPropertyAnimator(duration: duration, curve: animationCurve) {
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
+        
+        // Scroll to bottom after keyboard appears
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.scrollToBottom(animated: true)
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+              let curveValue = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else { return }
+        
+        // Reset to original 15pt offset
+        messageInputBottomConstraint.constant = 15
+        
+        let animationCurve = UIView.AnimationCurve(rawValue: Int(curveValue)) ?? .easeInOut
+        let animator = UIViewPropertyAnimator(duration: duration, curve: animationCurve) {
+            self.view.layoutIfNeeded()
+        }
+        animator.startAnimation()
     }
     
     // MARK: - Actions
@@ -86,8 +143,9 @@ class SubgroupChatViewController: UIViewController {
         
         DataModel.shared.saveMessage(newMessage)
         
-        // Clear text field
+        // Clear text field and dismiss keyboard
         messageTextField.text = ""
+        messageTextField.resignFirstResponder()
         
         // Reload messages
         loadMessages()
