@@ -372,42 +372,41 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         
-        let containerView = UIView()
-        containerView.backgroundColor = .systemGray6
-        containerView.layer.cornerRadius = 8
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.addSubview(containerView)
-        
         let iconImageView = UIImageView(image: UIImage(systemName: "calendar.circle.fill"))
         iconImageView.tintColor = .label
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(iconImageView)
+        headerView.addSubview(iconImageView)
+        
+        let dayLabel = UILabel()
+        let dayNumber = section + 1
+        dayLabel.text = "Day \(dayNumber)"
+        dayLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        dayLabel.textColor = .label
+        dayLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(dayLabel)
         
         let dateLabel = UILabel()
-        let dayNumber = section + 1
         let dateString = dateFormatter.string(from: groupedStops[section].date)
-        dateLabel.text = "Day \(dayNumber) - \(dateString)"
-        dateLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-        dateLabel.textColor = .label
+        dateLabel.text = dateString
+        dateLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        dateLabel.textColor = .secondaryLabel
+        dateLabel.textAlignment = .right
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(dateLabel)
+        headerView.addSubview(dateLabel)
         
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            containerView.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 0),
-            containerView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8),
-            containerView.heightAnchor.constraint(equalToConstant: 36),
+            iconImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            iconImageView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 28),
+            iconImageView.heightAnchor.constraint(equalToConstant: 28),
             
-            iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
-            iconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 24),
-            iconImageView.heightAnchor.constraint(equalToConstant: 24),
+            dayLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 8),
+            dayLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             
-            dateLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 8),
-            dateLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            dateLabel.trailingAnchor.constraint(lessThanOrEqualTo: containerView.trailingAnchor, constant: -12)
+            dateLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+            dateLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            dateLabel.leadingAnchor.constraint(greaterThanOrEqualTo: dayLabel.trailingAnchor, constant: 12)
         ])
         
         return headerView
