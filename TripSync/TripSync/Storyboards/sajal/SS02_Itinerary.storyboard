@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -105,7 +105,7 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="icon-itinerary">
-                                                            <rect key="frame" x="12" y="16" width="32" height="32"/>
+                                                            <rect key="frame" x="12" y="16.666666666666664" width="32" height="30.666666666666664"/>
                                                             <color key="tintColor" systemColor="systemOrangeColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="icon-height-itinerary"/>
@@ -113,19 +113,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Sensoji Temple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-itinerary">
-                                                            <rect key="frame" x="52" y="14" width="220" height="22"/>
+                                                            <rect key="frame" x="51.999999999999993" y="14.000000000000002" width="126.33333333333331" height="20.666666666666671"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:30 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-itinerary">
-                                                            <rect key="frame" x="280" y="14" width="65" height="22"/>
+                                                            <rect key="frame" x="269" y="13.999999999999998" width="76" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="location-icon">
-                                                            <rect key="frame" x="52" y="42" width="14" height="14"/>
+                                                            <rect key="frame" x="52" y="41" width="14" height="13.333333333333336"/>
                                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="location-icon-height"/>
@@ -133,21 +133,21 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asakusa, Tokyo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-itinerary">
-                                                            <rect key="frame" x="70" y="41" width="275" height="17"/>
+                                                            <rect key="frame" x="70" y="39" width="275" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="timeicon-itinerary">
-                                                            <rect key="frame" x="52" y="42" width="0" height="0"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="timeicon-itinerary">
+                                                            <rect key="frame" x="52" y="42" width="0.0" height="0.0"/>
                                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="0" id="timeicon-height"/>
-                                                                <constraint firstAttribute="width" constant="0" id="timeicon-width"/>
+                                                                <constraint firstAttribute="height" id="timeicon-height"/>
+                                                                <constraint firstAttribute="width" id="timeicon-width"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pills-stack">
-                                                            <rect key="frame" x="48" y="64" width="150" height="24"/>
+                                                            <rect key="frame" x="52" y="64" width="150" height="24"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="my-pill-view">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
@@ -161,12 +161,12 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="my-pill-height"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="my-pill-width"/>
                                                                         <constraint firstAttribute="bottom" secondItem="my-label" secondAttribute="bottom" constant="4" id="my-label-bottom"/>
                                                                         <constraint firstItem="my-label" firstAttribute="leading" secondItem="my-pill-view" secondAttribute="leading" constant="8" id="my-label-leading"/>
                                                                         <constraint firstItem="my-label" firstAttribute="top" secondItem="my-pill-view" secondAttribute="top" constant="4" id="my-label-top"/>
                                                                         <constraint firstAttribute="trailing" secondItem="my-label" secondAttribute="trailing" constant="8" id="my-label-trailing"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="my-pill-height"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="my-pill-width"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-pill-view">
@@ -181,12 +181,12 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="subgroup-pill-height"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="subgroup-pill-width"/>
                                                                         <constraint firstAttribute="bottom" secondItem="subgroup-label" secondAttribute="bottom" constant="4" id="subgroup-label-bottom"/>
                                                                         <constraint firstItem="subgroup-label" firstAttribute="leading" secondItem="subgroup-pill-view" secondAttribute="leading" constant="8" id="subgroup-label-leading"/>
                                                                         <constraint firstItem="subgroup-label" firstAttribute="top" secondItem="subgroup-pill-view" secondAttribute="top" constant="4" id="subgroup-label-top"/>
                                                                         <constraint firstAttribute="trailing" secondItem="subgroup-label" secondAttribute="trailing" constant="8" id="subgroup-label-trailing"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="subgroup-pill-height"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="subgroup-pill-width"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
@@ -199,19 +199,19 @@
                                                         <constraint firstItem="colorbar" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" id="colorbar-top"/>
                                                         <constraint firstItem="icon-itinerary" firstAttribute="leading" secondItem="colorbar" secondAttribute="trailing" constant="12" id="icon-leading-itinerary"/>
                                                         <constraint firstItem="icon-itinerary" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" constant="16" id="icon-top-itinerary"/>
-                                                        <constraint firstItem="title-itinerary" firstAttribute="leading" secondItem="icon-itinerary" secondAttribute="trailing" constant="8" id="title-leading"/>
-                                                        <constraint firstItem="title-itinerary" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" constant="14" id="title-top"/>
-                                                        <constraint firstItem="time-itinerary" firstAttribute="trailing" secondItem="container-itinerary" secondAttribute="trailing" constant="-16" id="time-trailing"/>
-                                                        <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="title-itinerary" secondAttribute="centerY" id="time-centerY"/>
-                                                        <constraint firstItem="time-itinerary" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="title-itinerary" secondAttribute="trailing" constant="8" id="time-leading"/>
+                                                        <constraint firstItem="location-itinerary" firstAttribute="centerY" secondItem="location-icon" secondAttribute="centerY" id="location-centerY"/>
                                                         <constraint firstItem="location-icon" firstAttribute="leading" secondItem="title-itinerary" secondAttribute="leading" id="location-icon-leading"/>
                                                         <constraint firstItem="location-icon" firstAttribute="top" secondItem="title-itinerary" secondAttribute="bottom" constant="6" id="location-icon-top"/>
                                                         <constraint firstItem="location-itinerary" firstAttribute="leading" secondItem="location-icon" secondAttribute="trailing" constant="4" id="location-leading"/>
-                                                        <constraint firstItem="location-itinerary" firstAttribute="centerY" secondItem="location-icon" secondAttribute="centerY" id="location-centerY"/>
                                                         <constraint firstAttribute="trailing" secondItem="location-itinerary" secondAttribute="trailing" constant="16" id="location-trailing"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pills-stack" secondAttribute="bottom" constant="16" id="pills-bottom"/>
                                                         <constraint firstItem="pills-stack" firstAttribute="leading" secondItem="location-icon" secondAttribute="leading" id="pills-leading"/>
                                                         <constraint firstItem="pills-stack" firstAttribute="top" secondItem="location-itinerary" secondAttribute="bottom" constant="8" id="pills-top"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="title-itinerary" secondAttribute="centerY" id="time-centerY"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="title-itinerary" secondAttribute="trailing" constant="8" id="time-leading"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="trailing" secondItem="container-itinerary" secondAttribute="trailing" constant="-16" id="time-trailing"/>
+                                                        <constraint firstItem="title-itinerary" firstAttribute="leading" secondItem="icon-itinerary" secondAttribute="trailing" constant="8" id="title-leading"/>
+                                                        <constraint firstItem="title-itinerary" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" constant="14" id="title-top"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -276,7 +276,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="add-stop-nav-controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="add-stop-nav-bar">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -293,7 +293,7 @@
             <objects>
                 <tableViewController id="add-stop-vc" customClass="CS03_AddItineraryStopVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="add-stop-tableview">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <sections>
@@ -372,14 +372,14 @@
                             <tableViewSection headerTitle="Date &amp; Time" id="datetime-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="date-label-cell">
-                                        <rect key="frame" x="20" y="231.33333015441897" width="353" height="43.666667938232393"/>
+                                        <rect key="frame" x="20" y="231.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="date-label-cell" id="date-label-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="date-label-stack">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="321" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="321" height="20.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="date-label-text">
                                                             <rect key="frame" x="0.0" y="0.0" width="212" height="20.333333333333332"/>
@@ -404,14 +404,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="date-picker-cell">
-                                        <rect key="frame" x="20" y="274.99999809265137" width="353" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="282.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="date-picker-cell" id="date-picker-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="date-picker">
-                                                    <rect key="frame" x="0.0" y="-4" width="353" height="216"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -422,14 +422,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="time-label-cell">
-                                        <rect key="frame" x="20" y="318.66666603088379" width="353" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="333.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="time-label-cell" id="time-label-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="time-label-stack">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="321" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="321" height="20.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-label-text">
                                                             <rect key="frame" x="0.0" y="0.0" width="244.33333333333334" height="20.333333333333332"/>
@@ -454,14 +454,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="time-picker-cell">
-                                        <rect key="frame" x="20" y="362.33333396911621" width="353" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="384.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="time-picker-cell" id="time-picker-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="time-picker">
-                                                    <rect key="frame" x="0.0" y="-4" width="353" height="216"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -476,7 +476,7 @@
                             <tableViewSection headerTitle="Category" id="category-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="category-cell">
-                                        <rect key="frame" x="20" y="462.00000190734869" width="353" height="140"/>
+                                        <rect key="frame" x="20" y="491.33333015441895" width="353" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="category-cell" id="category-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="140"/>
@@ -507,10 +507,10 @@
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="category-collection-view" secondAttribute="bottom" constant="8" id="category-collection-bottom"/>
                                                 <constraint firstItem="category-collection-view" firstAttribute="leading" secondItem="category-content" secondAttribute="leading" constant="16" id="category-collection-leading"/>
                                                 <constraint firstItem="category-collection-view" firstAttribute="top" secondItem="category-content" secondAttribute="top" constant="8" id="category-collection-top"/>
                                                 <constraint firstAttribute="trailing" secondItem="category-collection-view" secondAttribute="trailing" constant="16" id="category-collection-trailing"/>
-                                                <constraint firstAttribute="bottom" secondItem="category-collection-view" secondAttribute="bottom" constant="8" id="category-collection-bottom"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -519,14 +519,14 @@
                             <tableViewSection headerTitle="Subgroup" id="subgroup-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="subgroup-cell">
-                                        <rect key="frame" x="20" y="462.00000190734869" width="353" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="687.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="subgroup-cell" id="subgroup-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-stack">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="290.66666666666669" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="15.333333333333334" width="290.66666666666669" height="20.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-label-text">
                                                             <rect key="frame" x="0.0" y="0.0" width="238" height="20.333333333333332"/>
@@ -555,14 +555,14 @@
                             <tableViewSection id="delete-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="delete-cell">
-                                        <rect key="frame" x="20" y="623.33333206176758" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="774.33333015441895" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="delete-cell" id="delete-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="delete-label">
-                                                    <rect key="frame" x="16" y="15" width="321" height="20.333333333333336"/>
+                                                    <rect key="frame" x="16" y="14.999999999999998" width="321" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
@@ -611,8 +611,12 @@
             <point key="canvasLocation" x="2000" y="98"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="segue-add-stop"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="mappin" catalog="system" width="106" height="128"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="CardColor">
             <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

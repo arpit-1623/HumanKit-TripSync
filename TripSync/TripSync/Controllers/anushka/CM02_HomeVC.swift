@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
     // MARK: - Data Loading
     private func loadData() {
         currentTrip = DataModel.shared.getCurrentTrip()
-        upcomingTrips = DataModel.shared.getNonCurrentTrips()
+        upcomingTrips = DataModel.shared.getUpcomingTrips()
         
         updateCurrentTripUI()
         upcomingTripsTableView.reloadData()
