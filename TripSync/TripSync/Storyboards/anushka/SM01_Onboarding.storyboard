@@ -130,7 +130,7 @@
         <!--Create Account-->
         <scene sceneID="t6Q-rP-OP6">
             <objects>
-                <viewController title="Create Account" id="p0V-Kb-bhT" sceneMemberID="viewController">
+                <viewController title="Create Account" id="p0V-Kb-bhT" customClass="CM01_CreateAccountVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d6F-1k-NI3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,8 +138,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="mWf-zr-54g">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="create-account-scrollview">
+                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chh-Rd-oGj">
-                                <rect key="frame" x="0.0" y="272" width="393" height="580"/>
+                                <rect key="frame" x="0.0" y="100" width="393" height="580"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="m0Z-YO-Cwv">
                                         <rect key="frame" x="61.666666666666657" y="30" width="269.66666666666674" height="62"/>
@@ -168,7 +171,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="TX6-91-fOw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -184,7 +187,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="hQH-7Z-gt1"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -200,7 +203,7 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Hcu-xN-mZZ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -295,16 +298,26 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                                <constraints>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="leading" secondItem="create-account-scrollview" secondAttribute="leading" id="scroll-content-leading"/>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="trailing" secondItem="create-account-scrollview" secondAttribute="trailing" id="scroll-content-trailing"/>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="top" secondItem="create-account-scrollview" secondAttribute="top" id="scroll-content-top"/>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="bottom" secondItem="create-account-scrollview" secondAttribute="bottom" id="scroll-content-bottom"/>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="width" secondItem="create-account-scrollview" secondAttribute="width" id="scroll-content-width"/>
+                                    <constraint firstItem="chh-Rd-oGj" firstAttribute="height" relation="greaterThanOrEqual" constant="580" id="scroll-content-min-height"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Kxh-9A-VTY"/>
                         <constraints>
                             <constraint firstItem="mWf-zr-54g" firstAttribute="top" secondItem="d6F-1k-NI3" secondAttribute="top" id="00e-AA-egO"/>
                             <constraint firstAttribute="trailing" secondItem="mWf-zr-54g" secondAttribute="trailing" id="23m-GE-hqe"/>
                             <constraint firstAttribute="bottom" secondItem="mWf-zr-54g" secondAttribute="bottom" id="6vB-Bi-prr"/>
-                            <constraint firstItem="chh-Rd-oGj" firstAttribute="top" secondItem="Kxh-9A-VTY" secondAttribute="top" constant="100" id="W0e-cg-Fyr"/>
-                            <constraint firstItem="chh-Rd-oGj" firstAttribute="leading" secondItem="Kxh-9A-VTY" secondAttribute="leading" id="Zr4-w0-CiK"/>
+                            <constraint firstItem="create-account-scrollview" firstAttribute="top" secondItem="Kxh-9A-VTY" secondAttribute="top" id="scrollview-top"/>
+                            <constraint firstItem="create-account-scrollview" firstAttribute="leading" secondItem="Kxh-9A-VTY" secondAttribute="leading" id="scrollview-leading"/>
+                            <constraint firstItem="Kxh-9A-VTY" firstAttribute="trailing" secondItem="create-account-scrollview" secondAttribute="trailing" id="scrollview-trailing"/>
+                            <constraint firstAttribute="bottom" secondItem="create-account-scrollview" secondAttribute="bottom" id="scrollview-bottom"/>
                             <constraint firstItem="mWf-zr-54g" firstAttribute="leading" secondItem="Kxh-9A-VTY" secondAttribute="leading" id="Zrr-ai-D7c"/>
-                            <constraint firstAttribute="bottom" secondItem="chh-Rd-oGj" secondAttribute="bottom" id="b9N-yl-rdA"/>
-                            <constraint firstItem="Kxh-9A-VTY" firstAttribute="trailing" secondItem="chh-Rd-oGj" secondAttribute="trailing" id="mds-0C-aRr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="83U-UZ-yVc"/>
@@ -316,7 +329,7 @@
         <!--Welcome Back-->
         <scene sceneID="db4-bM-hcV">
             <objects>
-                <viewController title="Welcome Back" id="l66-vZ-XtO" sceneMemberID="viewController">
+                <viewController title="Welcome Back" id="l66-vZ-XtO" customClass="CM01_LoginVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UEU-Os-ytX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,8 +337,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-Tj-F6q">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="login-scrollview">
+                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bq-LR-6Wz">
-                                <rect key="frame" x="0.0" y="272" width="393" height="580"/>
+                                <rect key="frame" x="0.0" y="100" width="393" height="580"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ft8-Oe-NQV">
                                         <rect key="frame" x="89.666666666666671" y="30" width="213.66666666666663" height="62"/>
@@ -355,7 +371,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="c6R-kJ-2k6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -371,7 +387,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="ee1-78-47j"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -488,13 +504,23 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                                <constraints>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="leading" secondItem="login-scrollview" secondAttribute="leading" id="login-scroll-content-leading"/>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="trailing" secondItem="login-scrollview" secondAttribute="trailing" id="login-scroll-content-trailing"/>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="top" secondItem="login-scrollview" secondAttribute="top" id="login-scroll-content-top"/>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="bottom" secondItem="login-scrollview" secondAttribute="bottom" id="login-scroll-content-bottom"/>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="width" secondItem="login-scrollview" secondAttribute="width" id="login-scroll-content-width"/>
+                                    <constraint firstItem="6Bq-LR-6Wz" firstAttribute="height" relation="greaterThanOrEqual" constant="580" id="login-scroll-content-min-height"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Wur-bZ-uLt"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8cM-Tj-F6q" secondAttribute="trailing" id="0rP-Oy-otr"/>
-                            <constraint firstItem="6Bq-LR-6Wz" firstAttribute="leading" secondItem="Wur-bZ-uLt" secondAttribute="leading" id="JvB-EX-GHp"/>
-                            <constraint firstAttribute="bottom" secondItem="6Bq-LR-6Wz" secondAttribute="bottom" id="LRm-Y7-AbP"/>
-                            <constraint firstItem="Wur-bZ-uLt" firstAttribute="trailing" secondItem="6Bq-LR-6Wz" secondAttribute="trailing" id="OXb-CX-ELR"/>
-                            <constraint firstItem="6Bq-LR-6Wz" firstAttribute="top" secondItem="Wur-bZ-uLt" secondAttribute="top" constant="100" id="ZcD-u8-veQ"/>
+                            <constraint firstItem="login-scrollview" firstAttribute="leading" secondItem="Wur-bZ-uLt" secondAttribute="leading" id="login-scrollview-leading"/>
+                            <constraint firstAttribute="bottom" secondItem="login-scrollview" secondAttribute="bottom" id="login-scrollview-bottom"/>
+                            <constraint firstItem="Wur-bZ-uLt" firstAttribute="trailing" secondItem="login-scrollview" secondAttribute="trailing" id="login-scrollview-trailing"/>
+                            <constraint firstItem="login-scrollview" firstAttribute="top" secondItem="Wur-bZ-uLt" secondAttribute="top" id="login-scrollview-top"/>
                             <constraint firstAttribute="bottom" secondItem="8cM-Tj-F6q" secondAttribute="bottom" id="egc-wg-y9s"/>
                             <constraint firstItem="8cM-Tj-F6q" firstAttribute="top" secondItem="UEU-Os-ytX" secondAttribute="top" id="gAI-e1-aSb"/>
                             <constraint firstItem="8cM-Tj-F6q" firstAttribute="leading" secondItem="Wur-bZ-uLt" secondAttribute="leading" id="kD0-RY-lJX"/>
@@ -509,7 +535,7 @@
         <!--Forgot Password-->
         <scene sceneID="X5O-bQ-bJx">
             <objects>
-                <viewController title="Forgot Password" id="gUP-Ae-be4" sceneMemberID="viewController">
+                <viewController title="Forgot Password" id="gUP-Ae-be4" customClass="CM01_ForgotPasswordVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ONH-RJ-Xg3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -517,8 +543,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="wuv-ux-CUW">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="forgot-password-scrollview">
+                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T31-ch-aQT">
-                                <rect key="frame" x="0.0" y="342" width="393" height="510"/>
+                                <rect key="frame" x="0.0" y="170" width="393" height="510"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ygi-Ya-fe2">
                                         <rect key="frame" x="30" y="29.999999999999993" width="333" height="82.333333333333314"/>
@@ -548,7 +577,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="IIJ-Xm-pbi"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="8"/>
@@ -620,15 +649,25 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                                <constraints>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="leading" secondItem="forgot-password-scrollview" secondAttribute="leading" id="forgot-scroll-content-leading"/>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="trailing" secondItem="forgot-password-scrollview" secondAttribute="trailing" id="forgot-scroll-content-trailing"/>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="top" secondItem="forgot-password-scrollview" secondAttribute="top" id="forgot-scroll-content-top"/>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="bottom" secondItem="forgot-password-scrollview" secondAttribute="bottom" id="forgot-scroll-content-bottom"/>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="width" secondItem="forgot-password-scrollview" secondAttribute="width" id="forgot-scroll-content-width"/>
+                                    <constraint firstItem="T31-ch-aQT" firstAttribute="height" relation="greaterThanOrEqual" constant="510" id="forgot-scroll-content-min-height"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="YY0-Zf-29H"/>
                         <constraints>
-                            <constraint firstItem="YY0-Zf-29H" firstAttribute="trailing" secondItem="T31-ch-aQT" secondAttribute="trailing" id="AU2-Ns-Q1K"/>
+                            <constraint firstItem="YY0-Zf-29H" firstAttribute="trailing" secondItem="forgot-password-scrollview" secondAttribute="trailing" id="forgot-scrollview-trailing"/>
                             <constraint firstAttribute="bottom" secondItem="wuv-ux-CUW" secondAttribute="bottom" id="NWg-nY-wuD"/>
-                            <constraint firstItem="T31-ch-aQT" firstAttribute="leading" secondItem="YY0-Zf-29H" secondAttribute="leading" id="am3-Ui-I97"/>
+                            <constraint firstItem="forgot-password-scrollview" firstAttribute="leading" secondItem="YY0-Zf-29H" secondAttribute="leading" id="forgot-scrollview-leading"/>
                             <constraint firstItem="wuv-ux-CUW" firstAttribute="leading" secondItem="YY0-Zf-29H" secondAttribute="leading" id="ara-R7-jj9"/>
                             <constraint firstItem="wuv-ux-CUW" firstAttribute="top" secondItem="ONH-RJ-Xg3" secondAttribute="top" id="hhd-PM-06R"/>
-                            <constraint firstAttribute="bottom" secondItem="T31-ch-aQT" secondAttribute="bottom" id="mRR-3Y-Qx5"/>
-                            <constraint firstItem="T31-ch-aQT" firstAttribute="top" secondItem="YY0-Zf-29H" secondAttribute="top" constant="170" id="o4x-KG-F9C"/>
+                            <constraint firstAttribute="bottom" secondItem="forgot-password-scrollview" secondAttribute="bottom" id="forgot-scrollview-bottom"/>
+                            <constraint firstItem="forgot-password-scrollview" firstAttribute="top" secondItem="YY0-Zf-29H" secondAttribute="top" id="forgot-scrollview-top"/>
                             <constraint firstAttribute="trailing" secondItem="wuv-ux-CUW" secondAttribute="trailing" id="vJQ-lN-cwR"/>
                         </constraints>
                     </view>
