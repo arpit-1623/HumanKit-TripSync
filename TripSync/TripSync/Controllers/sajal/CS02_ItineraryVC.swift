@@ -372,7 +372,7 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         
-        let iconImageView = UIImageView(image: UIImage(systemName: "calendar.circle.fill"))
+        let iconImageView = UIImageView(image: UIImage(systemName: "calendar"))
         iconImageView.tintColor = .label
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -381,7 +381,7 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let dayLabel = UILabel()
         let dayNumber = section + 1
         dayLabel.text = "Day \(dayNumber)"
-        dayLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        dayLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         dayLabel.textColor = .label
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(dayLabel)
@@ -389,7 +389,7 @@ extension CS02_ItineraryVC: UITableViewDelegate, UITableViewDataSource {
         let dateLabel = UILabel()
         let dateString = dateFormatter.string(from: groupedStops[section].date)
         dateLabel.text = dateString
-        dateLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        dateLabel.font = .systemFont(ofSize: 16, weight: .medium)
         dateLabel.textColor = .secondaryLabel
         dateLabel.textAlignment = .right
         dateLabel.translatesAutoresizingMaskIntoConstraints = false

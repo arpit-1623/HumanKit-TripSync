@@ -14,6 +14,7 @@ class ES02_ItineraryStopCell: UITableViewCell {
     @IBOutlet weak var colorBarView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var locationIconImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeIconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -50,12 +51,17 @@ class ES02_ItineraryStopCell: UITableViewCell {
         iconImageView.contentMode = .scaleAspectFit
         
         // Title label
-        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         titleLabel.textColor = .label
         titleLabel.numberOfLines = 1
         
+        // Location icon
+        locationIconImageView.image = UIImage(systemName: "mappin")
+        locationIconImageView.tintColor = .secondaryLabel
+        locationIconImageView.contentMode = .scaleAspectFit
+        
         // Location label
-        locationLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        locationLabel.font = .systemFont(ofSize: 14, weight: .regular)
         locationLabel.textColor = .secondaryLabel
         locationLabel.numberOfLines = 1
         
@@ -63,7 +69,7 @@ class ES02_ItineraryStopCell: UITableViewCell {
         timeIconImageView.isHidden = true
         
         // Time label
-        timeLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        timeLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         timeLabel.textColor = .label
         timeLabel.textAlignment = .right
         
