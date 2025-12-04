@@ -50,33 +50,32 @@ class ES02_ItineraryStopCell: UITableViewCell {
         iconImageView.contentMode = .scaleAspectFit
         
         // Title label
-        titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         titleLabel.textColor = .label
         titleLabel.numberOfLines = 1
         
         // Location label
-        locationLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        locationLabel.font = .systemFont(ofSize: 16, weight: .regular)
         locationLabel.textColor = .secondaryLabel
         locationLabel.numberOfLines = 1
         
-        // Time icon
-        timeIconImageView.image = UIImage(systemName: "clock")
-        timeIconImageView.tintColor = .secondaryLabel
-        timeIconImageView.contentMode = .scaleAspectFit
+        // Time icon (hidden in new layout)
+        timeIconImageView.isHidden = true
         
         // Time label
-        timeLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        timeLabel.font = .systemFont(ofSize: 18, weight: .bold)
         timeLabel.textColor = .label
+        timeLabel.textAlignment = .right
         
         // MY pill
         myPillView.layer.cornerRadius = 12
-        myLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        myLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         myLabel.textColor = .white
         myLabel.text = "MY"
         
         // Subgroup pill
         subgroupPillView.layer.cornerRadius = 12
-        subgroupLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        subgroupLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         subgroupLabel.textColor = .white
     }
     

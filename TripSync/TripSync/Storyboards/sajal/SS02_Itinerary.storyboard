@@ -105,39 +105,39 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="icon-itinerary">
-                                                            <rect key="frame" x="12" y="16.666666666666664" width="28" height="26.666666666666664"/>
+                                                            <rect key="frame" x="12" y="16" width="32" height="32"/>
                                                             <color key="tintColor" systemColor="systemOrangeColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="28" id="icon-height-itinerary"/>
-                                                                <constraint firstAttribute="width" constant="28" id="icon-width-itinerary"/>
+                                                                <constraint firstAttribute="height" constant="32" id="icon-height-itinerary"/>
+                                                                <constraint firstAttribute="width" constant="32" id="icon-width-itinerary"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="Sensoji Temple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-itinerary">
-                                                            <rect key="frame" x="48" y="14" width="297" height="20.666666666666671"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Sensoji Temple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-itinerary">
+                                                            <rect key="frame" x="52" y="14" width="220" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="bold" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Asakusa, Tokyo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-itinerary">
-                                                            <rect key="frame" x="48" y="38.666666666666664" width="297" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:30 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-itinerary">
+                                                            <rect key="frame" x="280" y="14" width="65" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="bold" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asakusa, Tokyo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-itinerary">
+                                                            <rect key="frame" x="52" y="42" width="293" height="19"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="timeicon-itinerary">
-                                                            <rect key="frame" x="48" y="40.333333333333329" width="16" height="14.666666666666664"/>
+                                                            <rect key="frame" x="52" y="42" width="0" height="0"/>
                                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="16" id="timeicon-height"/>
-                                                                <constraint firstAttribute="width" constant="16" id="timeicon-width"/>
+                                                                <constraint firstAttribute="height" constant="0" id="timeicon-height"/>
+                                                                <constraint firstAttribute="width" constant="0" id="timeicon-width"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="time-itinerary">
-                                                            <rect key="frame" x="68" y="39" width="55.666666666666657" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pills-stack">
                                                             <rect key="frame" x="48" y="64" width="150" height="24"/>
                                                             <subviews>
@@ -146,7 +146,7 @@
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my-label">
                                                                             <rect key="frame" x="8" y="4" width="44" height="16"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -166,7 +166,7 @@
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-label">
                                                                             <rect key="frame" x="8" y="4" width="68" height="16"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -191,19 +191,17 @@
                                                         <constraint firstItem="colorbar" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" id="colorbar-top"/>
                                                         <constraint firstItem="icon-itinerary" firstAttribute="leading" secondItem="colorbar" secondAttribute="trailing" constant="12" id="icon-leading-itinerary"/>
                                                         <constraint firstItem="icon-itinerary" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" constant="16" id="icon-top-itinerary"/>
-                                                        <constraint firstItem="location-itinerary" firstAttribute="leading" secondItem="title-itinerary" secondAttribute="leading" id="location-leading"/>
-                                                        <constraint firstItem="location-itinerary" firstAttribute="top" secondItem="title-itinerary" secondAttribute="bottom" constant="4" id="location-top"/>
-                                                        <constraint firstItem="location-itinerary" firstAttribute="trailing" secondItem="title-itinerary" secondAttribute="trailing" id="location-trailing"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pills-stack" secondAttribute="bottom" constant="16" id="pills-bottom"/>
-                                                        <constraint firstItem="pills-stack" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="leading" id="pills-leading"/>
-                                                        <constraint firstItem="pills-stack" firstAttribute="top" secondItem="time-itinerary" secondAttribute="bottom" constant="8" id="pills-top"/>
-                                                        <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="timeicon-itinerary" secondAttribute="centerY" id="time-centerY"/>
-                                                        <constraint firstItem="time-itinerary" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="trailing" constant="4" id="time-leading"/>
-                                                        <constraint firstItem="timeicon-itinerary" firstAttribute="leading" secondItem="location-itinerary" secondAttribute="leading" id="timeicon-leading"/>
-                                                        <constraint firstItem="timeicon-itinerary" firstAttribute="top" secondItem="location-itinerary" secondAttribute="bottom" constant="8" id="timeicon-top"/>
                                                         <constraint firstItem="title-itinerary" firstAttribute="leading" secondItem="icon-itinerary" secondAttribute="trailing" constant="8" id="title-leading"/>
                                                         <constraint firstItem="title-itinerary" firstAttribute="top" secondItem="container-itinerary" secondAttribute="top" constant="14" id="title-top"/>
-                                                        <constraint firstAttribute="trailing" secondItem="title-itinerary" secondAttribute="trailing" constant="16" id="title-trailing"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="trailing" secondItem="container-itinerary" secondAttribute="trailing" constant="-16" id="time-trailing"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="title-itinerary" secondAttribute="centerY" id="time-centerY"/>
+                                                        <constraint firstItem="time-itinerary" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="title-itinerary" secondAttribute="trailing" constant="8" id="time-leading"/>
+                                                        <constraint firstItem="location-itinerary" firstAttribute="leading" secondItem="title-itinerary" secondAttribute="leading" id="location-leading"/>
+                                                        <constraint firstItem="location-itinerary" firstAttribute="top" secondItem="title-itinerary" secondAttribute="bottom" constant="4" id="location-top"/>
+                                                        <constraint firstAttribute="trailing" secondItem="location-itinerary" secondAttribute="trailing" constant="16" id="location-trailing"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pills-stack" secondAttribute="bottom" constant="16" id="pills-bottom"/>
+                                                        <constraint firstItem="pills-stack" firstAttribute="leading" secondItem="location-itinerary" secondAttribute="leading" id="pills-leading"/>
+                                                        <constraint firstItem="pills-stack" firstAttribute="top" secondItem="location-itinerary" secondAttribute="bottom" constant="8" id="pills-top"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
