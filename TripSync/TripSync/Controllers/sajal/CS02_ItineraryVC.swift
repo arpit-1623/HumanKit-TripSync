@@ -257,11 +257,19 @@ class CS02_ItineraryVC: UIViewController {
 // MARK: - AddItineraryStopDelegate
 extension CS02_ItineraryVC: AddItineraryStopDelegate {
     func didAddItineraryStop(_ stop: ItineraryStop) {
+        // Save to DataModel for persistence
+        DataModel.shared.saveItineraryStop(stop)
+        
+        // Update local array
         allItineraryStops.append(stop)
         filterAndGroupStops()
     }
     
     func didUpdateItineraryStop(_ stop: ItineraryStop) {
+        // Save to DataModel for persistence
+        DataModel.shared.saveItineraryStop(stop)
+        
+        // Update local array
         if let index = allItineraryStops.firstIndex(where: { $0.id == stop.id }) {
             allItineraryStops[index] = stop
             filterAndGroupStops()
@@ -269,6 +277,10 @@ extension CS02_ItineraryVC: AddItineraryStopDelegate {
     }
     
     func didDeleteItineraryStop(_ stop: ItineraryStop) {
+        // Delete from DataModel for persistence
+        DataModel.shared.deleteItineraryStop(byId: stop.id)
+        
+        // Update local array
         allItineraryStops.removeAll { $0.id == stop.id }
         filterAndGroupStops()
     }

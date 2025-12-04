@@ -17,6 +17,8 @@ class ES02_ItineraryStopCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeIconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var myPillView: UIView!
+    @IBOutlet weak var myLabel: UILabel!
     @IBOutlet weak var subgroupPillView: UIView!
     @IBOutlet weak var subgroupLabel: UILabel!
     
@@ -66,6 +68,12 @@ class ES02_ItineraryStopCell: UITableViewCell {
         timeLabel.font = .systemFont(ofSize: 14, weight: .medium)
         timeLabel.textColor = .label
         
+        // MY pill
+        myPillView.layer.cornerRadius = 12
+        myLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        myLabel.textColor = .white
+        myLabel.text = "MY"
+        
         // Subgroup pill
         subgroupPillView.layer.cornerRadius = 12
         subgroupLabel.font = .systemFont(ofSize: 12, weight: .medium)
@@ -92,56 +100,41 @@ class ES02_ItineraryStopCell: UITableViewCell {
             iconImageView.tintColor = .systemOrange
         }
         
-        // Configure color bar and subgroup pill with multiple tags
-        var tags: [String] = []
-        var primaryColor: UIColor = .systemBlue
-        
-        // Add MY tag if in MY itinerary
+        // MY Pill Configuration
+        let myPinkColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1) // #FF2D55
         if stop.isInMyItinerary {
-            tags.append("MY")
-            primaryColor = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1) // #FF2D55 pink
+            myPillView.isHidden = false
+            myPillView.backgroundColor = myPinkColor
+            myLabel.text = "MY"
+            colorBarView.backgroundColor = myPinkColor
+        } else {
+            myPillView.isHidden = true
         }
         
-        // Add subgroup tag if it belongs to a subgroup
+        // Subgroup Pill Configuration
         if let subgroup = subgroup {
-            tags.append(subgroup.name)
-            // If not in MY, use subgroup color as primary
+            // Show subgroup pill with subgroup name and color
+            subgroupPillView.isHidden = false
+            let subgroupColor = UIColor(hex: subgroup.colorHex) ?? .systemBlue
+            subgroupPillView.backgroundColor = subgroupColor
+            subgroupLabel.text = subgroup.name
+            
+            // If not in MY itinerary, use subgroup color for color bar
             if !stop.isInMyItinerary {
-                primaryColor = UIColor(hex: subgroup.colorHex) ?? .systemBlue
+                colorBarView.backgroundColor = subgroupColor
+            }
+        } else {
+            // Show "All" pill
+            subgroupPillView.isHidden = false
+            let allBlueColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
+            subgroupPillView.backgroundColor = allBlueColor
+            subgroupLabel.text = "All"
+            
+            // If not in MY itinerary, use All blue color for color bar
+            if !stop.isInMyItinerary {
+                colorBarView.backgroundColor = allBlueColor
             }
         }
-        
-        // If no tags, show "All"
-        if tags.isEmpty {
-            tags.append("All")
-            primaryColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF blue
-        }
-        
-        // Set color bar to primary color
-        colorBarView.backgroundColor = primaryColor
-        
-        // Display tags
-        subgroupPillView.isHidden = false
-        subgroupPillView.backgroundColor = primaryColor
-        subgroupLabel.text = tags.joined(separator: " • ")
     }
 }
-
-// MARK: - UIColor Extension
-//extension UIColor {
-//    convenience init?(hex: String) {
-//        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-//        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-//        
-//        var rgb: UInt64 = 0
-//        
-//        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else { return nil }
-//        
-//        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-//        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-//        let blue = CGFloat(rgb & 0x0000FF) / 255.0
-//        
-//        self.init(red: red, green: green, blue: blue, alpha: 1.0)
-//    }
-//}
 

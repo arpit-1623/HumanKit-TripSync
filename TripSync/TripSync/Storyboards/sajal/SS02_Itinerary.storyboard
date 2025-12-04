@@ -138,26 +138,51 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pill-view">
-                                                            <rect key="frame" x="131.66666666666666" y="64" width="80" height="24"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pills-stack">
+                                                            <rect key="frame" x="48" y="64" width="150" height="24"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-label">
-                                                                    <rect key="frame" x="8" y="4" width="64" height="16"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="my-pill-view">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my-label">
+                                                                            <rect key="frame" x="8" y="4" width="44" height="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="24" id="my-pill-height"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="my-pill-width"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="my-label" secondAttribute="bottom" constant="4" id="my-label-bottom"/>
+                                                                        <constraint firstItem="my-label" firstAttribute="leading" secondItem="my-pill-view" secondAttribute="leading" constant="8" id="my-label-leading"/>
+                                                                        <constraint firstItem="my-label" firstAttribute="top" secondItem="my-pill-view" secondAttribute="top" constant="4" id="my-label-top"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="my-label" secondAttribute="trailing" constant="8" id="my-label-trailing"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-pill-view">
+                                                                    <rect key="frame" x="66" y="0.0" width="84" height="24"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgroup-label">
+                                                                            <rect key="frame" x="8" y="4" width="68" height="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="24" id="subgroup-pill-height"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="subgroup-pill-width"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="subgroup-label" secondAttribute="bottom" constant="4" id="subgroup-label-bottom"/>
+                                                                        <constraint firstItem="subgroup-label" firstAttribute="leading" secondItem="subgroup-pill-view" secondAttribute="leading" constant="8" id="subgroup-label-leading"/>
+                                                                        <constraint firstItem="subgroup-label" firstAttribute="top" secondItem="subgroup-pill-view" secondAttribute="top" constant="4" id="subgroup-label-top"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="subgroup-label" secondAttribute="trailing" constant="8" id="subgroup-label-trailing"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="24" id="pill-height"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="pill-width"/>
-                                                                <constraint firstAttribute="bottom" secondItem="subgroup-label" secondAttribute="bottom" constant="4" id="subgroup-bottom"/>
-                                                                <constraint firstItem="subgroup-label" firstAttribute="leading" secondItem="pill-view" secondAttribute="leading" constant="8" id="subgroup-leading"/>
-                                                                <constraint firstItem="subgroup-label" firstAttribute="top" secondItem="pill-view" secondAttribute="top" constant="4" id="subgroup-top"/>
-                                                                <constraint firstAttribute="trailing" secondItem="subgroup-label" secondAttribute="trailing" constant="8" id="subgroup-trailing"/>
-                                                            </constraints>
-                                                        </view>
+                                                        </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" name="CardColor"/>
                                                     <constraints>
@@ -169,9 +194,9 @@
                                                         <constraint firstItem="location-itinerary" firstAttribute="leading" secondItem="title-itinerary" secondAttribute="leading" id="location-leading"/>
                                                         <constraint firstItem="location-itinerary" firstAttribute="top" secondItem="title-itinerary" secondAttribute="bottom" constant="4" id="location-top"/>
                                                         <constraint firstItem="location-itinerary" firstAttribute="trailing" secondItem="title-itinerary" secondAttribute="trailing" id="location-trailing"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pill-view" secondAttribute="bottom" constant="16" id="pill-bottom"/>
-                                                        <constraint firstItem="pill-view" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="leading" id="pill-leading"/>
-                                                        <constraint firstItem="pill-view" firstAttribute="top" secondItem="time-itinerary" secondAttribute="bottom" constant="8" id="pill-top"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pills-stack" secondAttribute="bottom" constant="16" id="pills-bottom"/>
+                                                        <constraint firstItem="pills-stack" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="leading" id="pills-leading"/>
+                                                        <constraint firstItem="pills-stack" firstAttribute="top" secondItem="time-itinerary" secondAttribute="bottom" constant="8" id="pills-top"/>
                                                         <constraint firstItem="time-itinerary" firstAttribute="centerY" secondItem="timeicon-itinerary" secondAttribute="centerY" id="time-centerY"/>
                                                         <constraint firstItem="time-itinerary" firstAttribute="leading" secondItem="timeicon-itinerary" secondAttribute="trailing" constant="4" id="time-leading"/>
                                                         <constraint firstItem="timeicon-itinerary" firstAttribute="leading" secondItem="location-itinerary" secondAttribute="leading" id="timeicon-leading"/>
@@ -195,8 +220,10 @@
                                             <outlet property="containerView" destination="container-itinerary" id="outlet-container-itinerary"/>
                                             <outlet property="iconImageView" destination="icon-itinerary" id="outlet-icon-itinerary"/>
                                             <outlet property="locationLabel" destination="location-itinerary" id="outlet-location-itinerary"/>
+                                            <outlet property="myLabel" destination="my-label" id="outlet-my-label"/>
+                                            <outlet property="myPillView" destination="my-pill-view" id="outlet-my-pill-view"/>
                                             <outlet property="subgroupLabel" destination="subgroup-label" id="outlet-subgroup-label"/>
-                                            <outlet property="subgroupPillView" destination="pill-view" id="outlet-pill-view"/>
+                                            <outlet property="subgroupPillView" destination="subgroup-pill-view" id="outlet-subgroup-pill-view"/>
                                             <outlet property="timeIconImageView" destination="timeicon-itinerary" id="outlet-timeicon-itinerary"/>
                                             <outlet property="timeLabel" destination="time-itinerary" id="outlet-time-itinerary"/>
                                             <outlet property="titleLabel" destination="title-itinerary" id="outlet-title-itinerary"/>
