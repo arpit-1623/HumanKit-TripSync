@@ -12,7 +12,9 @@ class CD05_SummaryVC: UIViewController {
     var tripName: String!
     var dateRange: (start: Date, end: Date)!
     var location: String!
-    var coverImageData: Data?
+    var coverImageData: Data? // Deprecated: for backward compatibility
+    var coverImageURL: String?
+    var coverImagePhotographerName: String?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -22,8 +24,10 @@ class CD05_SummaryVC: UIViewController {
     
     // MARK: - Configuration
     private func configureData() {
-        // Set background image
-        if let imageData = coverImageData, let image = UIImage(data: imageData) {
+        // Set background image from URL or fallback to data or placeholder
+        if let imageURL = coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: backgroundImageView)
+        } else if let imageData = coverImageData, let image = UIImage(data: imageData) {
             backgroundImageView.image = image
         } else {
             backgroundImageView.image = UIImage(named: "createTripBg")
@@ -49,7 +53,7 @@ class CD05_SummaryVC: UIViewController {
             return
         }
         
-        // Create trip with image data
+        // Create trip with image URL and metadata
         var newTrip = Trip(
             name: tripName,
             location: location,
@@ -57,7 +61,9 @@ class CD05_SummaryVC: UIViewController {
             endDate: dateRange.end,
             createdByUserId: currentUser.id
         )
-        newTrip.coverImageData = coverImageData
+        newTrip.coverImageData = coverImageData // Kept for backward compatibility
+        newTrip.coverImageURL = coverImageURL
+        newTrip.coverImagePhotographerName = coverImagePhotographerName
         
         // Save to DataModel
         do {

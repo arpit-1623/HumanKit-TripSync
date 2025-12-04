@@ -104,7 +104,16 @@ class TripsViewController: UIViewController {
         }
         
         currentTripCard.isHidden = false
-        currentTripImageView.image = UIImage(systemName: "photo")
+        
+        // Load image from URL or show placeholder
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: currentTripImageView)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            currentTripImageView.image = image
+        } else {
+            currentTripImageView.image = UIImage(named: "createTripBg")
+        }
+        
         currentTripNameLabel.text = trip.name
         currentTripLocationLabel.text = trip.location
         currentTripDateRangeLabel.text = trip.dateRangeString

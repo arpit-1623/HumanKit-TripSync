@@ -14,6 +14,7 @@ protocol EditTripDelegate: AnyObject {
 class EditTripTableViewController: UITableViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var tripImageView: UIImageView!
     @IBOutlet weak var tripNameField: UITextField!
     @IBOutlet weak var tripLocationField: UITextField!
     
@@ -32,7 +33,11 @@ class EditTripTableViewController: UITableViewController {
     private var isStartDatePickerVisible = false
     private var isEndDatePickerVisible = false
     
-    private let locationCellIndexPath = IndexPath(row: 1, section: 0)
+    private var selectedImageURL: String?
+    private var selectedPhotographerName: String?
+    
+    private let imageCellIndexPath = IndexPath(row: 0, section: 0)
+    private let locationCellIndexPath = IndexPath(row: 2, section: 0)
     
     private let startDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
     private let startDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
@@ -73,6 +78,18 @@ class EditTripTableViewController: UITableViewController {
         endDatePicker.date = trip.endDate
         inviteCodeValueLabel.text = trip.inviteCode
         createdDateValueLabel.text = dateFormatter.string(from: trip.createdAt)
+        
+        // Load trip image
+        selectedImageURL = trip.coverImageURL
+        selectedPhotographerName = trip.coverImagePhotographerName
+        
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: tripImageView)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            tripImageView.image = image
+        } else {
+            tripImageView.image = UIImage(named: "createTripBg")
+        }
     }
     
     private func updateDateLabels() {
@@ -122,6 +139,8 @@ class EditTripTableViewController: UITableViewController {
         trip.location = location
         trip.startDate = startDatePicker.date
         trip.endDate = endDatePicker.date
+        trip.coverImageURL = selectedImageURL
+        trip.coverImagePhotographerName = selectedPhotographerName
         
         // Save to DataModel
         DataModel.shared.saveTrip(trip)
@@ -158,8 +177,12 @@ class EditTripTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        // Handle image cell tap
+        if indexPath == imageCellIndexPath {
+            performSegue(withIdentifier: "editTripToImagePicker", sender: nil)
+        }
         // Handle location cell tap
-        if indexPath == locationCellIndexPath {
+        else if indexPath == locationCellIndexPath {
             performSegue(withIdentifier: "editTripToLocationPicker", sender: nil)
         }
         // Handle date cell taps
@@ -171,8 +194,12 @@ class EditTripTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Image cell
+        if indexPath == imageCellIndexPath {
+            return 200
+        }
         // Date picker rows
-        if indexPath == startDatePickerCellIndexPath {
+        else if indexPath == startDatePickerCellIndexPath {
             return isStartDatePickerVisible ? 216 : 0
         } else if indexPath == endDatePickerCellIndexPath {
             return isEndDatePickerVisible ? 216 : 0
@@ -214,7 +241,21 @@ class EditTripTableViewController: UITableViewController {
                 locationPickerVC.delegate = self
                 locationPickerVC.initialLocation = tripLocationField.text
             }
+        } else if segue.identifier == "editTripToImagePicker" {
+            if let navController = segue.destination as? UINavigationController,
+               let imagePickerVC = navController.topViewController as? CD04_ImagePickerVC {
+                imagePickerVC.delegate = self
+            }
         }
+    }
+}
+
+// MARK: - ImagePickerDelegate
+extension EditTripTableViewController: ImagePickerDelegate {
+    func didSelectImage(_ image: UIImage, photoData: UnsplashPhoto) {
+        tripImageView.image = image
+        selectedImageURL = photoData.urls.regular
+        selectedPhotographerName = photoData.user.name
     }
 }
 

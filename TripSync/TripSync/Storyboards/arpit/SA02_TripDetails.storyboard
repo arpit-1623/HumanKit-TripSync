@@ -559,6 +559,7 @@
                     </navigationItem>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="QqN-7t-3bh" id="background-image-outlet"/>
                         <outlet property="subgroupsTableView" destination="aKV-hR-ufI" id="subgroups-table-outlet"/>
                         <outlet property="tripDateRangeLabel" destination="TKo-ff-Rl1" id="e8N-td-7Tt"/>
                         <outlet property="tripLocationLabel" destination="Njw-pN-cfk" id="zzP-iE-gnJ"/>
@@ -691,6 +692,32 @@
                         <sections>
                             <tableViewSection headerTitle="Trip Information" id="trip-info-section">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="200" id="trip-image-cell">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="trip-image-cell" id="trip-image-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createTripBg" translatesAutoresizingMaskIntoConstraints="NO" id="trip-image-view">
+                                                    <rect key="frame" x="16" y="8" width="321" height="184"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="184" id="trip-image-height"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="trip-image-view" firstAttribute="leading" secondItem="trip-image-content" secondAttribute="leading" constant="16" id="trip-image-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="trip-image-view" secondAttribute="trailing" constant="16" id="trip-image-trailing"/>
+                                                <constraint firstItem="trip-image-view" firstAttribute="centerY" secondItem="trip-image-content" secondAttribute="centerY" id="trip-image-centerY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="trip-name-cell">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1045,9 +1072,11 @@
                         <outlet property="numberOfDaysLabel" destination="number-of-days-value-label" id="number-of-days-outlet"/>
                         <outlet property="startDatePicker" destination="start-date-picker" id="start-picker-outlet"/>
                         <outlet property="startDateValueLabel" destination="start-date-value-label" id="start-value-label-outlet"/>
+                        <outlet property="tripImageView" destination="trip-image-view" id="trip-image-outlet"/>
                         <outlet property="tripLocationField" destination="trip-location-field" id="trip-location-outlet"/>
                         <outlet property="tripNameField" destination="trip-name-field" id="trip-name-outlet"/>
                         <segue destination="edit-trip-location-picker" kind="presentation" identifier="editTripToLocationPicker" id="edit-trip-location-segue"/>
+                        <segue destination="edit-trip-image-picker" kind="presentation" identifier="editTripToImagePicker" id="edit-trip-image-segue"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Di4-JT-f0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1063,6 +1092,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edit-trip-location-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2600" y="867"/>
+        </scene>
+        <!--SD04_ImagePicker-->
+        <scene sceneID="edit-trip-image-picker-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SD04_ImagePicker" id="edit-trip-image-picker" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="edit-trip-image-nav"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edit-trip-image-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2600" y="1600"/>
         </scene>
     </scenes>
     <resources>

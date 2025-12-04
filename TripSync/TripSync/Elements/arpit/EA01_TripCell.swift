@@ -36,9 +36,14 @@ class TripTableViewCell: UITableViewCell {
         let dateString = trip.dateRangeString
         tripDateLabel.text = dateString
         
-        // MARK: - Temporary Image
-        tripImageView.image = UIImage(systemName: "photo")
-        tripImageView.tintColor = .systemGray3
+        // Load image from URL or show placeholder
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: tripImageView)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            tripImageView.image = image
+        } else {
+            tripImageView.image = UIImage(named: "createTripBg")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

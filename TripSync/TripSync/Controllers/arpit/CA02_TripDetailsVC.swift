@@ -10,11 +10,13 @@ import UIKit
 class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTripDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var backgroundImageView: UIImageView?
     @IBOutlet weak var subgroupsTableView: UITableView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
     @IBOutlet weak var tripMembersLabel: UILabel!
+    @IBOutlet weak var imageAttributionLabel: UILabel? // Optional: for Unsplash attribution
     
     // MARK: - Properties
     var trip: Trip?
@@ -64,6 +66,23 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         let memberCount = trip.memberIds.count
         let memberText = memberCount == 1 ? "1 Member" : "\(memberCount) Members"
         tripMembersLabel?.text = memberText
+        
+        // Load trip cover image
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: backgroundImageView!)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            backgroundImageView?.image = image
+        } else {
+            backgroundImageView?.image = UIImage(named: "createTripBg")
+        }
+        
+        // Display Unsplash attribution if available
+        if let photographerName = trip.coverImagePhotographerName {
+            imageAttributionLabel?.text = "Photo by \(photographerName) on Unsplash"
+            imageAttributionLabel?.isHidden = false
+        } else {
+            imageAttributionLabel?.isHidden = true
+        }
         
         setupSubgroupsTableView()
     }

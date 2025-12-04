@@ -118,7 +118,13 @@ class HomeViewController: UIViewController {
         emptyStateView?.isHidden = true
         
         // Configure current trip display
-        currentTripImageView?.image = UIImage(named: "createTripBg")
+        if let imageURL = trip.coverImageURL {
+            UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: currentTripImageView!)
+        } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
+            currentTripImageView?.image = image
+        } else {
+            currentTripImageView?.image = UIImage(named: "createTripBg")
+        }
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
         currentTripDateLabel?.text = trip.dateRangeString

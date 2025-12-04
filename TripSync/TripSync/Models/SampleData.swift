@@ -69,6 +69,8 @@ class SampleData {
         tokyo.memberIds = [users[0].id, users[1].id, users[2].id, users[3].id]
         tokyo.status = .current
         tokyo.inviteCode = "TOKYO123"
+        tokyo.coverImageURL = "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1080"
+        tokyo.coverImagePhotographerName = "Louie Martinez"
         allTrips.append(tokyo)
         
         // Upcoming Trips
@@ -81,6 +83,8 @@ class SampleData {
         )
         mountain.memberIds = [users[0].id, users[1].id, users[4].id, users[5].id]
         mountain.status = .upcoming
+        mountain.coverImageURL = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080"
+        mountain.coverImagePhotographerName = "Dmitry Bayer"
         allTrips.append(mountain)
         
         var island = Trip(
@@ -92,6 +96,8 @@ class SampleData {
         )
         island.memberIds = [users[0].id, users[8].id]
         island.status = .upcoming
+        island.coverImageURL = "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1080"
+        island.coverImagePhotographerName = "Asad Photo Maldives"
         allTrips.append(island)
         
         // Past Trips
@@ -104,6 +110,8 @@ class SampleData {
         )
         europe.memberIds = [users[0].id, users[1].id]
         europe.status = .past
+        europe.coverImageURL = "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1080"
+        europe.coverImagePhotographerName = "Braden Collum"
         allTrips.append(europe)
         
         var coastal = Trip(
@@ -115,6 +123,8 @@ class SampleData {
         )
         coastal.memberIds = [users[0].id, users[2].id, users[3].id]
         coastal.status = .past
+        coastal.coverImageURL = "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1080"
+        coastal.coverImagePhotographerName = "Luca Bravo"
         allTrips.append(coastal)
         
         var desert = Trip(
@@ -126,6 +136,8 @@ class SampleData {
         )
         desert.memberIds = [users[0].id, users[2].id, users[3].id, users[6].id, users[7].id]
         desert.status = .past
+        desert.coverImageURL = "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=1080"
+        desert.coverImagePhotographerName = "Yeshi Kangrang"
         allTrips.append(desert)
         
         trips = allTrips
