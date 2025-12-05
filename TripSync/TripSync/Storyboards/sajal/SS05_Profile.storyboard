@@ -12,210 +12,396 @@
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <tableViewController id="Y6W-OH-hqX" customClass="ProfileViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="5EZ-qb-Rvc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProfileHeaderCell" rowHeight="100" id="profile-header-cell" customClass="ProfileHeaderCell" customModule="TripSync" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="353" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="profile-header-cell" id="profile-header-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="profile-container-view">
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <sections>
+                            <!-- Section 0: Profile Header & Stats -->
+                            <tableViewSection id="section-profile">
+                                <cells>
+                                    <!-- Profile Header Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="profile-header-cell" customClass="ProfileHeaderCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="18" width="353" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="profile-header-cell" id="profile-header-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="profile-image-view">
-                                                    <rect key="frame" x="20" y="18" width="64" height="64"/>
-                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="profile-container-view">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="profile-image-view">
+                                                            <rect key="frame" x="20" y="18" width="64" height="64"/>
+                                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="64" id="profile-image-height"/>
+                                                                <constraint firstAttribute="width" constant="64" id="profile-image-width"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="32"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aditya Singh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="profile-name-label">
+                                                            <rect key="frame" x="100" y="38" width="233" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="CardColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="profile-image-height"/>
-                                                        <constraint firstAttribute="width" constant="64" id="profile-image-width"/>
+                                                        <constraint firstItem="profile-name-label" firstAttribute="centerY" secondItem="profile-image-view" secondAttribute="centerY" id="name-center-y"/>
+                                                        <constraint firstItem="profile-name-label" firstAttribute="leading" secondItem="profile-image-view" secondAttribute="trailing" constant="16" id="name-leading"/>
+                                                        <constraint firstAttribute="trailing" secondItem="profile-name-label" secondAttribute="trailing" constant="20" id="name-trailing"/>
+                                                        <constraint firstItem="profile-image-view" firstAttribute="centerY" secondItem="profile-container-view" secondAttribute="centerY" id="profile-image-center-y"/>
+                                                        <constraint firstItem="profile-image-view" firstAttribute="leading" secondItem="profile-container-view" secondAttribute="leading" constant="20" id="profile-image-leading"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="32"/>
+                                                            <integer key="value" value="12"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aditya Singh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="profile-name-label">
-                                                    <rect key="frame" x="100" y="38" width="233" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="profile-container-view" secondAttribute="bottom" id="container-bottom"/>
+                                                <constraint firstItem="profile-container-view" firstAttribute="leading" secondItem="profile-header-content" secondAttribute="leading" id="container-leading"/>
+                                                <constraint firstItem="profile-container-view" firstAttribute="top" secondItem="profile-header-content" secondAttribute="top" id="container-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="profile-container-view" secondAttribute="trailing" id="container-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="profile-container-view" id="container-outlet"/>
+                                            <outlet property="nameLabel" destination="profile-name-label" id="name-label-outlet"/>
+                                            <outlet property="profileImageView" destination="profile-image-view" id="profile-image-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <!-- Stats Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="stat-cell" customClass="StatCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="118" width="353" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stat-cell" id="stat-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stat-container-view">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="stat-container-view" secondAttribute="bottom" id="stat-container-bottom"/>
+                                                <constraint firstItem="stat-container-view" firstAttribute="leading" secondItem="stat-cell-content" secondAttribute="leading" id="stat-container-leading"/>
+                                                <constraint firstItem="stat-container-view" firstAttribute="top" secondItem="stat-cell-content" secondAttribute="top" id="stat-container-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="stat-container-view" secondAttribute="trailing" id="stat-container-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="stat-container-view" id="stat-container-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 1: Preferences -->
+                            <tableViewSection headerTitle="PREFERENCES" id="section-preferences">
+                                <cells>
+                                    <!-- Privacy Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="privacy-cell" customClass="PreferenceCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="286" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="privacy-cell" id="privacy-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀎡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="privacy-icon">
+                                                    <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="privacy-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="privacy-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="privacy-title">
+                                                    <rect key="frame" x="56" y="20" width="53" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="privacy-subtitle">
+                                                    <rect key="frame" x="117" y="21" width="0.0" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="privacy-toggle">
+                                                    <rect key="frame" x="272" y="16" width="63" height="28"/>
+                                                </switch>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="privacy-chevron">
+                                                    <rect key="frame" x="313" y="22" width="20" height="16"/>
+                                                    <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="privacy-chevron-height"/>
+                                                        <constraint firstAttribute="width" constant="20" id="privacy-chevron-width"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" name="CardColor"/>
                                             <constraints>
-                                                <constraint firstItem="profile-name-label" firstAttribute="centerY" secondItem="profile-image-view" secondAttribute="centerY" id="name-center-y"/>
-                                                <constraint firstItem="profile-name-label" firstAttribute="leading" secondItem="profile-image-view" secondAttribute="trailing" constant="16" id="name-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="profile-name-label" secondAttribute="trailing" constant="20" id="name-trailing"/>
-                                                <constraint firstItem="profile-image-view" firstAttribute="centerY" secondItem="profile-container-view" secondAttribute="centerY" id="profile-image-center-y"/>
-                                                <constraint firstItem="profile-image-view" firstAttribute="leading" secondItem="profile-container-view" secondAttribute="leading" constant="20" id="profile-image-leading"/>
+                                                <constraint firstItem="privacy-chevron" firstAttribute="centerY" secondItem="privacy-cell-content" secondAttribute="centerY" id="privacy-chevron-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="privacy-chevron" secondAttribute="trailing" constant="20" id="privacy-chevron-trailing"/>
+                                                <constraint firstItem="privacy-icon" firstAttribute="centerY" secondItem="privacy-cell-content" secondAttribute="centerY" id="privacy-icon-centery"/>
+                                                <constraint firstItem="privacy-icon" firstAttribute="leading" secondItem="privacy-cell-content" secondAttribute="leading" constant="20" id="privacy-icon-leading"/>
+                                                <constraint firstItem="privacy-subtitle" firstAttribute="centerY" secondItem="privacy-cell-content" secondAttribute="centerY" id="privacy-subtitle-centery"/>
+                                                <constraint firstItem="privacy-subtitle" firstAttribute="leading" secondItem="privacy-title" secondAttribute="trailing" constant="8" id="privacy-subtitle-leading"/>
+                                                <constraint firstItem="privacy-title" firstAttribute="centerY" secondItem="privacy-cell-content" secondAttribute="centerY" id="privacy-title-centery"/>
+                                                <constraint firstItem="privacy-title" firstAttribute="leading" secondItem="privacy-icon" secondAttribute="trailing" constant="12" id="privacy-title-leading"/>
+                                                <constraint firstItem="privacy-toggle" firstAttribute="centerY" secondItem="privacy-cell-content" secondAttribute="centerY" id="privacy-toggle-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="privacy-toggle" secondAttribute="trailing" constant="20" id="privacy-toggle-trailing"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="0"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="profile-container-view" secondAttribute="bottom" id="container-bottom"/>
-                                        <constraint firstItem="profile-container-view" firstAttribute="leading" secondItem="profile-header-content" secondAttribute="leading" id="container-leading"/>
-                                        <constraint firstItem="profile-container-view" firstAttribute="top" secondItem="profile-header-content" secondAttribute="top" id="container-top"/>
-                                        <constraint firstAttribute="trailing" secondItem="profile-container-view" secondAttribute="trailing" id="container-trailing"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="containerView" destination="profile-container-view" id="container-outlet"/>
-                                    <outlet property="nameLabel" destination="profile-name-label" id="name-label-outlet"/>
-                                    <outlet property="profileImageView" destination="profile-image-view" id="profile-image-outlet"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="StatCell" rowHeight="120" id="stat-cell" customClass="StatCell" customModule="TripSync" customModuleProvider="target">
-                                <rect key="frame" x="20" y="155.33333206176758" width="353" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stat-cell" id="stat-cell-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stat-container-view">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="stat-container-view" secondAttribute="bottom" id="stat-container-bottom"/>
-                                        <constraint firstItem="stat-container-view" firstAttribute="leading" secondItem="stat-cell-content" secondAttribute="leading" id="stat-container-leading"/>
-                                        <constraint firstItem="stat-container-view" firstAttribute="top" secondItem="stat-cell-content" secondAttribute="top" id="stat-container-top"/>
-                                        <constraint firstAttribute="trailing" secondItem="stat-container-view" secondAttribute="trailing" id="stat-container-trailing"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="containerView" destination="stat-container-view" id="stat-container-outlet"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreferenceCell" rowHeight="60" id="preference-cell" customClass="PreferenceCell" customModule="TripSync" customModuleProvider="target">
-                                <rect key="frame" x="20" y="275.33333206176758" width="353" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="preference-cell" id="preference-cell-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀎡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="preference-icon-label">
-                                            <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chevronImageView" destination="privacy-chevron" id="privacy-chevron-outlet"/>
+                                            <outlet property="iconLabel" destination="privacy-icon" id="privacy-icon-outlet"/>
+                                            <outlet property="subtitleLabel" destination="privacy-subtitle" id="privacy-subtitle-outlet"/>
+                                            <outlet property="titleLabel" destination="privacy-title" id="privacy-title-outlet"/>
+                                            <outlet property="toggleSwitch" destination="privacy-toggle" id="privacy-toggle-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <!-- Location Sharing Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="location-cell" customClass="PreferenceCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="346" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="location-cell" id="location-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀋒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-icon">
+                                                    <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="location-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="location-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Sharing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-title">
+                                                    <rect key="frame" x="56" y="20" width="130" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-subtitle">
+                                                    <rect key="frame" x="194" y="21" width="20" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="location-toggle">
+                                                    <rect key="frame" x="272" y="16" width="63" height="28"/>
+                                                </switch>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="location-chevron">
+                                                    <rect key="frame" x="313" y="22" width="20" height="16"/>
+                                                    <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="location-chevron-height"/>
+                                                        <constraint firstAttribute="width" constant="20" id="location-chevron-width"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="icon-height"/>
-                                                <constraint firstAttribute="width" constant="24" id="icon-width"/>
+                                                <constraint firstItem="location-chevron" firstAttribute="centerY" secondItem="location-cell-content" secondAttribute="centerY" id="location-chevron-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="location-chevron" secondAttribute="trailing" constant="20" id="location-chevron-trailing"/>
+                                                <constraint firstItem="location-icon" firstAttribute="centerY" secondItem="location-cell-content" secondAttribute="centerY" id="location-icon-centery"/>
+                                                <constraint firstItem="location-icon" firstAttribute="leading" secondItem="location-cell-content" secondAttribute="leading" constant="20" id="location-icon-leading"/>
+                                                <constraint firstItem="location-subtitle" firstAttribute="centerY" secondItem="location-cell-content" secondAttribute="centerY" id="location-subtitle-centery"/>
+                                                <constraint firstItem="location-subtitle" firstAttribute="leading" secondItem="location-title" secondAttribute="trailing" constant="8" id="location-subtitle-leading"/>
+                                                <constraint firstItem="location-title" firstAttribute="centerY" secondItem="location-cell-content" secondAttribute="centerY" id="location-title-centery"/>
+                                                <constraint firstItem="location-title" firstAttribute="leading" secondItem="location-icon" secondAttribute="trailing" constant="12" id="location-title-leading"/>
+                                                <constraint firstItem="location-toggle" firstAttribute="centerY" secondItem="location-cell-content" secondAttribute="centerY" id="location-toggle-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="location-toggle" secondAttribute="trailing" constant="20" id="location-toggle-trailing"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="preference-title-label">
-                                            <rect key="frame" x="56" y="20.333333333333336" width="53" height="19.333333333333336"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="preference-subtitle-label">
-                                            <rect key="frame" x="117" y="21.666666666666668" width="20.666666666666657" height="17.000000000000004"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="preference-toggle-switch">
-                                            <rect key="frame" x="272" y="16" width="63" height="28"/>
-                                        </switch>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="preference-chevron-image">
-                                            <rect key="frame" x="313" y="22" width="20" height="16.333333333333329"/>
-                                            <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chevronImageView" destination="location-chevron" id="location-chevron-outlet"/>
+                                            <outlet property="iconLabel" destination="location-icon" id="location-icon-outlet"/>
+                                            <outlet property="subtitleLabel" destination="location-subtitle" id="location-subtitle-outlet"/>
+                                            <outlet property="titleLabel" destination="location-title" id="location-title-outlet"/>
+                                            <outlet property="toggleSwitch" destination="location-toggle" id="location-toggle-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 2: Account -->
+                            <tableViewSection headerTitle="ACCOUNT" id="section-account">
+                                <cells>
+                                    <!-- Help & Support Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="help-cell" customClass="ActionCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="454" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="help-cell" id="help-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀁝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="help-icon">
+                                                    <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="help-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="help-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help &amp; Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="help-title">
+                                                    <rect key="frame" x="56" y="20" width="257" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="help-chevron">
+                                                    <rect key="frame" x="313" y="22" width="20" height="16"/>
+                                                    <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="help-chevron-height"/>
+                                                        <constraint firstAttribute="width" constant="20" id="help-chevron-width"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="chevron-height"/>
-                                                <constraint firstAttribute="width" constant="20" id="chevron-width"/>
+                                                <constraint firstItem="help-chevron" firstAttribute="centerY" secondItem="help-cell-content" secondAttribute="centerY" id="help-chevron-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="help-chevron" secondAttribute="trailing" constant="20" id="help-chevron-trailing"/>
+                                                <constraint firstItem="help-icon" firstAttribute="centerY" secondItem="help-cell-content" secondAttribute="centerY" id="help-icon-centery"/>
+                                                <constraint firstItem="help-icon" firstAttribute="leading" secondItem="help-cell-content" secondAttribute="leading" constant="20" id="help-icon-leading"/>
+                                                <constraint firstItem="help-title" firstAttribute="centerY" secondItem="help-cell-content" secondAttribute="centerY" id="help-title-centery"/>
+                                                <constraint firstItem="help-title" firstAttribute="leading" secondItem="help-icon" secondAttribute="trailing" constant="12" id="help-title-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="help-title" secondAttribute="trailing" constant="40" id="help-title-trailing"/>
                                             </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="preference-chevron-image" firstAttribute="centerY" secondItem="preference-cell-content" secondAttribute="centerY" id="chevron-center-y"/>
-                                        <constraint firstAttribute="trailing" secondItem="preference-chevron-image" secondAttribute="trailing" constant="20" id="chevron-trailing"/>
-                                        <constraint firstItem="preference-icon-label" firstAttribute="centerY" secondItem="preference-cell-content" secondAttribute="centerY" id="icon-center-y"/>
-                                        <constraint firstItem="preference-icon-label" firstAttribute="leading" secondItem="preference-cell-content" secondAttribute="leading" constant="20" id="icon-leading"/>
-                                        <constraint firstItem="preference-subtitle-label" firstAttribute="centerY" secondItem="preference-cell-content" secondAttribute="centerY" id="subtitle-center-y"/>
-                                        <constraint firstItem="preference-subtitle-label" firstAttribute="leading" secondItem="preference-title-label" secondAttribute="trailing" constant="8" id="subtitle-leading"/>
-                                        <constraint firstItem="preference-title-label" firstAttribute="centerY" secondItem="preference-cell-content" secondAttribute="centerY" id="title-center-y"/>
-                                        <constraint firstItem="preference-title-label" firstAttribute="leading" secondItem="preference-icon-label" secondAttribute="trailing" constant="12" id="title-leading"/>
-                                        <constraint firstItem="preference-toggle-switch" firstAttribute="centerY" secondItem="preference-cell-content" secondAttribute="centerY" id="toggle-center-y"/>
-                                        <constraint firstAttribute="trailing" secondItem="preference-toggle-switch" secondAttribute="trailing" constant="20" id="toggle-trailing"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="chevronImageView" destination="preference-chevron-image" id="chevron-outlet"/>
-                                    <outlet property="iconLabel" destination="preference-icon-label" id="icon-outlet"/>
-                                    <outlet property="subtitleLabel" destination="preference-subtitle-label" id="subtitle-outlet"/>
-                                    <outlet property="titleLabel" destination="preference-title-label" id="title-outlet"/>
-                                    <outlet property="toggleSwitch" destination="preference-toggle-switch" id="toggle-outlet"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="60" id="action-cell" customClass="ActionCell" customModule="TripSync" customModuleProvider="target">
-                                <rect key="frame" x="20" y="335.33333206176758" width="353" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="action-cell" id="action-cell-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀁝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="action-icon-label">
-                                            <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chevronImageView" destination="help-chevron" id="help-chevron-outlet"/>
+                                            <outlet property="iconLabel" destination="help-icon" id="help-icon-outlet"/>
+                                            <outlet property="titleLabel" destination="help-title" id="help-title-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <!-- About TripSync Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="about-cell" customClass="ActionCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="514" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="about-cell" id="about-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀅴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="about-icon">
+                                                    <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="about-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="about-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About TripSync" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="about-title">
+                                                    <rect key="frame" x="56" y="20" width="257" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="about-chevron">
+                                                    <rect key="frame" x="313" y="22" width="20" height="16"/>
+                                                    <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="about-chevron-height"/>
+                                                        <constraint firstAttribute="width" constant="20" id="about-chevron-width"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="action-icon-height"/>
-                                                <constraint firstAttribute="width" constant="24" id="action-icon-width"/>
+                                                <constraint firstItem="about-chevron" firstAttribute="centerY" secondItem="about-cell-content" secondAttribute="centerY" id="about-chevron-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="about-chevron" secondAttribute="trailing" constant="20" id="about-chevron-trailing"/>
+                                                <constraint firstItem="about-icon" firstAttribute="centerY" secondItem="about-cell-content" secondAttribute="centerY" id="about-icon-centery"/>
+                                                <constraint firstItem="about-icon" firstAttribute="leading" secondItem="about-cell-content" secondAttribute="leading" constant="20" id="about-icon-leading"/>
+                                                <constraint firstItem="about-title" firstAttribute="centerY" secondItem="about-cell-content" secondAttribute="centerY" id="about-title-centery"/>
+                                                <constraint firstItem="about-title" firstAttribute="leading" secondItem="about-icon" secondAttribute="trailing" constant="12" id="about-title-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="about-title" secondAttribute="trailing" constant="40" id="about-title-trailing"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help &amp; Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="action-title-label">
-                                            <rect key="frame" x="56" y="20.333333333333336" width="257" height="19.333333333333336"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="action-chevron-image">
-                                            <rect key="frame" x="313" y="22" width="20" height="16.333333333333329"/>
-                                            <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chevronImageView" destination="about-chevron" id="about-chevron-outlet"/>
+                                            <outlet property="iconLabel" destination="about-icon" id="about-icon-outlet"/>
+                                            <outlet property="titleLabel" destination="about-title" id="about-title-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <!-- Log Out Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="logout-cell" customClass="ActionCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="574" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="logout-cell" id="logout-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀆙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="logout-icon">
+                                                    <rect key="frame" x="20" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="logout-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="logout-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="logout-title">
+                                                    <rect key="frame" x="56" y="20" width="277" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="logout-chevron">
+                                                    <rect key="frame" x="313" y="22" width="20" height="16"/>
+                                                    <color key="tintColor" systemColor="tertiaryLabelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="logout-chevron-height"/>
+                                                        <constraint firstAttribute="width" constant="20" id="logout-chevron-width"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="action-chevron-height"/>
-                                                <constraint firstAttribute="width" constant="20" id="action-chevron-width"/>
+                                                <constraint firstItem="logout-chevron" firstAttribute="centerY" secondItem="logout-cell-content" secondAttribute="centerY" id="logout-chevron-centery"/>
+                                                <constraint firstAttribute="trailing" secondItem="logout-chevron" secondAttribute="trailing" constant="20" id="logout-chevron-trailing"/>
+                                                <constraint firstItem="logout-icon" firstAttribute="centerY" secondItem="logout-cell-content" secondAttribute="centerY" id="logout-icon-centery"/>
+                                                <constraint firstItem="logout-icon" firstAttribute="leading" secondItem="logout-cell-content" secondAttribute="leading" constant="20" id="logout-icon-leading"/>
+                                                <constraint firstItem="logout-title" firstAttribute="centerY" secondItem="logout-cell-content" secondAttribute="centerY" id="logout-title-centery"/>
+                                                <constraint firstItem="logout-title" firstAttribute="leading" secondItem="logout-icon" secondAttribute="trailing" constant="12" id="logout-title-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="logout-title" secondAttribute="trailing" constant="20" id="logout-title-trailing"/>
                                             </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="action-chevron-image" firstAttribute="centerY" secondItem="action-cell-content" secondAttribute="centerY" id="action-chevron-center-y"/>
-                                        <constraint firstAttribute="trailing" secondItem="action-chevron-image" secondAttribute="trailing" constant="20" id="action-chevron-trailing"/>
-                                        <constraint firstItem="action-icon-label" firstAttribute="centerY" secondItem="action-cell-content" secondAttribute="centerY" id="action-icon-center-y"/>
-                                        <constraint firstItem="action-icon-label" firstAttribute="leading" secondItem="action-cell-content" secondAttribute="leading" constant="20" id="action-icon-leading"/>
-                                        <constraint firstItem="action-title-label" firstAttribute="centerY" secondItem="action-cell-content" secondAttribute="centerY" id="action-title-center-y"/>
-                                        <constraint firstItem="action-title-label" firstAttribute="leading" secondItem="action-icon-label" secondAttribute="trailing" constant="12" id="action-title-leading"/>
-                                        <constraint firstAttribute="trailing" secondItem="action-title-label" secondAttribute="trailing" constant="40" id="action-title-trailing"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="chevronImageView" destination="action-chevron-image" id="action-chevron-outlet"/>
-                                    <outlet property="iconLabel" destination="action-icon-label" id="action-icon-outlet"/>
-                                    <outlet property="titleLabel" destination="action-title-label" id="action-title-outlet"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="dataSource-outlet"/>
-                            <outlet property="delegate" destination="Y6W-OH-hqX" id="delegate-outlet"/>
-                        </connections>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chevronImageView" destination="logout-chevron" id="logout-chevron-outlet"/>
+                                            <outlet property="iconLabel" destination="logout-icon" id="logout-icon-outlet"/>
+                                            <outlet property="titleLabel" destination="logout-title" id="logout-title-outlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="nav-item"/>
+                    <connections>
+                        <outlet property="aboutCell" destination="about-cell" id="about-cell-outlet"/>
+                        <outlet property="helpCell" destination="help-cell" id="help-cell-outlet"/>
+                        <outlet property="locationCell" destination="location-cell" id="location-cell-outlet"/>
+                        <outlet property="logoutCell" destination="logout-cell" id="logout-cell-outlet"/>
+                        <outlet property="privacyCell" destination="privacy-cell" id="privacy-cell-outlet"/>
+                        <outlet property="profileHeaderCell" destination="profile-header-cell" id="profile-header-cell-outlet"/>
+                        <outlet property="statCell" destination="stat-cell" id="stat-cell-outlet"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,8 +419,11 @@
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
