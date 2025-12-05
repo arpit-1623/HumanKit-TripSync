@@ -11,8 +11,6 @@ class StatCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -28,22 +26,6 @@ class StatCell: UITableViewCell {
         // Configure container view
         containerView.backgroundColor = .clear
         containerView.layer.cornerRadius = 0
-        
-        // Configure value label
-        valueLabel.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-        valueLabel.textColor = .systemBlue
-        valueLabel.textAlignment = .center
-        
-        // Configure title label
-        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        titleLabel.textColor = .secondaryLabel
-        titleLabel.textAlignment = .center
-    }
-    
-    // MARK: - Configuration
-    func configure(value: Int, label: String) {
-        valueLabel.text = "\(value)"
-        titleLabel.text = label
     }
     
     func configureHorizontal(trips: Int, memories: Int, photos: Int) {

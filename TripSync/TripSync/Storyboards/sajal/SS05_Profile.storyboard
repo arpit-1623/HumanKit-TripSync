@@ -84,40 +84,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stat-container-view">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="stat-stack">
-                                                    <rect key="frame" x="12" y="12" width="329" height="96"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stat-value-label">
-                                                            <rect key="frame" x="146.66666666666666" y="0.0" width="35.666666666666657" height="75"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                            <color key="textColor" systemColor="systemOrangeColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stat-title-label">
-                                                            <rect key="frame" x="148" y="79" width="33" height="17"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="17" id="ogd-QZ-ToG"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" name="CardColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="stat-stack" secondAttribute="bottom" constant="12" id="stat-stack-bottom"/>
-                                                <constraint firstItem="stat-stack" firstAttribute="leading" secondItem="stat-container-view" secondAttribute="leading" constant="12" id="stat-stack-leading"/>
-                                                <constraint firstItem="stat-stack" firstAttribute="top" secondItem="stat-container-view" secondAttribute="top" constant="12" id="stat-stack-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="stat-stack" secondAttribute="trailing" constant="12" id="stat-stack-trailing"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="0"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -130,8 +97,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="containerView" destination="stat-container-view" id="stat-container-outlet"/>
-                                    <outlet property="titleLabel" destination="stat-title-label" id="stat-title-outlet"/>
-                                    <outlet property="valueLabel" destination="stat-value-label" id="stat-value-outlet"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreferenceCell" rowHeight="60" id="preference-cell" customClass="PreferenceCell" customModule="TripSync" customModuleProvider="target">
