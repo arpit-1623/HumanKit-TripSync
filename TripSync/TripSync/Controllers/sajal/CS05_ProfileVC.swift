@@ -9,6 +9,15 @@ import UIKit
 
 class ProfileViewController: UITableViewController {
     
+    // MARK: - Outlets (Static Cells)
+    @IBOutlet weak var profileHeaderCell: ProfileHeaderCell!
+    @IBOutlet weak var statCell: StatCell!
+    @IBOutlet weak var privacyCell: PreferenceCell!
+    @IBOutlet weak var locationCell: PreferenceCell!
+    @IBOutlet weak var helpCell: ActionCell!
+    @IBOutlet weak var aboutCell: ActionCell!
+    @IBOutlet weak var logoutCell: ActionCell!
+    
     // MARK: - Properties
     private var user: User?
     private var stats: (trips: Int, memories: Int, photos: Int) = (0, 0, 0)
@@ -23,11 +32,7 @@ class ProfileViewController: UITableViewController {
         super.viewWillAppear(animated)
         loadUserData()
         calculateStats()
-        
-        // Reload only the preferences section to update location sharing status
-        if tableView.numberOfSections > 1 {
-            tableView.reloadSections(IndexSet(integer: 1), with: .none)
-        }
+        configureAllCells()
     }
     
     // MARK: - Setup
@@ -37,9 +42,6 @@ class ProfileViewController: UITableViewController {
         tableView.backgroundColor = .systemGroupedBackground
         tableView.separatorStyle = .none
         tableView.allowsSelection = true
-        
-        // Cells are registered as prototypes in the storyboard
-        // No need to register them programmatically
     }
     
     // MARK: - Data Loading
@@ -67,143 +69,61 @@ class ProfileViewController: UITableViewController {
         stats.photos = userMemories.reduce(0) { $0 + $1.photoData.count }
     }
     
-    // MARK: - Table View Data Source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 2  // Profile Header + Stats (merged into one section)
-        case 1: return 2  // Preferences (Privacy, Location Sharing)
-        case 2: return 3  // Account (Help, About, Log Out)
-        default: return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            // First section contains both profile header and stats
-            if indexPath.row == 0 {
-                return configureProfileHeaderCell(at: indexPath)
-            } else {
-                return configureStatCell(at: indexPath)
-            }
-        case 1:
-            return configurePreferenceCell(at: indexPath)
-        case 2:
-            return configureActionCell(at: indexPath)
-        default:
-            return UITableViewCell()
-        }
-    }
-    
     // MARK: - Cell Configuration
-    private func configureProfileHeaderCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell", for: indexPath) as? ProfileHeaderCell else {
-            return UITableViewCell()
-        }
-        
+    private func configureAllCells() {
+        // Configure Profile Header
         if let user = user {
-            cell.configure(with: user)
+            profileHeaderCell.configure(with: user)
         }
         
-        return cell
-    }
-    
-    private func configureStatCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StatCell", for: indexPath) as? StatCell else {
-            return UITableViewCell()
+        // Configure Stats
+        statCell.configureHorizontal(trips: stats.trips, memories: stats.memories, photos: stats.photos)
+        
+        // Configure Privacy Cell
+        let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
+        privacyCell.configure(title: "Privacy", icon: "lock.fill", hasToggle: true, isToggleOn: isPrivacyOn)
+        privacyCell.toggleChanged = { [weak self] isOn in
+            self?.handlePrivacyToggle(isOn: isOn)
         }
         
-        // Configure cell with all three stats horizontally
-        cell.configureHorizontal(trips: stats.trips, memories: stats.memories, photos: stats.photos)
+        // Configure Location Sharing Cell
+        let locationMode = user?.userPreferences.shareLocation ?? .off
+        let subtitle: String
+        switch locationMode {
+        case .off: subtitle = "Off"
+        case .tripOnly: subtitle = "Current Trip Only"
+        case .allTrips: subtitle = "All Trips"
+        }
+        locationCell.configure(title: "Location Sharing", icon: "location.fill", hasToggle: false, subtitle: subtitle)
         
-        return cell
-    }
-    
-    private func configurePreferenceCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PreferenceCell", for: indexPath) as? PreferenceCell else {
-            return UITableViewCell()
-        }
-        
-        switch indexPath.row {
-        case 0:
-            let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
-            cell.configure(title: "Privacy", icon: "lock.fill", hasToggle: true, isToggleOn: isPrivacyOn)
-            cell.toggleChanged = { [weak self] isOn in
-                self?.handlePrivacyToggle(isOn: isOn)
-            }
-        case 1:
-            let locationMode = user?.userPreferences.shareLocation ?? .off
-            let subtitle: String
-            switch locationMode {
-            case .off: subtitle = "Off"
-            case .tripOnly: subtitle = "Current Trip Only"
-            case .allTrips: subtitle = "All Trips"
-            }
-            cell.configure(title: "Location Sharing", icon: "location.fill", hasToggle: false, subtitle: subtitle)
-        default:
-            break
-        }
-        
-        return cell
-    }
-    
-    private func configureActionCell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath) as? ActionCell else {
-            return UITableViewCell()
-        }
-        
-        switch indexPath.row {
-        case 0:
-            cell.configure(title: "Help & Support", icon: "questionmark.circle.fill", isDestructive: false)
-        case 1:
-            cell.configure(title: "About TripSync", icon: "info.circle.fill", isDestructive: false)
-        case 2:
-            cell.configure(title: "Log Out", icon: "rectangle.portrait.and.arrow.right", isDestructive: true)
-        default:
-            break
-        }
-        
-        return cell
-    }
-    
-    // MARK: - Table View Delegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return indexPath.row == 0 ? 100 : 120  // Profile Header : Stats
-        default:
-            return 60  // Preferences and Actions
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 32
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1: return "Preferences"
-        case 2: return "Account"
-        default: return nil
-        }
+        // Configure Action Cells
+        helpCell.configure(title: "Help & Support", icon: "questionmark.circle.fill", isDestructive: false)
+        aboutCell.configure(title: "About TripSync", icon: "info.circle.fill", isDestructive: false)
+        logoutCell.configure(title: "Log Out", icon: "rectangle.portrait.and.arrow.right", isDestructive: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch indexPath.section {
-        case 1:
-            if indexPath.row == 1 {
+        // Section 0: Profile & Stats (not tappable)
+        // Section 1: Preferences
+        if indexPath.section == 1 {
+            if indexPath.row == 1 {  // Location Sharing
                 showLocationSharingOptions()
             }
-        case 2:
-            handleAccountAction(at: indexPath.row)
-        default:
-            break
+        }
+        // Section 2: Account
+        else if indexPath.section == 2 {
+            switch indexPath.row {
+            case 0:  // Help & Support
+                showHelpAndSupport()
+            case 1:  // About TripSync
+                showAboutTripSync()
+            case 2:  // Log Out
+                showLogOutConfirmation()
+            default:
+                break
+            }
         }
     }
     
@@ -221,19 +141,6 @@ class ProfileViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "SS06_LocationSharing", bundle: nil)
         if let locationSharingVC = storyboard.instantiateInitialViewController() {
             navigationController?.pushViewController(locationSharingVC, animated: true)
-        }
-    }
-    
-    private func handleAccountAction(at row: Int) {
-        switch row {
-        case 0:
-            showHelpAndSupport()
-        case 1:
-            showAboutTripSync()
-        case 2:
-            showLogOutConfirmation()
-        default:
-            break
         }
     }
     
