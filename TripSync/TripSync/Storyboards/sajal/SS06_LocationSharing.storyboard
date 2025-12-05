@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LocationSharingVC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LocationSharingVC">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,10 +16,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <sections>
-                            <!-- Section 0: Toggle & Description -->
                             <tableViewSection id="section-toggle">
                                 <cells>
-                                    <!-- Share Location Toggle Cell -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="56" id="toggle-cell">
                                         <rect key="frame" x="20" y="18" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -27,38 +25,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀋒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toggle-icon">
-                                                    <rect key="frame" x="20" y="16" width="24" height="24"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="toggle-icon">
+                                                    <rect key="frame" x="20" y="17" width="24" height="22.333333333333336"/>
+                                                    <color key="tintColor" systemColor="systemBlueColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="toggle-icon-height"/>
                                                         <constraint firstAttribute="width" constant="24" id="toggle-icon-width"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toggle-title">
-                                                    <rect key="frame" x="56" y="18" width="216" height="20"/>
+                                                    <rect key="frame" x="56" y="18" width="228" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="location-toggle">
-                                                    <rect key="frame" x="272" y="14" width="63" height="28"/>
+                                                    <rect key="frame" x="284" y="12.666666666666664" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="location-toggle" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="location-toggle-centery"/>
+                                                <constraint firstItem="location-toggle" firstAttribute="leading" secondItem="toggle-title" secondAttribute="trailing" id="location-toggle-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="location-toggle" secondAttribute="trailing" constant="20" id="location-toggle-trailing"/>
                                                 <constraint firstItem="toggle-icon" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="toggle-icon-centery"/>
                                                 <constraint firstItem="toggle-icon" firstAttribute="leading" secondItem="toggle-cell-content" secondAttribute="leading" constant="20" id="toggle-icon-leading"/>
                                                 <constraint firstItem="toggle-title" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="toggle-title-centery"/>
                                                 <constraint firstItem="toggle-title" firstAttribute="leading" secondItem="toggle-icon" secondAttribute="trailing" constant="12" id="toggle-title-leading"/>
-                                                <constraint firstItem="location-toggle" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="location-toggle-centery"/>
-                                                <constraint firstItem="location-toggle" firstAttribute="leading" secondItem="toggle-title" secondAttribute="trailing" id="location-toggle-leading"/>
-                                                <constraint firstAttribute="trailing" secondItem="location-toggle" secondAttribute="trailing" constant="20" id="location-toggle-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <!-- Description Cell -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="56" id="description-cell">
                                         <rect key="frame" x="20" y="74" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -83,12 +79,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <!-- Section 1: Duration Options -->
-                            <tableViewSection headerTitle="SHARE FOR" id="section-duration">
+                            <tableViewSection headerTitle="SHARE FOR" footerTitle="Location sharing will automatically stop after the selected duration. You can stop sharing at any time." id="section-duration">
                                 <cells>
-                                    <!-- 1 Hour -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-1hour">
-                                        <rect key="frame" x="20" y="186" width="353" height="56"/>
+                                        <rect key="frame" x="20" y="193.33333206176761" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-1hour" id="duration-1hour-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -108,9 +102,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <!-- 3 Hours -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-3hours">
-                                        <rect key="frame" x="20" y="242" width="353" height="56"/>
+                                        <rect key="frame" x="20" y="249.33333206176758" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-3hours" id="duration-3hours-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -130,9 +123,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <!-- Until End of Day -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-endofday">
-                                        <rect key="frame" x="20" y="298" width="353" height="56"/>
+                                        <rect key="frame" x="20" y="305.33333206176758" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-endofday" id="duration-endofday-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -152,9 +144,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <!-- 24 Hours -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-24hours">
-                                        <rect key="frame" x="20" y="354" width="353" height="56"/>
+                                        <rect key="frame" x="20" y="361.33333206176758" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-24hours" id="duration-24hours-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -174,9 +165,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <!-- Indefinitely -->
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-indefinitely">
-                                        <rect key="frame" x="20" y="410" width="353" height="56"/>
+                                        <rect key="frame" x="20" y="417.33333206176758" width="353" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-indefinitely" id="duration-indefinitely-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -197,7 +187,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
-                                <string key="footerTitle">Location sharing will automatically stop after the selected duration. You can stop sharing at any time.</string>
                             </tableViewSection>
                         </sections>
                     </tableView>
@@ -217,8 +206,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
