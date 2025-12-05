@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,15 +11,217 @@
         <scene sceneID="location-sharing-scene">
             <objects>
                 <tableViewController id="LocationSharingVC" customClass="LocationSharingViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="location-sharing-tableview">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="location-sharing-tableview">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <sections>
+                            <!-- Section 0: Toggle & Description -->
+                            <tableViewSection id="section-toggle">
+                                <cells>
+                                    <!-- Share Location Toggle Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="56" id="toggle-cell">
+                                        <rect key="frame" x="20" y="18" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="toggle-cell" id="toggle-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="􀋒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toggle-icon">
+                                                    <rect key="frame" x="20" y="16" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="toggle-icon-height"/>
+                                                        <constraint firstAttribute="width" constant="24" id="toggle-icon-width"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toggle-title">
+                                                    <rect key="frame" x="56" y="18" width="216" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="location-toggle">
+                                                    <rect key="frame" x="272" y="14" width="63" height="28"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="toggle-icon" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="toggle-icon-centery"/>
+                                                <constraint firstItem="toggle-icon" firstAttribute="leading" secondItem="toggle-cell-content" secondAttribute="leading" constant="20" id="toggle-icon-leading"/>
+                                                <constraint firstItem="toggle-title" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="toggle-title-centery"/>
+                                                <constraint firstItem="toggle-title" firstAttribute="leading" secondItem="toggle-icon" secondAttribute="trailing" constant="12" id="toggle-title-leading"/>
+                                                <constraint firstItem="location-toggle" firstAttribute="centerY" secondItem="toggle-cell-content" secondAttribute="centerY" id="location-toggle-centery"/>
+                                                <constraint firstItem="location-toggle" firstAttribute="leading" secondItem="toggle-title" secondAttribute="trailing" id="location-toggle-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="location-toggle" secondAttribute="trailing" constant="20" id="location-toggle-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <!-- Description Cell -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="56" id="description-cell">
+                                        <rect key="frame" x="20" y="74" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="description-cell" id="description-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your real-time location will be visible to trip members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="description-label">
+                                                    <rect key="frame" x="20" y="8" width="313" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="description-label" secondAttribute="bottom" constant="8" id="description-label-bottom"/>
+                                                <constraint firstItem="description-label" firstAttribute="leading" secondItem="description-cell-content" secondAttribute="leading" constant="20" id="description-label-leading"/>
+                                                <constraint firstItem="description-label" firstAttribute="top" secondItem="description-cell-content" secondAttribute="top" constant="8" id="description-label-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="description-label" secondAttribute="trailing" constant="20" id="description-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 1: Duration Options -->
+                            <tableViewSection headerTitle="SHARE FOR" id="section-duration">
+                                <cells>
+                                    <!-- 1 Hour -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-1hour">
+                                        <rect key="frame" x="20" y="186" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-1hour" id="duration-1hour-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duration-1hour-label">
+                                                    <rect key="frame" x="20" y="18" width="313" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="duration-1hour-label" firstAttribute="centerY" secondItem="duration-1hour-content" secondAttribute="centerY" id="duration-1hour-label-centery"/>
+                                                <constraint firstItem="duration-1hour-label" firstAttribute="leading" secondItem="duration-1hour-content" secondAttribute="leading" constant="20" id="duration-1hour-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="duration-1hour-label" secondAttribute="trailing" constant="20" id="duration-1hour-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <!-- 3 Hours -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-3hours">
+                                        <rect key="frame" x="20" y="242" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-3hours" id="duration-3hours-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duration-3hours-label">
+                                                    <rect key="frame" x="20" y="18" width="313" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="duration-3hours-label" firstAttribute="centerY" secondItem="duration-3hours-content" secondAttribute="centerY" id="duration-3hours-label-centery"/>
+                                                <constraint firstItem="duration-3hours-label" firstAttribute="leading" secondItem="duration-3hours-content" secondAttribute="leading" constant="20" id="duration-3hours-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="duration-3hours-label" secondAttribute="trailing" constant="20" id="duration-3hours-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <!-- Until End of Day -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-endofday">
+                                        <rect key="frame" x="20" y="298" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-endofday" id="duration-endofday-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Until End of Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duration-endofday-label">
+                                                    <rect key="frame" x="20" y="18" width="313" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="duration-endofday-label" firstAttribute="centerY" secondItem="duration-endofday-content" secondAttribute="centerY" id="duration-endofday-label-centery"/>
+                                                <constraint firstItem="duration-endofday-label" firstAttribute="leading" secondItem="duration-endofday-content" secondAttribute="leading" constant="20" id="duration-endofday-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="duration-endofday-label" secondAttribute="trailing" constant="20" id="duration-endofday-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <!-- 24 Hours -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-24hours">
+                                        <rect key="frame" x="20" y="354" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-24hours" id="duration-24hours-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duration-24hours-label">
+                                                    <rect key="frame" x="20" y="18" width="313" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="duration-24hours-label" firstAttribute="centerY" secondItem="duration-24hours-content" secondAttribute="centerY" id="duration-24hours-label-centery"/>
+                                                <constraint firstItem="duration-24hours-label" firstAttribute="leading" secondItem="duration-24hours-content" secondAttribute="leading" constant="20" id="duration-24hours-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="duration-24hours-label" secondAttribute="trailing" constant="20" id="duration-24hours-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <!-- Indefinitely -->
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="duration-indefinitely">
+                                        <rect key="frame" x="20" y="410" width="353" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duration-indefinitely" id="duration-indefinitely-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indefinitely" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duration-indefinitely-label">
+                                                    <rect key="frame" x="20" y="18" width="313" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="duration-indefinitely-label" firstAttribute="centerY" secondItem="duration-indefinitely-content" secondAttribute="centerY" id="duration-indefinitely-label-centery"/>
+                                                <constraint firstItem="duration-indefinitely-label" firstAttribute="leading" secondItem="duration-indefinitely-content" secondAttribute="leading" constant="20" id="duration-indefinitely-label-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="duration-indefinitely-label" secondAttribute="trailing" constant="20" id="duration-indefinitely-label-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                                <string key="footerTitle">Location sharing will automatically stop after the selected duration. You can stop sharing at any time.</string>
+                            </tableViewSection>
+                        </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Location Sharing" id="location-sharing-nav-item"/>
+                    <connections>
+                        <outlet property="duration1HourCell" destination="duration-1hour" id="duration-1hour-outlet"/>
+                        <outlet property="duration24HoursCell" destination="duration-24hours" id="duration-24hours-outlet"/>
+                        <outlet property="duration3HoursCell" destination="duration-3hours" id="duration-3hours-outlet"/>
+                        <outlet property="durationEndOfDayCell" destination="duration-endofday" id="duration-endofday-outlet"/>
+                        <outlet property="durationIndefinitelyCell" destination="duration-indefinitely" id="duration-indefinitely-outlet"/>
+                        <outlet property="locationToggle" destination="location-toggle" id="location-toggle-outlet"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="location-sharing-first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
