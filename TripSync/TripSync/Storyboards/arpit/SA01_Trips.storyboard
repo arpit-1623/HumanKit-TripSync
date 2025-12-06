@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mF8-b1-YIG">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -15,173 +14,103 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="TripsViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="main-scroll">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-view">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="402" height="896"/>
                                         <subviews>
-                                            <!-- Hero Header with Background Image and Search -->
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hero-header">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="280"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="hero-bg-image">
-                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="280"/>
-                                                    </imageView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hero-overlay">
-                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="280"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LET'S GO TRAVEL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hero-title">
-                                                        <rect key="frame" x="24" y="100" width="342" height="40"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hero-subtitle">
-                                                        <rect key="frame" x="24" y="144" width="342" height="38"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-container">
-                                                        <rect key="frame" x="24" y="206" width="342" height="50"/>
-                                                        <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search trips..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="search-field">
-                                                                <rect key="frame" x="16" y="0.0" width="278" height="50"/>
-                                                                <color key="textColor" systemColor="labelColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                                            </textField>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon">
-                                                                <rect key="frame" x="302" y="14.666666666666686" width="24" height="20.666666666666671"/>
-                                                                <color key="tintColor" systemColor="systemOrangeColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="24" id="search-icon-width"/>
-                                                                    <constraint firstAttribute="height" constant="24" id="search-icon-height"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="search-height"/>
-                                                            <constraint firstItem="search-field" firstAttribute="leading" secondItem="search-container" secondAttribute="leading" constant="16" id="search-field-leading"/>
-                                                            <constraint firstItem="search-field" firstAttribute="top" secondItem="search-container" secondAttribute="top" id="search-field-top"/>
-                                                            <constraint firstAttribute="bottom" secondItem="search-field" secondAttribute="bottom" id="search-field-bottom"/>
-                                                            <constraint firstItem="search-icon" firstAttribute="leading" secondItem="search-field" secondAttribute="trailing" constant="8" id="search-icon-leading"/>
-                                                            <constraint firstAttribute="trailing" secondItem="search-icon" secondAttribute="trailing" constant="16" id="search-icon-trailing"/>
-                                                            <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="search-icon-centerY"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="25"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="280" id="hero-height"/>
-                                                    <constraint firstItem="hero-bg-image" firstAttribute="leading" secondItem="hero-header" secondAttribute="leading" id="hero-bg-leading"/>
-                                                    <constraint firstItem="hero-bg-image" firstAttribute="top" secondItem="hero-header" secondAttribute="top" id="hero-bg-top"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hero-bg-image" secondAttribute="trailing" id="hero-bg-trailing"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hero-bg-image" secondAttribute="bottom" id="hero-bg-bottom"/>
-                                                    <constraint firstItem="hero-overlay" firstAttribute="leading" secondItem="hero-header" secondAttribute="leading" id="overlay-leading"/>
-                                                    <constraint firstItem="hero-overlay" firstAttribute="top" secondItem="hero-header" secondAttribute="top" id="overlay-top"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hero-overlay" secondAttribute="trailing" id="overlay-trailing"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hero-overlay" secondAttribute="bottom" id="overlay-bottom"/>
-                                                    <constraint firstItem="hero-title" firstAttribute="leading" secondItem="hero-header" secondAttribute="leading" constant="24" id="title-leading"/>
-                                                    <constraint firstItem="hero-title" firstAttribute="top" secondItem="hero-header" secondAttribute="top" constant="100" id="title-top"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hero-title" secondAttribute="trailing" constant="24" id="title-trailing"/>
-                                                    <constraint firstItem="hero-subtitle" firstAttribute="leading" secondItem="hero-title" secondAttribute="leading" id="subtitle-leading"/>
-                                                    <constraint firstItem="hero-subtitle" firstAttribute="top" secondItem="hero-title" secondAttribute="bottom" constant="4" id="subtitle-top"/>
-                                                    <constraint firstItem="hero-subtitle" firstAttribute="trailing" secondItem="hero-title" secondAttribute="trailing" id="subtitle-trailing"/>
-                                                    <constraint firstItem="search-container" firstAttribute="leading" secondItem="hero-header" secondAttribute="leading" constant="24" id="search-leading"/>
-                                                    <constraint firstItem="search-container" firstAttribute="top" secondItem="hero-subtitle" secondAttribute="bottom" constant="24" id="search-top"/>
-                                                    <constraint firstAttribute="trailing" secondItem="search-container" secondAttribute="trailing" constant="24" id="search-trailing"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            
-                                            <!-- Current Trip Section -->
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-label">
-                                                <rect key="frame" x="24" y="300" width="342" height="24"/>
+                                                <rect key="frame" x="24" y="88" width="354" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" systemColor="labelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="current-trip-card">
-                                                <rect key="frame" x="24" y="336" width="342" height="200"/>
+                                                <rect key="frame" x="24" y="124" width="354" height="200"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="current-image">
-                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="200"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="354" height="200"/>
                                                     </imageView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="current-gradient">
-                                                        <rect key="frame" x="0.0" y="0.0" width="342" height="200"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="current-info-stack">
-                                                        <rect key="frame" x="16" y="140" width="310" height="44"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-name">
-                                                                <rect key="frame" x="0.0" y="0.0" width="139" height="20"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan • 5 members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-details">
-                                                                <rect key="frame" x="0.0" y="28" width="176.66666666666666" height="16"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glass-container" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="125.33333333333336" width="322" height="58.666666666666671"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="glass-content-view">
+                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58.666666666666671"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="current-info-stack">
+                                                                    <rect key="frame" x="12" y="7.9999999999999716" width="262" height="42.666666666666664"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-name">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="145" height="21.666666666666668"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan • 5 members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-details">
+                                                                            <rect key="frame" x="0.0" y="25.666666666666686" width="171.66666666666666" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chevron-button" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="278" y="13.333333333333343" width="32" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="32" id="chevron-height"/>
+                                                                        <constraint firstAttribute="width" constant="32" id="chevron-width"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="chevron-button" firstAttribute="centerY" secondItem="glass-content-view" secondAttribute="centerY" id="chevron-centerY"/>
+                                                                <constraint firstItem="chevron-button" firstAttribute="leading" secondItem="current-info-stack" secondAttribute="trailing" constant="4" id="chevron-leading"/>
+                                                                <constraint firstAttribute="trailing" secondItem="chevron-button" secondAttribute="trailing" constant="12" id="chevron-trailing"/>
+                                                                <constraint firstAttribute="bottom" secondItem="current-info-stack" secondAttribute="bottom" constant="8" id="info-bottom"/>
+                                                                <constraint firstItem="current-info-stack" firstAttribute="leading" secondItem="glass-content-view" secondAttribute="leading" constant="12" id="info-leading"/>
+                                                                <constraint firstItem="current-info-stack" firstAttribute="top" secondItem="glass-content-view" secondAttribute="top" constant="8" id="info-top"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <blurEffect style="systemThinMaterial"/>
+                                                    </visualEffectView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="current-height"/>
+                                                    <constraint firstAttribute="bottom" secondItem="current-image" secondAttribute="bottom" id="current-img-bottom"/>
                                                     <constraint firstItem="current-image" firstAttribute="leading" secondItem="current-trip-card" secondAttribute="leading" id="current-img-leading"/>
                                                     <constraint firstItem="current-image" firstAttribute="top" secondItem="current-trip-card" secondAttribute="top" id="current-img-top"/>
                                                     <constraint firstAttribute="trailing" secondItem="current-image" secondAttribute="trailing" id="current-img-trailing"/>
-                                                    <constraint firstAttribute="bottom" secondItem="current-image" secondAttribute="bottom" id="current-img-bottom"/>
-                                                    <constraint firstItem="current-gradient" firstAttribute="leading" secondItem="current-trip-card" secondAttribute="leading" id="gradient-leading"/>
-                                                    <constraint firstItem="current-gradient" firstAttribute="top" secondItem="current-trip-card" secondAttribute="top" id="gradient-top"/>
-                                                    <constraint firstAttribute="trailing" secondItem="current-gradient" secondAttribute="trailing" id="gradient-trailing"/>
-                                                    <constraint firstAttribute="bottom" secondItem="current-gradient" secondAttribute="bottom" id="gradient-bottom"/>
-                                                    <constraint firstItem="current-info-stack" firstAttribute="leading" secondItem="current-trip-card" secondAttribute="leading" constant="16" id="info-leading"/>
-                                                    <constraint firstAttribute="trailing" secondItem="current-info-stack" secondAttribute="trailing" constant="16" id="info-trailing"/>
-                                                    <constraint firstAttribute="bottom" secondItem="current-info-stack" secondAttribute="bottom" constant="16" id="info-bottom"/>
+                                                    <constraint firstAttribute="bottom" secondItem="glass-container" secondAttribute="bottom" constant="16" id="glass-bottom"/>
+                                                    <constraint firstItem="glass-container" firstAttribute="leading" secondItem="current-trip-card" secondAttribute="leading" constant="16" id="glass-leading"/>
+                                                    <constraint firstAttribute="trailing" secondItem="glass-container" secondAttribute="trailing" constant="16" id="glass-trailing"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="current-tap" appends="YES" id="current-tap-connection"/>
                                                 </connections>
                                             </view>
-                                            
-                                            <!-- Upcoming Trips Section -->
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-label">
-                                                <rect key="frame" x="24" y="556" width="342" height="24"/>
+                                                <rect key="frame" x="24" y="344" width="354" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" systemColor="labelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-collection">
-                                                <rect key="frame" x="0.0" y="592" width="390" height="220"/>
+                                                <rect key="frame" x="0.0" y="380" width="402" height="220"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="220" id="upcoming-height"/>
@@ -218,16 +147,16 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="card-stack">
-                                                                    <rect key="frame" x="16" y="144" width="248" height="40"/>
+                                                                    <rect key="frame" x="16" y="142" width="248" height="42"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="card-name">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="83" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="83.333333333333329" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location • Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="card-info">
-                                                                            <rect key="frame" x="0.0" y="26" width="101" height="14"/>
+                                                                            <rect key="frame" x="0.0" y="26.333333333333346" width="93.666666666666671" height="15.666666666666668"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -237,17 +166,17 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="card-image" firstAttribute="leading" secondItem="upcoming-cell-content" secondAttribute="leading" id="cell-img-leading"/>
-                                                                <constraint firstItem="card-image" firstAttribute="top" secondItem="upcoming-cell-content" secondAttribute="top" id="cell-img-top"/>
-                                                                <constraint firstAttribute="trailing" secondItem="card-image" secondAttribute="trailing" id="cell-img-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="card-image" secondAttribute="bottom" id="cell-img-bottom"/>
+                                                                <constraint firstAttribute="bottom" secondItem="card-gradient" secondAttribute="bottom" id="cell-gradient-bottom"/>
                                                                 <constraint firstItem="card-gradient" firstAttribute="leading" secondItem="upcoming-cell-content" secondAttribute="leading" id="cell-gradient-leading"/>
                                                                 <constraint firstItem="card-gradient" firstAttribute="top" secondItem="upcoming-cell-content" secondAttribute="top" id="cell-gradient-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="card-gradient" secondAttribute="trailing" id="cell-gradient-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="card-gradient" secondAttribute="bottom" id="cell-gradient-bottom"/>
+                                                                <constraint firstAttribute="bottom" secondItem="card-image" secondAttribute="bottom" id="cell-img-bottom"/>
+                                                                <constraint firstItem="card-image" firstAttribute="leading" secondItem="upcoming-cell-content" secondAttribute="leading" id="cell-img-leading"/>
+                                                                <constraint firstItem="card-image" firstAttribute="top" secondItem="upcoming-cell-content" secondAttribute="top" id="cell-img-top"/>
+                                                                <constraint firstAttribute="trailing" secondItem="card-image" secondAttribute="trailing" id="cell-img-trailing"/>
+                                                                <constraint firstAttribute="bottom" secondItem="card-stack" secondAttribute="bottom" constant="16" id="cell-stack-bottom"/>
                                                                 <constraint firstItem="card-stack" firstAttribute="leading" secondItem="upcoming-cell-content" secondAttribute="leading" constant="16" id="cell-stack-leading"/>
                                                                 <constraint firstAttribute="trailing" secondItem="card-stack" secondAttribute="trailing" constant="16" id="cell-stack-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="card-stack" secondAttribute="bottom" constant="16" id="cell-stack-bottom"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <userDefinedRuntimeAttributes>
@@ -257,23 +186,19 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="tripImageView" destination="card-image" id="cell-img-outlet"/>
-                                                            <outlet property="tripNameLabel" destination="card-name" id="cell-name-outlet"/>
                                                             <outlet property="tripInfoLabel" destination="card-info" id="cell-info-outlet"/>
+                                                            <outlet property="tripNameLabel" destination="card-name" id="cell-name-outlet"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            
-                                            <!-- Past Trips Section -->
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Past Trips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="past-label">
-                                                <rect key="frame" x="24" y="832" width="342" height="24"/>
+                                                <rect key="frame" x="24" y="620" width="354" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" systemColor="labelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="past-collection">
-                                                <rect key="frame" x="0.0" y="868" width="390" height="220"/>
+                                                <rect key="frame" x="0.0" y="656" width="402" height="220"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="220" id="past-height"/>
@@ -310,16 +235,16 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="past-card-stack">
-                                                                    <rect key="frame" x="16" y="144" width="248" height="40"/>
+                                                                    <rect key="frame" x="16" y="142" width="248" height="42"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="past-card-name">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="83" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="83.333333333333329" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location • Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="past-card-info">
-                                                                            <rect key="frame" x="0.0" y="26" width="101" height="14"/>
+                                                                            <rect key="frame" x="0.0" y="26.333333333333346" width="93.666666666666671" height="15.666666666666668"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -329,17 +254,17 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="past-card-image" firstAttribute="leading" secondItem="past-cell-content" secondAttribute="leading" id="past-img-leading"/>
-                                                                <constraint firstItem="past-card-image" firstAttribute="top" secondItem="past-cell-content" secondAttribute="top" id="past-img-top"/>
-                                                                <constraint firstAttribute="trailing" secondItem="past-card-image" secondAttribute="trailing" id="past-img-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="past-card-image" secondAttribute="bottom" id="past-img-bottom"/>
+                                                                <constraint firstAttribute="bottom" secondItem="past-card-gradient" secondAttribute="bottom" id="past-gradient-bottom"/>
                                                                 <constraint firstItem="past-card-gradient" firstAttribute="leading" secondItem="past-cell-content" secondAttribute="leading" id="past-gradient-leading"/>
                                                                 <constraint firstItem="past-card-gradient" firstAttribute="top" secondItem="past-cell-content" secondAttribute="top" id="past-gradient-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="past-card-gradient" secondAttribute="trailing" id="past-gradient-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="past-card-gradient" secondAttribute="bottom" id="past-gradient-bottom"/>
+                                                                <constraint firstAttribute="bottom" secondItem="past-card-image" secondAttribute="bottom" id="past-img-bottom"/>
+                                                                <constraint firstItem="past-card-image" firstAttribute="leading" secondItem="past-cell-content" secondAttribute="leading" id="past-img-leading"/>
+                                                                <constraint firstItem="past-card-image" firstAttribute="top" secondItem="past-cell-content" secondAttribute="top" id="past-img-top"/>
+                                                                <constraint firstAttribute="trailing" secondItem="past-card-image" secondAttribute="trailing" id="past-img-trailing"/>
+                                                                <constraint firstAttribute="bottom" secondItem="past-card-stack" secondAttribute="bottom" constant="16" id="past-stack-bottom"/>
                                                                 <constraint firstItem="past-card-stack" firstAttribute="leading" secondItem="past-cell-content" secondAttribute="leading" constant="16" id="past-stack-leading"/>
                                                                 <constraint firstAttribute="trailing" secondItem="past-card-stack" secondAttribute="trailing" constant="16" id="past-stack-trailing"/>
-                                                                <constraint firstAttribute="bottom" secondItem="past-card-stack" secondAttribute="bottom" constant="16" id="past-stack-bottom"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <userDefinedRuntimeAttributes>
@@ -349,55 +274,52 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="tripImageView" destination="past-card-image" id="past-img-outlet"/>
-                                                            <outlet property="tripNameLabel" destination="past-card-name" id="past-name-outlet"/>
                                                             <outlet property="tripInfoLabel" destination="past-card-info" id="past-info-outlet"/>
+                                                            <outlet property="tripNameLabel" destination="past-card-name" id="past-name-outlet"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <searchBar contentMode="redraw" placeholder="Search Trips..." translatesAutoresizingMaskIntoConstraints="NO" id="8eN-0a-dxT">
+                                                <rect key="frame" x="0.0" y="0.0" width="402" height="64"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="LsD-Zv-rKY"/>
+                                                </connections>
+                                            </searchBar>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <!-- Hero Header -->
-                                            <constraint firstItem="hero-header" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="hero-leading"/>
-                                            <constraint firstItem="hero-header" firstAttribute="top" secondItem="content-view" secondAttribute="top" id="hero-top"/>
-                                            <constraint firstItem="hero-header" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="hero-trailing"/>
-                                            
-                                            <!-- Current Trip -->
-                                            <constraint firstItem="current-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="current-label-leading"/>
-                                            <constraint firstItem="current-label" firstAttribute="top" secondItem="hero-header" secondAttribute="bottom" constant="20" id="current-label-top"/>
-                                            <constraint firstItem="current-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="current-label-trailing"/>
-                                            
+                                            <constraint firstAttribute="trailing" secondItem="8eN-0a-dxT" secondAttribute="trailing" id="Ffr-lQ-8p5"/>
+                                            <constraint firstItem="8eN-0a-dxT" firstAttribute="top" secondItem="content-view" secondAttribute="top" id="YB8-SZ-hIv"/>
+                                            <constraint firstItem="8eN-0a-dxT" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="aqF-Gd-uFh"/>
                                             <constraint firstItem="current-trip-card" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="current-card-leading"/>
                                             <constraint firstItem="current-trip-card" firstAttribute="top" secondItem="current-label" secondAttribute="bottom" constant="12" id="current-card-top"/>
                                             <constraint firstItem="current-trip-card" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="current-card-trailing"/>
-                                            
-                                            <!-- Upcoming Trips -->
-                                            <constraint firstItem="upcoming-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="upcoming-label-leading"/>
-                                            <constraint firstItem="upcoming-label" firstAttribute="top" secondItem="current-trip-card" secondAttribute="bottom" constant="20" id="upcoming-label-top"/>
-                                            <constraint firstItem="upcoming-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="upcoming-label-trailing"/>
-                                            
-                                            <constraint firstItem="upcoming-collection" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="upcoming-coll-leading"/>
-                                            <constraint firstItem="upcoming-collection" firstAttribute="top" secondItem="upcoming-label" secondAttribute="bottom" constant="12" id="upcoming-coll-top"/>
-                                            <constraint firstItem="upcoming-collection" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="upcoming-coll-trailing"/>
-                                            
-                                            <!-- Past Trips -->
-                                            <constraint firstItem="past-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="past-label-leading"/>
-                                            <constraint firstItem="past-label" firstAttribute="top" secondItem="upcoming-collection" secondAttribute="bottom" constant="20" id="past-label-top"/>
-                                            <constraint firstItem="past-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="past-label-trailing"/>
-                                            
+                                            <constraint firstItem="current-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="current-label-leading"/>
+                                            <constraint firstItem="current-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="current-label-trailing"/>
+                                            <constraint firstItem="current-label" firstAttribute="top" secondItem="8eN-0a-dxT" secondAttribute="bottom" constant="24" id="jvc-5l-leN"/>
+                                            <constraint firstItem="past-collection" firstAttribute="bottom" secondItem="content-view" secondAttribute="bottom" constant="-20" id="past-coll-bottom"/>
                                             <constraint firstItem="past-collection" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="past-coll-leading"/>
                                             <constraint firstItem="past-collection" firstAttribute="top" secondItem="past-label" secondAttribute="bottom" constant="12" id="past-coll-top"/>
                                             <constraint firstItem="past-collection" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="past-coll-trailing"/>
-                                            <constraint firstItem="past-collection" firstAttribute="bottom" secondItem="content-view" secondAttribute="bottom" constant="-20" id="past-coll-bottom"/>
+                                            <constraint firstItem="past-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="past-label-leading"/>
+                                            <constraint firstItem="past-label" firstAttribute="top" secondItem="upcoming-collection" secondAttribute="bottom" constant="20" id="past-label-top"/>
+                                            <constraint firstItem="past-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="past-label-trailing"/>
+                                            <constraint firstItem="upcoming-collection" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="upcoming-coll-leading"/>
+                                            <constraint firstItem="upcoming-collection" firstAttribute="top" secondItem="upcoming-label" secondAttribute="bottom" constant="12" id="upcoming-coll-top"/>
+                                            <constraint firstItem="upcoming-collection" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="upcoming-coll-trailing"/>
+                                            <constraint firstItem="upcoming-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="upcoming-label-leading"/>
+                                            <constraint firstItem="upcoming-label" firstAttribute="top" secondItem="current-trip-card" secondAttribute="bottom" constant="20" id="upcoming-label-top"/>
+                                            <constraint firstItem="upcoming-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="upcoming-label-trailing"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="content-view" firstAttribute="bottom" secondItem="main-scroll" secondAttribute="bottom" id="content-bottom"/>
                                     <constraint firstItem="content-view" firstAttribute="leading" secondItem="main-scroll" secondAttribute="leading" id="content-leading"/>
                                     <constraint firstItem="content-view" firstAttribute="top" secondItem="main-scroll" secondAttribute="top" id="content-top"/>
                                     <constraint firstItem="content-view" firstAttribute="trailing" secondItem="main-scroll" secondAttribute="trailing" id="content-trailing"/>
-                                    <constraint firstItem="content-view" firstAttribute="bottom" secondItem="main-scroll" secondAttribute="bottom" id="content-bottom"/>
                                     <constraint firstItem="content-view" firstAttribute="width" secondItem="main-scroll" secondAttribute="width" id="content-width"/>
                                 </constraints>
                             </scrollView>
@@ -405,21 +327,21 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="main-scroll" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="scroll-bottom"/>
                             <constraint firstItem="main-scroll" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="scroll-leading"/>
                             <constraint firstItem="main-scroll" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="scroll-top"/>
                             <constraint firstItem="main-scroll" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="scroll-trailing"/>
-                            <constraint firstItem="main-scroll" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="scroll-bottom"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Trips" id="Xca-Cs-jF7"/>
                     <connections>
                         <outlet property="currentTripCard" destination="current-trip-card" id="current-card-outlet"/>
+                        <outlet property="currentTripDetailsLabel" destination="current-details" id="current-details-outlet"/>
                         <outlet property="currentTripImageView" destination="current-image" id="current-img-outlet"/>
                         <outlet property="currentTripNameLabel" destination="current-name" id="current-name-outlet"/>
-                        <outlet property="currentTripDetailsLabel" destination="current-details" id="current-details-outlet"/>
-                        <outlet property="searchTextField" destination="search-field" id="search-field-outlet"/>
-                        <outlet property="upcomingCollectionView" destination="upcoming-collection" id="upcoming-coll-outlet"/>
                         <outlet property="pastCollectionView" destination="past-collection" id="past-coll-outlet"/>
+                        <outlet property="searchBar" destination="8eN-0a-dxT" id="searchBar-outlet"/>
+                        <outlet property="upcomingCollectionView" destination="upcoming-collection" id="upcoming-coll-outlet"/>
                         <segue destination="Eh6-lY-7FX" kind="show" identifier="tripsToTripDetails" id="4JP-lH-ge9"/>
                     </connections>
                 </viewController>
@@ -430,7 +352,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1037" y="3"/>
+            <point key="canvasLocation" x="1955.2238805970148" y="2.7459954233409607"/>
         </scene>
         <!--SA02_TripDetails-->
         <scene sceneID="JfO-2O-TgK">
@@ -440,26 +362,40 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09i-3W-p8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="3"/>
+            <point key="canvasLocation" x="2555.2238805970146" y="2.7459954233409607"/>
+        </scene>
+        <!--Trips-->
+        <scene sceneID="z3y-cn-4pI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mF8-b1-YIG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trips" image="suitcase.fill" catalog="system" id="L8w-JV-pes"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8zm-G6-Q2e">
+                        <rect key="frame" x="0.0" y="124" width="402" height="106"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="kDp-BA-EuI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MfL-yL-OX2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1035.8208955223879" y="2.7459954233409607"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Onboarding" width="828" height="1792"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <namedColor name="CardColor">
-            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="suitcase.fill" catalog="system" width="128" height="100"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

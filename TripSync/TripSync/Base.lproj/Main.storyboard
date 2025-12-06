@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="3699" y="-175"/>
         </scene>
-        <!--TAB02_Trips-->
+        <!--SA01_Trips-->
         <scene sceneID="x8C-zo-rsw">
             <objects>
-                <viewControllerPlaceholder storyboardName="TAB02_Trips" id="gac-aq-0eH" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SA01_Trips" id="gac-aq-0eH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="0ue-bN-jHH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKe-eR-2HR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
