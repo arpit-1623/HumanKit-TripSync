@@ -280,7 +280,7 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8eN-0a-dxT">
+                                            <searchBar contentMode="redraw" placeholder="Search Trips..." translatesAutoresizingMaskIntoConstraints="NO" id="8eN-0a-dxT">
                                                 <rect key="frame" x="0.0" y="0.0" width="402" height="64"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -340,6 +340,7 @@
                         <outlet property="currentTripImageView" destination="current-image" id="current-img-outlet"/>
                         <outlet property="currentTripNameLabel" destination="current-name" id="current-name-outlet"/>
                         <outlet property="pastCollectionView" destination="past-collection" id="past-coll-outlet"/>
+                        <outlet property="searchBar" destination="8eN-0a-dxT" id="searchBar-outlet"/>
                         <outlet property="upcomingCollectionView" destination="upcoming-collection" id="upcoming-coll-outlet"/>
                         <segue destination="Eh6-lY-7FX" kind="show" identifier="tripsToTripDetails" id="4JP-lH-ge9"/>
                     </connections>
@@ -363,13 +364,15 @@
             </objects>
             <point key="canvasLocation" x="2555.2238805970146" y="2.7459954233409607"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Trips-->
         <scene sceneID="z3y-cn-4pI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mF8-b1-YIG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trips" image="suitcase.fill" catalog="system" id="L8w-JV-pes"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8zm-G6-Q2e">
-                        <rect key="frame" x="0.0" y="124" width="402" height="54"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8zm-G6-Q2e">
+                        <rect key="frame" x="0.0" y="124" width="402" height="106"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -384,6 +387,7 @@
     </scenes>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="suitcase.fill" catalog="system" width="128" height="100"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

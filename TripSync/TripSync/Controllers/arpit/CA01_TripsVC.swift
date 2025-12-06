@@ -9,7 +9,7 @@ import UIKit
 
 class TripsViewController: UIViewController {
     // MARK: - Outlets
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var currentTripCard: UIView!
     @IBOutlet weak var currentTripImageView: UIImageView!
@@ -59,8 +59,9 @@ class TripsViewController: UIViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        searchTextField.delegate = self
-        searchTextField.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Trips..."
+        searchBar.showsCancelButton = false
     }
     
     private func setupCollectionViews() {
@@ -92,8 +93,8 @@ class TripsViewController: UIViewController {
         currentTripDetailsLabel.text = "\(trip.location) • \(trip.memberCount) members"
     }
     
-    @objc private func searchTextChanged() {
-        guard let searchText = searchTextField.text, !searchText.isEmpty else {
+    private func performSearch(searchText: String) {
+        guard !searchText.isEmpty else {
             // Reset to original data
             upcomingTrips = allTrips.filter { $0.status == .upcoming }
             pastTrips = allTrips.filter { $0.status == .past }
@@ -135,11 +136,28 @@ class TripsViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension TripsViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+// MARK: - UISearchBarDelegate
+extension TripsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        performSearch(searchText: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        performSearch(searchText: "")
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
     }
 }
 
