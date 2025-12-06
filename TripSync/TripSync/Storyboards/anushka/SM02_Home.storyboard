@@ -26,18 +26,24 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1154"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-stack" userLabel="Greeting Stack">
-                                                <rect key="frame" x="24" y="20" width="345" height="70"/>
+                                                <rect key="frame" x="24" y="20" width="345" height="124"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Evening, Aditya" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-label">
-                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="33.666666666666664"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Evening, Aditya" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-label">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="38.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have fun on your trip to Tokyo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgreeting-label">
-                                                        <rect key="frame" x="0.0" y="37.666666666666664" width="345" height="32.333333333333336"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have fun on your trip to" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgreeting-label">
+                                                        <rect key="frame" x="0.0" y="42.666666666666664" width="345" height="33.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-label">
+                                                        <rect key="frame" x="0.0" y="80.333333333333336" width="345" height="43.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -492,6 +498,7 @@
                         <outlet property="currentTripRedirectButton" destination="3Yu-JI-Wmz" id="redirect-outlet"/>
                         <outlet property="emptyStateView" destination="emptyStateStack" id="Dbm-hq-vFe"/>
                         <outlet property="greetingLabel" destination="greeting-label" id="greeting-outlet"/>
+                        <outlet property="locationLabel" destination="location-label" id="location-label-outlet"/>
                         <outlet property="subGreetingLabel" destination="subgreeting-label" id="subgreeting-outlet"/>
                         <outlet property="upcomingTripsTableView" destination="aXo-Jp-dXp" id="table-outlet"/>
                         <segue destination="TdJ-fO-mnf" kind="show" identifier="homeToTripDetails" id="EUu-Ap-69w"/>

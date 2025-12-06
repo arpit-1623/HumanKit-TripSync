@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
     // MARK: - Outlets - Greeting Section
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var subGreetingLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     
     // MARK: - Outlets - Current Trip Section
     @IBOutlet weak var currentTripCard: UIView!
@@ -125,11 +126,13 @@ class HomeViewController: UIViewController {
         // Set greeting label
         greetingLabel?.text = "\(timeGreeting), \(firstName)"
         
-        // Set sub-greeting based on current trip
+        // Set sub-greeting and location based on current trip
         if let trip = currentTrip {
-            subGreetingLabel?.text = "Have fun on your trip to \(trip.location)"
+            subGreetingLabel?.text = "Have fun on your trip to"
+            locationLabel?.text = trip.location
         } else {
-            subGreetingLabel?.text = "Ready to plan your next adventure?"
+            subGreetingLabel?.text = "Ready to plan your"
+            locationLabel?.text = "next adventure?"
         }
     }
     
