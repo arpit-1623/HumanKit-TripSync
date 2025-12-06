@@ -60,8 +60,6 @@ class TripsViewController: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         searchBar.delegate = self
-        searchBar.placeholder = "Search Trips..."
-        searchBar.showsCancelButton = false
     }
     
     private func setupCollectionViews() {
@@ -80,7 +78,6 @@ class TripsViewController: UIViewController {
         
         currentTripCard.isHidden = false
         
-        // Load image from URL or show placeholder
         if let imageURL = trip.coverImageURL {
             UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: currentTripImageView)
         } else if let imageData = trip.coverImageData, let image = UIImage(data: imageData) {
@@ -95,7 +92,6 @@ class TripsViewController: UIViewController {
     
     private func performSearch(searchText: String) {
         guard !searchText.isEmpty else {
-            // Reset to original data
             upcomingTrips = allTrips.filter { $0.status == .upcoming }
             pastTrips = allTrips.filter { $0.status == .past }
             upcomingCollectionView.reloadData()
@@ -103,7 +99,6 @@ class TripsViewController: UIViewController {
             return
         }
         
-        // Filter trips
         let filtered = allTrips.filter {
             $0.name.localizedCaseInsensitiveContains(searchText) ||
             $0.location.localizedCaseInsensitiveContains(searchText)
@@ -144,20 +139,6 @@ extension TripsViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-        performSearch(searchText: "")
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
     }
 }
 

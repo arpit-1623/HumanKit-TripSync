@@ -51,7 +51,6 @@ class TripMapViewController: UIViewController {
         setupLocationManager()
         setupTableViews()
         loadTripData()
-        setupFloatingButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,24 +75,12 @@ class TripMapViewController: UIViewController {
     private func setupUI() {
         title = "Map"
         
-        // Configure menu container
-        menuContainerView.layer.cornerRadius = 16
-        menuContainerView.layer.shadowColor = UIColor.black.cgColor
-        menuContainerView.layer.shadowOpacity = 0.1
-        menuContainerView.layer.shadowOffset = CGSize(width: 0, height: -2)
-        menuContainerView.layer.shadowRadius = 8
-        menuContainerView.clipsToBounds = false
-        
         // Set initial collapsed state
         menuHeightConstraint.constant = collapsedHeight
         
         // Add tap gesture to menu for expanding
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
         menuContainerView.addGestureRecognizer(tapGesture)
-        
-        // Configure segmented control
-        segmentedControl.setTitle("All", forSegmentAt: 0)
-        segmentedControl.setTitle("Subgroups", forSegmentAt: 1)
     }
     
     private func setupMapView() {
@@ -113,31 +100,10 @@ class TripMapViewController: UIViewController {
         // Configure member table view
         memberTableView.delegate = self
         memberTableView.dataSource = self
-        memberTableView.separatorInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 0)
-        memberTableView.backgroundColor = .clear
         
         // Configure subgroup table view
         subgroupTableView.delegate = self
         subgroupTableView.dataSource = self
-        subgroupTableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-        subgroupTableView.backgroundColor = .clear
-        subgroupTableView.isHidden = true
-    }
-    
-    private func setupFloatingButtons() {
-        // Style current location button
-        currentLocationButton.layer.cornerRadius = 24
-        currentLocationButton.layer.shadowColor = UIColor.black.cgColor
-        currentLocationButton.layer.shadowOpacity = 0.2
-        currentLocationButton.layer.shadowOffset = CGSize(width: 0, height: 2)
-        currentLocationButton.layer.shadowRadius = 4
-        
-        // Style focus all button
-        focusAllButton.layer.cornerRadius = 24
-        focusAllButton.layer.shadowColor = UIColor.black.cgColor
-        focusAllButton.layer.shadowOpacity = 0.2
-        focusAllButton.layer.shadowOffset = CGSize(width: 0, height: 2)
-        focusAllButton.layer.shadowRadius = 4
     }
     
     private func loadTripData() {

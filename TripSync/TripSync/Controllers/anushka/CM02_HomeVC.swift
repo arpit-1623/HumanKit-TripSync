@@ -46,7 +46,6 @@ class HomeViewController: UIViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        // UI setup completed in storyboard
     }
     
     private func setupCollectionView() {
@@ -68,7 +67,6 @@ class HomeViewController: UIViewController {
     private func updateGreeting() {
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        // Determine time-based greeting
         let hour = Calendar.current.component(.hour, from: Date())
         let timeGreeting: String
         switch hour {
@@ -82,13 +80,10 @@ class HomeViewController: UIViewController {
             timeGreeting = "Good Night"
         }
         
-        // Extract first name
         let firstName = currentUser.fullName.components(separatedBy: " ").first ?? currentUser.fullName
         
-        // Set greeting label
         greetingLabel?.text = "\(timeGreeting), \(firstName)"
         
-        // Set sub-greeting and location based on current trip
         if let trip = currentTrip {
             subGreetingLabel?.text = "Have fun on your trip to"
             locationLabel?.text = trip.location

@@ -25,16 +25,8 @@ class MemberMapCell: UITableViewCell {
     
     // MARK: - Setup
     private func setupUI() {
-        backgroundColor = .clear
-        selectionStyle = .none
-        
-        // Avatar is already styled in storyboard
-        avatarView.layer.cornerRadius = 20
-        avatarView.clipsToBounds = true
-        
-        // Status indicator is already styled in storyboard
-        statusIndicator.layer.cornerRadius = 6
-        statusIndicator.clipsToBounds = true
+        // All static styling is now in storyboard
+        // backgroundColor, selectionStyle, corner radius, and clipsToBounds are set in storyboard
     }
     
     // MARK: - Configuration

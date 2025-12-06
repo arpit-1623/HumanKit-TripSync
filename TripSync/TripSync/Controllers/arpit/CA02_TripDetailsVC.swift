@@ -16,7 +16,7 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
     @IBOutlet weak var tripMembersLabel: UILabel!
-    @IBOutlet weak var imageAttributionLabel: UILabel? // Optional: for Unsplash attribution
+    @IBOutlet weak var imageAttributionLabel: UILabel?
     
     // MARK: - Properties
     var trip: Trip?
@@ -32,7 +32,6 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Refresh trip data in case it was edited
         if let tripId = trip?.id {
             if let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
                 trip = updatedTrip
@@ -76,7 +75,6 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
             backgroundImageView?.image = UIImage(named: "createTripBg")
         }
         
-        // Display Unsplash attribution if available
         if let photographerName = trip.coverImagePhotographerName {
             imageAttributionLabel?.text = "Photo by \(photographerName) on Unsplash"
             imageAttributionLabel?.isHidden = false
@@ -90,14 +88,15 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     private func setupSubgroupsTableView() {
         subgroupsTableView.delegate = self
         subgroupsTableView.dataSource = self
-        subgroupsTableView.isScrollEnabled = true
+        subgroupsTableView.isScrollEnabled = false
     }
     
     // MARK: - Menu Actions
     @IBAction func shareInviteTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Share Invite", message: "Share trip invite functionality will be implemented here", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        guard let trip = trip else { return }
+        
+        let activityVC = ShareInviteViewController.configureActivityVC(trip: trip)
+        present(activityVC, animated: true)
     }
     
     @IBAction func showQRTapped(_ sender: Any) {
@@ -204,11 +203,10 @@ extension TripDetailsViewController {
         } else if segue.identifier == "tripDetailsToCreateSubgroup",
                   let navController = segue.destination as? UINavigationController,
                   let formVC = navController.topViewController as? CS04_SubgroupFormVC {
-            // Pass trip data
+
             formVC.trip = self.trip
             formVC.tripId = self.trip?.id
             
-            // Set delegate for callback
             formVC.delegate = self
         }
     }
@@ -217,25 +215,20 @@ extension TripDetailsViewController {
 // MARK: - SubgroupFormDelegate
 extension TripDetailsViewController {
     func didCreateSubgroup(_ subgroup: Subgroup) {
-        // Add subgroup to DataModel
         DataModel.shared.saveSubgroup(subgroup)
         
-        // Add subgroup ID to trip
         if var trip = self.trip {
             trip.subgroupIds.append(subgroup.id)
             DataModel.shared.saveTrip(trip)
             self.trip = trip
         }
         
-        // Reload subgroups
         loadData()
     }
     
     func didUpdateSubgroup(_ subgroup: Subgroup) {
-        // Update subgroup in DataModel
         DataModel.shared.saveSubgroup(subgroup)
         
-        // Reload subgroups
         loadData()
     }
 }
@@ -243,7 +236,6 @@ extension TripDetailsViewController {
 // MARK: - EditTripDelegate
 extension TripDetailsViewController {
     func didUpdateTrip() {
-        // Refresh trip data after edit
         if let tripId = trip?.id,
            let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
             trip = updatedTrip
