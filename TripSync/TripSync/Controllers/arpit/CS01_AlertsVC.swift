@@ -10,11 +10,11 @@ import UIKit
 class AlertsViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyStateView: UIView!
-    @IBOutlet weak var emptyStateImageView: UIImageView!
-    @IBOutlet weak var emptyStateLabel: UILabel!
-    @IBOutlet weak var createAnnouncementButton: UIButton!
+    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var emptyStateView: UIView?
+    @IBOutlet weak var emptyStateImageView: UIImageView?
+    @IBOutlet weak var emptyStateLabel: UILabel?
+    @IBOutlet weak var createAnnouncementButton: UIButton?
     
     // MARK: - Properties
     var trip: Trip?
@@ -34,15 +34,16 @@ class AlertsViewController: UIViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        emptyStateLabel.text = "No Announcements"
-        emptyStateLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        emptyStateLabel.textColor = .systemGray
+        emptyStateLabel?.text = "No Announcements"
+        emptyStateLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        emptyStateLabel?.textColor = .systemGray
     }
     
     private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.separatorStyle = .none
+        tableView?.register(AnnouncementCell.self, forCellReuseIdentifier: "AnnouncementCell")
     }
     
     private func setupNavigationBar() {
@@ -58,10 +59,10 @@ class AlertsViewController: UIViewController {
         announcements = allMessages.filter { $0.isAnnouncement }
         
         // Show/hide empty state
-        emptyStateView.isHidden = !announcements.isEmpty
-        tableView.isHidden = announcements.isEmpty
+        emptyStateView?.isHidden = !announcements.isEmpty
+        tableView?.isHidden = announcements.isEmpty
         
-        tableView.reloadData()
+        tableView?.reloadData()
     }
     
     // MARK: - Actions
@@ -75,9 +76,14 @@ class AlertsViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "alertsToCreateAnnouncement",
-           let destinationVC = segue.destination as? CreateAnnouncementViewController {
-            destinationVC.trip = self.trip
+        if segue.identifier == "alertsToCreateAnnouncement" {
+            if let navController = segue.destination as? UINavigationController,
+               let destinationVC = navController.topViewController as? CreateAnnouncementViewController {
+                destinationVC.trip = self.trip
+                destinationVC.onAnnouncementCreated = { [weak self] in
+                    self?.loadAnnouncements()
+                }
+            }
         }
     }
     
@@ -93,13 +99,19 @@ extension AlertsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let announcement = announcements[indexPath.row]
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnnouncementCell", for: indexPath) as? AnnouncementCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AnnouncementCell", for: indexPath) as? AnnouncementCell ?? AnnouncementCell(style: .default, reuseIdentifier: "AnnouncementCell")
         
         cell.configure(with: announcement)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
     
 }

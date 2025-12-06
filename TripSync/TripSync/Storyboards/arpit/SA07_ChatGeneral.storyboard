@@ -799,67 +799,213 @@
         <!--Announcement-->
         <scene sceneID="CreateAnnouncement-Scene">
             <objects>
-                <viewController storyboardIdentifier="CreateAnnouncementViewController" id="CreateAnnouncement-ID" customClass="CreateAnnouncementViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CreateAnnouncement-View">
+                <tableViewController storyboardIdentifier="CreateAnnouncementViewController" id="CreateAnnouncement-ID" customClass="CreateAnnouncementViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="CreateAnnouncement-TableView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Announcement title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-TitleField">
-                                <rect key="frame" x="16" y="86" width="361" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="CreateAnnouncement-TitleHeight"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-MessageView">
-                                <rect key="frame" x="16" y="142" width="361" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="CreateAnnouncement-MessageHeight"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-SwitchStack">
-                                <rect key="frame" x="16" y="358" width="361" height="28"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-SwitchLabel">
-                                        <rect key="frame" x="0.0" y="4" width="288" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-Switch">
-                                        <rect key="frame" x="300" y="0.0" width="63" height="28"/>
-                                    </switch>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements will appear at the top of the homepage for all members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-DescLabel">
-                                <rect key="frame" x="16" y="402" width="361" height="28.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="CreateAnnouncement-SafeArea"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="CreateAnnouncement-DescLabel" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-DescLeading"/>
-                            <constraint firstItem="CreateAnnouncement-DescLabel" firstAttribute="top" secondItem="CreateAnnouncement-SwitchStack" secondAttribute="bottom" constant="16" id="CreateAnnouncement-DescTop"/>
-                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-DescLabel" secondAttribute="trailing" constant="16" id="CreateAnnouncement-DescTrailing"/>
-                            <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-MessageLeading"/>
-                            <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="top" secondItem="CreateAnnouncement-TitleField" secondAttribute="bottom" constant="16" id="CreateAnnouncement-MessageTop"/>
-                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-MessageView" secondAttribute="trailing" constant="16" id="CreateAnnouncement-MessageTrailing"/>
-                            <constraint firstItem="CreateAnnouncement-SwitchStack" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-SwitchLeading"/>
-                            <constraint firstItem="CreateAnnouncement-SwitchStack" firstAttribute="top" secondItem="CreateAnnouncement-MessageView" secondAttribute="bottom" constant="16" id="CreateAnnouncement-SwitchTop"/>
-                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-SwitchStack" secondAttribute="trailing" constant="16" id="CreateAnnouncement-SwitchTrailing"/>
-                            <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="leading" secondItem="CreateAnnouncement-SafeArea" secondAttribute="leading" constant="16" id="CreateAnnouncement-TitleLeading"/>
-                            <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="top" secondItem="CreateAnnouncement-SafeArea" secondAttribute="top" constant="16" id="CreateAnnouncement-TitleTop"/>
-                            <constraint firstItem="CreateAnnouncement-SafeArea" firstAttribute="trailing" secondItem="CreateAnnouncement-TitleField" secondAttribute="trailing" constant="16" id="CreateAnnouncement-TitleTrailing"/>
-                        </constraints>
-                    </view>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <sections>
+                            <!-- Section 0: Title -->
+                            <tableViewSection headerTitle="ANNOUNCEMENT TITLE" id="title-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="title-cell">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="title-cell" id="title-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Announcement title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-TitleField">
+                                                    <rect key="frame" x="16" y="10" width="321" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="title-field-height"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="centerY" secondItem="title-cell-content" secondAttribute="centerY" id="title-field-centery"/>
+                                                <constraint firstItem="CreateAnnouncement-TitleField" firstAttribute="leading" secondItem="title-cell-content" secondAttribute="leading" constant="16" id="title-field-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-TitleField" secondAttribute="trailing" constant="16" id="title-field-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 1: Message -->
+                            <tableViewSection headerTitle="MESSAGE" id="message-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="message-cell">
+                                        <rect key="frame" x="20" y="171.33333206176758" width="353" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="message-cell" id="message-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-MessageView">
+                                                    <rect key="frame" x="16" y="8" width="321" height="134"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="CreateAnnouncement-MessageView" secondAttribute="bottom" constant="8" id="message-view-bottom"/>
+                                                <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="leading" secondItem="message-cell-content" secondAttribute="leading" constant="16" id="message-view-leading"/>
+                                                <constraint firstItem="CreateAnnouncement-MessageView" firstAttribute="top" secondItem="message-cell-content" secondAttribute="top" constant="8" id="message-view-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-MessageView" secondAttribute="trailing" constant="16" id="message-view-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 2: Priority -->
+                            <tableViewSection headerTitle="PRIORITY" id="priority-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="priority-cell">
+                                        <rect key="frame" x="20" y="377.33333015441895" width="353" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="priority-cell" id="priority-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="priority-stack">
+                                                    <rect key="frame" x="16" y="10" width="321" height="80"/>
+                                                    <subviews>
+                                                        <!-- Very Important -->
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="80"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantIcon">
+                                                                    <rect key="frame" x="34.666666666666664" y="16.333333333333336" width="30" height="29"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="very-important-icon-height"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="very-important-icon-width"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Important" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantLabel">
+                                                                    <rect key="frame" x="4" y="50" width="91" height="26"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="CreateAnnouncement-VeryImportantIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-VeryImportantView" secondAttribute="centerX" id="very-important-icon-centerx"/>
+                                                                <constraint firstItem="CreateAnnouncement-VeryImportantIcon" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantView" secondAttribute="top" constant="16" id="very-important-icon-top"/>
+                                                                <constraint firstItem="CreateAnnouncement-VeryImportantLabel" firstAttribute="leading" secondItem="CreateAnnouncement-VeryImportantView" secondAttribute="leading" constant="4" id="very-important-label-leading"/>
+                                                                <constraint firstItem="CreateAnnouncement-VeryImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantIcon" secondAttribute="bottom" constant="4" id="very-important-label-top"/>
+                                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-VeryImportantLabel" secondAttribute="trailing" constant="4" id="very-important-label-trailing"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <!-- Important -->
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantView">
+                                                            <rect key="frame" x="111" y="0.0" width="99" height="80"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantIcon">
+                                                                    <rect key="frame" x="34.666666666666664" y="16.333333333333336" width="30" height="29"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="important-icon-height"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="important-icon-width"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantLabel">
+                                                                    <rect key="frame" x="4" y="50" width="91" height="13.333333333333336"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="CreateAnnouncement-ImportantIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-ImportantView" secondAttribute="centerX" id="important-icon-centerx"/>
+                                                                <constraint firstItem="CreateAnnouncement-ImportantIcon" firstAttribute="top" secondItem="CreateAnnouncement-ImportantView" secondAttribute="top" constant="16" id="important-icon-top"/>
+                                                                <constraint firstItem="CreateAnnouncement-ImportantLabel" firstAttribute="leading" secondItem="CreateAnnouncement-ImportantView" secondAttribute="leading" constant="4" id="important-label-leading"/>
+                                                                <constraint firstItem="CreateAnnouncement-ImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-ImportantIcon" secondAttribute="bottom" constant="4" id="important-label-top"/>
+                                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-ImportantLabel" secondAttribute="trailing" constant="4" id="important-label-trailing"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <!-- General -->
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralView">
+                                                            <rect key="frame" x="222" y="0.0" width="99" height="80"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralIcon">
+                                                                    <rect key="frame" x="34.666666666666664" y="16.333333333333336" width="30" height="28.666666666666664"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="general-icon-height"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="general-icon-width"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralLabel">
+                                                                    <rect key="frame" x="4" y="50" width="91" height="13.333333333333336"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="CreateAnnouncement-GeneralIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-GeneralView" secondAttribute="centerX" id="general-icon-centerx"/>
+                                                                <constraint firstItem="CreateAnnouncement-GeneralIcon" firstAttribute="top" secondItem="CreateAnnouncement-GeneralView" secondAttribute="top" constant="16" id="general-icon-top"/>
+                                                                <constraint firstItem="CreateAnnouncement-GeneralLabel" firstAttribute="leading" secondItem="CreateAnnouncement-GeneralView" secondAttribute="leading" constant="4" id="general-label-leading"/>
+                                                                <constraint firstItem="CreateAnnouncement-GeneralLabel" firstAttribute="top" secondItem="CreateAnnouncement-GeneralIcon" secondAttribute="bottom" constant="4" id="general-label-top"/>
+                                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-GeneralLabel" secondAttribute="trailing" constant="4" id="general-label-trailing"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="priority-stack-height"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="priority-stack" secondAttribute="bottom" constant="10" id="priority-stack-bottom"/>
+                                                <constraint firstItem="priority-stack" firstAttribute="leading" secondItem="priority-cell-content" secondAttribute="leading" constant="16" id="priority-stack-leading"/>
+                                                <constraint firstItem="priority-stack" firstAttribute="top" secondItem="priority-cell-content" secondAttribute="top" constant="10" id="priority-stack-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="priority-stack" secondAttribute="trailing" constant="16" id="priority-stack-trailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <!-- Section 3: Notification -->
+                            <tableViewSection headerTitle="NOTIFICATION" id="notification-section">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="notification-cell">
+                                        <rect key="frame" x="20" y="533.33333015441895" width="353" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="notification-cell" id="notification-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="notification-label">
+                                                    <rect key="frame" x="16" y="15" width="268" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-Switch">
+                                                    <rect key="frame" x="284" y="11.666666666666664" width="63" height="28"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CreateAnnouncement-Switch" firstAttribute="centerY" secondItem="notification-cell-content" secondAttribute="centerY" id="switch-centery"/>
+                                                <constraint firstItem="CreateAnnouncement-Switch" firstAttribute="leading" secondItem="notification-label" secondAttribute="trailing" id="switch-leading"/>
+                                                <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-Switch" secondAttribute="trailing" constant="16" id="switch-trailing"/>
+                                                <constraint firstItem="notification-label" firstAttribute="centerY" secondItem="notification-cell-content" secondAttribute="centerY" id="notification-label-centery"/>
+                                                <constraint firstItem="notification-label" firstAttribute="leading" secondItem="notification-cell-content" secondAttribute="leading" constant="16" id="notification-label-leading"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                                <string key="footerTitle">Announcements will appear at the top of the homepage for all members</string>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="CreateAnnouncement-ID" id="tableview-datasource"/>
+                            <outlet property="delegate" destination="CreateAnnouncement-ID" id="tableview-delegate"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" title="Announcement" id="CreateAnnouncement-NavItem">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="CreateAnnouncement-CancelButton">
                             <connections>
@@ -873,12 +1019,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="generalIcon" destination="CreateAnnouncement-GeneralIcon" id="general-icon-outlet"/>
+                        <outlet property="generalLabel" destination="CreateAnnouncement-GeneralLabel" id="general-label-outlet"/>
+                        <outlet property="generalView" destination="CreateAnnouncement-GeneralView" id="general-view-outlet"/>
+                        <outlet property="importantIcon" destination="CreateAnnouncement-ImportantIcon" id="important-icon-outlet"/>
+                        <outlet property="importantLabel" destination="CreateAnnouncement-ImportantLabel" id="important-label-outlet"/>
+                        <outlet property="importantView" destination="CreateAnnouncement-ImportantView" id="important-view-outlet"/>
                         <outlet property="messageTextView" destination="CreateAnnouncement-MessageView" id="CreateAnnouncement-MessageOutlet"/>
-                        <outlet property="notificationDescriptionLabel" destination="CreateAnnouncement-DescLabel" id="CreateAnnouncement-DescOutlet"/>
                         <outlet property="sendNotificationSwitch" destination="CreateAnnouncement-Switch" id="CreateAnnouncement-SwitchOutlet"/>
                         <outlet property="titleTextField" destination="CreateAnnouncement-TitleField" id="CreateAnnouncement-TitleOutlet"/>
+                        <outlet property="veryImportantIcon" destination="CreateAnnouncement-VeryImportantIcon" id="very-important-icon-outlet"/>
+                        <outlet property="veryImportantLabel" destination="CreateAnnouncement-VeryImportantLabel" id="very-important-label-outlet"/>
+                        <outlet property="veryImportantView" destination="CreateAnnouncement-VeryImportantView" id="very-important-view-outlet"/>
                     </connections>
-                </viewController>
+                </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CreateAnnouncement-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2700" y="1500"/>
@@ -911,5 +1065,8 @@
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <image name="exclamationmark.2" catalog="system" width="128" height="128"/>
+        <image name="exclamationmark.3" catalog="system" width="128" height="128"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="128"/>
     </resources>
 </document>
