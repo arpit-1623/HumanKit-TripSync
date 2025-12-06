@@ -25,8 +25,31 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7p-fh-dce" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1154"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-stack" userLabel="Greeting Stack">
+                                                <rect key="frame" x="24" y="20" width="345" height="124"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Evening, Aditya" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-label">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="38.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have fun on your trip to" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgreeting-label">
+                                                        <rect key="frame" x="0.0" y="42.666666666666664" width="345" height="33.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="location-label">
+                                                        <rect key="frame" x="0.0" y="80.333333333333336" width="345" height="43.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mth-ql-0cY">
-                                                <rect key="frame" x="20" y="20" width="353" height="24"/>
+                                                <rect key="frame" x="20" y="110" width="353" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -425,7 +448,10 @@
                                             <constraint firstAttribute="trailing" secondItem="DcR-3Y-9pP" secondAttribute="trailing" constant="16" id="AQF-A5-pnM"/>
                                             <constraint firstAttribute="trailing" secondItem="mth-ql-0cY" secondAttribute="trailing" constant="20" id="Bna-1X-5ej"/>
                                             <constraint firstAttribute="trailing" secondItem="aXo-Jp-dXp" secondAttribute="trailing" constant="20" id="MaO-rh-TXp"/>
-                                            <constraint firstItem="mth-ql-0cY" firstAttribute="top" secondItem="K7p-fh-dce" secondAttribute="top" constant="20" id="PX3-HV-Iq9"/>
+                                            <constraint firstItem="greeting-stack" firstAttribute="top" secondItem="K7p-fh-dce" secondAttribute="top" constant="20" id="greeting-top"/>
+                                            <constraint firstItem="greeting-stack" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="24" id="greeting-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="greeting-stack" secondAttribute="trailing" constant="24" id="greeting-trailing"/>
+                                            <constraint firstItem="mth-ql-0cY" firstAttribute="top" secondItem="greeting-stack" secondAttribute="bottom" constant="20" id="PX3-HV-Iq9"/>
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="16" id="Phd-C2-Uat"/>
                                             <constraint firstItem="aXo-Jp-dXp" firstAttribute="top" secondItem="FHJ-t9-hOQ" secondAttribute="bottom" constant="16" id="RaA-xh-jjS"/>
                                             <constraint firstAttribute="trailing" secondItem="FHJ-t9-hOQ" secondAttribute="trailing" constant="20" id="Rcx-k8-vWu"/>
@@ -471,6 +497,9 @@
                         <outlet property="currentTripNameLabel" destination="kd3-UI-fSE" id="name-outlet"/>
                         <outlet property="currentTripRedirectButton" destination="3Yu-JI-Wmz" id="redirect-outlet"/>
                         <outlet property="emptyStateView" destination="emptyStateStack" id="Dbm-hq-vFe"/>
+                        <outlet property="greetingLabel" destination="greeting-label" id="greeting-outlet"/>
+                        <outlet property="locationLabel" destination="location-label" id="location-label-outlet"/>
+                        <outlet property="subGreetingLabel" destination="subgreeting-label" id="subgreeting-outlet"/>
                         <outlet property="upcomingTripsTableView" destination="aXo-Jp-dXp" id="table-outlet"/>
                         <segue destination="TdJ-fO-mnf" kind="show" identifier="homeToTripDetails" id="EUu-Ap-69w"/>
                     </connections>
@@ -566,8 +595,8 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="R2j-mr-kDU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="p2V-mO-HbS">
-                        <rect key="frame" x="0.0" y="118" width="393" height="106"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p2V-mO-HbS">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
