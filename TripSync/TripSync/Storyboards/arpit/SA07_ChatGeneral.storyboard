@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="giO-zF-LcO">
-                                <rect key="frame" x="0.0" y="118" width="393" height="416"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="396"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
@@ -198,10 +198,10 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView">
-                                <rect key="frame" x="0.0" y="534" width="393" height="50"/>
+                                <rect key="frame" x="0.0" y="514" width="393" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3">
-                                        <rect key="frame" x="16" y="7" width="36" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="17" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="0TS-x8-XjC"/>
                                             <constraint firstAttribute="height" constant="36" id="MdU-4Y-u5G"/>
@@ -210,7 +210,7 @@
                                         <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeneralChat-TextFieldContainer">
-                                        <rect key="frame" x="64" y="7" width="265" height="36"/>
+                                        <rect key="frame" x="64" y="17" width="265" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-tk-pJy" userLabel="message">
                                                 <rect key="frame" x="16" y="0.0" width="233" height="36"/>
@@ -232,8 +232,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR">
-                                        <rect key="frame" x="341" y="7" width="36" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="341" y="17" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="hlz-S7-guO"/>
                                             <constraint firstAttribute="width" constant="36" id="qrf-Mj-eWT"/>
@@ -251,7 +251,7 @@
                                     <constraint firstItem="GeneralChat-TextFieldContainer" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="DhW-Xu-mSh"/>
                                     <constraint firstAttribute="trailing" secondItem="4Ci-ma-waR" secondAttribute="trailing" constant="16" id="Ev8-qP-fWm"/>
                                     <constraint firstItem="bQz-Ry-oS3" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="J6x-TT-GhS"/>
-                                    <constraint firstAttribute="height" constant="50" id="TRF-5f-8eK"/>
+                                    <constraint firstAttribute="height" constant="70" id="TRF-5f-8eK"/>
                                     <constraint firstItem="4Ci-ma-waR" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="dDm-bl-PBb"/>
                                     <constraint firstItem="4Ci-ma-waR" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="trailing" constant="12" id="e40-ux-Cs0"/>
                                     <constraint firstItem="bQz-Ry-oS3" firstAttribute="leading" secondItem="mfu-fg-94K" secondAttribute="leading" constant="16" id="lW3-xb-xUl"/>

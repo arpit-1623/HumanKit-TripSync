@@ -31,7 +31,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-card">
                                 <rect key="frame" x="32" y="300" width="329" height="252"/>
                                 <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-blur">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-blur" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="329" height="252"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="card-blur-content">
                                             <rect key="frame" x="0.0" y="0.0" width="329" height="252"/>

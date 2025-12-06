@@ -32,10 +32,10 @@
                                                     <constraint firstAttribute="height" constant="500" id="gKd-Gh-cEb"/>
                                                 </constraints>
                                             </imageView>
-                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trip-info-blur-card" userLabel="Trip Info Blur Card">
-                                                <rect key="frame" x="20" y="74.999999999999986" width="353" height="208.66666666666663"/>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trip-info-blur-card" userLabel="Trip Info Blur Card" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="75" width="353" height="209"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="trip-info-blur-content">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="208.66666666666663"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eBp-6D-7mX" userLabel="Trip Info Stack">
@@ -111,38 +111,18 @@
                                                     </constraints>
                                                 </view>
                                                 <blurEffect style="systemThinMaterial"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="24"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                        <real key="value" value="0.10000000000000001"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                        <size key="value" width="0.0" height="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </visualEffectView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mJi-Uq-qR7" userLabel="Action Buttons Stack">
-                                                <rect key="frame" x="20" y="303.66666666666669" width="353" height="79.333333333333314"/>
+                                                <rect key="frame" x="20" y="304" width="353" height="79.333333333333314"/>
                                                 <subviews>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AY-5e-keX" userLabel="Map Button">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AY-5e-keX" userLabel="Map Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="map-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="79.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lpf-k2-yJR">
-                                                                    <rect key="frame" x="23.333333333333336" y="11" width="32" height="57"/>
+                                                                    <rect key="frame" x="23.666666666666664" y="11" width="32" height="57"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-0o-8Wk">
                                                                             <rect key="frame" x="0.0" y="1" width="32" height="30"/>
@@ -153,7 +133,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgw-0m-bqy">
-                                                                            <rect key="frame" x="1.6666666666666643" y="40" width="28.666666666666664" height="17"/>
+                                                                            <rect key="frame" x="1.6666666666666732" y="40" width="28.666666666666671" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -170,38 +150,18 @@
                                                             <constraint firstAttribute="width" secondItem="7AY-5e-keX" secondAttribute="height" multiplier="1:1" id="KRx-ez-YpD"/>
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="16"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                                <real key="value" value="0.10000000000000001"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                                <size key="value" width="0.0" height="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="25"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="map-tap-gesture" appends="YES" id="map-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="chat-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QqY-Dk-5kl">
-                                                                    <rect key="frame" x="23.333333333333329" y="11" width="32" height="57"/>
+                                                                    <rect key="frame" x="23.666666666666671" y="11" width="32" height="57"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h6L-Sd-tna">
                                                                             <rect key="frame" x="0.0" y="0.66666666666666607" width="32" height="29.666666666666671"/>
@@ -229,31 +189,11 @@
                                                             <constraint firstAttribute="width" secondItem="ugQ-QQ-Yfe" secondAttribute="height" multiplier="1:1" id="zxd-RJ-Jqq"/>
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="16"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                                <real key="value" value="0.10000000000000001"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                                <size key="value" width="0.0" height="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="25"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="chat-tap-gesture" appends="YES" id="chat-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="itinerary-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
@@ -288,38 +228,18 @@
                                                             <constraint firstAttribute="width" secondItem="sVT-DY-Cgg" secondAttribute="height" multiplier="1:1" id="2G9-B7-cjm"/>
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="16"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                                <real key="value" value="0.10000000000000001"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                                <size key="value" width="0.0" height="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="25"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="itinerary-tap-gesture" appends="YES" id="itinerary-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Members Button">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Members Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="members-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CQU-Mb-brE">
-                                                                    <rect key="frame" x="9" y="11" width="62" height="57"/>
+                                                                    <rect key="frame" x="8.6666666666666288" y="11" width="62" height="57"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="m2e-GW-zbe">
                                                                             <rect key="frame" x="15" y="1.6666666666666643" width="32" height="30"/>
@@ -347,26 +267,6 @@
                                                             <constraint firstAttribute="width" secondItem="UdY-MK-rhy" secondAttribute="height" multiplier="1:1" id="vN7-HB-vSK"/>
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="16"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                                <real key="value" value="0.10000000000000001"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                                <size key="value" width="0.0" height="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="25"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outletCollection property="gestureRecognizers" destination="members-tap-gesture" appends="YES" id="members-tap-connection"/>
                                                         </connections>
@@ -374,7 +274,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-jv-uT6" userLabel="Subgroups Section">
-                                                <rect key="frame" x="0.0" y="403" width="393" height="497"/>
+                                                <rect key="frame" x="0.0" y="403.33333333333326" width="393" height="496.66666666666674"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-gU-Fhg">
                                                         <rect key="frame" x="20" y="20" width="353" height="34"/>
@@ -408,7 +308,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-hR-ufI">
-                                                        <rect key="frame" x="0.0" y="54" width="393" height="443"/>
+                                                        <rect key="frame" x="0.0" y="54.000000000000028" width="393" height="442.66666666666674"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubgroupCell" rowHeight="80" id="EBu-Eg-p2F" customClass="TripSubgroupCell" customModule="TripSync" customModuleProvider="target">
@@ -712,14 +612,14 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="trip-image-view" firstAttribute="centerY" secondItem="trip-image-content" secondAttribute="centerY" id="trip-image-centerY"/>
                                                 <constraint firstItem="trip-image-view" firstAttribute="leading" secondItem="trip-image-content" secondAttribute="leading" constant="16" id="trip-image-leading"/>
                                                 <constraint firstAttribute="trailing" secondItem="trip-image-view" secondAttribute="trailing" constant="16" id="trip-image-trailing"/>
-                                                <constraint firstItem="trip-image-view" firstAttribute="centerY" secondItem="trip-image-content" secondAttribute="centerY" id="trip-image-centerY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="trip-name-cell">
-                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="255.33333206176758" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="trip-name-cell" id="trip-name-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -747,7 +647,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="trip-location-cell">
-                                        <rect key="frame" x="20" y="115.33333206176758" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="315.33333206176758" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="trip-location-cell" id="trip-location-content">
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="60"/>
@@ -791,7 +691,7 @@
                             <tableViewSection headerTitle="Dates" id="dates-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="start-date-label-cell">
-                                        <rect key="frame" x="20" y="231.33333015441895" width="353" height="51"/>
+                                        <rect key="frame" x="20" y="431.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="start-date-label-cell" id="start-date-label-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
@@ -826,7 +726,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="start-date-picker-cell">
-                                        <rect key="frame" x="20" y="282.33333015441895" width="353" height="51"/>
+                                        <rect key="frame" x="20" y="482.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="start-date-picker-cell" id="start-date-picker-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
@@ -847,7 +747,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="end-date-label-cell">
-                                        <rect key="frame" x="20" y="333.33333015441895" width="353" height="51"/>
+                                        <rect key="frame" x="20" y="533.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="end-date-label-cell" id="end-date-label-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
@@ -882,7 +782,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="end-date-picker-cell">
-                                        <rect key="frame" x="20" y="384.33333015441895" width="353" height="51"/>
+                                        <rect key="frame" x="20" y="584.33333015441895" width="353" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="end-date-picker-cell" id="end-date-picker-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="51"/>
@@ -903,7 +803,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="number-of-days-cell">
-                                        <rect key="frame" x="20" y="435.33333015441895" width="353" height="44"/>
+                                        <rect key="frame" x="20" y="635.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="number-of-days-cell" id="number-of-days-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
@@ -942,7 +842,7 @@
                             <tableViewSection headerTitle="Trip Details" id="trip-details-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="invite-code-cell">
-                                        <rect key="frame" x="20" y="535.33333015441895" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="735.33333015441895" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="invite-code-cell" id="invite-code-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -977,7 +877,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="created-date-cell">
-                                        <rect key="frame" x="20" y="595.33333015441895" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="795.33333015441895" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="created-date-cell" id="created-date-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -1016,13 +916,13 @@
                             <tableViewSection footerTitle="Deleting this trip will remove it for all members. This action cannot be undone." id="delete-section">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="delete-trip-cell">
-                                        <rect key="frame" x="20" y="691.33333015441895" width="353" height="80"/>
+                                        <rect key="frame" x="20" y="891.33333015441895" width="353" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="delete-trip-cell" id="delete-trip-content">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-trip-button">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="delete-trip-button">
                                                     <rect key="frame" x="125.66666666666669" y="20" width="102" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="delete-button-height"/>
