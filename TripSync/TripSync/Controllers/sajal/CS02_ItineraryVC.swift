@@ -124,12 +124,18 @@ class CS02_ItineraryVC: UIViewController {
         
         if let selectedId = selectedSubgroupId {
             if selectedId == myItineraryFilterId {
-                // Filter by MY itinerary
-                filteredStops = allItineraryStops.filter { $0.isInMyItinerary && $0.addedToMyItineraryByUserId == currentUserId }
+                // Filter by MY itinerary - show both created in MY and added to MY
+                filteredStops = allItineraryStops.filter { 
+                    ($0.isInMyItinerary && $0.addedToMyItineraryByUserId == currentUserId) || 
+                    ($0.isCreatedInMySubgroup && $0.createdByUserId == currentUserId)
+                }
             } else {
                 // Filter by specific subgroup
                 filteredStops = allItineraryStops.filter { $0.subgroupId == selectedId }
             }
+        } else {
+            // ALL view - exclude itineraries created in MY subgroup (private)
+            filteredStops = allItineraryStops.filter { !$0.isCreatedInMySubgroup }
         }
         
         // Group by date
@@ -167,8 +173,8 @@ class CS02_ItineraryVC: UIViewController {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            // Refresh view
-            itineraryTableView.reloadData()
+            // Refresh view with proper filtering and grouping
+            filterAndGroupStops()
             
             // Show toast message
             showToast(message: "Added to My Itinerary")
@@ -177,22 +183,40 @@ class CS02_ItineraryVC: UIViewController {
     
     private func removeFromMyItinerary(stop: ItineraryStop, at indexPath: IndexPath) {
         if let index = allItineraryStops.firstIndex(where: { $0.id == stop.id }) {
-            allItineraryStops[index].isInMyItinerary = false
-            allItineraryStops[index].addedToMyItineraryByUserId = nil
-            
-            // Save to DataModel
-            DataModel.shared.removeStopFromMyItinerary(stop.id, userId: currentUserId)
-            DataModel.shared.saveItineraryStop(allItineraryStops[index])
-            
-            // Show feedback
-            let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.warning)
-            
-            // Refresh view - need to filter again
-            filterAndGroupStops()
-            
-            // Show toast message
-            showToast(message: "Removed from My Itinerary")
+            // If itinerary was created in MY subgroup, delete it completely
+            if stop.isCreatedInMySubgroup && stop.createdByUserId == currentUserId {
+                // Delete the itinerary completely
+                allItineraryStops.remove(at: index)
+                DataModel.shared.deleteItineraryStop(byId: stop.id)
+                
+                // Show feedback
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.warning)
+                
+                // Refresh view
+                filterAndGroupStops()
+                
+                // Show toast message
+                showToast(message: "Deleted from My Itinerary")
+            } else {
+                // Just remove MY tag from itinerary created in other subgroups
+                allItineraryStops[index].isInMyItinerary = false
+                allItineraryStops[index].addedToMyItineraryByUserId = nil
+                
+                // Save to DataModel
+                DataModel.shared.removeStopFromMyItinerary(stop.id, userId: currentUserId)
+                DataModel.shared.saveItineraryStop(allItineraryStops[index])
+                
+                // Show feedback
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.warning)
+                
+                // Refresh view - need to filter again
+                filterAndGroupStops()
+                
+                // Show toast message
+                showToast(message: "Removed from My Itinerary")
+            }
         }
     }
     
