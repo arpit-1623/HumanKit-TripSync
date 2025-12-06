@@ -26,7 +26,7 @@ class ProfileHeaderCell: UITableViewCell {
         backgroundColor = .clear
         
         // Configure container view
-        containerView.backgroundColor = .systemBackground
+        containerView.backgroundColor = .secondarySystemGroupedBackground
         containerView.layer.cornerRadius = 12
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.shadowOpacity = 0.0

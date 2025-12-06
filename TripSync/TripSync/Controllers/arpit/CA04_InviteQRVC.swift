@@ -54,7 +54,7 @@ class InviteQRViewController: UIViewController {
         }
         
         // Validate invite code format
-        guard isValidInviteCode(trip.inviteCode) else {
+        guard Trip.isValidInviteCode(trip.inviteCode) else {
             showQRGenerationError("Invalid invite code format")
             return
         }
@@ -101,19 +101,8 @@ class InviteQRViewController: UIViewController {
     
     @IBAction func shareInviteTapped(_ sender: UIButton) {
         guard let trip = trip else { return }
-        let shareText = "Join my trip '\(trip.name)' on TripSync!\n\nInvite Code: \(trip.inviteCode)"
         
-        let activityVC = UIActivityViewController(
-            activityItems: [shareText],
-            applicationActivities: nil
-        )
-        
-        // For iPad
-        if let popover = activityVC.popoverPresentationController {
-            popover.sourceView = sender
-            popover.sourceRect = sender.bounds
-        }
-        
+        let activityVC = ShareInviteViewController.configureActivityVC(trip: trip)
         present(activityVC, animated: true)
     }
     
@@ -132,7 +121,7 @@ class InviteQRViewController: UIViewController {
     
     private func showQRGenerationError(_ message: String) {
         print("QR Generation Error: \(message)")
-        // Set a placeholder or error state for the QR code image
+        
         qrCodeImageView.image = UIImage(systemName: "exclamationmark.triangle")
         qrCodeImageView.tintColor = .systemRed
         
@@ -143,14 +132,5 @@ class InviteQRViewController: UIViewController {
         )
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
-    }
-    
-    // MARK: - Validation
-    private func isValidInviteCode(_ code: String) -> Bool {
-        // Invite codes should be 8 alphanumeric characters
-        let pattern = "^[A-Z0-9]{8}$"
-        let regex = try? NSRegularExpression(pattern: pattern)
-        let range = NSRange(location: 0, length: code.utf16.count)
-        return regex?.firstMatch(in: code, range: range) != nil
     }
 }

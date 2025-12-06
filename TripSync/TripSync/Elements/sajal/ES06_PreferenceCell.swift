@@ -28,7 +28,7 @@ class PreferenceCell: UITableViewCell {
     // MARK: - Setup
     private func setupUI() {
         selectionStyle = .default
-        backgroundColor = .systemBackground
+        backgroundColor = .secondarySystemGroupedBackground
         
         // Configure icon as image view (will be set in configure method)
         iconLabel.font = UIFont.systemFont(ofSize: 20)

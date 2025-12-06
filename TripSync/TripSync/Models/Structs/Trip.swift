@@ -67,6 +67,13 @@ struct Trip: Codable {
         return String((0..<8).map { _ in letters.randomElement()! })
     }
     
+    static func isValidInviteCode(_ code: String) -> Bool {
+        let pattern = "^[A-Z0-9]{8}$"
+        let regex = try? NSRegularExpression(pattern: pattern)
+        let range = NSRange(location: 0, length: code.utf16.count)
+        return regex?.firstMatch(in: code, range: range) != nil
+    }
+    
     var dateRangeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM, yyyy"

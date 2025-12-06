@@ -21,9 +21,8 @@ class SubgroupMapCell: UITableViewCell {
     
     // MARK: - Setup
     private func setupUI() {
-        backgroundColor = .clear
-        selectionStyle = .default
-        accessoryType = .disclosureIndicator
+        // All styling is now in storyboard
+        // backgroundColor, selectionStyle, and accessoryType are set in storyboard
     }
     
     // MARK: - Configuration

@@ -277,7 +277,6 @@ class DataModel {
             subgroups[index] = subgroup
         } else {
             subgroups.append(subgroup)
-            // Add to trip's subgroupIds
             if var trip = getTrip(byId: subgroup.tripId) {
                 if !trip.subgroupIds.contains(subgroup.id) {
                     trip.subgroupIds.append(subgroup.id)
