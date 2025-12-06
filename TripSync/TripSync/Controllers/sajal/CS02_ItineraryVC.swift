@@ -167,8 +167,8 @@ class CS02_ItineraryVC: UIViewController {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            // Refresh view
-            itineraryTableView.reloadData()
+            // Refresh view with proper filtering and grouping
+            filterAndGroupStops()
             
             // Show toast message
             showToast(message: "Added to My Itinerary")
