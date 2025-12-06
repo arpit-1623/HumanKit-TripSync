@@ -13,16 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Temporarily force reload sample data for testing
-        // TODO: Remove this and uncomment the check below for production
-        SampleData.shared.populateDataModel()
-        
-        // let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
-        //     
-        // if !hasLaunchedBefore {
-        //     SampleData.shared.populateDataModel()
-        //     UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-        // }
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+            
+        if !hasLaunchedBefore {
+            SampleData.shared.populateDataModel()
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+        }
         
         return true
     }

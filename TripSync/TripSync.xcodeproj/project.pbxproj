@@ -147,7 +147,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U673S8NTA3;
+				DEVELOPMENT_TEAM = TQ9BZ42XJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripSync/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TripSync needs camera access to scan QR codes for joining trips.";
@@ -181,7 +181,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U673S8NTA3;
+				DEVELOPMENT_TEAM = TQ9BZ42XJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripSync/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TripSync needs camera access to scan QR codes for joining trips.";
