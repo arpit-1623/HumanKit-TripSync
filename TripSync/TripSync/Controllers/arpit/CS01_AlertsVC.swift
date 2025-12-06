@@ -87,6 +87,9 @@ class AlertsViewController: UIViewController {
             if let navController = segue.destination as? UINavigationController,
                let destinationVC = navController.topViewController as? CreateAnnouncementViewController {
                 destinationVC.trip = self.trip
+                destinationVC.onAnnouncementCreated = { [weak self] in
+                    self?.loadAnnouncements()
+                }
             }
         }
     }

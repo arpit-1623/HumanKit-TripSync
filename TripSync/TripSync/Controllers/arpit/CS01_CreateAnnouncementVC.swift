@@ -25,6 +25,7 @@ class CreateAnnouncementViewController: UITableViewController {
     
     // MARK: - Properties
     var trip: Trip?
+    var onAnnouncementCreated: (() -> Void)?
     private var selectedPriority: AnnouncementPriority = .general
     
     override func viewDidLoad() {
@@ -188,6 +189,7 @@ class CreateAnnouncementViewController: UITableViewController {
         // Dismiss view controller
         dismiss(animated: true) {
             print("🚨 View controller dismissed")
+            self.onAnnouncementCreated?()
         }
     }
     
