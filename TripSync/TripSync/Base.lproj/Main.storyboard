@@ -92,7 +92,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-Be-lKn">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-Be-lKn" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                 <rect key="frame" x="40" y="504" width="313" height="60"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ks8-SS-2Fl">
                                     <rect key="frame" x="0.0" y="0.0" width="313" height="60"/>
@@ -128,7 +128,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-2P-WGi">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-2P-WGi" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                 <rect key="frame" x="40" y="584" width="313" height="60"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3PS-V2-j5b">
                                     <rect key="frame" x="0.0" y="0.0" width="313" height="60"/>
@@ -290,7 +290,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSA-H4-hnd">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSA-H4-hnd" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="344" width="235.66666666666663" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="dTd-CZ-Dit"/>
@@ -303,7 +303,7 @@
                                                 <segue destination="AVf-xh-ghI" kind="presentation" modalPresentationStyle="fullScreen" id="nyM-pX-m7l"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr5-9q-rgp">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr5-9q-rgp" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="444" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -495,7 +495,7 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO7-cv-MWX">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO7-cv-MWX" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="319.66666666666663" width="235.66666666666663" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="kmJ-NV-3ef"/>
@@ -508,7 +508,7 @@
                                                 <segue destination="AVf-xh-ghI" kind="presentation" modalPresentationStyle="fullScreen" id="m1F-BO-zer"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-VD-rQz">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-VD-rQz" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="419.66666666666663" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -652,7 +652,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RId-tz-2wt">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RId-tz-2wt" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="226.33333333333331" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
