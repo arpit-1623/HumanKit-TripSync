@@ -138,7 +138,7 @@ class ProfileViewController: UITableViewController {
     
     private func showLocationSharingOptions() {
         // Navigate to Location Sharing settings screen
-        let storyboard = UIStoryboard(name: "SS06_LocationSharing", bundle: nil)
+        let storyboard = UIStoryboard(name: "SS07_LocationSharing", bundle: nil)
         if let locationSharingVC = storyboard.instantiateInitialViewController() {
             navigationController?.pushViewController(locationSharingVC, animated: true)
         }
