@@ -402,7 +402,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
             // Add mode - create new stop
             var newStop = ItineraryStop(
                 title: titleTextField.text ?? "",
-                location: titleTextField.text ?? "",
+                location: locationTextField.text ?? "",
                 address: locationTextField.text ?? "",
                 date: datePicker.date,
                 time: timePicker.date,

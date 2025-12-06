@@ -87,7 +87,12 @@ class ES02_ItineraryStopCell: UITableViewCell {
     
     // MARK: - Configuration
     func configure(with stop: ItineraryStop, subgroup: Subgroup?, timeFormatter: DateFormatter, isViewingMyItinerary: Bool = false) {
-        titleLabel.text = stop.title
+        // Limit title to 20 characters
+        if stop.title.count > 20 {
+            titleLabel.text = String(stop.title.prefix(20)) + "..."
+        } else {
+            titleLabel.text = stop.title
+        }
         locationLabel.text = stop.location
         timeLabel.text = timeFormatter.string(from: stop.time)
         
