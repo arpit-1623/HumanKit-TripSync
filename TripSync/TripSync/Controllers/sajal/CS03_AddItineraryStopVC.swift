@@ -402,21 +402,20 @@ class CS03_AddItineraryStopVC: UITableViewController {
             // Add mode - create new stop
             var newStop = ItineraryStop(
                 title: titleTextField.text ?? "",
-                location: titleTextField.text ?? "",
+                location: locationTextField.text ?? "",
                 address: locationTextField.text ?? "",
                 date: datePicker.date,
                 time: timePicker.date,
                 tripId: tripId,
                 subgroupId: isMySubgroup ? nil : selectedSubgroup?.id,
                 createdByUserId: currentUserId,
+                isInMyItinerary: isMySubgroup,
+                addedToMyItineraryByUserId: isMySubgroup ? currentUserId : nil,
+                isCreatedInMySubgroup: isMySubgroup,
                 category: selectedCategory?.icon
             )
             
-            // Mark as MY itinerary if MY subgroup was selected
-            if isMySubgroup {
-                newStop.isInMyItinerary = true
-                newStop.addedToMyItineraryByUserId = currentUserId
-            }
+            // No need for additional marking - already set in init
             
             delegate?.didAddItineraryStop(newStop)
         }
