@@ -24,18 +24,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var emptyStateView: UIStackView!
     
     // MARK: - Outlets - Upcoming Trips
-    @IBOutlet weak var upcomingTripsTableView: UITableView!
+    @IBOutlet weak var upcomingCollectionView: UICollectionView!
     
     // MARK: - Properties
     private var currentTrip: Trip?
     private var upcomingTrips: [Trip] = []
-    private var tableViewHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupTableView()
+        setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,48 +42,16 @@ class HomeViewController: UIViewController {
         loadData()
     }
     
-    deinit {
-        upcomingTripsTableView?.removeObserver(self, forKeyPath: "contentSize")
-    }
-    
-    // MARK: - KVO
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "contentSize" {
-            if let tableView = object as? UITableView {
-                updateTableViewHeight(tableView)
-            }
-        }
-    }
-    
-    private func updateTableViewHeight(_ tableView: UITableView) {
-        // Remove existing height constraint if it exists
-        if let heightConstraint = tableViewHeightConstraint {
-            heightConstraint.isActive = false
-        }
-        
-        // Create new height constraint based on content size
-        let height = tableView.contentSize.height
-        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: height)
-        tableViewHeightConstraint?.isActive = true
-        
-        // Trigger layout update
-        view.layoutIfNeeded()
-    }
+
     
     // MARK: - Setup
     private func setupUI() {
         // UI setup completed in storyboard
     }
     
-    private func setupTableView() {
-        upcomingTripsTableView.delegate = self
-        upcomingTripsTableView.dataSource = self
-        
-        // Disable table view scrolling since we want the outer scroll view to handle scrolling
-        upcomingTripsTableView.isScrollEnabled = false
-        
-        // Add observer for content size changes
-        upcomingTripsTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    private func setupCollectionView() {
+        upcomingCollectionView.delegate = self
+        upcomingCollectionView.dataSource = self
     }
     
     // MARK: - Data Loading
@@ -94,12 +61,7 @@ class HomeViewController: UIViewController {
         
         updateGreeting()
         updateCurrentTripUI()
-        upcomingTripsTableView.reloadData()
-        
-        // Ensure table view height is updated after data reload
-        DispatchQueue.main.async {
-            self.updateTableViewHeight(self.upcomingTripsTableView)
-        }
+        upcomingCollectionView.reloadData()
     }
     
     // MARK: - UI Update
@@ -190,29 +152,35 @@ class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension HomeViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+// MARK: - UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return upcomingTrips.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingTripCell", for: indexPath) as? UpcomingTripCell else {
-            return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripCardCell", for: indexPath) as? TripCardCollectionViewCell else {
+            return UICollectionViewCell()
         }
         
-        let trip = upcomingTrips[indexPath.row]
+        let trip = upcomingTrips[indexPath.item]
         cell.configure(with: trip)
         
         return cell
     }
 }
 
-// MARK: - UITableViewDelegate
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let trip = upcomingTrips[indexPath.row]
+// MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let trip = upcomingTrips[indexPath.item]
         performSegue(withIdentifier: "homeToTripDetails", sender: trip)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 280, height: 200)
     }
 }
