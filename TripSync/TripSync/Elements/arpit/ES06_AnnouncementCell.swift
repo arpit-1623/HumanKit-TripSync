@@ -9,31 +9,98 @@ import UIKit
 
 class AnnouncementCell: UITableViewCell {
     
-    // MARK: - Outlets
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
+    // MARK: - UI Components
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 12
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var messageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .systemGray
+        label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var timestampLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.textColor = .systemGray2
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    // MARK: - Initialization
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setupUI()
     }
     
     private func setupUI() {
-        containerView.layer.cornerRadius = 12
-        containerView.layer.masksToBounds = true
-        
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        messageLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        messageLabel.textColor = .systemGray
-        messageLabel.numberOfLines = 2
-        
-        timestampLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        timestampLabel.textColor = .systemGray2
-        
         selectionStyle = .none
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        contentView.addSubview(containerView)
+        containerView.addSubview(iconImageView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(messageLabel)
+        containerView.addSubview(timestampLabel)
+        
+        NSLayoutConstraint.activate([
+            // Container view
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            
+            // Icon image view
+            iconImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            iconImageView.widthAnchor.constraint(equalToConstant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 24),
+            
+            // Title label
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            
+            // Message label
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            messageLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            messageLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            
+            // Timestamp label
+            timestampLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 8),
+            timestampLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            timestampLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            timestampLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+        ])
     }
     
     func configure(with announcement: Message) {
