@@ -408,8 +408,7 @@ class SampleData {
     // MARK: - Invitation Sample Data
     
     private func loadInvitations() {
-        guard let tokyoTrip = trips.first(where: { $0.status == .current }),
-              let foodExplorersSubgroup = subgroups.first else { return }
+        guard let tokyoTrip = trips.first(where: { $0.status == .current }) else { return }
         
         var allInvitations: [Invitation] = []
         
@@ -423,15 +422,42 @@ class SampleData {
         )
         allInvitations.append(tripInvite)
         
-        // Pending subgroup invitation
-        let subgroupInvite = Invitation(
-            type: .subgroup,
-            tripId: tokyoTrip.id,
-            subgroupId: foodExplorersSubgroup.id,
-            invitedByUserId: users[0].id,
-            invitedUserId: users[3].id
-        )
-        allInvitations.append(subgroupInvite)
+        // Pending subgroup invitations for current user (users[0] = Aditya Singh)
+        // Invitation 1: Food Explorers - invited by Alice Johnson
+        if let foodExplorers = subgroups.first(where: { $0.name == "Food Explorers" }) {
+            let invite1 = Invitation(
+                type: .subgroup,
+                tripId: tokyoTrip.id,
+                subgroupId: foodExplorers.id,
+                invitedByUserId: users[1].id, // Alice Johnson
+                invitedUserId: users[0].id // Current user (Aditya)
+            )
+            allInvitations.append(invite1)
+        }
+        
+        // Invitation 2: Adventure Seekers - invited by Bob Smith
+        if subgroups.count > 1 {
+            let invite2 = Invitation(
+                type: .subgroup,
+                tripId: tokyoTrip.id,
+                subgroupId: subgroups[1].id,
+                invitedByUserId: users[2].id, // Bob Smith
+                invitedUserId: users[0].id // Current user
+            )
+            allInvitations.append(invite2)
+        }
+        
+        // Invitation 3: For another user (John Doe) - won't show for current user
+        if let foodExplorers = subgroups.first {
+            let invite3 = Invitation(
+                type: .subgroup,
+                tripId: tokyoTrip.id,
+                subgroupId: foodExplorers.id,
+                invitedByUserId: users[0].id,
+                invitedUserId: users[3].id // John Doe
+            )
+            allInvitations.append(invite3)
+        }
         
         invitations = allInvitations
     }

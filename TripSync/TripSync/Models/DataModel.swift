@@ -556,6 +556,13 @@ class DataModel {
         return invitations.first(where: { $0.id == id })
     }
     
+    public func updateInvitation(_ invitation: Invitation) {
+        if let index = invitations.firstIndex(where: { $0.id == invitation.id }) {
+            invitations[index] = invitation
+        }
+        saveInvitationsToFile()
+    }
+    
     public func deleteInvitation(byId id: UUID) {
         invitations.removeAll(where: { $0.id == id })
         saveInvitationsToFile()

@@ -51,19 +51,11 @@ class AlertsViewController: UIViewController {
     }
     
     private func loadAnnouncements() {
-        guard let trip = trip else {
-            print("🚨 AlertsVC: No trip found")
-            return
-        }
-        
-        print("🚨 AlertsVC: Loading announcements for trip: \(trip.id)")
+        guard let trip = trip else { return }
         
         // Load all messages and filter for announcements
         let allMessages = DataModel.shared.getMessages(forTripId: trip.id, subgroupId: nil)
-        print("🚨 AlertsVC: All messages: \(allMessages.count)")
-        
         announcements = allMessages.filter { $0.isAnnouncement }
-        print("🚨 AlertsVC: Filtered announcements: \(announcements.count)")
         
         // Show/hide empty state
         emptyStateView.isHidden = !announcements.isEmpty

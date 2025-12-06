@@ -178,17 +178,10 @@ class CreateAnnouncementViewController: UITableViewController {
         announcement.announcementTitle = title
         announcement.sendNotification = sendNotificationSwitch.isOn
         
-        print("🚨 Saving announcement: \(announcement)")
-        print("🚨 Trip ID: \(trip.id)")
-        print("🚨 Is Announcement: \(announcement.isAnnouncement)")
-        
         DataModel.shared.saveMessage(announcement)
-        
-        print("🚨 Message saved. Total messages: \(DataModel.shared.getAllMessages().count)")
         
         // Dismiss view controller
         dismiss(animated: true) {
-            print("🚨 View controller dismissed")
             self.onAnnouncementCreated?()
         }
     }
