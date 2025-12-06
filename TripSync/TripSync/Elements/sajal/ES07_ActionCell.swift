@@ -23,7 +23,7 @@ class ActionCell: UITableViewCell {
     // MARK: - Setup
     private func setupUI() {
         selectionStyle = .default
-        backgroundColor = .systemBackground
+        backgroundColor = .secondarySystemGroupedBackground
         
         // Configure icon label for SF Symbols
         iconLabel.font = UIFont.systemFont(ofSize: 20)

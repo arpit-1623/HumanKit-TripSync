@@ -84,7 +84,7 @@ class StatCell: UITableViewCell {
     
     private func createStatView(value: Int, label: String) -> UIView {
         let container = UIView()
-        container.backgroundColor = .systemBackground
+        container.backgroundColor = .secondarySystemGroupedBackground
         container.layer.cornerRadius = 12
         
         let valueLabel = UILabel()
