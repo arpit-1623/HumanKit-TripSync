@@ -49,12 +49,6 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mth-ql-0cY">
-                                                <rect key="frame" x="20" y="153.66666666666666" width="353" height="24"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DeJ-8a-bjH" userLabel="Current Trip Card">
                                                 <rect key="frame" x="16" y="189.66666666666663" width="361" height="350"/>
                                                 <subviews>
@@ -398,21 +392,18 @@
                                             <constraint firstItem="aXo-Jp-dXp" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" id="0Ec-7d-zG8"/>
                                             <constraint firstItem="DcR-3Y-9pP" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="16" id="7O6-8Q-XGB"/>
                                             <constraint firstAttribute="trailing" secondItem="DcR-3Y-9pP" secondAttribute="trailing" constant="16" id="AQF-A5-pnM"/>
-                                            <constraint firstAttribute="trailing" secondItem="mth-ql-0cY" secondAttribute="trailing" constant="20" id="Bna-1X-5ej"/>
                                             <constraint firstAttribute="trailing" secondItem="aXo-Jp-dXp" secondAttribute="trailing" id="MaO-rh-TXp"/>
-                                            <constraint firstItem="mth-ql-0cY" firstAttribute="top" secondItem="greeting-stack" secondAttribute="bottom" constant="20" id="PX3-HV-Iq9"/>
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="16" id="Phd-C2-Uat"/>
                                             <constraint firstItem="aXo-Jp-dXp" firstAttribute="top" secondItem="FHJ-t9-hOQ" secondAttribute="bottom" constant="12" id="RaA-xh-jjS"/>
                                             <constraint firstAttribute="trailing" secondItem="FHJ-t9-hOQ" secondAttribute="trailing" constant="20" id="Rcx-k8-vWu"/>
                                             <constraint firstItem="DcR-3Y-9pP" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="bottom" constant="16" id="UQM-jP-RK1"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="top" secondItem="DcR-3Y-9pP" secondAttribute="bottom" constant="24" id="c2F-fj-Vfi"/>
                                             <constraint firstAttribute="bottom" secondItem="aXo-Jp-dXp" secondAttribute="bottom" constant="20" id="contentView-bottom"/>
-                                            <constraint firstItem="DeJ-8a-bjH" firstAttribute="top" secondItem="mth-ql-0cY" secondAttribute="bottom" constant="12" id="cpG-Wb-S4M"/>
+                                            <constraint firstItem="DeJ-8a-bjH" firstAttribute="top" secondItem="greeting-stack" secondAttribute="bottom" constant="20" id="cpG-Wb-S4M"/>
                                             <constraint firstAttribute="trailing" secondItem="DeJ-8a-bjH" secondAttribute="trailing" constant="16" id="dWL-yR-ZRa"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="24" id="greeting-leading"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="top" secondItem="K7p-fh-dce" secondAttribute="top" constant="20" id="greeting-top"/>
                                             <constraint firstAttribute="trailing" secondItem="greeting-stack" secondAttribute="trailing" constant="24" id="greeting-trailing"/>
-                                            <constraint firstItem="mth-ql-0cY" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="qk1-Qw-Gir"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="t70-3G-fhK"/>
                                         </constraints>
                                     </view>
