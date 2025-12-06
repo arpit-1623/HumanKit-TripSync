@@ -24,10 +24,6 @@ class AnnouncementCell: UITableViewCell {
     private func setupUI() {
         containerView.layer.cornerRadius = 12
         containerView.layer.masksToBounds = true
-        containerView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-        
-        iconImageView.tintColor = .systemBlue
-        iconImageView.image = UIImage(systemName: "megaphone.fill")
         
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         messageLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -48,6 +44,12 @@ class AnnouncementCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, h:mm a"
         timestampLabel.text = formatter.string(from: announcement.timestamp)
+        
+        // Apply priority color
+        let priorityColor = announcement.priority.color
+        containerView.backgroundColor = priorityColor.withAlphaComponent(0.1)
+        iconImageView.tintColor = priorityColor
+        iconImageView.image = UIImage(systemName: announcement.priority.icon)
     }
     
 }

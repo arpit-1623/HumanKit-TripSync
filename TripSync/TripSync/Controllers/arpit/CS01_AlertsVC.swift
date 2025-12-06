@@ -51,11 +51,19 @@ class AlertsViewController: UIViewController {
     }
     
     private func loadAnnouncements() {
-        guard let trip = trip else { return }
+        guard let trip = trip else {
+            print("🚨 AlertsVC: No trip found")
+            return
+        }
+        
+        print("🚨 AlertsVC: Loading announcements for trip: \(trip.id)")
         
         // Load all messages and filter for announcements
         let allMessages = DataModel.shared.getMessages(forTripId: trip.id, subgroupId: nil)
+        print("🚨 AlertsVC: All messages: \(allMessages.count)")
+        
         announcements = allMessages.filter { $0.isAnnouncement }
+        print("🚨 AlertsVC: Filtered announcements: \(announcements.count)")
         
         // Show/hide empty state
         emptyStateView.isHidden = !announcements.isEmpty
@@ -75,9 +83,11 @@ class AlertsViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "alertsToCreateAnnouncement",
-           let destinationVC = segue.destination as? CreateAnnouncementViewController {
-            destinationVC.trip = self.trip
+        if segue.identifier == "alertsToCreateAnnouncement" {
+            if let navController = segue.destination as? UINavigationController,
+               let destinationVC = navController.topViewController as? CreateAnnouncementViewController {
+                destinationVC.trip = self.trip
+            }
         }
     }
     
