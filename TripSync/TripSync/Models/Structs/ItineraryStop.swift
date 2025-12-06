@@ -20,9 +20,10 @@ struct ItineraryStop: Codable {
     var createdByUserId: UUID
     var isInMyItinerary: Bool
     var addedToMyItineraryByUserId: UUID?
+    var isCreatedInMySubgroup: Bool // true if created directly in MY subgroup (private)
     var category: String? // SF Symbol name for category icon
     
-    init(title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil, category: String? = nil) {
+    init(title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil, isCreatedInMySubgroup: Bool = false, category: String? = nil) {
         self.id = UUID()
         self.title = title
         self.location = location
@@ -34,10 +35,11 @@ struct ItineraryStop: Codable {
         self.createdByUserId = createdByUserId
         self.isInMyItinerary = isInMyItinerary
         self.addedToMyItineraryByUserId = addedToMyItineraryByUserId
+        self.isCreatedInMySubgroup = isCreatedInMySubgroup
         self.category = category
     }
     
-    init(id: UUID, title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil, category: String? = nil) {
+    init(id: UUID, title: String, location: String, address: String, date: Date, time: Date, tripId: UUID, subgroupId: UUID?, createdByUserId: UUID, isInMyItinerary: Bool = false, addedToMyItineraryByUserId: UUID? = nil, isCreatedInMySubgroup: Bool = false, category: String? = nil) {
         self.id = id
         self.title = title
         self.location = location
@@ -49,6 +51,7 @@ struct ItineraryStop: Codable {
         self.createdByUserId = createdByUserId
         self.isInMyItinerary = isInMyItinerary
         self.addedToMyItineraryByUserId = addedToMyItineraryByUserId
+        self.isCreatedInMySubgroup = isCreatedInMySubgroup
         self.category = category
     }
     

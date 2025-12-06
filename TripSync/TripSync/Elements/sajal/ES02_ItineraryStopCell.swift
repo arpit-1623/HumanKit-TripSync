@@ -134,15 +134,20 @@ class ES02_ItineraryStopCell: UITableViewCell {
                 colorBarView.backgroundColor = subgroupColor
             }
         } else {
-            // Show "All" pill
-            subgroupPillView.isHidden = false
-            let allBlueColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
-            subgroupPillView.backgroundColor = allBlueColor
-            subgroupLabel.text = "All"
-            
-            // If not in MY itinerary, use All blue color for color bar
-            if !stop.isInMyItinerary {
-                colorBarView.backgroundColor = allBlueColor
+            // If created in MY subgroup, don't show "All" pill
+            if stop.isCreatedInMySubgroup {
+                subgroupPillView.isHidden = true
+            } else {
+                // Show "All" pill for itineraries without subgroup
+                subgroupPillView.isHidden = false
+                let allBlueColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1) // #007AFF
+                subgroupPillView.backgroundColor = allBlueColor
+                subgroupLabel.text = "All"
+                
+                // If not in MY itinerary, use All blue color for color bar
+                if !stop.isInMyItinerary {
+                    colorBarView.backgroundColor = allBlueColor
+                }
             }
         }
     }
