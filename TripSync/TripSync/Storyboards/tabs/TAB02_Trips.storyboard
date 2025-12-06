@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sGU-3N-PYM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes>
-        <!--Trips-->
-        <scene sceneID="8oe-bg-5UH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sGU-3N-PYM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Trips" image="suitcase.fill" catalog="system" id="zWR-Z0-YUb"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="moB-Hx-je7">
-                        <rect key="frame" x="0.0" y="118" width="393" height="106"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="HW5-Ex-jmG" kind="relationship" relationship="rootViewController" id="g57-cO-vEV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p9B-4L-hiD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
-        </scene>
-        <!--SA01_Trips-->
-        <scene sceneID="fXr-Xn-bZm">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SA01_Trips" id="HW5-Ex-jmG" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="81c-0c-lT6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i2U-q7-jHG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="850" y="-2"/>
-        </scene>
-    </scenes>
-    <resources>
-        <image name="suitcase.fill" catalog="system" width="128" height="100"/>
-    </resources>
+    <scenes/>
 </document>
