@@ -37,7 +37,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have fun on your trip to Tokyo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subgreeting-label">
                                                         <rect key="frame" x="0.0" y="37.666666666666664" width="345" height="32.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -588,8 +588,8 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="R2j-mr-kDU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="p2V-mO-HbS">
-                        <rect key="frame" x="0.0" y="118" width="393" height="106"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p2V-mO-HbS">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
