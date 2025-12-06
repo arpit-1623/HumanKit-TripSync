@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
         </scene>
-        <!--SS05_Profile-->
+        <!--SS06_Profile-->
         <scene sceneID="hDe-UJ-i0b">
             <objects>
-                <viewControllerPlaceholder storyboardName="SS05_Profile" id="QVF-m9-1rQ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SS06_Profile" id="QVF-m9-1rQ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="aAk-Jb-UiP"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mh6-GJ-C2Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
