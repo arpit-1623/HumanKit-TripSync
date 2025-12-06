@@ -9,6 +9,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Outlets - Greeting Section
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var subGreetingLabel: UILabel!
+    
     // MARK: - Outlets - Current Trip Section
     @IBOutlet weak var currentTripCard: UIView!
     @IBOutlet weak var currentTripImageView: UIImageView!
@@ -87,6 +91,7 @@ class HomeViewController: UIViewController {
         currentTrip = DataModel.shared.getCurrentTrip()
         upcomingTrips = DataModel.shared.getUpcomingTrips()
         
+        updateGreeting()
         updateCurrentTripUI()
         upcomingTripsTableView.reloadData()
         
@@ -97,6 +102,37 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - UI Update
+    private func updateGreeting() {
+        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+        
+        // Determine time-based greeting
+        let hour = Calendar.current.component(.hour, from: Date())
+        let timeGreeting: String
+        switch hour {
+        case 0..<12:
+            timeGreeting = "Good Morning"
+        case 12..<17:
+            timeGreeting = "Good Afternoon"
+        case 17..<21:
+            timeGreeting = "Good Evening"
+        default:
+            timeGreeting = "Good Night"
+        }
+        
+        // Extract first name
+        let firstName = currentUser.fullName.components(separatedBy: " ").first ?? currentUser.fullName
+        
+        // Set greeting label
+        greetingLabel?.text = "\(timeGreeting), \(firstName)"
+        
+        // Set sub-greeting based on current trip
+        if let trip = currentTrip {
+            subGreetingLabel?.text = "Have fun on your trip to \(trip.location)"
+        } else {
+            subGreetingLabel?.text = "Ready to plan your next adventure?"
+        }
+    }
+    
     private func updateCurrentTripUI() {
         guard let trip = currentTrip else {
             // Show empty state
