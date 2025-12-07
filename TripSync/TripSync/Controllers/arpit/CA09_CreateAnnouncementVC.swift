@@ -52,8 +52,8 @@ class CreateAnnouncementViewController: UITableViewController {
         titleTextField.leftViewMode = .always
         
         // Setup priority views
-        setupPriorityView(veryImportantView, color: .systemRed, icon: veryImportantIcon, label: veryImportantLabel, iconName: "exclamationmark.3", text: "Very Important")
-        setupPriorityView(importantView, color: .systemYellow, icon: importantIcon, label: importantLabel, iconName: "exclamationmark.2", text: "Important")
+        setupPriorityView(veryImportantView, color: .systemRed, icon: veryImportantIcon, label: veryImportantLabel, iconName: "star.fill", text: "Very Important")
+        setupPriorityView(importantView, color: .systemOrange, icon: importantIcon, label: importantLabel, iconName: "flag.fill", text: "Important")
         setupPriorityView(generalView, color: .systemBlue, icon: generalIcon, label: generalLabel, iconName: "info.circle.fill", text: "General")
         
         // Add tap gestures
@@ -70,48 +70,47 @@ class CreateAnnouncementViewController: UITableViewController {
     
     private func setupPriorityView(_ view: UIView, color: UIColor, icon: UIImageView, label: UILabel, iconName: String, text: String) {
         view.layer.cornerRadius = 10
-        view.layer.borderWidth = 1.5
-        view.layer.borderColor = UIColor.systemGray4.cgColor
-        view.backgroundColor = .clear
+        view.layer.borderWidth = 0
+        view.backgroundColor = .systemGray6
         
         icon.image = UIImage(systemName: iconName)
-        icon.tintColor = color
+        icon.tintColor = .systemGray
         icon.contentMode = .scaleAspectFit
         
         label.text = text
         label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = color
+        label.textColor = .systemGray
         label.textAlignment = .center
     }
     
     private func updatePrioritySelection() {
-        // Reset all views
-        veryImportantView.layer.borderColor = UIColor.systemGray4.cgColor
-        importantView.layer.borderColor = UIColor.systemGray4.cgColor
-        generalView.layer.borderColor = UIColor.systemGray4.cgColor
+        // Reset all views to unselected state
+        veryImportantView.backgroundColor = .systemGray6
+        importantView.backgroundColor = .systemGray6
+        generalView.backgroundColor = .systemGray6
         
-        veryImportantView.layer.borderWidth = 1.5
-        importantView.layer.borderWidth = 1.5
-        generalView.layer.borderWidth = 1.5
+        veryImportantIcon.tintColor = .systemGray
+        importantIcon.tintColor = .systemGray
+        generalIcon.tintColor = .systemGray
         
-        veryImportantView.alpha = 0.6
-        importantView.alpha = 0.6
-        generalView.alpha = 0.6
+        veryImportantLabel.textColor = .systemGray
+        importantLabel.textColor = .systemGray
+        generalLabel.textColor = .systemGray
         
-        // Highlight selected
+        // Highlight selected with bright background color
         switch selectedPriority {
         case .veryImportant:
-            veryImportantView.layer.borderColor = UIColor.systemRed.cgColor
-            veryImportantView.layer.borderWidth = 2.5
-            veryImportantView.alpha = 1.0
+            veryImportantView.backgroundColor = UIColor.systemRed.withAlphaComponent(0.2)
+            veryImportantIcon.tintColor = .systemRed
+            veryImportantLabel.textColor = .systemRed
         case .important:
-            importantView.layer.borderColor = UIColor.systemYellow.cgColor
-            importantView.layer.borderWidth = 2.5
-            importantView.alpha = 1.0
+            importantView.backgroundColor = UIColor.systemOrange.withAlphaComponent(0.25)
+            importantIcon.tintColor = .systemOrange
+            importantLabel.textColor = .systemOrange
         case .general:
-            generalView.layer.borderColor = UIColor.systemBlue.cgColor
-            generalView.layer.borderWidth = 2.5
-            generalView.alpha = 1.0
+            generalView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.2)
+            generalIcon.tintColor = .systemBlue
+            generalLabel.textColor = .systemBlue
         }
     }
     
