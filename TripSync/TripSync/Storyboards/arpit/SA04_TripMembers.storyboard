@@ -142,6 +142,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="membersTableView" destination="members-table-view" id="table-view-outlet"/>
                     </connections>
