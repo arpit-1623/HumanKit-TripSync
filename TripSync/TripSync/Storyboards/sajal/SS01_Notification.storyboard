@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,50 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-vw-001" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnd-vw-001" userLabel="Handle">
-                                        <rect key="frame" x="166.66666666666666" y="16" width="60" height="4"/>
-                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="hnd-h-01"/>
-                                            <constraint firstAttribute="width" constant="60" id="hnd-w-01"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg-ctrl-001">
-                                        <rect key="frame" x="20" y="109" width="353" height="32"/>
-                                        <segments>
-                                            <segment title="Invites"/>
-                                            <segment title="Alerts"/>
-                                        </segments>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="hdr-h-01"/>
-                                    <constraint firstItem="hnd-vw-001" firstAttribute="top" secondItem="hdr-vw-001" secondAttribute="top" constant="16" id="hnd-T-01"/>
-                                    <constraint firstItem="hnd-vw-001" firstAttribute="centerX" secondItem="hdr-vw-001" secondAttribute="centerX" id="hnd-cX-01"/>
-                                    <constraint firstAttribute="bottom" secondItem="seg-ctrl-001" secondAttribute="bottom" constant="20" id="seg-B-01"/>
-                                    <constraint firstItem="seg-ctrl-001" firstAttribute="leading" secondItem="hdr-vw-001" secondAttribute="leading" constant="20" id="seg-L-01"/>
-                                    <constraint firstAttribute="trailing" secondItem="seg-ctrl-001" secondAttribute="trailing" constant="20" id="seg-R-01"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg-ctrl-001">
+                                <rect key="frame" x="20" y="80" width="353" height="32"/>
+                                <segments>
+                                    <segment title="Invites"/>
+                                    <segment title="Alerts"/>
+                                </segments>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-vw-001">
-                                <rect key="frame" x="0.0" y="160" width="393" height="633"/>
+                                <rect key="frame" x="0.0" y="121" width="393" height="672"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubgroupInviteCell" rowHeight="450" id="SubgroupInviteCell-ID" customClass="SubgroupInviteCell" customModule="TripSync" customModuleProvider="target">
@@ -72,146 +38,164 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-CardView" userLabel="Card View">
                                                     <rect key="frame" x="16" y="10" width="361" height="430"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconView" userLabel="Icon View">
-                                                            <rect key="frame" x="20" y="20" width="70" height="70"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-HeaderStack">
+                                                            <rect key="frame" x="20" y="20" width="321" height="50"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconImageView">
-                                                                    <rect key="frame" x="15" y="16.666666666666668" width="40" height="37.999999999999986"/>
-                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconView" userLabel="Icon View">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconImageView">
+                                                                            <rect key="frame" x="11" y="12.666666666666664" width="28" height="26"/>
+                                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="28" id="SubgroupInviteCell-IconImageHeight"/>
+                                                                                <constraint firstAttribute="width" constant="28" id="SubgroupInviteCell-IconImageWidth"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="40" id="SubgroupInviteCell-IconImageHeight"/>
-                                                                        <constraint firstAttribute="width" constant="40" id="SubgroupInviteCell-IconImageWidth"/>
+                                                                        <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerX" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerX" id="SubgroupInviteCell-IconImageCenterX"/>
+                                                                        <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerY" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerY" id="SubgroupInviteCell-IconImageCenterY"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-IconViewHeight"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="SubgroupInviteCell-IconViewWidth"/>
                                                                     </constraints>
-                                                                </imageView>
+                                                                </view>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TitleStack">
+                                                                    <rect key="frame" x="66" y="0.0" width="255" height="50"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Subgroup Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TitleLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="21.666666666666668"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TimeLabel">
+                                                                            <rect key="frame" x="0.0" y="25.666666666666664" width="255" height="24.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <constraints>
-                                                                <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerX" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerX" id="SubgroupInviteCell-IconImageCenterX"/>
-                                                                <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerY" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerY" id="SubgroupInviteCell-IconImageCenterY"/>
-                                                                <constraint firstAttribute="height" constant="70" id="SubgroupInviteCell-IconViewHeight"/>
-                                                                <constraint firstAttribute="width" constant="70" id="SubgroupInviteCell-IconViewWidth"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TitleLabel">
-                                                            <rect key="frame" x="106" y="20" width="235" height="21.666666666666671"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TimeLabel">
-                                                            <rect key="frame" x="106" y="45.666666666666664" width="235" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You've been invited to join a subgroup!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MessageLabel">
-                                                            <rect key="frame" x="20" y="110" width="321" height="19.333333333333343"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Subgroup description goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DescriptionLabel">
-                                                            <rect key="frame" x="20" y="137.33333333333334" width="321" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterLabel">
-                                                            <rect key="frame" x="19.999999999999996" y="174.33333333333334" width="62.666666666666657" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Invited by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterDetailLabel">
-                                                            <rect key="frame" x="20" y="195.33333333333331" width="55" height="14.333333333333343"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersLabel">
-                                                            <rect key="frame" x="190.66666666666666" y="174.33333333333334" width="9" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersDetailLabel">
-                                                            <rect key="frame" x="190.66666666666666" y="195.33333333333331" width="53" height="14.333333333333343"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-AcceptButton">
-                                                            <rect key="frame" x="20" y="288" width="321" height="56"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="56" id="SubgroupInviteCell-AcceptButtonHeight"/>
-                                                            </constraints>
-                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="checkmark" catalog="system" title="  Accept Invitation">
-                                                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
-                                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DetailsButton">
-                                                            <rect key="frame" x="20" y="360" width="152.66666666666666" height="50"/>
-                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DetailsButtonHeight"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="View Details">
-                                                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                <color key="baseForegroundColor" systemColor="systemBlueColor"/>
-                                                            </buttonConfiguration>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DeclineButton">
-                                                            <rect key="frame" x="188.66666666666663" y="360" width="152.33333333333337" height="50"/>
-                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DeclineButtonHeight"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="Decline">
-                                                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                <color key="baseForegroundColor" systemColor="systemRedColor"/>
-                                                            </buttonConfiguration>
-                                                        </button>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-StatsStack">
+                                                            <rect key="frame" x="20" y="86" width="321" height="35.333333333333343"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterStack">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="35.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invited by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterDetailLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="14.333333333333334"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterLabel">
+                                                                            <rect key="frame" x="0.0" y="18.333333333333329" width="62.666666666666664" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersStack">
+                                                                    <rect key="frame" x="268" y="0.0" width="53" height="35.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersDetailLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="14.333333333333334"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersLabel">
+                                                                            <rect key="frame" x="0.0" y="18.333333333333329" width="53" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ContentStack">
+                                                            <rect key="frame" x="20" y="137.33333333333337" width="321" height="202.66666666666663"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You've been invited to join a subgroup!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MessageLabel">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="19.333333333333332"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup description goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DescriptionLabel">
+                                                                    <rect key="frame" x="0.0" y="27.333333333333314" width="321" height="175.33333333333334"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ButtonStack">
+                                                            <rect key="frame" x="20" y="360" width="321" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-AcceptButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-AcceptButtonHeight"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" systemColor="tintColor"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="checkmark.circle" catalog="system" title="  Accept">
+                                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DetailsButton" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="142.33333333333334" y="0.0" width="107.66666666666666" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DetailsButtonHeight"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="eye.circle" catalog="system" title="  View">
+                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                        <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DeclineButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="262" y="0.0" width="59" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DeclineButtonHeight"/>
+                                                                        <constraint firstAttribute="width" constant="59" id="SubgroupInviteCell-DeclineButtonWidth"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="xmark" catalog="system">
+                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="BlackWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="SubgroupInviteCell-AcceptButton" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-AcceptButtonLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-AcceptButton" firstAttribute="top" secondItem="SubgroupInviteCell-InviterDetailLabel" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-AcceptButtonTop"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-AcceptButton" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-AcceptButtonTrailing"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DeclineButton" firstAttribute="leading" secondItem="SubgroupInviteCell-DetailsButton" secondAttribute="trailing" constant="16" id="SubgroupInviteCell-DeclineButtonLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DeclineButton" firstAttribute="top" secondItem="SubgroupInviteCell-DetailsButton" secondAttribute="top" id="SubgroupInviteCell-DeclineButtonTop"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-DeclineButton" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-DeclineButtonTrailing"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DeclineButton" firstAttribute="width" secondItem="SubgroupInviteCell-DetailsButton" secondAttribute="width" id="SubgroupInviteCell-DeclineButtonWidth"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DescriptionLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-MessageLabel" secondAttribute="leading" id="SubgroupInviteCell-DescriptionLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DescriptionLabel" firstAttribute="top" secondItem="SubgroupInviteCell-MessageLabel" secondAttribute="bottom" constant="8" id="SubgroupInviteCell-DescriptionLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DescriptionLabel" firstAttribute="trailing" secondItem="SubgroupInviteCell-MessageLabel" secondAttribute="trailing" id="SubgroupInviteCell-DescriptionLabelTrailing"/>
-                                                        <constraint firstAttribute="bottom" secondItem="SubgroupInviteCell-DetailsButton" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-DetailsButtonBottom"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DetailsButton" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-DetailsButtonLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-DetailsButton" firstAttribute="top" secondItem="SubgroupInviteCell-AcceptButton" secondAttribute="bottom" constant="16" id="SubgroupInviteCell-DetailsButtonTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-IconView" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-IconViewLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-IconView" firstAttribute="top" secondItem="SubgroupInviteCell-CardView" secondAttribute="top" constant="20" id="SubgroupInviteCell-IconViewTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-InviterDetailLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-InviterLabel" secondAttribute="leading" id="SubgroupInviteCell-InviterDetailLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-InviterDetailLabel" firstAttribute="top" secondItem="SubgroupInviteCell-InviterLabel" secondAttribute="bottom" constant="4" id="SubgroupInviteCell-InviterDetailLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-InviterLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-InviterLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-InviterLabel" firstAttribute="top" secondItem="SubgroupInviteCell-DescriptionLabel" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-InviterLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MembersDetailLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-MembersLabel" secondAttribute="leading" id="SubgroupInviteCell-MembersDetailLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MembersDetailLabel" firstAttribute="top" secondItem="SubgroupInviteCell-MembersLabel" secondAttribute="bottom" constant="4" id="SubgroupInviteCell-MembersDetailLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MembersLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="centerX" constant="10" id="SubgroupInviteCell-MembersLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MembersLabel" firstAttribute="top" secondItem="SubgroupInviteCell-InviterLabel" secondAttribute="top" id="SubgroupInviteCell-MembersLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MessageLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-MessageLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-MessageLabel" firstAttribute="top" secondItem="SubgroupInviteCell-IconView" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-MessageLabelTop"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-MessageLabel" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-MessageLabelTrailing"/>
-                                                        <constraint firstItem="SubgroupInviteCell-TimeLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-TitleLabel" secondAttribute="leading" id="SubgroupInviteCell-TimeLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-TimeLabel" firstAttribute="top" secondItem="SubgroupInviteCell-TitleLabel" secondAttribute="bottom" constant="4" id="SubgroupInviteCell-TimeLabelTop"/>
-                                                        <constraint firstItem="SubgroupInviteCell-TimeLabel" firstAttribute="trailing" secondItem="SubgroupInviteCell-TitleLabel" secondAttribute="trailing" id="SubgroupInviteCell-TimeLabelTrailing"/>
-                                                        <constraint firstItem="SubgroupInviteCell-TitleLabel" firstAttribute="leading" secondItem="SubgroupInviteCell-IconView" secondAttribute="trailing" constant="16" id="SubgroupInviteCell-TitleLabelLeading"/>
-                                                        <constraint firstItem="SubgroupInviteCell-TitleLabel" firstAttribute="top" secondItem="SubgroupInviteCell-CardView" secondAttribute="top" constant="20" id="SubgroupInviteCell-TitleLabelTop"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-TitleLabel" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-TitleLabelTrailing"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackBottom"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ButtonStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="top" secondItem="SubgroupInviteCell-ContentStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-ButtonStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ContentStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ContentStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ContentStack" firstAttribute="top" secondItem="SubgroupInviteCell-StatsStack" secondAttribute="bottom" constant="16" id="SubgroupInviteCell-ContentStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-ContentStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-ContentStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-HeaderStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-HeaderStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-HeaderStack" firstAttribute="top" secondItem="SubgroupInviteCell-CardView" secondAttribute="top" constant="20" id="SubgroupInviteCell-HeaderStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-HeaderStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-HeaderStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-StatsStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-StatsStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-StatsStack" firstAttribute="top" secondItem="SubgroupInviteCell-HeaderStack" secondAttribute="bottom" constant="16" id="SubgroupInviteCell-StatsStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-StatsStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-StatsStackTrailing"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -270,7 +254,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nov 26, 3:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Timestamp">
-                                                            <rect key="frame" x="52" y="60.333333333333336" width="293" height="14.333333333333321"/>
+                                                            <rect key="frame" x="52" y="60.333333333333343" width="293" height="14.333333333333314"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="systemGray2Color"/>
                                                             <nil key="highlightedColor"/>
@@ -341,17 +325,16 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="tbl-vw-001" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="0A8-BJ-a5c"/>
+                            <constraint firstItem="tbl-vw-001" firstAttribute="top" secondItem="seg-ctrl-001" secondAttribute="bottom" constant="10" id="GZE-bH-KWF"/>
+                            <constraint firstItem="seg-ctrl-001" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="Lse-W3-1Ee"/>
                             <constraint firstAttribute="bottom" secondItem="emp-vw-001" secondAttribute="bottom" id="emp-B-01"/>
                             <constraint firstItem="emp-vw-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="emp-L-01"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="emp-vw-001" secondAttribute="trailing" id="emp-R-01"/>
-                            <constraint firstItem="emp-vw-001" firstAttribute="top" secondItem="hdr-vw-001" secondAttribute="bottom" id="emp-T-01"/>
-                            <constraint firstItem="hdr-vw-001" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="hdr-L-02"/>
-                            <constraint firstAttribute="trailing" secondItem="hdr-vw-001" secondAttribute="trailing" id="hdr-R-02"/>
-                            <constraint firstItem="hdr-vw-001" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="hdr-T-02"/>
-                            <constraint firstAttribute="bottom" secondItem="tbl-vw-001" secondAttribute="bottom" id="tbl-B-01"/>
+                            <constraint firstItem="seg-ctrl-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="g2m-Vc-kAU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="seg-ctrl-001" secondAttribute="trailing" constant="20" id="kb8-wI-pMQ"/>
                             <constraint firstItem="tbl-vw-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="tbl-L-01"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="tbl-vw-001" secondAttribute="trailing" id="tbl-R-01"/>
-                            <constraint firstItem="tbl-vw-001" firstAttribute="top" secondItem="hdr-vw-001" secondAttribute="bottom" id="tbl-T-01"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -400,20 +383,19 @@
     </scenes>
     <resources>
         <image name="bell.slash" catalog="system" width="119" height="128"/>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
+        <image name="eye.circle" catalog="system" width="128" height="123"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="BlackWhite">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -423,6 +405,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

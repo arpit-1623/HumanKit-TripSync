@@ -50,7 +50,7 @@ class SubgroupInviteCell: UITableViewCell {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
         // Icon view styling (circular)
-        iconView.layer.cornerRadius = 35
+        iconView.layer.cornerRadius = 25
         
         // Button corner radius
         acceptButton.layer.cornerRadius = 12
