@@ -2,7 +2,7 @@
 //  ChatTableViewCell.swift
 //  TripSync
 //
-//  Created by Sajal Garg on 19/11/25.
+//  Created by Arpit Garg on 19/11/25.
 //
 
 import UIKit

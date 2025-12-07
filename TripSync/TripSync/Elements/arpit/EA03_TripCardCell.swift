@@ -2,7 +2,7 @@
 //  EA03_TripCardCell.swift
 //  TripSync
 //
-//  Created by GitHub Copilot on 06/12/25.
+//  Created by Arpit Garg on 06/12/25.
 //
 
 import UIKit
