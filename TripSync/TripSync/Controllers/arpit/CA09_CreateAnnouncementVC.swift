@@ -36,21 +36,19 @@ class CreateAnnouncementViewController: UITableViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        // Setup text view border
-        messageTextView.layer.borderColor = UIColor.systemGray4.cgColor
-        messageTextView.layer.borderWidth = 1
-        messageTextView.layer.cornerRadius = 8
+        // Setup text view - Apple style (no border, clean look)
+        messageTextView.layer.cornerRadius = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
         messageTextView.delegate = self
         messageTextView.text = "Write your announcement message..."
         messageTextView.textColor = .systemGray
+        messageTextView.backgroundColor = .clear
         
-        // Setup text field
+        // Setup text field - Apple style (no border, clean look)
         titleTextField.placeholder = "Announcement title"
-        titleTextField.layer.cornerRadius = 8
-        titleTextField.layer.borderWidth = 1
-        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
-        titleTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 0))
+        titleTextField.backgroundColor = .clear
+        titleTextField.borderStyle = .none
+        titleTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         titleTextField.leftViewMode = .always
         
         // Setup priority views
@@ -71,10 +69,10 @@ class CreateAnnouncementViewController: UITableViewController {
     }
     
     private func setupPriorityView(_ view: UIView, color: UIColor, icon: UIImageView, label: UILabel, iconName: String, text: String) {
-        view.layer.cornerRadius = 12
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.systemGray5.cgColor
-        view.backgroundColor = color.withAlphaComponent(0.1)
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1.5
+        view.layer.borderColor = UIColor.systemGray4.cgColor
+        view.backgroundColor = .clear
         
         icon.image = UIImage(systemName: iconName)
         icon.tintColor = color
@@ -88,24 +86,31 @@ class CreateAnnouncementViewController: UITableViewController {
     
     private func updatePrioritySelection() {
         // Reset all views
-        veryImportantView.layer.borderColor = UIColor.systemGray5.cgColor
-        importantView.layer.borderColor = UIColor.systemGray5.cgColor
-        generalView.layer.borderColor = UIColor.systemGray5.cgColor
+        veryImportantView.layer.borderColor = UIColor.systemGray4.cgColor
+        importantView.layer.borderColor = UIColor.systemGray4.cgColor
+        generalView.layer.borderColor = UIColor.systemGray4.cgColor
         
-        veryImportantView.alpha = 0.5
-        importantView.alpha = 0.5
-        generalView.alpha = 0.5
+        veryImportantView.layer.borderWidth = 1.5
+        importantView.layer.borderWidth = 1.5
+        generalView.layer.borderWidth = 1.5
+        
+        veryImportantView.alpha = 0.6
+        importantView.alpha = 0.6
+        generalView.alpha = 0.6
         
         // Highlight selected
         switch selectedPriority {
         case .veryImportant:
             veryImportantView.layer.borderColor = UIColor.systemRed.cgColor
+            veryImportantView.layer.borderWidth = 2.5
             veryImportantView.alpha = 1.0
         case .important:
             importantView.layer.borderColor = UIColor.systemYellow.cgColor
+            importantView.layer.borderWidth = 2.5
             importantView.alpha = 1.0
         case .general:
             generalView.layer.borderColor = UIColor.systemBlue.cgColor
+            generalView.layer.borderWidth = 2.5
             generalView.alpha = 1.0
         }
     }
