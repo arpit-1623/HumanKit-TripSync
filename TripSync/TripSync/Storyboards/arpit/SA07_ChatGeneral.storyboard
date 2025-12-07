@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -69,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="giO-zF-LcO">
-                                <rect key="frame" x="0.0" y="118" width="393" height="396"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="380"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
@@ -197,76 +196,87 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView">
-                                <rect key="frame" x="0.0" y="514" width="393" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="17" width="36" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="0TS-x8-XjC"/>
-                                            <constraint firstAttribute="height" constant="36" id="MdU-4Y-u5G"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeneralChat-TextFieldContainer">
-                                        <rect key="frame" x="64" y="17" width="265" height="36"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-tk-pJy" userLabel="message">
-                                                <rect key="frame" x="16" y="0.0" width="233" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="AaM-tk-pJy" secondAttribute="bottom" id="GeneralChat-TextField-Bottom"/>
-                                            <constraint firstItem="AaM-tk-pJy" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="leading" constant="16" id="GeneralChat-TextField-Leading"/>
-                                            <constraint firstItem="AaM-tk-pJy" firstAttribute="top" secondItem="GeneralChat-TextFieldContainer" secondAttribute="top" id="GeneralChat-TextField-Top"/>
-                                            <constraint firstAttribute="trailing" secondItem="AaM-tk-pJy" secondAttribute="trailing" constant="16" id="GeneralChat-TextField-Trailing"/>
-                                            <constraint firstAttribute="height" constant="36" id="GeneralChat-TextFieldContainer-Height"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="341" y="17" width="36" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="hlz-S7-guO"/>
-                                            <constraint firstAttribute="width" constant="36" id="qrf-Mj-eWT"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
-                                        <connections>
-                                            <action selector="sendButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NwJ-Bp-RTf"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="CardColor"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                <rect key="frame" x="16" y="498" width="361" height="70"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mfu-fg-94K-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-Ry-oS3" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="17" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="0TS-x8-XjC"/>
+                                                <constraint firstAttribute="height" constant="36" id="MdU-4Y-u5G"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeneralChat-TextFieldContainer">
+                                            <rect key="frame" x="64" y="17" width="233" height="36"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-tk-pJy" userLabel="message">
+                                                    <rect key="frame" x="16" y="0.0" width="201" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="AaM-tk-pJy" secondAttribute="bottom" id="GeneralChat-TextField-Bottom"/>
+                                                <constraint firstItem="AaM-tk-pJy" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="leading" constant="16" id="GeneralChat-TextField-Leading"/>
+                                                <constraint firstItem="AaM-tk-pJy" firstAttribute="top" secondItem="GeneralChat-TextFieldContainer" secondAttribute="top" id="GeneralChat-TextField-Top"/>
+                                                <constraint firstAttribute="trailing" secondItem="AaM-tk-pJy" secondAttribute="trailing" constant="16" id="GeneralChat-TextField-Trailing"/>
+                                                <constraint firstAttribute="height" constant="36" id="GeneralChat-TextFieldContainer-Height"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-ma-waR" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                            <rect key="frame" x="309" y="17" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="hlz-S7-guO"/>
+                                                <constraint firstAttribute="width" constant="36" id="qrf-Mj-eWT"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
+                                            <connections>
+                                                <action selector="sendButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NwJ-Bp-RTf"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GeneralChat-TextFieldContainer" firstAttribute="centerY" secondItem="mfu-fg-94K-content" secondAttribute="centerY" id="DhW-Xu-mSh"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Ci-ma-waR" secondAttribute="trailing" constant="16" id="Ev8-qP-fWm"/>
+                                        <constraint firstItem="bQz-Ry-oS3" firstAttribute="centerY" secondItem="mfu-fg-94K-content" secondAttribute="centerY" id="J6x-TT-GhS"/>
+                                        <constraint firstItem="4Ci-ma-waR" firstAttribute="centerY" secondItem="mfu-fg-94K-content" secondAttribute="centerY" id="dDm-bl-PBb"/>
+                                        <constraint firstItem="bQz-Ry-oS3" firstAttribute="leading" secondItem="mfu-fg-94K-content" secondAttribute="leading" constant="16" id="lW3-xb-xUl"/>
+                                    </constraints>
+                                </view>
                                 <constraints>
                                     <constraint firstItem="GeneralChat-TextFieldContainer" firstAttribute="leading" secondItem="bQz-Ry-oS3" secondAttribute="trailing" constant="12" id="7QK-8G-KOM"/>
-                                    <constraint firstItem="GeneralChat-TextFieldContainer" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="DhW-Xu-mSh"/>
-                                    <constraint firstAttribute="trailing" secondItem="4Ci-ma-waR" secondAttribute="trailing" constant="16" id="Ev8-qP-fWm"/>
-                                    <constraint firstItem="bQz-Ry-oS3" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="J6x-TT-GhS"/>
                                     <constraint firstAttribute="height" constant="70" id="TRF-5f-8eK"/>
-                                    <constraint firstItem="4Ci-ma-waR" firstAttribute="centerY" secondItem="mfu-fg-94K" secondAttribute="centerY" id="dDm-bl-PBb"/>
                                     <constraint firstItem="4Ci-ma-waR" firstAttribute="leading" secondItem="GeneralChat-TextFieldContainer" secondAttribute="trailing" constant="12" id="e40-ux-Cs0"/>
-                                    <constraint firstItem="bQz-Ry-oS3" firstAttribute="leading" secondItem="mfu-fg-94K" secondAttribute="leading" constant="16" id="lW3-xb-xUl"/>
                                 </constraints>
-                            </view>
+                                <blurEffect style="systemThinMaterial"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="giO-zF-LcO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="78B-6d-nem"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="giO-zF-LcO" secondAttribute="trailing" id="JWh-0h-EGq"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="mfu-fg-94K" secondAttribute="bottom" id="PFn-k9-qIc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="mfu-fg-94K" secondAttribute="bottom" constant="16" id="PFn-k9-qIc"/>
                             <constraint firstItem="mfu-fg-94K" firstAttribute="top" secondItem="giO-zF-LcO" secondAttribute="bottom" id="WDb-hX-c8h"/>
-                            <constraint firstItem="mfu-fg-94K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XpU-4b-RMC"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mfu-fg-94K" secondAttribute="trailing" id="h0y-lu-OTc"/>
+                            <constraint firstItem="mfu-fg-94K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="XpU-4b-RMC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mfu-fg-94K" secondAttribute="trailing" constant="16" id="h0y-lu-OTc"/>
                             <constraint firstItem="giO-zF-LcO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="hym-Mw-AmZ"/>
                         </constraints>
                     </view>
@@ -567,7 +577,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TableView">
-                                <rect key="frame" x="0.0" y="172" width="393" height="527"/>
+                                <rect key="frame" x="0.0" y="172" width="393" height="526"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="SubgroupChat-IncomingCell" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
@@ -695,74 +705,80 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-InputView">
-                                <rect key="frame" x="0.0" y="699" width="393" height="70"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-PlusButton">
-                                        <rect key="frame" x="16" y="14" width="42" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="SubgroupChat-PlusHeight"/>
-                                            <constraint firstAttribute="width" constant="42" id="SubgroupChat-PlusWidth"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TextFieldContainer">
-                                        <rect key="frame" x="70" y="13" width="253" height="44"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TextField">
-                                                <rect key="frame" x="16" y="0.0" width="221" height="44"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="SubgroupChat-TextField" secondAttribute="bottom" id="SubgroupChat-TextField-Bottom"/>
-                                            <constraint firstItem="SubgroupChat-TextField" firstAttribute="leading" secondItem="SubgroupChat-TextFieldContainer" secondAttribute="leading" constant="16" id="SubgroupChat-TextField-Leading"/>
-                                            <constraint firstItem="SubgroupChat-TextField" firstAttribute="top" secondItem="SubgroupChat-TextFieldContainer" secondAttribute="top" id="SubgroupChat-TextField-Top"/>
-                                            <constraint firstAttribute="trailing" secondItem="SubgroupChat-TextField" secondAttribute="trailing" constant="16" id="SubgroupChat-TextField-Trailing"/>
-                                            <constraint firstAttribute="height" constant="44" id="SubgroupChat-TextFieldContainer-Height"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="22"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-SendButton">
-                                        <rect key="frame" x="335" y="14" width="42" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="SubgroupChat-SendHeight"/>
-                                            <constraint firstAttribute="width" constant="42" id="SubgroupChat-SendWidth"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
-                                        <connections>
-                                            <action selector="sendButtonTapped:" destination="SubgroupChat-ID" eventType="touchUpInside" id="SubgroupChat-SendAction"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="CardColor"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-InputView" userLabel="MessageInputView" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                <rect key="frame" x="16" y="698" width="361" height="70"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SubgroupChat-InputView-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-PlusButton">
+                                            <rect key="frame" x="16" y="14" width="42" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="SubgroupChat-PlusHeight"/>
+                                                <constraint firstAttribute="width" constant="42" id="SubgroupChat-PlusWidth"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" cornerStyle="capsule"/>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TextFieldContainer">
+                                            <rect key="frame" x="70" y="13" width="221" height="44"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-TextField">
+                                                    <rect key="frame" x="16" y="0.0" width="189" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="SubgroupChat-TextField" secondAttribute="bottom" id="SubgroupChat-TextField-Bottom"/>
+                                                <constraint firstItem="SubgroupChat-TextField" firstAttribute="leading" secondItem="SubgroupChat-TextFieldContainer" secondAttribute="leading" constant="16" id="SubgroupChat-TextField-Leading"/>
+                                                <constraint firstItem="SubgroupChat-TextField" firstAttribute="top" secondItem="SubgroupChat-TextFieldContainer" secondAttribute="top" id="SubgroupChat-TextField-Top"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupChat-TextField" secondAttribute="trailing" constant="16" id="SubgroupChat-TextField-Trailing"/>
+                                                <constraint firstAttribute="height" constant="44" id="SubgroupChat-TextFieldContainer-Height"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="22"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupChat-SendButton">
+                                            <rect key="frame" x="303" y="14" width="42" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="SubgroupChat-SendHeight"/>
+                                                <constraint firstAttribute="width" constant="42" id="SubgroupChat-SendWidth"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule"/>
+                                            <connections>
+                                                <action selector="sendButtonTapped:" destination="SubgroupChat-ID" eventType="touchUpInside" id="SubgroupChat-SendAction"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView-content" secondAttribute="centerY" id="SubgroupChat-PlusCenterY"/>
+                                        <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="leading" secondItem="SubgroupChat-InputView-content" secondAttribute="leading" constant="16" id="SubgroupChat-PlusLeading"/>
+                                        <constraint firstItem="SubgroupChat-SendButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView-content" secondAttribute="centerY" id="SubgroupChat-SendCenterY"/>
+                                        <constraint firstAttribute="trailing" secondItem="SubgroupChat-SendButton" secondAttribute="trailing" constant="16" id="SubgroupChat-SendTrailing"/>
+                                        <constraint firstItem="SubgroupChat-TextFieldContainer" firstAttribute="centerY" secondItem="SubgroupChat-InputView-content" secondAttribute="centerY" id="SubgroupChat-TextFieldCenterY"/>
+                                    </constraints>
+                                </view>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="SubgroupChat-InputHeight"/>
-                                    <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-PlusCenterY"/>
-                                    <constraint firstItem="SubgroupChat-PlusButton" firstAttribute="leading" secondItem="SubgroupChat-InputView" secondAttribute="leading" constant="16" id="SubgroupChat-PlusLeading"/>
-                                    <constraint firstItem="SubgroupChat-SendButton" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-SendCenterY"/>
                                     <constraint firstItem="SubgroupChat-SendButton" firstAttribute="leading" secondItem="SubgroupChat-TextFieldContainer" secondAttribute="trailing" constant="12" id="SubgroupChat-SendLeading"/>
-                                    <constraint firstAttribute="trailing" secondItem="SubgroupChat-SendButton" secondAttribute="trailing" constant="16" id="SubgroupChat-SendTrailing"/>
-                                    <constraint firstItem="SubgroupChat-TextFieldContainer" firstAttribute="centerY" secondItem="SubgroupChat-InputView" secondAttribute="centerY" id="SubgroupChat-TextFieldCenterY"/>
                                     <constraint firstItem="SubgroupChat-TextFieldContainer" firstAttribute="leading" secondItem="SubgroupChat-PlusButton" secondAttribute="trailing" constant="12" id="SubgroupChat-TextFieldLeading"/>
                                 </constraints>
-                            </view>
+                                <blurEffect style="systemThinMaterial"/>
+                            </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SubgroupChat-SafeArea"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="bottom" secondItem="SubgroupChat-InputView" secondAttribute="bottom" constant="15" id="SubgroupChat-InputBottom"/>
-                            <constraint firstItem="SubgroupChat-InputView" firstAttribute="leading" secondItem="SubgroupChat-SafeArea" secondAttribute="leading" id="SubgroupChat-InputLeading"/>
+                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="bottom" secondItem="SubgroupChat-InputView" secondAttribute="bottom" constant="16" id="SubgroupChat-InputBottom"/>
+                            <constraint firstItem="SubgroupChat-InputView" firstAttribute="leading" secondItem="SubgroupChat-SafeArea" secondAttribute="leading" constant="16" id="SubgroupChat-InputLeading"/>
                             <constraint firstItem="SubgroupChat-InputView" firstAttribute="top" secondItem="SubgroupChat-TableView" secondAttribute="bottom" id="SubgroupChat-InputTop"/>
-                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="trailing" secondItem="SubgroupChat-InputView" secondAttribute="trailing" id="SubgroupChat-InputTrailing"/>
+                            <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="trailing" secondItem="SubgroupChat-InputView" secondAttribute="trailing" constant="16" id="SubgroupChat-InputTrailing"/>
                             <constraint firstItem="SubgroupChat-TableView" firstAttribute="leading" secondItem="SubgroupChat-SafeArea" secondAttribute="leading" id="SubgroupChat-TableLeading"/>
                             <constraint firstItem="SubgroupChat-TableView" firstAttribute="top" secondItem="SubgroupChat-SafeArea" secondAttribute="top" id="SubgroupChat-TableTop"/>
                             <constraint firstItem="SubgroupChat-SafeArea" firstAttribute="trailing" secondItem="SubgroupChat-TableView" secondAttribute="trailing" id="SubgroupChat-TableTrailing"/>
@@ -1040,9 +1056,6 @@
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <namedColor name="CardColor">
-            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
