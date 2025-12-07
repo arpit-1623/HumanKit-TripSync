@@ -43,6 +43,20 @@ class CA15_SignupVC: UIViewController {
         confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.autocapitalizationType = .none
         confirmPasswordTextField.autocorrectionType = .no
+        
+        // Enable keyboard handling
+        enableKeyboardHandling()
+        setupReturnKeyNavigation(textFields: [
+            fullNameTextField,
+            emailTextField,
+            passwordTextField,
+            confirmPasswordTextField
+        ])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disableKeyboardHandling()
     }
     
     // MARK: - IBActions
