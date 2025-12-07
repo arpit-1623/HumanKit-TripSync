@@ -112,9 +112,9 @@ class AnnouncementCell: UITableViewCell {
         formatter.dateFormat = "MMM d, h:mm a"
         timestampLabel.text = formatter.string(from: announcement.timestamp)
         
-        // Apply priority color
+        // Apply priority color with bolder background
         let priorityColor = announcement.priority.color
-        containerView.backgroundColor = priorityColor.withAlphaComponent(0.1)
+        containerView.backgroundColor = priorityColor.withAlphaComponent(0.2)
         iconImageView.tintColor = priorityColor
         iconImageView.image = UIImage(systemName: announcement.priority.icon)
     }
