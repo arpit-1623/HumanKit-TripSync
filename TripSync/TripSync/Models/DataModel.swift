@@ -224,6 +224,11 @@ class DataModel {
         return trips.filter { $0.memberIds.contains(userId) }
     }
     
+    public func getUserTrips(forUserId userId: UUID) -> [Trip] {
+        return trips.filter { $0.memberIds.contains(userId) }
+            .sorted { $0.startDate > $1.startDate }
+    }
+    
     public func getCurrentTrip() -> Trip? {
         return trips.first(where: { $0.status == .current })
     }

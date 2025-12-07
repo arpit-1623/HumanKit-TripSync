@@ -78,28 +78,101 @@
                                             <outlet property="profileImageView" destination="profile-image-view" id="profile-image-outlet"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="stat-cell" customClass="StatCell" customModule="TripSync" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="118" width="353" height="120"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="MY TRIPS" id="section-mytrips">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="240" id="mytrips-cell" customClass="MyTripsCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="174" width="353" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stat-cell" id="stat-cell-content">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mytrips-cell" id="mytrips-cell-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stat-container-view">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-collection">
+                                                    <rect key="frame" x="0.0" y="10" width="353" height="220"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="220" id="mytrips-height"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="mytrips-layout">
+                                                        <size key="itemSize" width="280" height="200"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TripCardCell" id="mytrips-card-cell" customClass="TripCardCollectionViewCell" customModule="TripSync" customModuleProvider="target">
+                                                            <rect key="frame" x="20" y="10" width="280" height="200"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mytrips-card-content">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-card-image">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-card-gradient">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </view>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-card-stack">
+                                                                        <rect key="frame" x="16" y="140" width="248" height="44"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-card-name">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="86.333333333333329" height="20.333333333333332"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location • Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mytrips-card-info">
+                                                                                <rect key="frame" x="0.0" y="26.333333333333371" width="105" height="17.666666666666671"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="mytrips-card-gradient" secondAttribute="bottom" id="mytrips-gradient-bottom"/>
+                                                                    <constraint firstItem="mytrips-card-gradient" firstAttribute="leading" secondItem="mytrips-card-content" secondAttribute="leading" id="mytrips-gradient-leading"/>
+                                                                    <constraint firstItem="mytrips-card-gradient" firstAttribute="top" secondItem="mytrips-card-content" secondAttribute="top" id="mytrips-gradient-top"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mytrips-card-gradient" secondAttribute="trailing" id="mytrips-gradient-trailing"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="mytrips-card-image" secondAttribute="bottom" id="mytrips-img-bottom"/>
+                                                                    <constraint firstItem="mytrips-card-image" firstAttribute="leading" secondItem="mytrips-card-content" secondAttribute="leading" id="mytrips-img-leading"/>
+                                                                    <constraint firstItem="mytrips-card-image" firstAttribute="top" secondItem="mytrips-card-content" secondAttribute="top" id="mytrips-img-top"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mytrips-card-image" secondAttribute="trailing" id="mytrips-img-trailing"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="mytrips-card-stack" secondAttribute="bottom" constant="16" id="mytrips-stack-bottom"/>
+                                                                    <constraint firstItem="mytrips-card-stack" firstAttribute="leading" secondItem="mytrips-card-content" secondAttribute="leading" constant="16" id="mytrips-stack-leading"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mytrips-card-stack" secondAttribute="trailing" constant="16" id="mytrips-stack-trailing"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outlet property="tripImageView" destination="mytrips-card-image" id="mytrips-img-outlet"/>
+                                                                <outlet property="tripInfoLabel" destination="mytrips-card-info" id="mytrips-info-outlet"/>
+                                                                <outlet property="tripNameLabel" destination="mytrips-card-name" id="mytrips-name-outlet"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="stat-container-view" secondAttribute="bottom" id="stat-container-bottom"/>
-                                                <constraint firstItem="stat-container-view" firstAttribute="leading" secondItem="stat-cell-content" secondAttribute="leading" id="stat-container-leading"/>
-                                                <constraint firstItem="stat-container-view" firstAttribute="top" secondItem="stat-cell-content" secondAttribute="top" id="stat-container-top"/>
-                                                <constraint firstAttribute="trailing" secondItem="stat-container-view" secondAttribute="trailing" id="stat-container-trailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="mytrips-collection" secondAttribute="bottom" constant="10" id="mytrips-coll-bottom"/>
+                                                <constraint firstItem="mytrips-collection" firstAttribute="leading" secondItem="mytrips-cell-content" secondAttribute="leading" id="mytrips-coll-leading"/>
+                                                <constraint firstItem="mytrips-collection" firstAttribute="top" secondItem="mytrips-cell-content" secondAttribute="top" constant="10" id="mytrips-coll-top"/>
+                                                <constraint firstAttribute="trailing" secondItem="mytrips-collection" secondAttribute="trailing" id="mytrips-coll-trailing"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="containerView" destination="stat-container-view" id="stat-container-outlet"/>
+                                            <outlet property="tripsCollectionView" destination="mytrips-collection" id="mytrips-coll-outlet"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -389,14 +462,25 @@
                         <outlet property="helpCell" destination="help-cell" id="help-cell-outlet"/>
                         <outlet property="locationCell" destination="location-cell" id="location-cell-outlet"/>
                         <outlet property="logoutCell" destination="logout-cell" id="logout-cell-outlet"/>
+                        <outlet property="myTripsCell" destination="mytrips-cell" id="mytrips-cell-outlet"/>
                         <outlet property="privacyCell" destination="privacy-cell" id="privacy-cell-outlet"/>
                         <outlet property="profileHeaderCell" destination="profile-header-cell" id="profile-header-cell-outlet"/>
-                        <outlet property="statCell" destination="stat-cell" id="stat-cell-outlet"/>
+                        <segue destination="trip-details-placeholder" kind="show" identifier="profileToTripDetails" id="profile-to-details-segue"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--SA02_TripDetails-->
+        <scene sceneID="trip-details-scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA02_TripDetails" id="trip-details-placeholder" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="trip-details-nav-item"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trip-details-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800" y="0.0"/>
         </scene>
     </scenes>
     <resources>

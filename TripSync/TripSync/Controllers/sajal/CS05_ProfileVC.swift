@@ -11,7 +11,7 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - Outlets (Static Cells)
     @IBOutlet weak var profileHeaderCell: ProfileHeaderCell!
-    @IBOutlet weak var statCell: StatCell!
+    @IBOutlet weak var myTripsCell: MyTripsCell!
     @IBOutlet weak var privacyCell: PreferenceCell!
     @IBOutlet weak var locationCell: PreferenceCell!
     @IBOutlet weak var helpCell: ActionCell!
@@ -20,7 +20,6 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
     private var user: User?
-    private var stats: (trips: Int, memories: Int, photos: Int) = (0, 0, 0)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,7 +30,6 @@ class ProfileViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadUserData()
-        calculateStats()
         configureAllCells()
     }
     
@@ -49,26 +47,6 @@ class ProfileViewController: UITableViewController {
         user = DataModel.shared.getCurrentUser()
     }
     
-    private func calculateStats() {
-        guard let user = user else { return }
-        
-        // Get all trips for the user
-        let userTrips = DataModel.shared.getAllTrips().filter { trip in
-            trip.memberIds.contains(user.id)
-        }
-        stats.trips = userTrips.count
-        
-        // Get all memories for user's trips
-        let tripIds = Set(userTrips.map { $0.id })
-        let userMemories = DataModel.shared.getAllMemories().filter { memory in
-            tripIds.contains(memory.tripId)
-        }
-        stats.memories = userMemories.count
-        
-        // Calculate total photos from memories
-        stats.photos = userMemories.reduce(0) { $0 + $1.photoData.count }
-    }
-    
     // MARK: - Cell Configuration
     private func configureAllCells() {
         // Configure Profile Header
@@ -76,8 +54,14 @@ class ProfileViewController: UITableViewController {
             profileHeaderCell.configure(with: user)
         }
         
-        // Configure Stats
-        statCell.configureHorizontal(trips: stats.trips, memories: stats.memories, photos: stats.photos)
+        // Configure My Trips
+        if let user = user {
+            let userTrips = DataModel.shared.getUserTrips(forUserId: user.id)
+            myTripsCell.configure(with: userTrips)
+            myTripsCell.onTripSelected = { [weak self] trip in
+                self?.navigateToTripDetails(trip: trip)
+            }
+        }
         
         // Configure Privacy Cell
         let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
@@ -105,15 +89,16 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Section 0: Profile & Stats (not tappable)
-        // Section 1: Preferences
-        if indexPath.section == 1 {
+        // Section 0: Profile (not tappable)
+        // Section 1: My Trips (not tappable, handled by collection view)
+        // Section 2: Preferences
+        if indexPath.section == 2 {
             if indexPath.row == 1 {  // Location Sharing
                 showLocationSharingOptions()
             }
         }
-        // Section 2: Account
-        else if indexPath.section == 2 {
+        // Section 3: Account
+        else if indexPath.section == 3 {
             switch indexPath.row {
             case 0:  // Help & Support
                 showHelpAndSupport()
@@ -128,6 +113,18 @@ class ProfileViewController: UITableViewController {
     }
     
     // MARK: - Actions
+    private func navigateToTripDetails(trip: Trip) {
+        performSegue(withIdentifier: "profileToTripDetails", sender: trip)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileToTripDetails",
+           let tripDetailsVC = segue.destination as? TripDetailsViewController,
+           let trip = sender as? Trip {
+            tripDetailsVC.trip = trip
+        }
+    }
+    
     private func handlePrivacyToggle(isOn: Bool) {
         guard var user = user else { return }
         user.userPreferences.showApproximateLocation = isOn
