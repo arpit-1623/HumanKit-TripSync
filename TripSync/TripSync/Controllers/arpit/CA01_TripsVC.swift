@@ -40,7 +40,7 @@ class TripsViewController: UIViewController {
 
     // MARK: - Data Loading
     private func loadData() {
-        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+        guard DataModel.shared.getCurrentUser() != nil else { return }
         
         currentTrip = DataModel.shared.getCurrentTrip()
         

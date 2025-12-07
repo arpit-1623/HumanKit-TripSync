@@ -13,6 +13,7 @@ struct User: Codable {
     let id: UUID
     var fullName: String
     var email: String
+    var passwordHash: String
     var profileImage: Data?
     var totalTrips: Int
     var totalMemories: Int
@@ -20,10 +21,11 @@ struct User: Codable {
     var createdAt: Date
     var userPreferences: UserPreferences
     
-    init(fullName: String, email: String) {
+    init(fullName: String, email: String, passwordHash: String) {
         self.id = UUID()
         self.fullName = fullName
         self.email = email
+        self.passwordHash = passwordHash
         self.totalTrips = 0
         self.totalMemories = 0
         self.totalPhotos = 0

@@ -40,15 +40,18 @@ class SampleData {
     // MARK: - User Sample Data
 
     private func loadUsers() {
-        let user1 = User(fullName: "Aditya Singh", email: "aditya.singh@example.com")
-        let user2 = User(fullName: "Alice Johnson", email: "alice.johnson@example.com")
-        let user3 = User(fullName: "Bob Smith", email: "bob.smith@example.com")
-        let user4 = User(fullName: "John Doe", email: "john.doe@example.com")
-        let user5 = User(fullName: "Ashley Kamin", email: "ashley.kamin@example.com")
-        let user6 = User(fullName: "Amber Spiers", email: "amber.spiers@example.com")
-        let user7 = User(fullName: "Gary Wilson", email: "gary.wilson@example.com")
-        let user8 = User(fullName: "Fatima Hassan", email: "fatima.hassan@example.com")
-        let user9 = User(fullName: "Simon Pickford", email: "simon.pickford@example.com")
+        // Using a default password hash for demo users (password: "demo123")
+        let demoPasswordHash = "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+        
+        let user1 = User(fullName: "Aditya Singh", email: "aditya.singh@example.com", passwordHash: demoPasswordHash)
+        let user2 = User(fullName: "Alice Johnson", email: "alice.johnson@example.com", passwordHash: demoPasswordHash)
+        let user3 = User(fullName: "Bob Smith", email: "bob.smith@example.com", passwordHash: demoPasswordHash)
+        let user4 = User(fullName: "John Doe", email: "john.doe@example.com", passwordHash: demoPasswordHash)
+        let user5 = User(fullName: "Ashley Kamin", email: "ashley.kamin@example.com", passwordHash: demoPasswordHash)
+        let user6 = User(fullName: "Amber Spiers", email: "amber.spiers@example.com", passwordHash: demoPasswordHash)
+        let user7 = User(fullName: "Gary Wilson", email: "gary.wilson@example.com", passwordHash: demoPasswordHash)
+        let user8 = User(fullName: "Fatima Hassan", email: "fatima.hassan@example.com", passwordHash: demoPasswordHash)
+        let user9 = User(fullName: "Simon Pickford", email: "simon.pickford@example.com", passwordHash: demoPasswordHash)
         
         users = [user1, user2, user3, user4, user5, user6, user7, user8, user9]
     }

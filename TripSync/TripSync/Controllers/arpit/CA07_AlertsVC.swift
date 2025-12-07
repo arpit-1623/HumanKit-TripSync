@@ -43,7 +43,7 @@ class AlertsViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.separatorStyle = .none
-        tableView?.register(AnnouncementCell.self, forCellReuseIdentifier: "AnnouncementCell")
+        // Cell is registered via storyboard prototype
     }
     
     private func setupNavigationBar() {
@@ -97,10 +97,11 @@ extension AlertsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnnouncementCell", for: indexPath) as? AnnouncementCell else {
+            return UITableViewCell()
+        }
+        
         let announcement = announcements[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AnnouncementCell", for: indexPath) as? AnnouncementCell ?? AnnouncementCell(style: .default, reuseIdentifier: "AnnouncementCell")
-        
         cell.configure(with: announcement)
         
         return cell

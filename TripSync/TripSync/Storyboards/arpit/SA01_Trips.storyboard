@@ -3,6 +3,7 @@
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -35,13 +36,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="200"/>
                                                     </imageView>
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glass-container" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="125.33333333333336" width="322" height="58.666666666666671"/>
+                                                        <rect key="frame" x="16" y="125.66666666666664" width="322" height="58.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="glass-content-view">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="current-info-stack">
-                                                                    <rect key="frame" x="12" y="7.9999999999999716" width="262" height="42.666666666666664"/>
+                                                                    <rect key="frame" x="12" y="8.0000000000000284" width="262" height="42.666666666666664"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-name">
                                                                             <rect key="frame" x="0.0" y="0.0" width="145" height="21.666666666666668"/>
@@ -49,7 +50,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan • 5 members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-details">
-                                                                            <rect key="frame" x="0.0" y="25.666666666666686" width="171.66666666666666" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="25.666666666666629" width="171.66666666666666" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -62,9 +63,11 @@
                                                                         <constraint firstAttribute="height" constant="32" id="chevron-height"/>
                                                                         <constraint firstAttribute="width" constant="32" id="chevron-width"/>
                                                                     </constraints>
+                                                                    <color key="tintColor" name="ProminentColor"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="chevron.right" catalog="system">
                                                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </buttonConfiguration>
                                                                 </button>
                                                             </subviews>
@@ -388,14 +391,17 @@
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="suitcase.fill" catalog="system" width="128" height="100"/>
+        <namedColor name="ProminentColor">
+            <color red="1" green="0.51372549019607838" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

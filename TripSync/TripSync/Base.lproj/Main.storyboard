@@ -11,7 +11,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6fo-2q-dqx">
             <objects>
-                <tabBarController id="AVf-xh-ghI" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="AVf-xh-ghI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="MfI-sl-v93"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x7g-Jj-RB0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -190,7 +190,7 @@
         <!--Create Account-->
         <scene sceneID="1Hz-qZ-6Tl">
             <objects>
-                <viewController title="Create Account" id="T2F-Zk-HSO" sceneMemberID="viewController">
+                <viewController title="Create Account" id="T2F-Zk-HSO" customClass="CA15_SignupVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bFG-gX-bXR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,7 +227,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNN-qu-T5h">
                                                     <rect key="frame" x="20" y="10" width="263" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -250,7 +250,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MFw-FC-CfZ">
                                                     <rect key="frame" x="20" y="10" width="263" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,7 +273,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWt-aF-eg4">
                                                     <rect key="frame" x="20" y="10" width="263" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -290,8 +290,37 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeA-TJ-YJS-4">
+                                            <rect key="frame" x="45" y="329" width="303" height="54"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cnf-pwd-fld">
+                                                    <rect key="frame" x="20" y="10" width="263" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="cnf-pwd-fld" secondAttribute="bottom" constant="10" id="WeA-TJ-YJS-4-b"/>
+                                                <constraint firstAttribute="height" constant="54" id="WeA-TJ-YJS-4-h"/>
+                                                <constraint firstItem="cnf-pwd-fld" firstAttribute="leading" secondItem="WeA-TJ-YJS-4" secondAttribute="leading" constant="20" id="WeA-TJ-YJS-4-l"/>
+                                                <constraint firstItem="cnf-pwd-fld" firstAttribute="top" secondItem="WeA-TJ-YJS-4" secondAttribute="top" constant="10" id="WeA-TJ-YJS-4-t"/>
+                                                <constraint firstAttribute="trailing" secondItem="cnf-pwd-fld" secondAttribute="trailing" constant="20" id="WeA-TJ-YJS-4-tr"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="25"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="err-lbl-signup">
+                                            <rect key="frame" x="45" y="398" width="303" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" systemColor="systemRedColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSA-H4-hnd" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                            <rect key="frame" x="78.666666666666671" y="344" width="235.66666666666663" height="50"/>
+                                            <rect key="frame" x="78.666666666666671" y="413" width="235.66666666666663" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="dTd-CZ-Dit"/>
                                             </constraints>
@@ -300,11 +329,11 @@
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <segue destination="AVf-xh-ghI" kind="presentation" modalPresentationStyle="fullScreen" id="nyM-pX-m7l"/>
+                                                <action selector="signUpButtonTapped:" destination="T2F-Zk-HSO" eventType="touchUpInside" id="act-signup-tap"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr5-9q-rgp" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
-                                            <rect key="frame" x="78.666666666666671" y="444" width="235.66666666666663" height="50"/>
+                                            <rect key="frame" x="78.666666666666671" y="513" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="eeI-3G-uhE"/>
@@ -322,7 +351,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zZ2-jF-WFX">
-                                            <rect key="frame" x="45" y="519" width="303" height="52.333333333333371"/>
+                                            <rect key="frame" x="45" y="588" width="303" height="52.333333333333371"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUg-8r-H3N">
                                                     <rect key="frame" x="61.666666666666686" y="0.0" width="180" height="18"/>
@@ -336,6 +365,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Login">
                                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="backToLoginButtonTapped:" destination="T2F-Zk-HSO" eventType="touchUpInside" id="act-back-login"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -348,9 +380,15 @@
                                         <constraint firstAttribute="trailing" secondItem="WeA-TJ-YJS-3" secondAttribute="trailing" constant="45" id="Gnn-Ni-ANM"/>
                                         <constraint firstAttribute="trailing" secondItem="WeA-TJ-YJS-1" secondAttribute="trailing" constant="45" id="JRQ-Sr-bZe"/>
                                         <constraint firstItem="WeA-TJ-YJS-1" firstAttribute="leading" secondItem="jkZ-GW-a5J-content" secondAttribute="leading" constant="45" id="Taf-MU-E97"/>
+                                        <constraint firstItem="WeA-TJ-YJS-4" firstAttribute="leading" secondItem="WeA-TJ-YJS-1" secondAttribute="leading" id="WeA-TJ-YJS-4-leading"/>
+                                        <constraint firstItem="WeA-TJ-YJS-4" firstAttribute="top" secondItem="WeA-TJ-YJS-3" secondAttribute="bottom" constant="15" id="WeA-TJ-YJS-4-top"/>
+                                        <constraint firstItem="WeA-TJ-YJS-4" firstAttribute="trailing" secondItem="WeA-TJ-YJS-1" secondAttribute="trailing" id="WeA-TJ-YJS-4-trailing"/>
                                         <constraint firstItem="Kr5-9q-rgp" firstAttribute="centerX" secondItem="jkZ-GW-a5J-content" secondAttribute="centerX" id="apple-centerX"/>
                                         <constraint firstItem="Kr5-9q-rgp" firstAttribute="top" secondItem="nSA-H4-hnd" secondAttribute="bottom" constant="50" id="apple-top"/>
                                         <constraint firstItem="Kr5-9q-rgp" firstAttribute="width" secondItem="nSA-H4-hnd" secondAttribute="width" id="apple-width"/>
+                                        <constraint firstItem="err-lbl-signup" firstAttribute="leading" secondItem="WeA-TJ-YJS-1" secondAttribute="leading" id="err-lbl-signup-leading"/>
+                                        <constraint firstItem="err-lbl-signup" firstAttribute="top" secondItem="WeA-TJ-YJS-4" secondAttribute="bottom" constant="15" id="err-lbl-signup-top"/>
+                                        <constraint firstItem="err-lbl-signup" firstAttribute="trailing" secondItem="WeA-TJ-YJS-1" secondAttribute="trailing" id="err-lbl-signup-trailing"/>
                                         <constraint firstItem="WeA-TJ-YJS-1" firstAttribute="top" secondItem="156-Uf-wA7" secondAttribute="bottom" constant="30" id="field1-top"/>
                                         <constraint firstItem="WeA-TJ-YJS-2" firstAttribute="leading" secondItem="WeA-TJ-YJS-1" secondAttribute="leading" id="field2-leading"/>
                                         <constraint firstItem="WeA-TJ-YJS-2" firstAttribute="top" secondItem="WeA-TJ-YJS-1" secondAttribute="bottom" constant="15" id="field2-top"/>
@@ -361,7 +399,7 @@
                                         <constraint firstItem="156-Uf-wA7" firstAttribute="centerX" secondItem="jkZ-GW-a5J-content" secondAttribute="centerX" id="j53-6S-NDu"/>
                                         <constraint firstItem="zZ2-jF-WFX" firstAttribute="top" secondItem="Kr5-9q-rgp" secondAttribute="bottom" constant="25" id="login-top"/>
                                         <constraint firstItem="nSA-H4-hnd" firstAttribute="centerX" secondItem="jkZ-GW-a5J-content" secondAttribute="centerX" id="signup-centerX"/>
-                                        <constraint firstItem="nSA-H4-hnd" firstAttribute="top" secondItem="WeA-TJ-YJS-3" secondAttribute="bottom" constant="30" id="signup-top"/>
+                                        <constraint firstItem="nSA-H4-hnd" firstAttribute="top" secondItem="err-lbl-signup" secondAttribute="bottom" constant="15" id="signup-top"/>
                                         <constraint firstItem="nSA-H4-hnd" firstAttribute="width" secondItem="jkZ-GW-a5J-content" secondAttribute="width" multiplier="0.6" id="signup-width"/>
                                         <constraint firstAttribute="trailing" secondItem="WeA-TJ-YJS-1" secondAttribute="trailing" constant="45" id="vza-iF-uJp"/>
                                     </constraints>
@@ -388,6 +426,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q4U-Nx-INi"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="cnf-pwd-fld" id="out-cnf-pwd"/>
+                        <outlet property="emailTextField" destination="MFw-FC-CfZ" id="out-email-signup"/>
+                        <outlet property="errorLabel" destination="err-lbl-signup" id="out-err-signup"/>
+                        <outlet property="fullNameTextField" destination="xNN-qu-T5h" id="out-name-signup"/>
+                        <outlet property="passwordTextField" destination="oWt-aF-eg4" id="out-pwd-signup"/>
+                        <outlet property="signUpButton" destination="nSA-H4-hnd" id="out-btn-signup"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXg-rC-Y9c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -396,7 +442,7 @@
         <!--Welcome Back-->
         <scene sceneID="9vh-3h-ula">
             <objects>
-                <viewController title="Welcome Back" id="0NK-19-lYu" sceneMemberID="viewController">
+                <viewController title="Welcome Back" id="0NK-19-lYu" customClass="CA14_LoginVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GgQ-F6-QMX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -433,7 +479,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="idD-mQ-uxS">
                                                     <rect key="frame" x="20" y="10" width="263" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -456,7 +502,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FFO-Ue-US5">
                                                     <rect key="frame" x="20" y="10" width="263" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -473,8 +519,14 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="err-lbl-login">
+                                            <rect key="frame" x="45" y="260" width="303" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" systemColor="systemRedColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-45-gQj">
-                                            <rect key="frame" x="45" y="260" width="303" height="29.666666666666686"/>
+                                            <rect key="frame" x="45" y="275" width="303" height="29.666666666666686"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWj-gj-b44">
                                                     <rect key="frame" x="0.0" y="0.0" width="144.66666666666666" height="29.666666666666668"/>
@@ -496,7 +548,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO7-cv-MWX" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                            <rect key="frame" x="78.666666666666671" y="319.66666666666663" width="235.66666666666663" height="50"/>
+                                            <rect key="frame" x="78.666666666666671" y="334.66666666666663" width="235.66666666666663" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="kmJ-NV-3ef"/>
                                             </constraints>
@@ -505,11 +557,11 @@
                                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <segue destination="AVf-xh-ghI" kind="presentation" modalPresentationStyle="fullScreen" id="m1F-BO-zer"/>
+                                                <action selector="loginButtonTapped:" destination="0NK-19-lYu" eventType="touchUpInside" id="act-login-tap"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-VD-rQz" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
-                                            <rect key="frame" x="78.666666666666671" y="419.66666666666663" width="235.66666666666663" height="50"/>
+                                            <rect key="frame" x="78.666666666666671" y="434.66666666666663" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="JmO-FM-DR3"/>
@@ -527,7 +579,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DRt-6L-vHd">
-                                            <rect key="frame" x="45" y="494.66666666666657" width="303" height="52.333333333333314"/>
+                                            <rect key="frame" x="45" y="509.66666666666657" width="303" height="52.333333333333314"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrR-qv-KkI">
                                                     <rect key="frame" x="69.333333333333329" y="0.0" width="164.66666666666669" height="18"/>
@@ -541,6 +593,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Sign Up">
                                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="signUpButtonTapped:" destination="0NK-19-lYu" eventType="touchUpInside" id="act-to-signup"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -556,8 +611,11 @@
                                         <constraint firstItem="FGp-Lc-jlo-2" firstAttribute="leading" secondItem="FGp-Lc-jlo-1" secondAttribute="leading" id="FGp-Lc-jlo-2-leading"/>
                                         <constraint firstItem="FGp-Lc-jlo-2" firstAttribute="top" secondItem="FGp-Lc-jlo-1" secondAttribute="bottom" constant="15" id="FGp-Lc-jlo-2-top"/>
                                         <constraint firstItem="FGp-Lc-jlo-2" firstAttribute="trailing" secondItem="FGp-Lc-jlo-1" secondAttribute="trailing" id="FGp-Lc-jlo-2-trailing"/>
+                                        <constraint firstItem="err-lbl-login" firstAttribute="leading" secondItem="FGp-Lc-jlo-1" secondAttribute="leading" id="err-lbl-login-leading"/>
+                                        <constraint firstItem="err-lbl-login" firstAttribute="top" secondItem="FGp-Lc-jlo-2" secondAttribute="bottom" constant="15" id="err-lbl-login-top"/>
+                                        <constraint firstItem="err-lbl-login" firstAttribute="trailing" secondItem="FGp-Lc-jlo-1" secondAttribute="trailing" id="err-lbl-login-trailing"/>
                                         <constraint firstItem="mm0-45-gQj" firstAttribute="leading" secondItem="FGp-Lc-jlo-1" secondAttribute="leading" id="mm0-45-gQj-leading"/>
-                                        <constraint firstItem="mm0-45-gQj" firstAttribute="top" secondItem="FGp-Lc-jlo-2" secondAttribute="bottom" constant="15" id="mm0-45-gQj-top"/>
+                                        <constraint firstItem="mm0-45-gQj" firstAttribute="top" secondItem="err-lbl-login" secondAttribute="bottom" constant="15" id="mm0-45-gQj-top"/>
                                         <constraint firstItem="mm0-45-gQj" firstAttribute="trailing" secondItem="FGp-Lc-jlo-1" secondAttribute="trailing" id="mm0-45-gQj-trailing"/>
                                         <constraint firstItem="yiW-9I-FYq" firstAttribute="centerX" secondItem="f2u-aD-MHb-content" secondAttribute="centerX" id="qzh-my-3yV"/>
                                         <constraint firstItem="DRt-6L-vHd" firstAttribute="leading" secondItem="FGp-Lc-jlo-1" secondAttribute="leading" id="signup-redirect-leading"/>
@@ -590,6 +648,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="neb-JE-gvv"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="idD-mQ-uxS" id="out-email-login"/>
+                        <outlet property="errorLabel" destination="err-lbl-login" id="out-err-login"/>
+                        <outlet property="loginButton" destination="zO7-cv-MWX" id="out-btn-login"/>
+                        <outlet property="passwordTextField" destination="FFO-Ue-US5" id="out-pwd-login"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YK2-2k-3aF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -751,9 +815,6 @@
             <point key="canvasLocation" x="119.84732824427481" y="-39.436619718309863"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="m1F-BO-zer"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Onboarding" width="1024" height="1536"/>
         <image name="OnboardingBg" width="1024" height="1536"/>
@@ -763,6 +824,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

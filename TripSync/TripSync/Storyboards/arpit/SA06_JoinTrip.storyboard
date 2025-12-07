@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="JoinTripViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="segmented-control">
-                                <rect key="frame" x="16" y="188" width="361" height="33"/>
+                                <rect key="frame" x="16" y="86" width="361" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="segmented-height"/>
                                 </constraints>
@@ -32,7 +32,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scan-container">
-                                <rect key="frame" x="0.0" y="236" width="393" height="616"/>
+                                <rect key="frame" x="0.0" y="134" width="393" height="659"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="scan-stack">
                                         <rect key="frame" x="20" y="40" width="353" height="441"/>
@@ -149,7 +149,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="code-container">
-                                <rect key="frame" x="0.0" y="236" width="393" height="616"/>
+                                <rect key="frame" x="0.0" y="134" width="393" height="659"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="code-stack">
                                         <rect key="frame" x="20" y="40" width="353" height="409"/>
@@ -161,10 +161,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="code-card-view">
-                                                <rect key="frame" x="26.666666666666657" y="44.333333333333314" width="300" height="200"/>
+                                                <rect key="frame" x="26.666666666666657" y="44.333333333333343" width="300" height="200"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="invite-code-textfield">
-                                                        <rect key="frame" x="24" y="70" width="252" height="60"/>
+                                                        <rect key="frame" x="24" y="69.999999999999972" width="252" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="textfield-height"/>
                                                         </constraints>
@@ -199,13 +199,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code shown on your friend's device" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="code-helper-label">
-                                                <rect key="frame" x="0.0" y="268.33333333333337" width="353" height="17"/>
+                                                <rect key="frame" x="0.0" y="268.33333333333331" width="353" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="code-join-button">
-                                                <rect key="frame" x="0.0" y="349" width="353" height="60"/>
+                                                <rect key="frame" x="0.0" y="309.33333333333331" width="353" height="60"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="code-join-height"/>
@@ -232,7 +232,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example - TOKYO2025" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="code-example-label">
-                                                <rect key="frame" x="106.33333333333333" y="309.33333333333337" width="140.33333333333337" height="15.666666666666686"/>
+                                                <rect key="frame" x="106.33333333333333" y="393.33333333333337" width="140.33333333333337" height="15.666666666666686"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" systemColor="systemGray2Color"/>
                                                 <nil key="highlightedColor"/>
@@ -295,8 +295,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OuE-ip-FrB" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ab-pW-S33">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

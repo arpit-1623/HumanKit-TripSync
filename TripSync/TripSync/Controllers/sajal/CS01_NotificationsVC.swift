@@ -55,8 +55,7 @@ class NotificationsViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.separatorStyle = .none
-        tableView?.register(SubgroupInviteCell.self, forCellReuseIdentifier: "SubgroupInviteCell")
-        tableView?.register(AnnouncementCell.self, forCellReuseIdentifier: "AnnouncementCell")
+        // Cells are registered via storyboard prototypes
     }
     
     private func loadData() {
@@ -190,7 +189,9 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if currentTab == .invites {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupInviteCell", for: indexPath) as? SubgroupInviteCell ?? SubgroupInviteCell(style: .default, reuseIdentifier: "SubgroupInviteCell")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupInviteCell", for: indexPath) as? SubgroupInviteCell else {
+                return UITableViewCell()
+            }
             
             let invitation = invitations[indexPath.row]
             cell.configure(with: invitation, onAccept: { [weak self] in

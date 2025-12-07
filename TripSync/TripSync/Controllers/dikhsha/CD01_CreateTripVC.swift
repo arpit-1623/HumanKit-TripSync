@@ -69,33 +69,7 @@ class CreateTripViewController: UIViewController {
     }
     
     // MARK: - Navigation
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // Prevent segue if validation fails
-        if identifier == "createTripToSummary" {
-            // Validate trip name
-            guard let tripName = tripNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-                  !tripName.isEmpty else {
-                showValidationAlert(message: "Please enter a trip name.")
-                return false
-            }
-            
-            // Validate dates
-            guard selectedStartDate != nil, selectedEndDate != nil else {
-                showValidationAlert(message: "Please select trip dates.")
-                return false
-            }
-            
-            // Validate location
-            guard selectedLocation != nil else {
-                showValidationAlert(message: "Please select a location.")
-                return false
-            }
-            
-            return true
-        }
-        
-        return true
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "createTripToDatePicker" {
             if let navController = segue.destination as? UINavigationController,
