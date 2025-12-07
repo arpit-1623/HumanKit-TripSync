@@ -19,7 +19,7 @@ enum AnnouncementPriority: String, Codable {
         case .veryImportant:
             return .systemRed
         case .important:
-            return .systemYellow
+            return .systemOrange
         case .general:
             return .systemBlue
         }
@@ -28,9 +28,9 @@ enum AnnouncementPriority: String, Codable {
     var icon: String {
         switch self {
         case .veryImportant:
-            return "exclamationmark.3"
+            return "star.fill"
         case .important:
-            return "exclamationmark.2"
+            return "flag.fill"
         case .general:
             return "info.circle.fill"
         }
