@@ -181,16 +181,19 @@ class ProfileViewController: UITableViewController {
     }
     
     private func performLogOut() {
-        // Clear current user
-        DataModel.shared.setCurrentUser(nil)
+        // Log out using AuthService (clears user and session)
+        AuthService.shared.logout()
         
-        // Show confirmation
-        let alert = UIAlertController(
-            title: "Logged Out",
-            message: "You have been successfully logged out.",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        // Navigate to splash/login screen
+        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate,
+              let window = sceneDelegate.window else {
+            return
+        }
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navController = mainStoryboard.instantiateInitialViewController() {
+            window.rootViewController = navController
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
+        }
     }
 }

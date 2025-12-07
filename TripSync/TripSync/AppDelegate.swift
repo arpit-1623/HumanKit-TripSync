@@ -13,12 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // For development/testing only - uncomment to populate sample data
+        // Note: Sample users have password "demo123"
+        #if DEBUG
+        let shouldPopulateSampleData = false // Set to true to test with sample data
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
             
-        if !hasLaunchedBefore {
+        if !hasLaunchedBefore && shouldPopulateSampleData {
             SampleData.shared.populateDataModel()
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
         }
+        #endif
         
         return true
     }
