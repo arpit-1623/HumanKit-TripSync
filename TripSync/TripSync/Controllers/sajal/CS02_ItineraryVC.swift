@@ -41,6 +41,14 @@ class CS02_ItineraryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Verify user has access to this trip
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.canUserAccess(currentUser.id) else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
         setupUI()
         loadTripData()
         setupCollectionView()

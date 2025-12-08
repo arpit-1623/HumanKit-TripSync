@@ -24,6 +24,14 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Verify user has access to this trip
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.canUserAccess(currentUser.id) else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
 
         setupUI()
         loadData()
@@ -32,8 +40,18 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        guard let currentUser = DataModel.shared.getCurrentUser() else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
         if let tripId = trip?.id {
             if let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+                // Verify user still has access after refresh
+                guard updatedTrip.canUserAccess(currentUser.id) else {
+                    navigationController?.popViewController(animated: true)
+                    return
+                }
                 trip = updatedTrip
                 setupUI()
             }

@@ -20,9 +20,9 @@ struct Trip: Codable {
     var location: String
     var startDate: Date
     var endDate: Date
-    var coverImageData: Data? // Deprecated: kept for backward compatibility
+    var coverImageData: Data? // just keep because we still have old sample data in some old accounts
     var coverImageURL: String? // Unsplash image URL
-    var coverImagePhotographerName: String? // Photographer attribution for Unsplash
+    var coverImagePhotographerName: String? // Photographer credit tag for Unsplash
     var inviteCode: String
     var createdAt: Date
     var createdByUserId: UUID

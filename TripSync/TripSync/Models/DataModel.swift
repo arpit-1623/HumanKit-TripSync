@@ -220,6 +220,10 @@ class DataModel {
         return trips.first(where: { $0.id == id })
     }
     
+    public func getTrip(byInviteCode inviteCode: String) -> Trip? {
+        return trips.first(where: { $0.inviteCode.uppercased() == inviteCode.uppercased() })
+    }
+    
     public func getTrips(forUserId userId: UUID) -> [Trip] {
         return trips.filter { $0.memberIds.contains(userId) }
     }
@@ -243,6 +247,10 @@ class DataModel {
     
     public func getPastTrips() -> [Trip] {
         return trips.filter { $0.status == .past }
+    }
+    
+    public func getMyTrips(_ userId: UUID) -> [Trip] {
+        return trips.filter{ $0.createdByUserId == userId }
     }
     
     public func deleteTrip(byId id: UUID) {
@@ -577,6 +585,10 @@ class DataModel {
         saveInvitationsToFile()
     }
     
+    public func deleteInvitation(_ userId: UUID, tripId: UUID) {
+        invitations.removeAll(where: { $0.tripId == tripId && $0.invitedUserId == userId })
+    }
+    
     // MARK: - Memory Data Model
     
     private func loadMemoriesFromFile() -> [Memory] {
@@ -643,4 +655,75 @@ class DataModel {
         memories.removeAll(where: { $0.tripId == tripId })
         saveMemoriesToFile()
     }
+    
+    // MARK: - Trip Access Data Model
+    public func canUserAccessTrip(_ userId: UUID, tripId: UUID) -> Bool {
+        guard let trip = getTrip(byId: tripId) else { return false }
+        return trip.memberIds.contains(userId)
+    }
+    
+    public func getUserAccessibleTrips(_ userId: UUID, tripId: UUID) -> Trip? {
+        guard canUserAccessTrip(userId, tripId: tripId) else {
+            return nil
+        }
+        
+        return getTrip(byId: tripId)
+    }
+    
+    public func getUserAccessibleTrips(_ userId: UUID) -> [Trip] {
+        return trips.filter { trip in
+            trip.memberIds.contains(userId)
+        }.sorted { $0.startDate > $1.startDate }
+    }
+    
+    // MARK: - Join Trip
+    public func joinTripWithCode(_ userId: UUID, inviteCode: String) throws -> Trip {
+        guard let trip = getTrip(byInviteCode: inviteCode) else {
+            throw JoinTripError.invalidCode
+        }
+        
+        guard !trip.memberIds.contains(userId) else {
+            throw JoinTripError.alreadyMember
+        }
+        
+        var updatedTrip = trip
+        updatedTrip.memberIds.append(userId)
+        
+        saveTrip(updatedTrip)
+        
+        deleteInvitation(userId, tripId: trip.id)
+        
+        return updatedTrip
+    }
+    
+    public func acceptTripInvitation(_ invitationId: UUID, userId: UUID) throws -> Trip {
+        guard var invitation = getInvitation(byId: invitationId) else {
+            throw JoinTripError.invitationNotFound
+        }
+        
+        guard invitation.invitedUserId == userId else {
+            throw JoinTripError.unauthorizedAccess
+        }
+        
+        guard invitation.status == .pending else {
+            throw JoinTripError.invalidInvitationStatus
+        }
+        
+        guard let tripId = invitation.tripId,
+              var trip = getTrip(byId: tripId) else {
+            throw JoinTripError.tripNotFound
+        }
+        
+        if !trip.memberIds.contains(userId) {
+            trip.memberIds.append(userId)
+            saveTrip(trip)
+        }
+        
+        invitation.status = .accepted
+        updateInvitation(invitation)
+        
+        return trip
+    }
+    
+    
 }
