@@ -227,18 +227,48 @@ class JoinTripViewController: UIViewController {
     
     // MARK: - Trip Join Logic
     private func validateAndJoinTrip(with code: String) {
-        // TODO: Implement actual validation against DataModel
-        // For now, just show success
+        guard let currentUser = DataModel.shared.getCurrentUser() else {
+            showAlert(title: "Error", message: "You must be logged in to join a trip.")
+            return
+        }
         
-        let alert = UIAlertController(
-            title: "Joining Trip",
-            message: "Attempting to join trip with code: \(code)",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.dismiss(animated: true)
-        })
-        present(alert, animated: true)
+        do {
+            // Attempt to join trip with the invite code
+            let joinedTrip = try DataModel.shared.joinTripWithCode(currentUser.id, inviteCode: code)
+            
+            // Success - navigate to trip details
+            showSuccessAndNavigate(to: joinedTrip)
+            
+        } catch JoinTripError.invalidCode {
+            showAlert(title: "Invalid Code", message: "No trip found with this invite code. Please check and try again.")
+        } catch JoinTripError.alreadyMember {
+            showAlert(title: "Already Joined", message: "You're already a member of this trip.")
+        } catch {
+            showAlert(title: "Error", message: "An unexpected error occurred: \(error.localizedDescription)")
+        }
+    }
+    
+    private func showSuccessAndNavigate(to trip: Trip) {
+        // Dismiss the join modal
+        dismiss(animated: true) { [weak self] in
+            // Navigate to trip details
+            self?.navigateToTripDetails(trip: trip)
+        }
+    }
+    
+    private func navigateToTripDetails(trip: Trip) {
+        // Get the presenting navigation controller
+        guard let presentingNav = presentingViewController as? UITabBarController,
+              let selectedNav = presentingNav.selectedViewController as? UINavigationController else {
+            return
+        }
+        
+        // Load trip details from storyboard
+        let storyboard = UIStoryboard(name: "SA02_TripDetails", bundle: nil)
+        if let tripDetailsVC = storyboard.instantiateViewController(withIdentifier: "TripDetailsViewController") as? TripDetailsViewController {
+            tripDetailsVC.trip = trip
+            selectedNav.pushViewController(tripDetailsVC, animated: true)
+        }
     }
     
     private func showAlert(title: String, message: String) {

@@ -40,17 +40,16 @@ class TripsViewController: UIViewController {
 
     // MARK: - Data Loading
     private func loadData() {
-        guard DataModel.shared.getCurrentUser() != nil else { return }
+        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        currentTrip = DataModel.shared.getCurrentTrip()
-        
-        // Get all non-current trips
-        let nonCurrentTrips = DataModel.shared.getNonCurrentTrips()
+        // Get only trips where current user is a member
+        let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
         
         // Filter by status
-        upcomingTrips = nonCurrentTrips.filter { $0.status == .upcoming }
-        pastTrips = nonCurrentTrips.filter { $0.status == .past }
-        allTrips = nonCurrentTrips
+        currentTrip = userTrips.first { $0.status == .current }
+        upcomingTrips = userTrips.filter { $0.status == .upcoming }
+        pastTrips = userTrips.filter { $0.status == .past }
+        allTrips = userTrips.filter { $0.status != .current }
         
         configureCurrentTripUI()
         upcomingCollectionView.reloadData()
