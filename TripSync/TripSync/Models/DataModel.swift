@@ -249,6 +249,10 @@ class DataModel {
         return trips.filter { $0.status == .past }
     }
     
+    public func getMyTrips(_ userId: UUID) -> [Trip] {
+        return trips.filter{ $0.createdByUserId == userId }
+    }
+    
     public func deleteTrip(byId id: UUID) {
         trips.removeAll(where: { $0.id == id })
         saveTripsToFile()

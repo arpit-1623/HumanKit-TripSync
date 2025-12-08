@@ -56,7 +56,7 @@ class ProfileViewController: UITableViewController {
         
         // Configure My Trips
         if let user = user {
-            let userTrips = DataModel.shared.getUserTrips(forUserId: user.id)
+            let userTrips = DataModel.shared.getMyTrips(user.id)
             myTripsCell.configure(with: userTrips)
             myTripsCell.onTripSelected = { [weak self] trip in
                 self?.navigateToTripDetails(trip: trip)
