@@ -54,10 +54,11 @@ class ProfileViewController: UITableViewController {
             profileHeaderCell.configure(with: user)
         }
         
-        // Configure My Trips
+        // Configure My Trips - show only trips created by the user
         if let user = user {
-            let userTrips = DataModel.shared.getMyTrips(user.id)
-            myTripsCell.configure(with: userTrips)
+            let allUserTrips = DataModel.shared.getUserTrips(forUserId: user.id)
+            let createdTrips = allUserTrips.filter { $0.createdByUserId == user.id }
+            myTripsCell.configure(with: createdTrips)
             myTripsCell.onTripSelected = { [weak self] trip in
                 self?.navigateToTripDetails(trip: trip)
             }

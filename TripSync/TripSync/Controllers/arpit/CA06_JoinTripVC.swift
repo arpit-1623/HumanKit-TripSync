@@ -249,24 +249,24 @@ class JoinTripViewController: UIViewController {
     }
     
     private func showSuccessAndNavigate(to trip: Trip) {
-        // Dismiss the join modal
-        dismiss(animated: true) { [weak self] in
-            // Navigate to trip details
-            self?.navigateToTripDetails(trip: trip)
-        }
-    }
-    
-    private func navigateToTripDetails(trip: Trip) {
-        // Get the presenting navigation controller
-        guard let presentingNav = presentingViewController as? UITabBarController,
-              let selectedNav = presentingNav.selectedViewController as? UINavigationController else {
+        // Get the presenting tab bar and navigation controller BEFORE dismissing
+        guard let presentingTabBar = presentingViewController as? UITabBarController,
+              let selectedNav = presentingTabBar.selectedViewController as? UINavigationController else {
+            dismiss(animated: true)
             return
         }
         
         // Load trip details from storyboard
         let storyboard = UIStoryboard(name: "SA02_TripDetails", bundle: nil)
-        if let tripDetailsVC = storyboard.instantiateViewController(withIdentifier: "TripDetailsViewController") as? TripDetailsViewController {
-            tripDetailsVC.trip = trip
+        guard let tripDetailsVC = storyboard.instantiateViewController(withIdentifier: "TripDetailsViewController") as? TripDetailsViewController else {
+            dismiss(animated: true)
+            return
+        }
+        
+        tripDetailsVC.trip = trip
+        
+        // Dismiss the modal and navigate to trip details
+        dismiss(animated: true) {
             selectedNav.pushViewController(tripDetailsVC, animated: true)
         }
     }
