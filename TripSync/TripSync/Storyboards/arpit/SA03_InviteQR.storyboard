@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VHn-43-sHq">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Trip Invitation-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="InviteQRViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-eW-k3d">
+                                <rect key="frame" x="0.0" y="70" width="393" height="723"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfg-2h-Wbn">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="main-stack">
+                                                <rect key="frame" x="20" y="40" width="353" height="613.33333333333337"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure 2025" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trip-name-label">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="38.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qr-container">
+                                                        <rect key="frame" x="26.666666666666657" y="62.333333333333343" width="300" height="300"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qr-image">
+                                                                <rect key="frame" x="24" y="24" width="252" height="252"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="252" id="qr-image-height"/>
+                                                                    <constraint firstAttribute="width" constant="252" id="qr-image-width"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="CardColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="300" id="qr-container-height"/>
+                                                            <constraint firstAttribute="width" constant="300" id="qr-container-width"/>
+                                                            <constraint firstItem="qr-image" firstAttribute="centerX" secondItem="qr-container" secondAttribute="centerX" id="qr-image-centerX"/>
+                                                            <constraint firstItem="qr-image" firstAttribute="centerY" secondItem="qr-container" secondAttribute="centerY" id="qr-image-centerY"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="24"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                                <real key="value" value="0.10000000000000001"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                                <size key="value" width="0.0" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan this code to join" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="helper-label">
+                                                        <rect key="frame" x="107.33333333333333" y="386.33333333333331" width="138.66666666666669" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T O K Y O 2 0 2 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="invite-code-label">
+                                                        <rect key="frame" x="83.333333333333329" y="427.33333333333337" width="186.33333333333337" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="buttons-stack">
+                                                        <rect key="frame" x="0.0" y="481.33333333333337" width="353" height="132"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="copy-button" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                                <color key="backgroundColor" name="CardColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="copy-button-height"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                <state key="normal" title="Copy Code" image="doc.on.doc" catalog="system">
+                                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                                        <integer key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                                        <real key="value" value="0.050000000000000003"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                                        <size key="value" width="0.0" height="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="copyCodeTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="copy-action"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="share-button" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="72" width="353" height="60"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="share-button-height"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                <state key="normal" title="Share Invite" image="square.and.arrow.up" catalog="system">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="shareInviteTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="share-action"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="copy-button" firstAttribute="leading" secondItem="buttons-stack" secondAttribute="leading" id="copy-leading"/>
+                                                            <constraint firstItem="copy-button" firstAttribute="trailing" secondItem="buttons-stack" secondAttribute="trailing" id="copy-trailing"/>
+                                                            <constraint firstItem="share-button" firstAttribute="leading" secondItem="buttons-stack" secondAttribute="leading" id="share-leading"/>
+                                                            <constraint firstItem="share-button" firstAttribute="trailing" secondItem="buttons-stack" secondAttribute="trailing" id="share-trailing"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="buttons-stack" firstAttribute="leading" secondItem="main-stack" secondAttribute="leading" id="buttons-leading"/>
+                                                    <constraint firstItem="buttons-stack" firstAttribute="trailing" secondItem="main-stack" secondAttribute="trailing" id="buttons-trailing"/>
+                                                    <constraint firstItem="trip-name-label" firstAttribute="leading" secondItem="main-stack" secondAttribute="leading" id="trip-name-leading"/>
+                                                    <constraint firstItem="trip-name-label" firstAttribute="trailing" secondItem="main-stack" secondAttribute="trailing" id="trip-name-trailing"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="749" id="9Eo-p9-yX9"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="main-stack" secondAttribute="bottom" constant="40" id="main-stack-bottom"/>
+                                            <constraint firstItem="main-stack" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="main-stack-leading"/>
+                                            <constraint firstItem="main-stack" firstAttribute="top" secondItem="Zfg-2h-Wbn" secondAttribute="top" constant="40" id="main-stack-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="main-stack" secondAttribute="trailing" constant="20" id="main-stack-trailing"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="bottom" secondItem="hVc-eW-k3d" secondAttribute="bottom" id="content-bottom"/>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="leading" secondItem="hVc-eW-k3d" secondAttribute="leading" id="content-leading"/>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="height" relation="greaterThanOrEqual" secondItem="hVc-eW-k3d" secondAttribute="height" id="content-min-height"/>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="top" secondItem="hVc-eW-k3d" secondAttribute="top" id="content-top"/>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="trailing" secondItem="hVc-eW-k3d" secondAttribute="trailing" id="content-trailing"/>
+                                    <constraint firstItem="Zfg-2h-Wbn" firstAttribute="width" secondItem="hVc-eW-k3d" secondAttribute="width" id="content-width"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="hVc-eW-k3d" secondAttribute="bottom" id="scroll-bottom"/>
+                            <constraint firstItem="hVc-eW-k3d" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="scroll-leading"/>
+                            <constraint firstItem="hVc-eW-k3d" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="scroll-top"/>
+                            <constraint firstItem="hVc-eW-k3d" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="scroll-trailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Trip Invitation" id="Xca-Cs-jF7">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="close-button">
+                            <connections>
+                                <action selector="closeTapped:" destination="Y6W-OH-hqX" id="close-action"/>
+                                <segue destination="bz3-Zc-wQ9" kind="unwind" unwindAction="unwindToTripDetailsWithSegue:" id="WCM-A1-Ffw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inviteCodeLabel" destination="invite-code-label" id="invite-code-outlet"/>
+                        <outlet property="qrCodeImageView" destination="qr-image" id="qr-image-outlet"/>
+                        <outlet property="tripNameLabel" destination="trip-name-label" id="trip-name-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="bz3-Zc-wQ9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1037" y="3"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hat-kJ-S7I">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VHn-43-sHq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZTS-IC-Rq0">
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="3uj-OU-njA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGw-SN-Eup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="3"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="doc.on.doc" catalog="system" width="116" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="CardColor">
+            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

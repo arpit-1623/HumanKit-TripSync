@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ys-o2-joi">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notifications-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController title="Notifications" id="Y6W-OH-hqX" customClass="NotificationsViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg-ctrl-001">
+                                <rect key="frame" x="20" y="80" width="353" height="32"/>
+                                <segments>
+                                    <segment title="Invites"/>
+                                    <segment title="Alerts"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-vw-001">
+                                <rect key="frame" x="0.0" y="121" width="393" height="672"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubgroupInviteCell" rowHeight="450" id="SubgroupInviteCell-ID" customClass="SubgroupInviteCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="450"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SubgroupInviteCell-ID" id="SubgroupInviteCell-Content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="450"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-CardView" userLabel="Card View">
+                                                    <rect key="frame" x="16" y="10" width="361" height="430"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-HeaderStack">
+                                                            <rect key="frame" x="20" y="20" width="321" height="50"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconView" userLabel="Icon View">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-IconImageView">
+                                                                            <rect key="frame" x="11" y="12.666666666666664" width="28" height="26"/>
+                                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="28" id="SubgroupInviteCell-IconImageHeight"/>
+                                                                                <constraint firstAttribute="width" constant="28" id="SubgroupInviteCell-IconImageWidth"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerX" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerX" id="SubgroupInviteCell-IconImageCenterX"/>
+                                                                        <constraint firstItem="SubgroupInviteCell-IconImageView" firstAttribute="centerY" secondItem="SubgroupInviteCell-IconView" secondAttribute="centerY" id="SubgroupInviteCell-IconImageCenterY"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-IconViewHeight"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="SubgroupInviteCell-IconViewWidth"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TitleStack">
+                                                                    <rect key="frame" x="66" y="0.0" width="255" height="50"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Subgroup Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TitleLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="21.666666666666668"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-TimeLabel">
+                                                                            <rect key="frame" x="0.0" y="25.666666666666664" width="255" height="24.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-StatsStack">
+                                                            <rect key="frame" x="20" y="86" width="321" height="35.333333333333343"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterStack">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="35.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invited by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterDetailLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="14.333333333333334"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-InviterLabel">
+                                                                            <rect key="frame" x="0.0" y="18.333333333333329" width="62.666666666666664" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersStack">
+                                                                    <rect key="frame" x="268" y="0.0" width="53" height="35.333333333333336"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersDetailLabel">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="14.333333333333334"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MembersLabel">
+                                                                            <rect key="frame" x="0.0" y="18.333333333333329" width="53" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ContentStack">
+                                                            <rect key="frame" x="20" y="137.33333333333337" width="321" height="202.66666666666663"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You've been invited to join a subgroup!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-MessageLabel">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="19.333333333333332"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subgroup description goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DescriptionLabel">
+                                                                    <rect key="frame" x="0.0" y="27.333333333333314" width="321" height="175.33333333333334"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ButtonStack">
+                                                            <rect key="frame" x="20" y="360" width="321" height="50"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-AcceptButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-AcceptButtonHeight"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" systemColor="tintColor"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="checkmark.circle" catalog="system" title="  Accept">
+                                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DetailsButton" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="142.33333333333334" y="0.0" width="107.66666666666666" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DetailsButtonHeight"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="eye.circle" catalog="system" title="  View">
+                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                        <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DeclineButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                                    <rect key="frame" x="262" y="0.0" width="59" height="50"/>
+                                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DeclineButtonHeight"/>
+                                                                        <constraint firstAttribute="width" constant="59" id="SubgroupInviteCell-DeclineButtonWidth"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="xmark" catalog="system">
+                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="BlackWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackBottom"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ButtonStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="top" secondItem="SubgroupInviteCell-ContentStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-ButtonStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ContentStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ContentStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-ContentStack" firstAttribute="top" secondItem="SubgroupInviteCell-StatsStack" secondAttribute="bottom" constant="16" id="SubgroupInviteCell-ContentStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-ContentStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-ContentStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-HeaderStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-HeaderStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-HeaderStack" firstAttribute="top" secondItem="SubgroupInviteCell-CardView" secondAttribute="top" constant="20" id="SubgroupInviteCell-HeaderStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-HeaderStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-HeaderStackTrailing"/>
+                                                        <constraint firstItem="SubgroupInviteCell-StatsStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-StatsStackLeading"/>
+                                                        <constraint firstItem="SubgroupInviteCell-StatsStack" firstAttribute="top" secondItem="SubgroupInviteCell-HeaderStack" secondAttribute="bottom" constant="16" id="SubgroupInviteCell-StatsStackTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-StatsStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-StatsStackTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="SubgroupInviteCell-CardView" secondAttribute="bottom" constant="10" id="SubgroupInviteCell-CardViewBottom"/>
+                                                <constraint firstItem="SubgroupInviteCell-CardView" firstAttribute="leading" secondItem="SubgroupInviteCell-Content" secondAttribute="leading" constant="16" id="SubgroupInviteCell-CardViewLeading"/>
+                                                <constraint firstItem="SubgroupInviteCell-CardView" firstAttribute="top" secondItem="SubgroupInviteCell-Content" secondAttribute="top" constant="10" id="SubgroupInviteCell-CardViewTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-CardView" secondAttribute="trailing" constant="16" id="SubgroupInviteCell-CardViewTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="acceptButton" destination="SubgroupInviteCell-AcceptButton" id="SubgroupInviteCell-AcceptButtonOutlet"/>
+                                            <outlet property="cardView" destination="SubgroupInviteCell-CardView" id="SubgroupInviteCell-CardViewOutlet"/>
+                                            <outlet property="declineButton" destination="SubgroupInviteCell-DeclineButton" id="SubgroupInviteCell-DeclineButtonOutlet"/>
+                                            <outlet property="descriptionLabel" destination="SubgroupInviteCell-DescriptionLabel" id="SubgroupInviteCell-DescriptionLabelOutlet"/>
+                                            <outlet property="detailsButton" destination="SubgroupInviteCell-DetailsButton" id="SubgroupInviteCell-DetailsButtonOutlet"/>
+                                            <outlet property="iconImageView" destination="SubgroupInviteCell-IconImageView" id="SubgroupInviteCell-IconImageViewOutlet"/>
+                                            <outlet property="iconView" destination="SubgroupInviteCell-IconView" id="SubgroupInviteCell-IconViewOutlet"/>
+                                            <outlet property="inviterDetailLabel" destination="SubgroupInviteCell-InviterDetailLabel" id="SubgroupInviteCell-InviterDetailLabelOutlet"/>
+                                            <outlet property="inviterLabel" destination="SubgroupInviteCell-InviterLabel" id="SubgroupInviteCell-InviterLabelOutlet"/>
+                                            <outlet property="membersDetailLabel" destination="SubgroupInviteCell-MembersDetailLabel" id="SubgroupInviteCell-MembersDetailLabelOutlet"/>
+                                            <outlet property="membersLabel" destination="SubgroupInviteCell-MembersLabel" id="SubgroupInviteCell-MembersLabelOutlet"/>
+                                            <outlet property="messageLabel" destination="SubgroupInviteCell-MessageLabel" id="SubgroupInviteCell-MessageLabelOutlet"/>
+                                            <outlet property="timeLabel" destination="SubgroupInviteCell-TimeLabel" id="SubgroupInviteCell-TimeLabelOutlet"/>
+                                            <outlet property="titleLabel" destination="SubgroupInviteCell-TitleLabel" id="SubgroupInviteCell-TitleLabelOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnnouncementCell" rowHeight="100" id="AnnouncementCell-ID" customClass="AnnouncementCell" customModule="TripSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="500" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AnnouncementCell-ID" id="AnnouncementCell-Content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Container">
+                                                    <rect key="frame" x="16" y="8" width="361" height="84"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Icon">
+                                                            <rect key="frame" x="16" y="30.666666666666664" width="24" height="22.666666666666664"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="AnnouncementCell-IconHeight"/>
+                                                                <constraint firstAttribute="width" constant="24" id="AnnouncementCell-IconWidth"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Announcement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Title">
+                                                            <rect key="frame" x="52" y="16" width="293" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Message content goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Message">
+                                                            <rect key="frame" x="52" y="39.333333333333336" width="293" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nov 26, 3:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Timestamp">
+                                                            <rect key="frame" x="52" y="60.333333333333343" width="293" height="14.333333333333314"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="AnnouncementCell-Icon" firstAttribute="centerY" secondItem="AnnouncementCell-Container" secondAttribute="centerY" id="AnnouncementCell-IconCenterY"/>
+                                                        <constraint firstItem="AnnouncementCell-Icon" firstAttribute="leading" secondItem="AnnouncementCell-Container" secondAttribute="leading" constant="16" id="AnnouncementCell-IconLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="leading" secondItem="AnnouncementCell-Title" secondAttribute="leading" id="AnnouncementCell-MessageLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="top" secondItem="AnnouncementCell-Title" secondAttribute="bottom" constant="4" id="AnnouncementCell-MessageTop"/>
+                                                        <constraint firstItem="AnnouncementCell-Message" firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" id="AnnouncementCell-MessageTrailing"/>
+                                                        <constraint firstAttribute="bottom" secondItem="AnnouncementCell-Timestamp" secondAttribute="bottom" constant="10" id="AnnouncementCell-TimestampBottom"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="leading" secondItem="AnnouncementCell-Title" secondAttribute="leading" id="AnnouncementCell-TimestampLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="top" secondItem="AnnouncementCell-Message" secondAttribute="bottom" constant="4" id="AnnouncementCell-TimestampTop"/>
+                                                        <constraint firstItem="AnnouncementCell-Timestamp" firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" id="AnnouncementCell-TimestampTrailing"/>
+                                                        <constraint firstItem="AnnouncementCell-Title" firstAttribute="leading" secondItem="AnnouncementCell-Icon" secondAttribute="trailing" constant="12" id="AnnouncementCell-TitleLeading"/>
+                                                        <constraint firstItem="AnnouncementCell-Title" firstAttribute="top" secondItem="AnnouncementCell-Container" secondAttribute="top" constant="16" id="AnnouncementCell-TitleTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="AnnouncementCell-Title" secondAttribute="trailing" constant="16" id="AnnouncementCell-TitleTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="AnnouncementCell-Container" secondAttribute="bottom" constant="8" id="AnnouncementCell-ContainerBottom"/>
+                                                <constraint firstItem="AnnouncementCell-Container" firstAttribute="leading" secondItem="AnnouncementCell-Content" secondAttribute="leading" constant="16" id="AnnouncementCell-ContainerLeading"/>
+                                                <constraint firstItem="AnnouncementCell-Container" firstAttribute="top" secondItem="AnnouncementCell-Content" secondAttribute="top" constant="8" id="AnnouncementCell-ContainerTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="AnnouncementCell-Container" secondAttribute="trailing" constant="16" id="AnnouncementCell-ContainerTrailing"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="containerView" destination="AnnouncementCell-Container" id="AnnouncementCell-ContainerOutlet"/>
+                                            <outlet property="iconImageView" destination="AnnouncementCell-Icon" id="AnnouncementCell-IconOutlet"/>
+                                            <outlet property="messageLabel" destination="AnnouncementCell-Message" id="AnnouncementCell-MessageOutlet"/>
+                                            <outlet property="timestampLabel" destination="AnnouncementCell-Timestamp" id="AnnouncementCell-TimestampOutlet"/>
+                                            <outlet property="titleLabel" destination="AnnouncementCell-Title" id="AnnouncementCell-TitleOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emp-vw-001" userLabel="Empty State View">
+                                <rect key="frame" x="0.0" y="160" width="393" height="633"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="emp-img-001">
+                                        <rect key="frame" x="146.66666666666666" y="246.66666666666669" width="100" height="100.33333333333331"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="emp-img-h"/>
+                                            <constraint firstAttribute="width" constant="100" id="emp-img-w"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Invitations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emp-lbl-001">
+                                        <rect key="frame" x="20" y="366.66666666666663" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstItem="emp-img-001" firstAttribute="centerX" secondItem="emp-vw-001" secondAttribute="centerX" id="emp-img-cx"/>
+                                    <constraint firstItem="emp-img-001" firstAttribute="centerY" secondItem="emp-vw-001" secondAttribute="centerY" constant="-20" id="emp-img-cy"/>
+                                    <constraint firstItem="emp-lbl-001" firstAttribute="leading" secondItem="emp-vw-001" secondAttribute="leading" constant="20" id="emp-lbl-l"/>
+                                    <constraint firstAttribute="trailing" secondItem="emp-lbl-001" secondAttribute="trailing" constant="20" id="emp-lbl-r"/>
+                                    <constraint firstItem="emp-lbl-001" firstAttribute="top" secondItem="emp-img-001" secondAttribute="bottom" constant="20" id="emp-lbl-t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="tbl-vw-001" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="0A8-BJ-a5c"/>
+                            <constraint firstItem="tbl-vw-001" firstAttribute="top" secondItem="seg-ctrl-001" secondAttribute="bottom" constant="10" id="GZE-bH-KWF"/>
+                            <constraint firstItem="seg-ctrl-001" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="Lse-W3-1Ee"/>
+                            <constraint firstAttribute="bottom" secondItem="emp-vw-001" secondAttribute="bottom" id="emp-B-01"/>
+                            <constraint firstItem="emp-vw-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="emp-L-01"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="emp-vw-001" secondAttribute="trailing" id="emp-R-01"/>
+                            <constraint firstItem="seg-ctrl-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="g2m-Vc-kAU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="seg-ctrl-001" secondAttribute="trailing" constant="20" id="kb8-wI-pMQ"/>
+                            <constraint firstItem="tbl-vw-001" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="tbl-L-01"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="tbl-vw-001" secondAttribute="trailing" id="tbl-R-01"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="emp-vw-001"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" id="LJB-Ob-5E7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="awf-xq-fsR">
+                            <connections>
+                                <action selector="cancelTapped" destination="Y6W-OH-hqX" id="cancel-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emptyStateImageView" destination="emp-img-001" id="emp-img-outlet"/>
+                        <outlet property="emptyStateLabel" destination="emp-lbl-001" id="emp-lbl-outlet"/>
+                        <outlet property="emptyStateView" destination="emp-vw-001" id="emp-view-outlet"/>
+                        <outlet property="segmentedControl" destination="seg-ctrl-001" id="seg-outlet"/>
+                        <outlet property="tableView" destination="tbl-vw-001" id="tbl-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066.4122137404579" y="112.67605633802818"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hqb-Pw-sMs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9ys-o2-joi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a1u-af-CCw">
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="8F2-4n-pP5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zYd-DA-o8M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="112.67605633802818"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bell.slash" catalog="system" width="119" height="128"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
+        <image name="eye.circle" catalog="system" width="128" height="123"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.2.fill" catalog="system" width="128" height="86"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="BlackWhite">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
