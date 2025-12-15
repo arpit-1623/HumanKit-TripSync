@@ -57,7 +57,6 @@ class HomeViewController: UIViewController {
     private func loadData() {
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        // Get only trips where current user is a member
         let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
         
         currentTrip = userTrips.first { $0.status == .current }

@@ -73,7 +73,7 @@ class EditTripTableViewController: UITableViewController {
         // Populate fields from trip
         tripNameField.text = trip.name
         tripLocationField.text = trip.location
-        tripLocationField.isUserInteractionEnabled = false // Force use of location picker
+        tripLocationField.isUserInteractionEnabled = false
         startDatePicker.date = trip.startDate
         endDatePicker.date = trip.endDate
         inviteCodeValueLabel.text = trip.inviteCode
