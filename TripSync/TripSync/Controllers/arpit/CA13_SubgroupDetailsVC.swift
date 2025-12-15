@@ -2,7 +2,7 @@
 //  CS03_SubgroupDetailsVC.swift
 //  TripSync
 //
-//  Created on 23/11/2025.
+//  Created by Arpit Garg on 23/11/2025.
 //
 
 import UIKit

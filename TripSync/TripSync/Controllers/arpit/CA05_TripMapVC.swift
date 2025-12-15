@@ -47,9 +47,7 @@ class TripMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupMapView()
         setupLocationManager()
-        setupTableViews()
         loadTripData()
     }
     

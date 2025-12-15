@@ -2,7 +2,7 @@
 //  CS01_AlertsVC.swift
 //  TripSync
 //
-//  Created by GitHub Copilot on 26/11/25.
+//  Created by Arpit Garg on 26/11/25.
 //
 
 import UIKit
@@ -43,7 +43,6 @@ class AlertsViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.separatorStyle = .none
-        // Cell is registered via storyboard prototype
     }
     
     private func setupNavigationBar() {

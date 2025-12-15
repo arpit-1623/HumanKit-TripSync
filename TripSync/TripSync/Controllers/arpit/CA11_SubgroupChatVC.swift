@@ -2,7 +2,7 @@
 //  CS01_SubgroupChatVC.swift
 //  TripSync
 //
-//  Created by GitHub Copilot on 26/11/25.
+//  Created by Arpit Garg on 26/11/25.
 //
 
 import UIKit
