@@ -31,56 +31,19 @@ class CreateAnnouncementViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
     }
     
     // MARK: - Setup
     private func setupUI() {
-        // Setup text view - Apple style (no border, clean look)
-        messageTextView.layer.cornerRadius = 0
+        // Setup text view insets (not available in IB)
         messageTextView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
-        messageTextView.delegate = self
-        messageTextView.text = "Write your announcement message..."
-        messageTextView.textColor = .systemGray
-        messageTextView.backgroundColor = .clear
         
-        // Setup text field - Apple style (no border, clean look)
-        titleTextField.placeholder = "Announcement title"
-        titleTextField.backgroundColor = .clear
-        titleTextField.borderStyle = .none
+        // Setup text field left view (for proper text alignment)
         titleTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         titleTextField.leftViewMode = .always
         
-        // Setup priority views
-        setupPriorityView(veryImportantView, color: .systemRed, icon: veryImportantIcon, label: veryImportantLabel, iconName: "star.fill", text: "Very Important")
-        setupPriorityView(importantView, color: .systemOrange, icon: importantIcon, label: importantLabel, iconName: "flag.fill", text: "Important")
-        setupPriorityView(generalView, color: .systemBlue, icon: generalIcon, label: generalLabel, iconName: "info.circle.fill", text: "General")
-        
-        // Add tap gestures
-        veryImportantView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(veryImportantTapped)))
-        importantView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(importantTapped)))
-        generalView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(generalTapped)))
-        
         // Select general by default
         updatePrioritySelection()
-        
-        // Setup switch
-        sendNotificationSwitch.isOn = true
-    }
-    
-    private func setupPriorityView(_ view: UIView, color: UIColor, icon: UIImageView, label: UILabel, iconName: String, text: String) {
-        view.layer.cornerRadius = 10
-        view.layer.borderWidth = 0
-        view.backgroundColor = .systemGray6
-        
-        icon.image = UIImage(systemName: iconName)
-        icon.tintColor = .systemGray
-        icon.contentMode = .scaleAspectFit
-        
-        label.text = text
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .systemGray
-        label.textAlignment = .center
     }
     
     private func updatePrioritySelection() {
@@ -114,29 +77,19 @@ class CreateAnnouncementViewController: UITableViewController {
         }
     }
     
-    @objc private func veryImportantTapped() {
+    @IBAction private func veryImportantTapped(_ sender: Any) {
         selectedPriority = .veryImportant
         updatePrioritySelection()
     }
     
-    @objc private func importantTapped() {
+    @IBAction private func importantTapped(_ sender: Any) {
         selectedPriority = .important
         updatePrioritySelection()
     }
     
-    @objc private func generalTapped() {
+    @IBAction private func generalTapped(_ sender: Any) {
         selectedPriority = .general
         updatePrioritySelection()
-    }
-    
-    private func setupNavigationBar() {
-        title = "Announcement"
-        
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
-        navigationItem.leftBarButtonItem = cancelButton
-        
-        let sendButton = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendTapped))
-        navigationItem.rightBarButtonItem = sendButton
     }
     
     // MARK: - Actions

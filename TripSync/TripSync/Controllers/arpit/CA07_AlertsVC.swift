@@ -22,9 +22,7 @@ class AlertsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         setupTableView()
-        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,21 +31,9 @@ class AlertsViewController: UIViewController {
     }
     
     // MARK: - Setup
-    private func setupUI() {
-        emptyStateLabel?.text = "No Announcements"
-        emptyStateLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        emptyStateLabel?.textColor = .systemGray
-    }
-    
     private func setupTableView() {
         tableView?.delegate = self
         tableView?.dataSource = self
-        tableView?.separatorStyle = .none
-    }
-    
-    private func setupNavigationBar() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAnnouncementTapped))
-        navigationItem.rightBarButtonItem = addButton
     }
     
     private func loadAnnouncements() {
@@ -65,7 +51,7 @@ class AlertsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func addAnnouncementTapped() {
+    @IBAction func addAnnouncementTapped() {
         performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
     }
     

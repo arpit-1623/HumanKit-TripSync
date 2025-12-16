@@ -2,7 +2,7 @@
 //  CS01_ChatContainerVC.swift
 //  TripSync
 //
-//  Created by GitHub Copilot on 26/11/25.
+//  Created by Arpit Garg on 26/11/25.
 //
 
 import UIKit
@@ -33,7 +33,6 @@ class ChatContainerViewController: UIViewController {
             return
         }
         
-        setupSegmentedControl()
         setupChildViewControllers()
         showViewController(at: 0)
     }
@@ -55,7 +54,7 @@ class ChatContainerViewController: UIViewController {
                 return
             }
             trip = updatedTrip
-            // Update child VCs with refreshed trip data
+
             generalChatVC?.trip = trip
             subgroupsListVC?.trip = trip
             alertsVC?.trip = trip
@@ -63,14 +62,6 @@ class ChatContainerViewController: UIViewController {
     }
     
     // MARK: - Setup
-    private func setupSegmentedControl() {
-        segmentedControl.removeAllSegments()
-        segmentedControl.insertSegment(withTitle: "General", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "Subgroups", at: 1, animated: false)
-        segmentedControl.insertSegment(withTitle: "Alerts", at: 2, animated: false)
-        segmentedControl.selectedSegmentIndex = 0
-    }
-    
     private func setupChildViewControllers() {
         // Load all child VCs from storyboard
         let chatStoryboard = UIStoryboard(name: "SA07_ChatGeneral", bundle: nil)
