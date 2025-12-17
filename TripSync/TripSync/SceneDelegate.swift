@@ -17,23 +17,87 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
         // Check authentication status
         if AuthService.shared.isAuthenticated() {
-            // User is authenticated, show main tab bar
-            if let tabBarController = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-                window?.rootViewController = tabBarController
-            }
+            // User is authenticated, determine which screen to show
+            navigateBasedOnUserState()
         } else {
             // User is not authenticated, show splash/onboarding flow
-            // IL9-BW-PRY is the existing navigation controller with splash screen
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             if let navController = mainStoryboard.instantiateInitialViewController() {
                 window?.rootViewController = navController
             }
         }
         
         window?.makeKeyAndVisible()
+    }
+    
+    // MARK: - Navigation Helpers
+    
+    /// Navigate to appropriate screen based on user state
+    func navigateBasedOnUserState() {
+        guard let currentUser = DataModel.shared.getCurrentUser() else {
+            // No current user, fallback to login
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            if let navController = mainStoryboard.instantiateInitialViewController() {
+                window?.rootViewController = navController
+            }
+            return
+        }
+        
+        let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        let isFirstTime = AuthService.shared.isFirstTimeUser()
+        
+        // Navigation Logic:
+        // 1. First-time user → Empty Home Screen in Tab Bar
+        // 2. Returning user with NO trips → Empty Home Screen in Tab Bar
+        // 3. User with trips → Main Tab Bar
+        
+        if isFirstTime || userTrips.isEmpty {
+            navigateToEmptyHomeInTabBar()
+        } else {
+            navigateToMainApp()
+        }
+    }
+    
+    /// Navigate to main tab bar controller with all tabs
+    func navigateToMainApp() {
+        guard let window = window else { return }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
+            window.rootViewController = tabBarController
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
+        }
+    }
+    
+    /// Navigate to empty home screen embedded in tab bar controller
+    func navigateToEmptyHomeInTabBar() {
+        guard let window = window else { return }
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let emptyHomeStoryboard = UIStoryboard(name: "SD06_EmptyHomeScreen", bundle: nil)
+        
+        guard let tabBarController = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController,
+              let emptyHomeNav = emptyHomeStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        
+        // Replace the first tab (Home) with the empty home screen
+        var viewControllers = tabBarController.viewControllers ?? []
+        if !viewControllers.isEmpty {
+            // Preserve the tab bar item from the original home tab
+            let originalHomeTabBarItem = viewControllers[0].tabBarItem
+            emptyHomeNav.tabBarItem = originalHomeTabBarItem
+            viewControllers[0] = emptyHomeNav
+            tabBarController.viewControllers = viewControllers
+        }
+        
+        // Set Home tab as selected
+        tabBarController.selectedIndex = 0
+        
+        window.rootViewController = tabBarController
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

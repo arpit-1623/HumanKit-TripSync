@@ -83,17 +83,16 @@ class CA14_LoginVC: UIViewController {
     }
     
     private func navigateToMainApp() {
-        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate,
-              let window = sceneDelegate.window else {
+        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate else {
             return
         }
         
-        // Load main storyboard and set tab bar as root
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-            window.rootViewController = tabBarController
-            
-            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
+        // Mark user as returning (no longer first time)
+        if AuthService.shared.isFirstTimeUser() {
+            AuthService.shared.markUserAsReturning()
         }
+        
+        // Use centralized navigation logic from SceneDelegate
+        sceneDelegate.navigateBasedOnUserState()
     }
 }

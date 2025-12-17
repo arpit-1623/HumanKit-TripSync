@@ -35,7 +35,53 @@ class TripsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Check if user has any trips, if not navigate to empty trips screen
+        checkForEmptyState()
+        
         loadData()
+    }
+    
+    // MARK: - Empty State Check
+    private func checkForEmptyState() {
+        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+        let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        
+        // If user has no trips, navigate to empty trips screen in tab bar
+        if userTrips.isEmpty {
+            navigateToEmptyTripsScreen()
+        }
+    }
+    
+    private func navigateToEmptyTripsScreen() {
+        // Get the navigation controller and tab bar controller
+        guard let navigationController = self.navigationController,
+              let tabBarController = navigationController.tabBarController else {
+            return
+        }
+        
+        // Load the empty trips screen storyboard
+        let emptyTripsStoryboard = UIStoryboard(name: "SD07_EmptyTripsScreen", bundle: nil)
+        guard let emptyTripsNav = emptyTripsStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        
+        // Find the index of the Trips tab
+        if let viewControllers = tabBarController.viewControllers,
+           let tripsIndex = viewControllers.firstIndex(where: { ($0 as? UINavigationController)?.topViewController is TripsViewController }) {
+            
+            // Preserve the tab bar item from the original trips tab
+            let originalTabBarItem = viewControllers[tripsIndex].tabBarItem
+            emptyTripsNav.tabBarItem = originalTabBarItem
+            
+            // Replace the trips tab with the empty trips screen
+            var updatedViewControllers = viewControllers
+            updatedViewControllers[tripsIndex] = emptyTripsNav
+            tabBarController.viewControllers = updatedViewControllers
+            
+            // Set the selected index to the trips tab
+            tabBarController.selectedIndex = tripsIndex
+        }
     }
 
     // MARK: - Data Loading

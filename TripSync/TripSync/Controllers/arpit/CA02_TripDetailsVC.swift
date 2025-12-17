@@ -11,6 +11,8 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     // MARK: - Outlets
     @IBOutlet weak var backgroundImageView: UIImageView?
+    @IBOutlet weak var createSubgroupButton: UIButton!
+    @IBOutlet weak var emptySubgroupsContainer: UIView!
     @IBOutlet weak var subgroupsTableView: UITableView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
@@ -64,7 +66,23 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     func loadData() {
         guard let trip = trip else { return }
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
-        subgroupsTableView.reloadData()
+        updateSubgroupsUI()
+    }
+    
+    // MARK: - Subgroups UI Update
+    private func updateSubgroupsUI() {
+        if subgroups.isEmpty {
+            // Show empty state, hide create button
+            emptySubgroupsContainer.isHidden = false
+            subgroupsTableView.isHidden = true
+            createSubgroupButton.isHidden = true
+        } else {
+            // Show subgroups list, show create button
+            emptySubgroupsContainer.isHidden = true
+            subgroupsTableView.isHidden = false
+            createSubgroupButton.isHidden = false
+            subgroupsTableView.reloadData()
+        }
     }
     
     // MARK: - Setup
@@ -218,7 +236,7 @@ extension TripDetailsViewController {
         } else if segue.identifier == "tripDetailsToMembers",
                   let membersVC = segue.destination as? TripMembersViewController {
             membersVC.trip = self.trip
-        } else if segue.identifier == "tripDetailsToCreateSubgroup",
+        } else if segue.identifier == "tripDetailsToCreateSubgroup" || segue.identifier == "emptySubgroupsToCreateSubgroup",
                   let navController = segue.destination as? UINavigationController,
                   let formVC = navController.topViewController as? CS04_SubgroupFormVC {
 

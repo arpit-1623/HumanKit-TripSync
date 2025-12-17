@@ -35,14 +35,58 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
+        
+        // Listen for trip deletion notifications
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTripDeleted),
+            name: NSNotification.Name("TripDeleted"),
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func handleTripDeleted() {
+        // Ensure we're on the main thread
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            // Check if we need to navigate to empty state
+            guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+            let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+            
+            if userTrips.isEmpty {
+                self.navigateToEmptyHomeScreen()
+            } else {
+                // Reload data and refresh UI immediately
+                self.loadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Check if user has any trips first
+        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
+        let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        
+        if userTrips.isEmpty {
+            navigateToEmptyHomeScreen()
+            return // Stop further execution
+        }
+        
         loadData()
     }
     
-
+    // MARK: - Empty State Check
+    private func navigateToEmptyHomeScreen() {
+        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate else { return }
+        sceneDelegate.navigateToEmptyHomeInTabBar()
+    }
     
     // MARK: - Setup
     private func setupUI() {
@@ -55,6 +99,10 @@ class HomeViewController: UIViewController {
     
     // MARK: - Data Loading
     private func loadData() {
+        currentTrip = nil ///
+        upcomingTrips.removeAll()///
+        
+        
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
         // Get only trips where current user is a member
@@ -101,6 +149,11 @@ class HomeViewController: UIViewController {
     private func updateCurrentTripUI() {
         guard let trip = currentTrip else {
             // Show empty state
+            currentTripImageView?.image = nil ///
+            currentTripNameLabel?.text = nil///
+            currentTripLocationLabel?.text = nil///
+            currentTripDateLabel?.text = nil///
+            
             currentTripImageView?.isHidden = true
             currentTripNameLabel?.isHidden = true
             currentTripLocationLabel?.isHidden = true

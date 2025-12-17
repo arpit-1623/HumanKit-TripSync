@@ -249,25 +249,48 @@ class JoinTripViewController: UIViewController {
     }
     
     private func showSuccessAndNavigate(to trip: Trip) {
-        // Get the presenting tab bar and navigation controller BEFORE dismissing
-        guard let presentingTabBar = presentingViewController as? UITabBarController,
-              let selectedNav = presentingTabBar.selectedViewController as? UINavigationController else {
-            dismiss(animated: true)
+        // Check if we're presented from Empty Home Screen (no tab bar) or from main app (has tab bar)
+        let fromEmptyHome = !(presentingViewController is UITabBarController)
+        
+        if fromEmptyHome {
+            // Coming from Empty Home Screen - navigate to main app
+            dismiss(animated: true) { [weak self] in
+                self?.navigateToMainApp(with: trip)
+            }
+        } else {
+            // Coming from main app - navigate to trip details
+            guard let presentingTabBar = presentingViewController as? UITabBarController,
+                  let selectedNav = presentingTabBar.selectedViewController as? UINavigationController else {
+                dismiss(animated: true)
+                return
+            }
+            
+            // Load trip details from storyboard
+            let storyboard = UIStoryboard(name: "SA02_TripDetails", bundle: nil)
+            guard let tripDetailsVC = storyboard.instantiateViewController(withIdentifier: "TripDetailsViewController") as? TripDetailsViewController else {
+                dismiss(animated: true)
+                return
+            }
+            
+            tripDetailsVC.trip = trip
+            
+            // Dismiss the modal and navigate to trip details
+            dismiss(animated: true) {
+                selectedNav.pushViewController(tripDetailsVC, animated: true)
+            }
+        }
+    }
+    
+    private func navigateToMainApp(with trip: Trip? = nil) {
+        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate,
+              let window = sceneDelegate.window else {
             return
         }
         
-        // Load trip details from storyboard
-        let storyboard = UIStoryboard(name: "SA02_TripDetails", bundle: nil)
-        guard let tripDetailsVC = storyboard.instantiateViewController(withIdentifier: "TripDetailsViewController") as? TripDetailsViewController else {
-            dismiss(animated: true)
-            return
-        }
-        
-        tripDetailsVC.trip = trip
-        
-        // Dismiss the modal and navigate to trip details
-        dismiss(animated: true) {
-            selectedNav.pushViewController(tripDetailsVC, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
+            window.rootViewController = tabBarController
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
         }
     }
     

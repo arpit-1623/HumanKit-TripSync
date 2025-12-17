@@ -2,7 +2,7 @@
 //  CD01_CreateTripVC.swift
 //  TripSync
 //
-//  Created on 24/11/2025.
+//  Created by Dikhsha Kumari on 24/11/2025.
 //
 
 import UIKit
@@ -19,6 +19,7 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
+    @IBOutlet weak var cancelLeftBarButton: UIBarButtonItem!
     @IBOutlet weak var createRightBarButton: UIBarButtonItem!
     
     // MARK: - Properties
@@ -66,6 +67,16 @@ class CreateTripViewController: UIViewController {
     
     @IBAction func didTapCreate(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "createTripToSummary", sender: nil)
+    }
+    
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        // Check if presented modally
+        if presentingViewController != nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            // If pushed, use navigation pop
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     // MARK: - Navigation

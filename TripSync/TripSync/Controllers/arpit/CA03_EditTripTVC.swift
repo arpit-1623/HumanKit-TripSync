@@ -164,7 +164,25 @@ class EditTripTableViewController: UITableViewController {
             
             DataModel.shared.deleteTrip(byId: trip.id)
             
-            // Dismiss edit screen and pop to root
+            // Post notification that trip was deleted
+            NotificationCenter.default.post(name: NSNotification.Name("TripDeleted"), object: nil)
+            
+            // Check if user has any trips remaining
+            if let currentUser = DataModel.shared.getCurrentUser() {
+                let remainingTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+                
+                if remainingTrips.isEmpty {
+                    // No trips left - navigate to empty home screen in tab bar
+                    self.dismiss(animated: true) {
+                        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                            sceneDelegate.navigateToEmptyHomeInTabBar()
+                        }
+                    }
+                    return
+                }
+            }
+            
+            // User still has trips - dismiss edit screen and pop to root
             self.dismiss(animated: true) {
                 self.navigationController?.popToRootViewController(animated: true)
             }

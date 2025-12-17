@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CreateTripNavController">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
@@ -8,6 +8,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="CreateTripNavScene">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CreateTripNavController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CreateTripNavBar">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="CreateTripRootSegue"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CreateTripNavFirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="131"/>
+        </scene>
         <!--Create Trip-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -256,7 +274,7 @@
                     <navigationItem key="navigationItem" title="Create Trip" largeTitleDisplayMode="never" id="Kzz-4r-zhY">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa">
                             <connections>
-                                <segue destination="4ld-PP-h31" kind="unwind" identifier="unwindToHomeWithCancel" unwindAction="unwindToHome:" id="IIB-5c-uvd"/>
+                                <action selector="cancelTapped:" destination="Y6W-OH-hqX" id="cancel-action"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="R2D-kd-Ayw">
@@ -268,6 +286,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="r0a-Tu-VMM" id="outlet-background-image"/>
+                        <outlet property="cancelLeftBarButton" destination="KOD-d3-iRa" id="cancel-outlet"/>
                         <outlet property="createRightBarButton" destination="R2D-kd-Ayw" id="SgW-wT-qBd"/>
                         <outlet property="dateCardButton" destination="date-card-button" id="outlet-date-card-button"/>
                         <outlet property="dateSmallLabel" destination="date-small-label" id="outlet-date-small-label"/>

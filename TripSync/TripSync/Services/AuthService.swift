@@ -16,6 +16,7 @@ class AuthService {
     
     private let authTokenKey = "com.tripsync.authtoken"
     private let sessionExpirationKey = "com.tripsync.sessionexpiration"
+    private let firstTimeUserKey = "hasLaunchedBefore"
     
     private init() {}
     
@@ -187,5 +188,17 @@ class AuthService {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)
+    }
+    
+    // MARK: - First Time User Tracking
+    
+    /// Check if this is the user's first time using the app
+    func isFirstTimeUser() -> Bool {
+        return !UserDefaults.standard.bool(forKey: firstTimeUserKey)
+    }
+    
+    /// Mark the user as a returning user (no longer first time)
+    func markUserAsReturning() {
+        UserDefaults.standard.set(true, forKey: firstTimeUserKey)
     }
 }

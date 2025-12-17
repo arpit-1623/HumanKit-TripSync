@@ -1,3 +1,9 @@
+//
+//  CD05_SummaryVC.swift
+//  TripSync
+//
+//  Created by Dikhsha Kumari on 26/11/2025.
+//
 import UIKit
 
 class CD05_SummaryVC: UIViewController {
@@ -68,11 +74,20 @@ class CD05_SummaryVC: UIViewController {
         // Save to DataModel
         do {
             try DataModel.shared.saveTripWithValidation(newTrip)
-            // Navigate back to home
-            navigationController?.popToRootViewController(animated: true)
+            // Navigate to main app after successful trip creation
+            navigateToMainApp()
         } catch {
             showErrorAlert(message: "Failed to save trip: \(error.localizedDescription)")
         }
+    }
+    
+    private func navigateToMainApp() {
+        guard let sceneDelegate = view.window?.windowScene?.delegate as? SceneDelegate else {
+            return
+        }
+        
+        // Use centralized navigation helper
+        sceneDelegate.navigateToMainApp()
     }
     
     // MARK: - Helper Methods
