@@ -930,11 +930,6 @@
                                                                 <constraint firstItem="CreateAnnouncement-VeryImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantIcon" secondAttribute="bottom" constant="4" id="very-important-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-VeryImportantLabel" secondAttribute="trailing" constant="4" id="very-important-label-trailing"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="25"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <outletCollection property="gestureRecognizers" destination="VeryImportant-TapGesture" appends="YES" id="VeryImportant-TapGesture-Outlet"/>
                                                             </connections>
