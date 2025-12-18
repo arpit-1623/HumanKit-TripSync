@@ -167,12 +167,11 @@ class EditTripTableViewController: UITableViewController {
             
             DataModel.shared.deleteTrip(byId: trip.id)
             
-            // Dismiss edit screen and pop to root
+            // Changed: Dismiss then pop back one screen
             self.dismiss(animated: true) {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         })
-        
         present(alert, animated: true)
     }
     

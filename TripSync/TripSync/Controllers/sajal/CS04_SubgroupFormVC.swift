@@ -272,12 +272,11 @@ class CS04_SubgroupFormVC: UITableViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let self = self, let subgroup = self.existingSubgroup else { return }
             
-            // Remove subgroup from trip
             DataModel.shared.deleteSubgroup(byId: subgroup.id)
             
+            // Simply dismiss - parent VC handles navigation
             self.dismiss(animated: true)
         })
-        
         present(alert, animated: true)
     }
     
