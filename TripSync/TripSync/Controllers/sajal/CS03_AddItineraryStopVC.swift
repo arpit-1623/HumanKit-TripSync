@@ -218,7 +218,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
         )
         
         alert.addTextField { textField in
-            textField.placeholder = "Subgroup name"
+            textField.placeholder = "Circle name"
         }
         
         let createAction = UIAlertAction(title: "Create", style: .default) { [weak self, weak alert] _ in

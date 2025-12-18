@@ -41,7 +41,7 @@ class SubgroupChatViewController: UIViewController {
     
     // MARK: - Setup
     private func setupNavigationTitle() {
-        title = subgroup?.name ?? "Subgroup Chat"
+        title = subgroup?.name ?? "Circle Chat"
     }
     
     private func setupTableView() {

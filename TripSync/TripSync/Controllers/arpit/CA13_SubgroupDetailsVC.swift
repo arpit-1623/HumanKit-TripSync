@@ -53,7 +53,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     
     // MARK: - Setup
     private func setupUI() {
-        title = "Subgroup Details"
+        title = "Circle Details"
         
         // Add edit button to navigation bar
         let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))

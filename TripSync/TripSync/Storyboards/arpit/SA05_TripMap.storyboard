@@ -85,7 +85,7 @@
                                             <rect key="frame" x="16" y="16" width="329" height="32"/>
                                             <segments>
                                                 <segment title="All"/>
-                                                <segment title="Subgroups"/>
+                                                <segment title="Circles"/>
                                             </segments>
                                             <connections>
                                                 <action selector="segmentedControlChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="action-segment-001"/>
