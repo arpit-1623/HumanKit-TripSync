@@ -33,7 +33,7 @@ protocol ImagePickerDelegate: AnyObject {
 class CD04_ImagePickerVC: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var confirmBarButton: UIBarButtonItem!
     
@@ -58,7 +58,8 @@ class CD04_ImagePickerVC: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         searchTextField.delegate = self
-        searchTextField.addTarget(self, action: #selector(searchTextDidChange), for: .editingChanged)
+        searchTextField.searchBarStyle = .minimal
+        searchTextField.placeholder = "Search images..."
         confirmBarButton.isEnabled = false
     }
     
@@ -89,16 +90,6 @@ class CD04_ImagePickerVC: UIViewController {
         guard let image = selectedImage, let photoData = selectedPhotoData else { return }
         delegate?.didSelectImage(image, photoData: photoData)
         dismiss(animated: true)
-    }
-    
-    @objc private func searchTextDidChange() {
-        guard let query = searchTextField.text, !query.isEmpty else {
-            searchImages(query: "travel")
-            return
-        }
-        
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(performSearch), object: nil)
-        perform(#selector(performSearch), with: nil, afterDelay: 0.5)
     }
     
     @objc private func performSearch() {
@@ -220,11 +211,20 @@ extension CD04_ImagePickerVC: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension CD04_ImagePickerVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+// MARK: - UISearchBarDelegate
+extension CD04_ImagePickerVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            searchImages(query: "travel")
+            return
+        }
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(performSearch), object: nil)
+        perform(#selector(performSearch), with: nil, afterDelay: 0.5)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

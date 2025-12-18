@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LocationPickerNavController">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LocationPickerNavController">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,56 +35,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-container">
+                            <searchBar contentMode="redraw" placeholder="Search locations..." translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield" userLabel="Search Bar">
                                 <rect key="frame" x="20" y="90" width="353" height="52"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon">
-                                        <rect key="frame" x="14" y="17" width="20" height="18.333333333333336"/>
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="search-icon-height"/>
-                                            <constraint firstAttribute="width" constant="20" id="search-icon-width"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mic-icon">
-                                        <rect key="frame" x="319" y="14.666666666666668" width="20" height="21.666666666666661"/>
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="mic-icon-height"/>
-                                            <constraint firstAttribute="width" constant="20" id="mic-icon-width"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tokyo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield">
-                                        <rect key="frame" x="44" y="15" width="265" height="22"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" name="CardColor"/>
                                 <constraints>
-                                    <constraint firstItem="mic-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="mic-centerY"/>
-                                    <constraint firstItem="mic-icon" firstAttribute="leading" secondItem="search-textfield" secondAttribute="trailing" constant="10" id="mic-leading"/>
-                                    <constraint firstAttribute="trailing" secondItem="mic-icon" secondAttribute="trailing" constant="14" id="mic-trailing"/>
-                                    <constraint firstAttribute="height" constant="52" id="search-container-height"/>
-                                    <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="search-icon-centerY"/>
-                                    <constraint firstItem="search-icon" firstAttribute="leading" secondItem="search-container" secondAttribute="leading" constant="14" id="search-icon-leading"/>
-                                    <constraint firstItem="search-textfield" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="textfield-centerY"/>
-                                    <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="search-icon" secondAttribute="trailing" constant="10" id="textfield-leading"/>
+                                    <constraint firstAttribute="height" constant="52" id="search-bar-height"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="results-label">
-                                <rect key="frame" x="20" y="162" width="353" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a city or region as your trip's destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="help-text-label">
+                                <rect key="frame" x="20" y="162" width="353" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="results-tableview">
-                                <rect key="frame" x="0.0" y="200" width="393" height="593"/>
+                                <rect key="frame" x="0.0" y="190" width="393" height="603"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" textLabel="cell-title" detailTextLabel="cell-subtitle" imageView="cell-image" style="IBUITableViewCellStyleSubtitle" id="location-cell">
@@ -123,16 +87,16 @@
                         <viewLayoutGuide key="safeArea" id="safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="results-label" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="results-leading"/>
-                            <constraint firstItem="results-label" firstAttribute="top" secondItem="search-container" secondAttribute="bottom" constant="20" id="results-top"/>
-                            <constraint firstItem="results-label" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="results-trailing"/>
-                            <constraint firstItem="search-container" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="search-leading"/>
-                            <constraint firstItem="search-container" firstAttribute="top" secondItem="safe-area" secondAttribute="top" constant="20" id="search-top"/>
-                            <constraint firstItem="search-container" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="search-trailing"/>
+                            <constraint firstItem="help-text-label" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="help-text-leading"/>
+                            <constraint firstItem="help-text-label" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="help-text-trailing"/>
+                            <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="search-leading"/>
+                            <constraint firstItem="search-textfield" firstAttribute="top" secondItem="safe-area" secondAttribute="top" constant="20" id="search-top"/>
+                            <constraint firstItem="search-textfield" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" constant="-20" id="search-trailing"/>
                             <constraint firstItem="results-tableview" firstAttribute="bottom" secondItem="location-picker-view" secondAttribute="bottom" id="table-bottom"/>
                             <constraint firstItem="results-tableview" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" id="table-leading"/>
-                            <constraint firstItem="results-tableview" firstAttribute="top" secondItem="results-label" secondAttribute="bottom" constant="20" id="table-top"/>
+                            <constraint firstItem="results-tableview" firstAttribute="top" secondItem="help-text-label" secondAttribute="bottom" constant="12" id="table-top"/>
                             <constraint firstItem="results-tableview" firstAttribute="trailing" secondItem="safe-area" secondAttribute="trailing" id="table-trailing"/>
+                            <constraint firstItem="help-text-label" firstAttribute="top" secondItem="search-textfield" secondAttribute="bottom" constant="20" id="wDs-Z2-9KJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="location-nav-item">
@@ -154,20 +118,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="mic.fill" catalog="system" width="110" height="128"/>
-        <namedColor name="CardColor">
-            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
