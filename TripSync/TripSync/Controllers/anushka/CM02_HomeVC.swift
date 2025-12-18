@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripLocationLabel: UILabel!
     @IBOutlet weak var currentTripDateLabel: UILabel!
     @IBOutlet weak var currentTripRedirectButton: UIButton!
+    @IBOutlet weak var currentTripBlurView: UIVisualEffectView!
     @IBOutlet weak var emptyStateView: UIStackView!
     
     // MARK: - Outlets - Empty State
@@ -33,6 +34,8 @@ class HomeViewController: UIViewController {
     
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    @IBOutlet weak var upcomingTripsHeaderLabel: UILabel!
+    @IBOutlet weak var upcomingEmptyStateView: UIStackView!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -104,6 +107,7 @@ class HomeViewController: UIViewController {
         
         updateGreeting()
         updateCurrentTripUI()
+        updateUpcomingTripsUI()
         upcomingCollectionView.reloadData()
         
         // Force layout update to ensure scroll view recognizes content size
@@ -159,6 +163,7 @@ class HomeViewController: UIViewController {
             currentTripLocationLabel?.isHidden = true
             currentTripDateLabel?.isHidden = true
             currentTripRedirectButton?.isHidden = true
+            currentTripBlurView?.isHidden = true
             emptyStateView?.isHidden = false
             return
         }
@@ -169,6 +174,7 @@ class HomeViewController: UIViewController {
         currentTripLocationLabel?.isHidden = false
         currentTripDateLabel?.isHidden = false
         currentTripRedirectButton?.isHidden = false
+        currentTripBlurView?.isHidden = false
         emptyStateView?.isHidden = true
         
         // Configure current trip display
@@ -182,6 +188,15 @@ class HomeViewController: UIViewController {
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
         currentTripDateLabel?.text = trip.dateRangeString
+    }
+    
+    private func updateUpcomingTripsUI() {
+        let hasUpcomingTrips = !upcomingTrips.isEmpty
+        
+        // Hide entire section (header + collection view) when no upcoming trips
+        upcomingTripsHeaderLabel?.isHidden = !hasUpcomingTrips
+        upcomingCollectionView?.isHidden = !hasUpcomingTrips
+        upcomingEmptyStateView?.isHidden = hasUpcomingTrips
     }
     
     // MARK: - Actions

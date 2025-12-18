@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ssw-uM-xNg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ssw-uM-xNg">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -267,7 +267,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7p-fh-dce" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="865"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="950"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="greeting-stack" userLabel="Greeting Stack">
                                                 <rect key="frame" x="24" y="20" width="345" height="99"/>
@@ -429,25 +429,66 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </visualEffectView>
-                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateStack" userLabel="Empty State Stack">
-                                                        <rect key="frame" x="126" y="136" width="109" height="78.333333333333314"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateStack" userLabel="Empty State Container">
+                                                        <rect key="frame" x="12" y="12" width="337" height="326"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateIcon">
-                                                                <rect key="frame" x="29.666666666666657" y="0.99999999999999645" width="50" height="48.333333333333329"/>
-                                                                <color key="tintColor" systemColor="systemGrayColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="empty-icon-h"/>
-                                                                    <constraint firstAttribute="width" constant="50" id="empty-icon-w"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Active Trip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateLabel">
-                                                                <rect key="frame" x="0.0" y="58.000000000000007" width="109" height="20.333333333333336"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                                <color key="textColor" systemColor="systemGrayColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <visualEffectView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-blur" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="337" height="326"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="empty-state-blur-content">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="337" height="326"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-content-stack">
+                                                                            <rect key="frame" x="24" y="87.333333333333329" width="289" height="151.33333333333337"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateIcon">
+                                                                                    <rect key="frame" x="122" y="0.66666666666666785" width="45" height="43.666666666666657"/>
+                                                                                    <color key="tintColor" name="ProminentColor"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="45" id="empty-icon-h"/>
+                                                                                        <constraint firstAttribute="width" constant="45" id="empty-icon-w"/>
+                                                                                    </constraints>
+                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="No Current Trip" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateLabel">
+                                                                                    <rect key="frame" x="45" y="60.999999999999972" width="199" height="33.666666666666657"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your active trip will appear here when you're traveling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emptyStateSubLabel">
+                                                                                    <rect key="frame" x="0.0" y="110.66666666666667" width="289" height="40.666666666666671"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="emptyStateSubLabel" firstAttribute="leading" secondItem="empty-state-content-stack" secondAttribute="leading" id="empty-desc-leading"/>
+                                                                                <constraint firstItem="emptyStateSubLabel" firstAttribute="trailing" secondItem="empty-state-content-stack" secondAttribute="trailing" id="empty-desc-trailing"/>
+                                                                            </constraints>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="empty-state-content-stack" firstAttribute="leading" secondItem="empty-state-blur-content" secondAttribute="leading" constant="24" id="empty-content-leading"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="empty-state-content-stack" secondAttribute="trailing" constant="24" id="empty-content-trailing"/>
+                                                                        <constraint firstItem="empty-state-content-stack" firstAttribute="centerY" secondItem="empty-state-blur-content" secondAttribute="centerY" id="uxk-g9-HQY"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <blurEffect style="systemThinMaterial"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </visualEffectView>
                                                         </subviews>
-                                                    </stackView>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="empty-state-blur" secondAttribute="bottom" id="empty-blur-bottom"/>
+                                                            <constraint firstItem="empty-state-blur" firstAttribute="leading" secondItem="emptyStateStack" secondAttribute="leading" id="empty-blur-leading"/>
+                                                            <constraint firstItem="empty-state-blur" firstAttribute="top" secondItem="emptyStateStack" secondAttribute="top" id="empty-blur-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="empty-state-blur" secondAttribute="trailing" id="empty-blur-trailing"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
@@ -455,8 +496,10 @@
                                                     <constraint firstItem="blurContainerView" firstAttribute="leading" secondItem="DeJ-8a-bjH" secondAttribute="leading" constant="12" id="blur-leading"/>
                                                     <constraint firstAttribute="trailing" secondItem="blurContainerView" secondAttribute="trailing" constant="12" id="blur-trailing"/>
                                                     <constraint firstAttribute="height" constant="350" id="card-height"/>
-                                                    <constraint firstItem="emptyStateStack" firstAttribute="centerX" secondItem="DeJ-8a-bjH" secondAttribute="centerX" id="empty-centerX"/>
-                                                    <constraint firstItem="emptyStateStack" firstAttribute="centerY" secondItem="DeJ-8a-bjH" secondAttribute="centerY" id="empty-centerY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="emptyStateStack" secondAttribute="bottom" constant="12" id="empty-bottom"/>
+                                                    <constraint firstItem="emptyStateStack" firstAttribute="leading" secondItem="DeJ-8a-bjH" secondAttribute="leading" constant="12" id="empty-leading"/>
+                                                    <constraint firstItem="emptyStateStack" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="top" constant="12" id="empty-top"/>
+                                                    <constraint firstAttribute="trailing" secondItem="emptyStateStack" secondAttribute="trailing" constant="12" id="empty-trailing"/>
                                                     <constraint firstAttribute="bottom" secondItem="currentTripImage" secondAttribute="bottom" id="tripImage-bottom"/>
                                                     <constraint firstItem="currentTripImage" firstAttribute="leading" secondItem="DeJ-8a-bjH" secondAttribute="leading" id="tripImage-leading"/>
                                                     <constraint firstItem="currentTripImage" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="top" id="tripImage-top"/>
@@ -573,7 +616,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXo-Jp-dXp">
-                                                <rect key="frame" x="0.0" y="625" width="393" height="280"/>
+                                                <rect key="frame" x="0.0" y="613" width="393" height="280"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="280" id="upcoming-height"/>
@@ -586,7 +629,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TripCardCell" id="upcoming-cell" customClass="TripCardCollectionViewCell" customModule="TripSync" customModuleProvider="target">
-                                                        <rect key="frame" x="24" y="10" width="280" height="200"/>
+                                                        <rect key="frame" x="24" y="40" width="280" height="200"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="upcoming-cell-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
@@ -645,6 +688,25 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-state" userLabel="Upcoming Empty State">
+                                                <rect key="frame" x="125.33333333333333" y="661" width="142.33333333333337" height="77.333333333333371"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-icon">
+                                                        <rect key="frame" x="46.333333333333329" y="1.6666666666666643" width="50" height="47"/>
+                                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="upcoming-icon-height"/>
+                                                            <constraint firstAttribute="width" constant="50" id="upcoming-icon-width"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Upcoming Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-label">
+                                                        <rect key="frame" x="0.0" y="58.000000000000007" width="142.33333333333334" height="19.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -653,18 +715,20 @@
                                             <constraint firstAttribute="trailing" secondItem="DcR-3Y-9pP" secondAttribute="trailing" constant="16" id="AQF-A5-pnM"/>
                                             <constraint firstAttribute="trailing" secondItem="aXo-Jp-dXp" secondAttribute="trailing" id="MaO-rh-TXp"/>
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="16" id="Phd-C2-Uat"/>
-                                            <constraint firstItem="aXo-Jp-dXp" firstAttribute="top" secondItem="FHJ-t9-hOQ" secondAttribute="bottom" constant="12" id="RaA-xh-jjS"/>
+                                            <constraint firstItem="aXo-Jp-dXp" firstAttribute="top" secondItem="FHJ-t9-hOQ" secondAttribute="bottom" id="RaA-xh-jjS"/>
                                             <constraint firstAttribute="trailing" secondItem="FHJ-t9-hOQ" secondAttribute="trailing" constant="20" id="Rcx-k8-vWu"/>
                                             <constraint firstItem="DcR-3Y-9pP" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="bottom" constant="16" id="UQM-jP-RK1"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="top" secondItem="DcR-3Y-9pP" secondAttribute="bottom" constant="24" id="c2F-fj-Vfi"/>
-                                            <constraint firstAttribute="bottom" secondItem="aXo-Jp-dXp" secondAttribute="bottom" constant="60" id="contentView-bottom"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="950" id="content-min-height"/>
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="top" secondItem="greeting-stack" secondAttribute="bottom" constant="20" id="cpG-Wb-S4M"/>
                                             <constraint firstAttribute="trailing" secondItem="DeJ-8a-bjH" secondAttribute="trailing" constant="16" id="dWL-yR-ZRa"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="24" id="greeting-leading"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="top" secondItem="K7p-fh-dce" secondAttribute="top" constant="20" id="greeting-top"/>
                                             <constraint firstAttribute="trailing" secondItem="greeting-stack" secondAttribute="trailing" constant="24" id="greeting-trailing"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="950" id="content-min-height"/>
+                                            <constraint firstAttribute="height" constant="950" id="hLj-vS-3Ev"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="t70-3G-fhK"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="centerX" secondItem="K7p-fh-dce" secondAttribute="centerX" id="upcoming-empty-centerX"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="top" secondItem="FHJ-t9-hOQ" secondAttribute="bottom" constant="48" id="upcoming-empty-top"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -696,7 +760,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="currentTripBlurView" destination="blurContainerView" id="blur-view-outlet"/>
                         <outlet property="currentTripCard" destination="DeJ-8a-bjH" id="card-outlet"/>
                         <outlet property="currentTripDateLabel" destination="currentTripDateLabel" id="date-label-outlet"/>
                         <outlet property="currentTripImageView" destination="currentTripImage" id="img-outlet"/>
@@ -714,6 +780,8 @@
                         <outlet property="mainScrollView" destination="hZb-8e-gHd" id="main-scroll-outlet"/>
                         <outlet property="subGreetingLabel" destination="subgreeting-label" id="subgreeting-outlet"/>
                         <outlet property="upcomingCollectionView" destination="aXo-Jp-dXp" id="collection-outlet"/>
+                        <outlet property="upcomingEmptyStateView" destination="upcoming-empty-state" id="upcoming-empty-outlet"/>
+                        <outlet property="upcomingTripsHeaderLabel" destination="FHJ-t9-hOQ" id="upcoming-header-outlet"/>
                         <segue destination="TdJ-fO-mnf" kind="show" identifier="homeToTripDetails" id="EUu-Ap-69w"/>
                     </connections>
                 </viewController>
@@ -832,8 +900,8 @@
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="createTripBg" width="401" height="874"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="map" catalog="system" width="128" height="112"/>
         <image name="person.badge.plus.fill" catalog="system" width="128" height="126"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="suitcase.fill" catalog="system" width="128" height="100"/>
@@ -844,19 +912,16 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
