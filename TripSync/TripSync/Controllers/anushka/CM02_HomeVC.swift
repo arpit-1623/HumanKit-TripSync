@@ -37,10 +37,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var upcomingTripsHeaderLabel: UILabel!
     @IBOutlet weak var upcomingEmptyStateView: UIStackView!
     
-    // MARK: - Notification Badge
-    private var notificationButton: UIButton?
-    private var badgeLabel: UILabel?
-    
     // MARK: - Properties
     private var currentTrip: Trip?
     private var upcomingTrips: [Trip] = []
@@ -50,48 +46,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
-        
-        // Listen for trip deletion notifications
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleTripDeleted),
-            name: NSNotification.Name("TripDeleted"),
-            object: nil
-        )
-        
-        // Listen for notification badge refresh
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleNotificationBadgeRefresh),
-            name: NSNotification.Name("RefreshNotificationBadge"),
-            object: nil
-        )
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc private func handleNotificationBadgeRefresh() {
-        // Ensure we're on the main thread
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            updateNotificationBadge()
-        }
-    }
-    
-    @objc private func handleTripDeleted() {
-        // Ensure we're on the main thread
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            loadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
-        updateNotificationBadge()
     }
     
 
@@ -130,14 +89,7 @@ class HomeViewController: UIViewController {
         updateGreeting()
         updateCurrentTripUI()
         updateUpcomingTripsUI()
-        updateNotificationBadge()
         upcomingCollectionView.reloadData()
-        
-        // Force layout update to ensure scroll view recognizes content size
-        DispatchQueue.main.async { [weak self] in
-            self?.mainScrollView?.setNeedsLayout()
-            self?.mainScrollView?.layoutIfNeeded()
-        }
     }
     
     // MARK: - UI Update
@@ -224,51 +176,13 @@ class HomeViewController: UIViewController {
     
     // MARK: - Notification Setup
     private func setupNotificationButton() {
-        // Create bell button
         let bellButton = UIButton(type: .system)
         bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
         bellButton.tintColor = .label
         bellButton.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
-        bellButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        // Create badge label
-        let badge = UILabel()
-        badge.backgroundColor = .systemRed
-        badge.textColor = .white
-        badge.font = UIFont.systemFont(ofSize: 10, weight: .bold)
-        badge.textAlignment = .center
-        badge.layer.cornerRadius = 9
-        badge.layer.masksToBounds = true
-        badge.isHidden = true
-        badge.translatesAutoresizingMaskIntoConstraints = false
-        
-        bellButton.addSubview(badge)
-        NSLayoutConstraint.activate([
-            badge.topAnchor.constraint(equalTo: bellButton.topAnchor, constant: -4),
-            badge.trailingAnchor.constraint(equalTo: bellButton.trailingAnchor, constant: 4),
-            badge.widthAnchor.constraint(greaterThanOrEqualToConstant: 18),
-            badge.heightAnchor.constraint(equalToConstant: 18)
-        ])
-        
-        self.notificationButton = bellButton
-        self.badgeLabel = badge
         
         let barButtonItem = UIBarButtonItem(customView: bellButton)
         navigationItem.rightBarButtonItem = barButtonItem
-    }
-    
-    private func updateNotificationBadge() {
-        guard let currentUser = DataModel.shared.getCurrentUser() else { return }
-        
-        let pendingInvitations = DataModel.shared.getPendingInvitations(forUserId: currentUser.id)
-        let count = pendingInvitations.filter { $0.type == .subgroup }.count
-        
-        if count > 0 {
-            badgeLabel?.text = count > 9 ? "9+" : "\(count)"
-            badgeLabel?.isHidden = false
-        } else {
-            badgeLabel?.isHidden = true
-        }
     }
     
     @objc private func notificationButtonTapped() {
