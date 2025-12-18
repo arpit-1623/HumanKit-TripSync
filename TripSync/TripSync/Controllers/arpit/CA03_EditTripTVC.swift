@@ -59,6 +59,14 @@ class EditTripTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Only admins can edit trips
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.isUserAdmin(currentUser.id) else {
+            dismiss(animated: true)
+            return
+        }
+        
         setupUI()
         updateDateLabels()
     }
