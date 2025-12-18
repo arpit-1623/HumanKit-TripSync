@@ -19,6 +19,14 @@ class TripsViewController: UIViewController {
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var pastCollectionView: UICollectionView!
     
+    @IBOutlet weak var upcomingEmptyStateView: UIView!
+    @IBOutlet weak var upcomingEmptyStateImageView: UIImageView!
+    @IBOutlet weak var upcomingEmptyStateLabel: UILabel!
+    
+    @IBOutlet weak var pastEmptyStateView: UIView!
+    @IBOutlet weak var pastEmptyStateImageView: UIImageView!
+    @IBOutlet weak var pastEmptyStateLabel: UILabel!
+    
     // MARK: - Properties
     private var currentTrip: Trip?
     private var upcomingTrips: [Trip] = []
@@ -52,13 +60,49 @@ class TripsViewController: UIViewController {
         allTrips = userTrips.filter { $0.status != .current }
         
         configureCurrentTripUI()
+        updateEmptyStates()
         upcomingCollectionView.reloadData()
         pastCollectionView.reloadData()
+    }
+    
+    private func updateEmptyStates() {
+        // Show/hide upcoming empty state
+        let hasUpcomingTrips = !upcomingTrips.isEmpty
+        upcomingEmptyStateView.isHidden = hasUpcomingTrips
+        upcomingCollectionView.isHidden = !hasUpcomingTrips
+        
+        // Show/hide past empty state
+        let hasPastTrips = !pastTrips.isEmpty
+        pastEmptyStateView.isHidden = hasPastTrips
+        pastCollectionView.isHidden = !hasPastTrips
     }
     
     // MARK: - Setup
     private func setupUI() {
         searchBar.delegate = self
+        setupEmptyStates()
+    }
+    
+    private func setupEmptyStates() {
+        // Upcoming empty state
+        upcomingEmptyStateImageView.image = UIImage(systemName: "calendar.badge.plus")
+        upcomingEmptyStateImageView.tintColor = .systemGray
+        upcomingEmptyStateImageView.contentMode = .scaleAspectFit
+        upcomingEmptyStateLabel.text = "No upcoming trips yet\nCreate or join a trip to start planning"
+        upcomingEmptyStateLabel.textAlignment = .center
+        upcomingEmptyStateLabel.numberOfLines = 0
+        upcomingEmptyStateLabel.textColor = .secondaryLabel
+        upcomingEmptyStateLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        
+        // Past empty state
+        pastEmptyStateImageView.image = UIImage(systemName: "clock.arrow.circlepath")
+        pastEmptyStateImageView.tintColor = .systemGray
+        pastEmptyStateImageView.contentMode = .scaleAspectFit
+        pastEmptyStateLabel.text = "No past trips yet\nYour completed trips will appear here"
+        pastEmptyStateLabel.textAlignment = .center
+        pastEmptyStateLabel.numberOfLines = 0
+        pastEmptyStateLabel.textColor = .secondaryLabel
+        pastEmptyStateLabel.font = .systemFont(ofSize: 16, weight: .medium)
     }
     
     private func setupCollectionViews() {
@@ -106,6 +150,7 @@ class TripsViewController: UIViewController {
         upcomingTrips = filtered.filter { $0.status == .upcoming }
         pastTrips = filtered.filter { $0.status == .past }
         
+        updateEmptyStates()
         upcomingCollectionView.reloadData()
         pastCollectionView.reloadData()
     }

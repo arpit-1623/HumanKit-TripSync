@@ -112,6 +112,38 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-state">
+                                                <rect key="frame" x="24" y="380" width="354" height="220"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-stack">
+                                                        <rect key="frame" x="77" y="60" width="200" height="100"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-image">
+                                                                <rect key="frame" x="70" y="0.0" width="60" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="60" id="upcoming-empty-img-w"/>
+                                                                    <constraint firstAttribute="height" constant="60" id="upcoming-empty-img-h"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-label">
+                                                                <rect key="frame" x="0.0" y="76" width="200" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="upcoming-empty-stack-w"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="upcoming-empty-stack" firstAttribute="centerX" secondItem="upcoming-empty-state" secondAttribute="centerX" id="upcoming-empty-centerX"/>
+                                                    <constraint firstItem="upcoming-empty-stack" firstAttribute="centerY" secondItem="upcoming-empty-state" secondAttribute="centerY" id="upcoming-empty-centerY"/>
+                                                    <constraint firstAttribute="height" constant="220" id="upcoming-empty-height"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-collection">
                                                 <rect key="frame" x="0.0" y="380" width="402" height="220"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,6 +232,38 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="past-empty-state">
+                                                <rect key="frame" x="24" y="656" width="354" height="220"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="past-empty-stack">
+                                                        <rect key="frame" x="77" y="60" width="200" height="100"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="past-empty-image">
+                                                                <rect key="frame" x="70" y="0.0" width="60" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="60" id="past-empty-img-w"/>
+                                                                    <constraint firstAttribute="height" constant="60" id="past-empty-img-h"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="past-empty-label">
+                                                                <rect key="frame" x="0.0" y="76" width="200" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="past-empty-stack-w"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="past-empty-stack" firstAttribute="centerX" secondItem="past-empty-state" secondAttribute="centerX" id="past-empty-centerX"/>
+                                                    <constraint firstItem="past-empty-stack" firstAttribute="centerY" secondItem="past-empty-state" secondAttribute="centerY" id="past-empty-centerY"/>
+                                                    <constraint firstAttribute="height" constant="220" id="past-empty-height"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="past-collection">
                                                 <rect key="frame" x="0.0" y="656" width="402" height="220"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -302,13 +366,19 @@
                                             <constraint firstItem="current-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="current-label-leading"/>
                                             <constraint firstItem="current-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="current-label-trailing"/>
                                             <constraint firstItem="current-label" firstAttribute="top" secondItem="8eN-0a-dxT" secondAttribute="bottom" constant="24" id="jvc-5l-leN"/>
+                                            <constraint firstItem="past-empty-state" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="past-empty-leading"/>
+                                            <constraint firstItem="past-empty-state" firstAttribute="top" secondItem="past-label" secondAttribute="bottom" constant="12" id="past-empty-top"/>
+                                            <constraint firstItem="past-empty-state" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="past-empty-trailing"/>
                                             <constraint firstItem="past-collection" firstAttribute="bottom" secondItem="content-view" secondAttribute="bottom" constant="-20" id="past-coll-bottom"/>
                                             <constraint firstItem="past-collection" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="past-coll-leading"/>
                                             <constraint firstItem="past-collection" firstAttribute="top" secondItem="past-label" secondAttribute="bottom" constant="12" id="past-coll-top"/>
                                             <constraint firstItem="past-collection" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="past-coll-trailing"/>
                                             <constraint firstItem="past-label" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="past-label-leading"/>
-                                            <constraint firstItem="past-label" firstAttribute="top" secondItem="upcoming-collection" secondAttribute="bottom" constant="20" id="past-label-top"/>
+                                            <constraint firstItem="past-label" firstAttribute="top" secondItem="upcoming-empty-state" secondAttribute="bottom" constant="20" id="past-label-top"/>
                                             <constraint firstItem="past-label" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="past-label-trailing"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" constant="24" id="upcoming-empty-leading"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="top" secondItem="upcoming-label" secondAttribute="bottom" constant="12" id="upcoming-empty-top"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" constant="-24" id="upcoming-empty-trailing"/>
                                             <constraint firstItem="upcoming-collection" firstAttribute="leading" secondItem="content-view" secondAttribute="leading" id="upcoming-coll-leading"/>
                                             <constraint firstItem="upcoming-collection" firstAttribute="top" secondItem="upcoming-label" secondAttribute="bottom" constant="12" id="upcoming-coll-top"/>
                                             <constraint firstItem="upcoming-collection" firstAttribute="trailing" secondItem="content-view" secondAttribute="trailing" id="upcoming-coll-trailing"/>
@@ -343,8 +413,14 @@
                         <outlet property="currentTripImageView" destination="current-image" id="current-img-outlet"/>
                         <outlet property="currentTripNameLabel" destination="current-name" id="current-name-outlet"/>
                         <outlet property="pastCollectionView" destination="past-collection" id="past-coll-outlet"/>
+                        <outlet property="pastEmptyStateImageView" destination="past-empty-image" id="past-empty-img-outlet"/>
+                        <outlet property="pastEmptyStateLabel" destination="past-empty-label" id="past-empty-label-outlet"/>
+                        <outlet property="pastEmptyStateView" destination="past-empty-state" id="past-empty-view-outlet"/>
                         <outlet property="searchBar" destination="8eN-0a-dxT" id="searchBar-outlet"/>
                         <outlet property="upcomingCollectionView" destination="upcoming-collection" id="upcoming-coll-outlet"/>
+                        <outlet property="upcomingEmptyStateImageView" destination="upcoming-empty-image" id="upcoming-empty-img-outlet"/>
+                        <outlet property="upcomingEmptyStateLabel" destination="upcoming-empty-label" id="upcoming-empty-label-outlet"/>
+                        <outlet property="upcomingEmptyStateView" destination="upcoming-empty-state" id="upcoming-empty-view-outlet"/>
                         <segue destination="Eh6-lY-7FX" kind="show" identifier="tripsToTripDetails" id="4JP-lH-ge9"/>
                     </connections>
                 </viewController>
