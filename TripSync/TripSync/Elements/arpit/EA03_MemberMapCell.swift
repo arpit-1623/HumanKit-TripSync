@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MemberMapCellDelegate: AnyObject {
+    func didTapMember(_ member: User, cell: MemberMapCell)
+}
+
 class MemberMapCell: UITableViewCell {
     
     // MARK: - Outlets
@@ -16,6 +20,11 @@ class MemberMapCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var navigateIcon: UIImageView!
+    @IBOutlet weak var tapButton: UIButton!
+    
+    // MARK: - Properties
+    weak var delegate: MemberMapCellDelegate?
+    private var member: User?
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -31,6 +40,8 @@ class MemberMapCell: UITableViewCell {
     
     // MARK: - Configuration
     func configure(with member: User, location: UserLocation?) {
+        self.member = member
+        
         // Set name
         nameLabel.text = member.fullName
         
@@ -80,5 +91,12 @@ class MemberMapCell: UITableViewCell {
         statusLabel.text = nil
         avatarInitialsLabel.text = nil
         statusIndicator.isHidden = false
+        member = nil
+    }
+    
+    // MARK: - Actions
+    @IBAction func tapButtonTapped(_ sender: UIButton) {
+        guard let member = member else { return }
+        delegate?.didTapMember(member, cell: self)
     }
 }

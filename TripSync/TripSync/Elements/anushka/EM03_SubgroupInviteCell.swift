@@ -22,13 +22,11 @@ class SubgroupInviteCell: UITableViewCell {
     @IBOutlet weak var membersLabel: UILabel!
     @IBOutlet weak var membersDetailLabel: UILabel!
     @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
     
     // MARK: - Properties
     private var onAccept: (() -> Void)?
     private var onDecline: (() -> Void)?
-    private var onViewDetails: (() -> Void)?
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -54,21 +52,18 @@ class SubgroupInviteCell: UITableViewCell {
         
         // Button corner radius
         acceptButton.layer.cornerRadius = 12
-        detailsButton.layer.cornerRadius = 12
         declineButton.layer.cornerRadius = 12
     }
     
     private func setupActions() {
         acceptButton.addTarget(self, action: #selector(acceptTapped), for: .touchUpInside)
         declineButton.addTarget(self, action: #selector(declineTapped), for: .touchUpInside)
-        detailsButton.addTarget(self, action: #selector(detailsTapped), for: .touchUpInside)
     }
     
     // MARK: - Configuration
-    func configure(with invitation: Invitation, onAccept: @escaping () -> Void, onDecline: @escaping () -> Void, onViewDetails: @escaping () -> Void) {
+    func configure(with invitation: Invitation, onAccept: @escaping () -> Void, onDecline: @escaping () -> Void) {
         self.onAccept = onAccept
         self.onDecline = onDecline
-        self.onViewDetails = onViewDetails
         
         // Get subgroup details
         if let subgroupId = invitation.subgroupId,
@@ -118,9 +113,5 @@ class SubgroupInviteCell: UITableViewCell {
     
     @objc private func declineTapped() {
         onDecline?()
-    }
-    
-    @objc private func detailsTapped() {
-        onViewDetails?()
     }
 }

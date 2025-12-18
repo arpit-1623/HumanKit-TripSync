@@ -80,10 +80,10 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        title = isEditMode ? "Edit Subgroup" : "Create Subgroup"
+        title = isEditMode ? "Edit Circle" : "Create Circle"
         
         // Name text field
-        nameTextField.placeholder = "Subgroup Name"
+        nameTextField.placeholder = "Circle Name"
         nameTextField.borderStyle = .none
         
         // Description text field
@@ -272,12 +272,10 @@ class CS04_SubgroupFormVC: UITableViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let self = self, let subgroup = self.existingSubgroup else { return }
             
-            // Remove subgroup from trip
             DataModel.shared.deleteSubgroup(byId: subgroup.id)
             
-            self.dismiss(animated: true)
+            performSegue(withIdentifier: "unwindToTripDetailsWithDeleteSubgroup", sender: nil)
         })
-        
         present(alert, animated: true)
     }
     
@@ -307,15 +305,15 @@ class CS04_SubgroupFormVC: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if isEditMode {
             switch section {
-            case 0: return "SUBGROUP INFORMATION"
+            case 0: return "CIRCLE INFORMATION"
             case 1: return "COLOR"
             case 2: return "DETAILS"
-            case 3: return "DELETE SUBGROUP"
+            case 3: return "DELETE CIRCLE"
             default: return nil
             }
         } else {
             switch section {
-            case 0: return "SUBGROUP INFORMATION"
+            case 0: return "CIRCLE INFORMATION"
             case 1: return "COLOR"
             default: return nil
             }

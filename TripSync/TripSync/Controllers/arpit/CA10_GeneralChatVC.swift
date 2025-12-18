@@ -101,8 +101,9 @@ class GeneralChatViewController: UIViewController {
         // Calculate how much of the keyboard overlaps with the view
         let keyboardOverlap = max(0, viewBottom - keyboardFrameInView.origin.y)
         
-        // Adjust constraint based on keyboard overlap
-        messageInputBottomConstraint.constant = keyboardOverlap
+        // Adjust constraint based on keyboard overlap with some padding
+        let padding: CGFloat = 8
+        messageInputBottomConstraint.constant = keyboardOverlap + padding
         
         let animationCurve = UIView.AnimationCurve(rawValue: Int(curveValue)) ?? .easeInOut
         let animator = UIViewPropertyAnimator(duration: duration, curve: animationCurve) {

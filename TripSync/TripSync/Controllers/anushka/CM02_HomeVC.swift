@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripLocationLabel: UILabel!
     @IBOutlet weak var currentTripDateLabel: UILabel!
     @IBOutlet weak var currentTripRedirectButton: UIButton!
+    @IBOutlet weak var currentTripBlurView: UIVisualEffectView!
     @IBOutlet weak var emptyStateView: UIStackView!
     
     // MARK: - Outlets - Empty State
@@ -33,6 +34,8 @@ class HomeViewController: UIViewController {
     
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    @IBOutlet weak var upcomingTripsHeaderLabel: UILabel!
+    @IBOutlet weak var upcomingEmptyStateView: UIStackView!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -43,26 +46,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
-        
-        // Listen for trip deletion notifications
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleTripDeleted),
-            name: NSNotification.Name("TripDeleted"),
-            object: nil
-        )
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc private func handleTripDeleted() {
-        // Ensure we're on the main thread
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            loadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +57,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Setup
     private func setupUI() {
+        setupNotificationButton()
     }
     
     private func setupCollectionView() {
@@ -104,6 +88,7 @@ class HomeViewController: UIViewController {
         
         updateGreeting()
         updateCurrentTripUI()
+        updateUpcomingTripsUI()
         upcomingCollectionView.reloadData()
     }
     
@@ -153,6 +138,7 @@ class HomeViewController: UIViewController {
             currentTripLocationLabel?.isHidden = true
             currentTripDateLabel?.isHidden = true
             currentTripRedirectButton?.isHidden = true
+            currentTripBlurView?.isHidden = true
             emptyStateView?.isHidden = false
             return
         }
@@ -163,6 +149,7 @@ class HomeViewController: UIViewController {
         currentTripLocationLabel?.isHidden = false
         currentTripDateLabel?.isHidden = false
         currentTripRedirectButton?.isHidden = false
+        currentTripBlurView?.isHidden = false
         emptyStateView?.isHidden = true
         
         // Configure current trip display
@@ -176,6 +163,30 @@ class HomeViewController: UIViewController {
         currentTripNameLabel?.text = trip.name
         currentTripLocationLabel?.text = trip.location
         currentTripDateLabel?.text = trip.dateRangeString
+    }
+    
+    private func updateUpcomingTripsUI() {
+        let hasUpcomingTrips = !upcomingTrips.isEmpty
+        
+        // Hide entire section (header + collection view) when no upcoming trips
+        upcomingTripsHeaderLabel?.isHidden = !hasUpcomingTrips
+        upcomingCollectionView?.isHidden = !hasUpcomingTrips
+        upcomingEmptyStateView?.isHidden = hasUpcomingTrips
+    }
+    
+    // MARK: - Notification Setup
+    private func setupNotificationButton() {
+        let bellButton = UIButton(type: .system)
+        bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        bellButton.tintColor = .label
+        bellButton.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
+        
+        let barButtonItem = UIBarButtonItem(customView: bellButton)
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    @objc private func notificationButtonTapped() {
+        performSegue(withIdentifier: "homeToNotifications", sender: nil)
     }
     
     // MARK: - Actions
@@ -195,6 +206,8 @@ class HomeViewController: UIViewController {
                let trip = sender as? Trip {
                 tripDetailsVC.trip = trip
             }
+        } else if segue.identifier == "homeToNotifications" {
+            // Notifications modal is presented
         }
     }
 }

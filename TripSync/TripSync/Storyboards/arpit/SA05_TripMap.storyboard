@@ -85,7 +85,7 @@
                                             <rect key="frame" x="16" y="16" width="329" height="32"/>
                                             <segments>
                                                 <segment title="All"/>
-                                                <segment title="Subgroups"/>
+                                                <segment title="Circles"/>
                                             </segments>
                                             <connections>
                                                 <action selector="segmentedControlChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="action-segment-001"/>
@@ -173,6 +173,12 @@
                                                                     <constraint firstAttribute="width" constant="20" id="navigate-width"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tap-button-member-001">
+                                                                <rect key="frame" x="0.0" y="0.0" width="293" height="52"/>
+                                                                <connections>
+                                                                    <action selector="tapButtonTapped:" destination="cell-member-001" eventType="touchUpInside" id="action-tap-member-001"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="avatar-circle-001" firstAttribute="centerY" secondItem="cell-member-content-001" secondAttribute="centerY" id="avatar-centerY"/>
@@ -188,6 +194,10 @@
                                                             <constraint firstItem="status-label-001" firstAttribute="trailing" secondItem="name-label-001" secondAttribute="trailing" id="status-label-trailing"/>
                                                             <constraint firstItem="status-indicator-001" firstAttribute="leading" secondItem="avatar-circle-001" secondAttribute="trailing" constant="-12" id="status-leading"/>
                                                             <constraint firstItem="status-indicator-001" firstAttribute="top" secondItem="avatar-circle-001" secondAttribute="top" id="status-top"/>
+                                                            <constraint firstAttribute="bottom" secondItem="tap-button-member-001" secondAttribute="bottom" id="tap-button-member-bottom"/>
+                                                            <constraint firstItem="tap-button-member-001" firstAttribute="leading" secondItem="cell-member-content-001" secondAttribute="leading" id="tap-button-member-leading"/>
+                                                            <constraint firstItem="navigate-icon-001" firstAttribute="leading" secondItem="tap-button-member-001" secondAttribute="trailing" constant="24" id="tap-button-member-navigate-spacing"/>
+                                                            <constraint firstItem="tap-button-member-001" firstAttribute="top" secondItem="cell-member-content-001" secondAttribute="top" id="tap-button-member-top"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,6 +208,7 @@
                                                         <outlet property="navigateIcon" destination="navigate-icon-001" id="outlet-navigate-icon"/>
                                                         <outlet property="statusIndicator" destination="status-indicator-001" id="outlet-status-indicator"/>
                                                         <outlet property="statusLabel" destination="status-label-001" id="outlet-status-label"/>
+                                                        <outlet property="tapButton" destination="tap-button-member-001" id="outlet-tap-button-member"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -230,6 +241,12 @@
                                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tap-button-subgroup-001">
+                                                                <rect key="frame" x="0.0" y="0.0" width="342.66666666666669" height="60"/>
+                                                                <connections>
+                                                                    <action selector="tapButtonTapped:" destination="cell-subgroup-001" eventType="touchUpInside" id="action-tap-subgroup-001"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="subgroup-detail-001" secondAttribute="bottom" constant="8" id="subgroup-detail-bottom"/>
@@ -239,12 +256,17 @@
                                                             <constraint firstItem="subgroup-text-001" firstAttribute="leading" secondItem="cell-subgroup-content-001" secondAttribute="leading" constant="16" id="subgroup-text-leading"/>
                                                             <constraint firstItem="subgroup-text-001" firstAttribute="top" secondItem="cell-subgroup-content-001" secondAttribute="top" constant="16" id="subgroup-text-top"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="subgroup-text-001" secondAttribute="trailing" constant="16" id="subgroup-text-trailing"/>
+                                                            <constraint firstAttribute="bottom" secondItem="tap-button-subgroup-001" secondAttribute="bottom" id="tap-button-subgroup-bottom"/>
+                                                            <constraint firstItem="tap-button-subgroup-001" firstAttribute="leading" secondItem="cell-subgroup-content-001" secondAttribute="leading" id="tap-button-subgroup-leading"/>
+                                                            <constraint firstItem="tap-button-subgroup-001" firstAttribute="top" secondItem="cell-subgroup-content-001" secondAttribute="top" id="tap-button-subgroup-top"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tap-button-subgroup-001" secondAttribute="trailing" id="tap-button-subgroup-trailing"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
                                                         <outlet property="detailLabel" destination="subgroup-detail-001" id="outlet-subgroup-detail"/>
                                                         <outlet property="nameLabel" destination="subgroup-text-001" id="outlet-subgroup-name"/>
+                                                        <outlet property="tapButton" destination="tap-button-subgroup-001" id="outlet-tap-button-subgroup"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>

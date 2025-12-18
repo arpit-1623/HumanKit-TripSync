@@ -266,6 +266,42 @@ class DataModel {
         deleteInvitations(forTripId: id)
     }
     
+    public func removeMemberFromTrip(tripId: UUID, memberId: UUID) -> Bool {
+        guard var trip = getTrip(byId: tripId),
+              let currentUser = getCurrentUser(),
+              trip.isUserAdmin(currentUser.id),
+              memberId != currentUser.id else {
+            return false
+        }
+        
+        trip.memberIds.removeAll { $0 == memberId }
+        
+        do {
+            try saveTrip(trip)
+            return true
+        } catch {
+            return false
+        }
+    }
+    
+    public func leaveTrip(tripId: UUID) -> Bool {
+        guard var trip = getTrip(byId: tripId),
+              let currentUser = getCurrentUser(),
+              !trip.isUserAdmin(currentUser.id),
+              trip.memberIds.contains(currentUser.id) else {
+            return false
+        }
+        
+        trip.memberIds.removeAll { $0 == currentUser.id }
+        
+        do {
+            try saveTrip(trip)
+            return true
+        } catch {
+            return false
+        }
+    }
+    
     // MARK: - Subgroup Data Model
     private func loadSubgroupsFromFile() -> [Subgroup] {
         guard FileManager.default.fileExists(atPath: subgroupsURL.path),
@@ -587,6 +623,19 @@ class DataModel {
     
     public func deleteInvitation(_ userId: UUID, tripId: UUID) {
         invitations.removeAll(where: { $0.tripId == tripId && $0.invitedUserId == userId })
+    }
+    
+    public func getInvitations(forSubgroupId subgroupId: UUID, status: InvitationStatus? = nil) -> [Invitation] {
+        var filtered = invitations.filter {
+            $0.type == .subgroup &&
+            $0.subgroupId == subgroupId
+        }
+        
+        if let status = status {
+            filtered = filtered.filter { $0.status == status }
+        }
+        
+        return filtered.sorted { $0.createdAt > $1.createdAt }
     }
     
     // MARK: - Memory Data Model

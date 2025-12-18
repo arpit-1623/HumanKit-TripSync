@@ -59,6 +59,14 @@ class EditTripTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Only admins can edit trips
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.isUserAdmin(currentUser.id) else {
+            dismiss(animated: true)
+            return
+        }
+        
         setupUI()
         updateDateLabels()
     }
@@ -167,12 +175,9 @@ class EditTripTableViewController: UITableViewController {
             
             DataModel.shared.deleteTrip(byId: trip.id)
             
-            // Dismiss edit screen and pop to root
-            self.dismiss(animated: true) {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+            // Changed: Dismiss then pop back one screen
+            performSegue(withIdentifier: "unwindToHomeWithDeleteTrip", sender: nil)
         })
-        
         present(alert, animated: true)
     }
     
