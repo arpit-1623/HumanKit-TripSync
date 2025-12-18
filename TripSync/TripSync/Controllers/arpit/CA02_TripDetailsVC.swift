@@ -125,21 +125,25 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         performSegue(withIdentifier: "tripDetailsToEditTrip", sender: nil)
     }
     
+    @IBAction func membersMenuTapped(_ sender: Any) {
+        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    }
+    
     // MARK: - Button Actions
     @IBAction func mapButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToMap", sender: self)
-    }
-    
-    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
     }
     
     @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToItinerary", sender: nil)
     }
     
-    @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
+    }
+    
+    @IBAction func alertsButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToAlerts", sender: nil)
     }
     
     // MARK: - Helper Methods
@@ -215,6 +219,9 @@ extension TripDetailsViewController {
         } else if segue.identifier == "tripDetailsToItinerary",
                   let itineraryVC = segue.destination as? CS02_ItineraryVC {
             itineraryVC.trip = self.trip
+        } else if segue.identifier == "tripDetailsToAlerts",
+                  let alertsVC = segue.destination as? AlertsViewController {
+            alertsVC.trip = self.trip
         } else if segue.identifier == "tripDetailsToMembers",
                   let membersVC = segue.destination as? TripMembersViewController {
             membersVC.trip = self.trip

@@ -24,7 +24,6 @@ class AlertsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
-        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,11 +45,6 @@ class AlertsViewController: UIViewController {
         // Cell is registered via storyboard prototype
     }
     
-    private func setupNavigationBar() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAnnouncementTapped))
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
     private func loadAnnouncements() {
         guard let trip = trip else { return }
         
@@ -66,10 +60,6 @@ class AlertsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func addAnnouncementTapped() {
-        performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
-    }
-    
     @IBAction func createAnnouncementTapped() {
         performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
     }

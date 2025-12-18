@@ -18,7 +18,6 @@ class ChatContainerViewController: UIViewController {
     
     private var generalChatVC: GeneralChatViewController?
     private var subgroupsListVC: SubgroupsListViewController?
-    private var alertsVC: AlertsViewController?
     
     private var currentViewController: UIViewController?
     
@@ -58,7 +57,6 @@ class ChatContainerViewController: UIViewController {
             // Update child VCs with refreshed trip data
             generalChatVC?.trip = trip
             subgroupsListVC?.trip = trip
-            alertsVC?.trip = trip
         }
     }
     
@@ -67,7 +65,6 @@ class ChatContainerViewController: UIViewController {
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "General", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "Subgroups", at: 1, animated: false)
-        segmentedControl.insertSegment(withTitle: "Alerts", at: 2, animated: false)
         segmentedControl.selectedSegmentIndex = 0
     }
     
@@ -83,11 +80,6 @@ class ChatContainerViewController: UIViewController {
         if let subgroupsVC = chatStoryboard.instantiateViewController(withIdentifier: "SubgroupsListViewController") as? SubgroupsListViewController {
             subgroupsVC.trip = self.trip
             subgroupsListVC = subgroupsVC
-        }
-        
-        if let alertVC = chatStoryboard.instantiateViewController(withIdentifier: "AlertsViewController") as? AlertsViewController {
-            alertVC.trip = self.trip
-            alertsVC = alertVC
         }
     }
     
@@ -107,8 +99,6 @@ class ChatContainerViewController: UIViewController {
             viewControllerToShow = generalChatVC
         case 1:
             viewControllerToShow = subgroupsListVC
-        case 2:
-            viewControllerToShow = alertsVC
         default:
             break
         }
