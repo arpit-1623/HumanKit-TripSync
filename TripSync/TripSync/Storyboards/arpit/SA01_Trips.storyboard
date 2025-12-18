@@ -73,13 +73,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="200"/>
                                                     </imageView>
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glass-container" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="125.66666666666664" width="322" height="58.333333333333329"/>
+                                                        <rect key="frame" x="16" y="125" width="322" height="59"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="glass-content-view">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="current-info-stack">
-                                                                    <rect key="frame" x="12" y="8.0000000000000284" width="262" height="42.666666666666664"/>
+                                                                    <rect key="frame" x="12" y="8" width="262" height="42.666666666666664"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-name">
                                                                             <rect key="frame" x="0.0" y="0.0" width="145" height="21.666666666666668"/>
@@ -87,7 +87,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan • 5 members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="current-details">
-                                                                            <rect key="frame" x="0.0" y="25.666666666666629" width="171.66666666666666" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="25.666666666666686" width="171.66666666666666" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -95,7 +95,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chevron-button" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
-                                                                    <rect key="frame" x="278" y="13.333333333333343" width="32" height="32"/>
+                                                                    <rect key="frame" x="278" y="13.333333333333314" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="32" id="chevron-height"/>
                                                                         <constraint firstAttribute="width" constant="32" id="chevron-width"/>
@@ -437,27 +437,27 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="all-empty-state">
-                                <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                                <rect key="frame" x="0.0" y="230" width="402" height="527"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="all-empty-stack">
-                                        <rect key="frame" x="66" y="339.66666666666669" width="270" height="194.66666666666669"/>
+                                        <rect key="frame" x="66" y="164.66666666666669" width="270" height="197.66666666666669"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hourglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="all-empty-image">
-                                                <rect key="frame" x="95" y="1.6666666666666288" width="80" height="76.666666666666671"/>
+                                                <rect key="frame" x="95" y="1.6666666666666643" width="80" height="77"/>
                                                 <color key="tintColor" name="ProminentColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="all-empty-img-w"/>
                                                     <constraint firstAttribute="height" constant="80" id="all-empty-img-h"/>
+                                                    <constraint firstAttribute="width" constant="80" id="all-empty-img-w"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Trips Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="all-empty-title">
-                                                <rect key="frame" x="59" y="102" width="152.33333333333337" height="33.666666666666657"/>
+                                                <rect key="frame" x="57" y="104" width="156" height="33.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join or create your first trip to start planning your adventures" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="all-empty-subtitle">
-                                                <rect key="frame" x="0.0" y="159.66666666666669" width="270" height="35"/>
+                                                <rect key="frame" x="13.333333333333329" y="161.66666666666669" width="243.33333333333337" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
@@ -478,10 +478,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="all-empty-state" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="all-empty-bottom"/>
                             <constraint firstItem="all-empty-state" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="all-empty-leading"/>
                             <constraint firstItem="all-empty-state" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="all-empty-top"/>
                             <constraint firstItem="all-empty-state" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="all-empty-trailing"/>
-                            <constraint firstItem="all-empty-state" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="all-empty-bottom"/>
                             <constraint firstItem="main-scroll" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="scroll-bottom"/>
                             <constraint firstItem="main-scroll" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="scroll-leading"/>
                             <constraint firstItem="main-scroll" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="scroll-top"/>
@@ -555,6 +555,7 @@
     </scenes>
     <resources>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="hourglass" catalog="system" width="103" height="128"/>
         <image name="suitcase.fill" catalog="system" width="128" height="100"/>
         <namedColor name="ProminentColor">
             <color red="1" green="0.51372549019607838" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

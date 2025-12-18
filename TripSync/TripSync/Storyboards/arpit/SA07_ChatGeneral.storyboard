@@ -557,13 +557,7 @@
                             <constraint firstItem="Alerts-SafeArea" firstAttribute="trailing" secondItem="Alerts-TableView" secondAttribute="trailing" id="Alerts-TableTrailing"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Alerts-NavItem">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Alerts-AddButton">
-                            <connections>
-                                <action selector="addAnnouncementTapped" destination="Alerts-ID" id="Alerts-AddButtonAction"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Alerts-NavItem"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="createAnnouncementButton" destination="Alerts-FAB" id="Alerts-FABOutlet"/>
@@ -929,6 +923,11 @@
                                                                 <constraint firstItem="CreateAnnouncement-VeryImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantIcon" secondAttribute="bottom" constant="4" id="very-important-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-VeryImportantLabel" secondAttribute="trailing" constant="4" id="very-important-label-trailing"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <outletCollection property="gestureRecognizers" destination="VeryImportant-TapGesture" appends="YES" id="VeryImportant-TapGesture-Outlet"/>
                                                             </connections>
