@@ -73,7 +73,7 @@ class EditTripTableViewController: UITableViewController {
         // Populate fields from trip
         tripNameField.text = trip.name
         tripLocationField.text = trip.location
-        tripLocationField.isUserInteractionEnabled = false // Force use of location picker
+        tripLocationField.isUserInteractionEnabled = false
         startDatePicker.date = trip.startDate
         endDatePicker.date = trip.endDate
         inviteCodeValueLabel.text = trip.inviteCode
@@ -141,6 +141,9 @@ class EditTripTableViewController: UITableViewController {
         trip.endDate = endDatePicker.date
         trip.coverImageURL = selectedImageURL
         trip.coverImagePhotographerName = selectedPhotographerName
+        
+        // Update status based on new dates
+        trip.updateStatusBasedOnDates()
         
         // Save to DataModel
         DataModel.shared.saveTrip(trip)

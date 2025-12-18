@@ -85,7 +85,6 @@ class HomeViewController: UIViewController {
     private func loadData() {
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        // Get only trips where current user is a member
         let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
         
         // Check if user has any trips and toggle empty state

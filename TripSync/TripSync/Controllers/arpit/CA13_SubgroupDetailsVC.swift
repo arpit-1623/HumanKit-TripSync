@@ -2,7 +2,7 @@
 //  CS03_SubgroupDetailsVC.swift
 //  TripSync
 //
-//  Created on 23/11/2025.
+//  Created by Arpit Garg on 23/11/2025.
 //
 
 import UIKit
@@ -215,7 +215,10 @@ extension SubgroupDetailsViewController: UITableViewDataSource {
         }
         
         let member = members[indexPath.row]
-        cell.configure(with: member, role: "Member")
+        
+        // First member in the subgroup is the admin (creator)
+        let role = (subgroup?.memberIds.first == member.id) ? "Admin" : "Member"
+        cell.configure(with: member, role: role)
         
         return cell
     }

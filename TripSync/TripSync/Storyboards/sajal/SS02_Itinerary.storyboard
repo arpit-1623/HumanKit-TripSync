@@ -240,6 +240,42 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-view">
+                                <rect key="frame" x="46.666666666666657" y="429.33333333333331" width="300" height="196.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-stack">
+                                        <rect key="frame" x="20" y="20" width="260" height="156.33333333333334"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.bullet.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-icon">
+                                                <rect key="frame" x="105" y="-2.3333333333333321" width="50" height="53"/>
+                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="empty-icon-height"/>
+                                                    <constraint firstAttribute="width" constant="50" id="empty-icon-width"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Itinerary Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-title">
+                                                <rect key="frame" x="68.333333333333314" y="66.000000000000057" width="123" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan your trip by adding stops to your itinerary. Tap the + button above to create your first stop." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-description">
+                                                <rect key="frame" x="0.0" y="102.33333333333331" width="260" height="54"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="empty-state-stack" secondAttribute="bottom" constant="20" id="empty-stack-bottom"/>
+                                    <constraint firstItem="empty-state-stack" firstAttribute="leading" secondItem="empty-state-view" secondAttribute="leading" constant="20" id="empty-stack-leading"/>
+                                    <constraint firstItem="empty-state-stack" firstAttribute="top" secondItem="empty-state-view" secondAttribute="top" constant="20" id="empty-stack-top"/>
+                                    <constraint firstAttribute="trailing" secondItem="empty-state-stack" secondAttribute="trailing" constant="20" id="empty-stack-trailing"/>
+                                    <constraint firstAttribute="width" constant="300" id="empty-state-width"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -247,6 +283,8 @@
                             <constraint firstItem="collection-subgroups" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="collection-leading"/>
                             <constraint firstItem="collection-subgroups" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="collection-top"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="collection-subgroups" secondAttribute="trailing" id="collection-trailing"/>
+                            <constraint firstItem="empty-state-view" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="empty-state-centerX"/>
+                            <constraint firstItem="empty-state-view" firstAttribute="centerY" secondItem="table-itinerary" secondAttribute="centerY" id="empty-state-centerY"/>
                             <constraint firstAttribute="bottom" secondItem="table-itinerary" secondAttribute="bottom" constant="49" id="table-bottom"/>
                             <constraint firstItem="table-itinerary" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="table-leading"/>
                             <constraint firstItem="table-itinerary" firstAttribute="top" secondItem="collection-subgroups" secondAttribute="bottom" id="table-top"/>
@@ -262,6 +300,9 @@
                     </navigationItem>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="emptyStateDescriptionLabel" destination="empty-state-description" id="outlet-empty-state-description"/>
+                        <outlet property="emptyStateTitleLabel" destination="empty-state-title" id="outlet-empty-state-title"/>
+                        <outlet property="emptyStateView" destination="empty-state-view" id="outlet-empty-state-view"/>
                         <outlet property="itineraryTableView" destination="table-itinerary" id="outlet-table-itinerary"/>
                         <outlet property="subgroupCollectionView" destination="collection-subgroups" id="outlet-collection-subgroups"/>
                         <segue destination="add-stop-nav-controller" kind="presentation" identifier="showEditStop" modalPresentationStyle="formSheet" id="segue-edit-stop"/>
@@ -617,6 +658,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="mappin" catalog="system" width="106" height="128"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="CardColor">

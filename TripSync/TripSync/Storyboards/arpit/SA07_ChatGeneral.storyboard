@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ChatContainer-ID">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ChatContainer-ID">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +24,6 @@
                                 <segments>
                                     <segment title="General"/>
                                     <segment title="Subgroups"/>
-                                    <segment title="Alerts"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="ChatContainer-ID" eventType="valueChanged" id="ChatContainer-SegmentAction"/>
@@ -32,9 +31,6 @@
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChatContainer-ContainerView">
                                 <rect key="frame" x="0.0" y="220" width="393" height="564"/>
-                                <connections>
-                                    <segue destination="Y6W-OH-hqX" kind="embed" id="ChatContainer-EmbedSegue"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ChatContainer-SafeArea"/>
@@ -65,11 +61,11 @@
             <objects>
                 <viewController storyboardIdentifier="GeneralChatViewController" id="Y6W-OH-hqX" customClass="GeneralChatViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="564"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="giO-zF-LcO">
-                                <rect key="frame" x="0.0" y="118" width="393" height="326"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="580"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IncomingMessageCell" rowHeight="90" id="01x-2u-1P3" customClass="ChatTableViewCell" customModule="TripSync" customModuleProvider="target">
@@ -198,7 +194,7 @@
                                 </prototypes>
                             </tableView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfu-fg-94K" userLabel="MessageInputView" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                <rect key="frame" x="16" y="444" width="361" height="70"/>
+                                <rect key="frame" x="16" y="698" width="361" height="70"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mfu-fg-94K-content">
                                     <rect key="frame" x="0.0" y="0.0" width="361" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -561,6 +557,7 @@
                             <constraint firstItem="Alerts-SafeArea" firstAttribute="trailing" secondItem="Alerts-TableView" secondAttribute="trailing" id="Alerts-TableTrailing"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Alerts-NavItem"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="createAnnouncementButton" destination="Alerts-FAB" id="Alerts-FABOutlet"/>
@@ -840,6 +837,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Announcement title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-TitleField">
                                                     <rect key="frame" x="16" y="10" width="321" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="title-field-height"/>
                                                     </constraints>
@@ -865,12 +863,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-MessageView">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write your announcement message..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-MessageView">
                                                     <rect key="frame" x="16" y="8" width="321" height="134"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="CreateAnnouncement-ID" id="CreateAnnouncement-MessageView-Delegate"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -898,20 +899,23 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantView">
                                                             <rect key="frame" x="0.0" y="0.0" width="99" height="80"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantIcon">
-                                                                    <rect key="frame" x="34.666666666666664" y="17.333333333333329" width="29.999999999999993" height="27.666666666666671"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantIcon">
+                                                                    <rect key="frame" x="34.666666666666664" y="17" width="29.999999999999993" height="28"/>
+                                                                    <color key="tintColor" systemColor="systemGrayColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="very-important-icon-height"/>
                                                                         <constraint firstAttribute="width" constant="30" id="very-important-icon-width"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very Important" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantLabel">
-                                                                    <rect key="frame" x="4" y="50" width="91" height="13.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                                                    <nil key="textColor"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Urgent" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-VeryImportantLabel">
+                                                                    <rect key="frame" x="4" y="50" width="91" height="14.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstItem="CreateAnnouncement-VeryImportantIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-VeryImportantView" secondAttribute="centerX" id="very-important-icon-centerx"/>
                                                                 <constraint firstItem="CreateAnnouncement-VeryImportantIcon" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantView" secondAttribute="top" constant="16" id="very-important-icon-top"/>
@@ -919,24 +923,35 @@
                                                                 <constraint firstItem="CreateAnnouncement-VeryImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-VeryImportantIcon" secondAttribute="bottom" constant="4" id="very-important-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-VeryImportantLabel" secondAttribute="trailing" constant="4" id="very-important-label-trailing"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="VeryImportant-TapGesture" appends="YES" id="VeryImportant-TapGesture-Outlet"/>
+                                                            </connections>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantView">
                                                             <rect key="frame" x="111" y="0.0" width="99" height="80"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantIcon">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantIcon">
                                                                     <rect key="frame" x="34.666666666666657" y="17.333333333333329" width="30" height="27.666666666666671"/>
+                                                                    <color key="tintColor" systemColor="systemGrayColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="important-icon-height"/>
                                                                         <constraint firstAttribute="width" constant="30" id="important-icon-width"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-ImportantLabel">
-                                                                    <rect key="frame" x="4" y="50" width="91" height="13.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                                                    <nil key="textColor"/>
+                                                                    <rect key="frame" x="4" y="50" width="91" height="14.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstItem="CreateAnnouncement-ImportantIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-ImportantView" secondAttribute="centerX" id="important-icon-centerx"/>
                                                                 <constraint firstItem="CreateAnnouncement-ImportantIcon" firstAttribute="top" secondItem="CreateAnnouncement-ImportantView" secondAttribute="top" constant="16" id="important-icon-top"/>
@@ -944,24 +959,35 @@
                                                                 <constraint firstItem="CreateAnnouncement-ImportantLabel" firstAttribute="top" secondItem="CreateAnnouncement-ImportantIcon" secondAttribute="bottom" constant="4" id="important-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-ImportantLabel" secondAttribute="trailing" constant="4" id="important-label-trailing"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="Important-TapGesture" appends="YES" id="Important-TapGesture-Outlet"/>
+                                                            </connections>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralView">
                                                             <rect key="frame" x="222" y="0.0" width="99" height="80"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralIcon">
                                                                     <rect key="frame" x="34.666666666666686" y="16.666666666666664" width="30" height="28.666666666666664"/>
+                                                                    <color key="tintColor" systemColor="systemGrayColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="general-icon-height"/>
                                                                         <constraint firstAttribute="width" constant="30" id="general-icon-width"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CreateAnnouncement-GeneralLabel">
-                                                                    <rect key="frame" x="4" y="50" width="91" height="13.333333333333336"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                                                    <nil key="textColor"/>
+                                                                    <rect key="frame" x="4" y="50" width="91" height="14.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstItem="CreateAnnouncement-GeneralIcon" firstAttribute="centerX" secondItem="CreateAnnouncement-GeneralView" secondAttribute="centerX" id="general-icon-centerx"/>
                                                                 <constraint firstItem="CreateAnnouncement-GeneralIcon" firstAttribute="top" secondItem="CreateAnnouncement-GeneralView" secondAttribute="top" constant="16" id="general-icon-top"/>
@@ -969,6 +995,14 @@
                                                                 <constraint firstItem="CreateAnnouncement-GeneralLabel" firstAttribute="top" secondItem="CreateAnnouncement-GeneralIcon" secondAttribute="bottom" constant="4" id="general-label-top"/>
                                                                 <constraint firstAttribute="trailing" secondItem="CreateAnnouncement-GeneralLabel" secondAttribute="trailing" constant="4" id="general-label-trailing"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="General-TapGesture" appends="YES" id="General-TapGesture-Outlet"/>
+                                                            </connections>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
@@ -1050,22 +1084,34 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CreateAnnouncement-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VeryImportant-TapGesture">
+                    <connections>
+                        <action selector="veryImportantTapped:" destination="CreateAnnouncement-ID" id="VeryImportant-TapGesture-Action"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Important-TapGesture">
+                    <connections>
+                        <action selector="importantTapped:" destination="CreateAnnouncement-ID" id="Important-TapGesture-Action"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="General-TapGesture">
+                    <connections>
+                        <action selector="generalTapped:" destination="CreateAnnouncement-ID" id="General-TapGesture-Action"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1784" y="1503"/>
         </scene>
     </scenes>
     <resources>
-        <image name="exclamationmark.2" catalog="system" width="90" height="128"/>
-        <image name="exclamationmark.3" catalog="system" width="128" height="123"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
+        <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="megaphone" catalog="system" width="128" height="112"/>
         <image name="megaphone.fill" catalog="system" width="128" height="112"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

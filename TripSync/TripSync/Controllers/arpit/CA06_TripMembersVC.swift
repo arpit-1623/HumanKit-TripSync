@@ -61,16 +61,6 @@ class TripMembersViewController: UIViewController {
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
-    
-    @IBAction func addMemberTapped(_ sender: Any) {
-        let alert = UIAlertController(
-            title: "Add Member",
-            message: "Add member functionality will be implemented here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -86,7 +76,6 @@ extension TripMembersViewController: UITableViewDataSource {
         
         let member = members[indexPath.row]
         
-        // Determine role based on trip creator
         let role = (trip?.createdByUserId == member.id) ? "Admin" : "Member"
         
         cell.configure(with: member, role: role)
@@ -123,7 +112,6 @@ extension TripMembersViewController: UITableViewDelegate {
             self?.showMemberProfile(member)
         })
         
-        // Show remove option for admin (except for first member)
         if indexPath.row != 0 {
             alert.addAction(UIAlertAction(title: "Remove Member", style: .destructive) { [weak self] _ in
                 self?.removeMember(at: indexPath)

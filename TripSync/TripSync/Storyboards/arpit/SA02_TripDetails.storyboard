@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -33,9 +33,9 @@
                                                 </constraints>
                                             </imageView>
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trip-info-blur-card" userLabel="Trip Info Blur Card" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="75" width="353" height="209"/>
+                                                <rect key="frame" x="20" y="74.999999999999986" width="353" height="208.66666666666663"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="trip-info-blur-content">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="208.66666666666663"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eBp-6D-7mX" userLabel="Trip Info Stack">
@@ -113,7 +113,7 @@
                                                 <blurEffect style="systemThinMaterial"/>
                                             </visualEffectView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mJi-Uq-qR7" userLabel="Action Buttons Stack">
-                                                <rect key="frame" x="20" y="304" width="353" height="79.333333333333314"/>
+                                                <rect key="frame" x="20" y="303.66666666666669" width="353" height="79.333333333333314"/>
                                                 <subviews>
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AY-5e-keX" userLabel="Map Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="79.333333333333329"/>
@@ -154,14 +154,53 @@
                                                             <outletCollection property="gestureRecognizers" destination="map-tap-gesture" appends="YES" id="map-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="chat-button-content">
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="itinerary-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EEl-oj-3bS">
+                                                                    <rect key="frame" x="12.000000000000004" y="11" width="55.333333333333343" height="57"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.bullet" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="X7D-fB-xGc">
+                                                                            <rect key="frame" x="11.666666666666671" y="2.9999999999999982" width="32" height="26"/>
+                                                                            <color key="tintColor" systemColor="labelColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="32" id="K7L-cw-1S2"/>
+                                                                                <constraint firstAttribute="height" constant="32" id="eBf-zx-kTd"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsr-w2-mLs">
+                                                                            <rect key="frame" x="0.0" y="40" width="55.333333333333336" height="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="EEl-oj-3bS" firstAttribute="centerX" secondItem="itinerary-button-content" secondAttribute="centerX" id="D7y-nR-EO7"/>
+                                                                <constraint firstItem="EEl-oj-3bS" firstAttribute="centerY" secondItem="itinerary-button-content" secondAttribute="centerY" id="TUo-Ga-Hh9"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="sVT-DY-Cgg" secondAttribute="height" multiplier="1:1" id="2G9-B7-cjm"/>
+                                                        </constraints>
+                                                        <blurEffect style="systemThinMaterial"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="itinerary-tap-gesture" appends="YES" id="itinerary-tap-connection"/>
+                                                        </connections>
+                                                    </visualEffectView>
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                        <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="chat-button-content">
+                                                            <rect key="frame" x="0.0" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QqY-Dk-5kl">
-                                                                    <rect key="frame" x="23.666666666666671" y="11" width="32" height="57"/>
+                                                                    <rect key="frame" x="23.333333333333343" y="11" width="32" height="57"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h6L-Sd-tna">
                                                                             <rect key="frame" x="0.0" y="0.66666666666666607" width="32" height="29.666666666666671"/>
@@ -193,64 +232,25 @@
                                                             <outletCollection property="gestureRecognizers" destination="chat-tap-gesture" appends="YES" id="chat-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                                        <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="itinerary-button-content">
-                                                            <rect key="frame" x="0.0" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EEl-oj-3bS">
-                                                                    <rect key="frame" x="11.666666666666689" y="11" width="55.333333333333343" height="57"/>
-                                                                    <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.bullet" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="X7D-fB-xGc">
-                                                                            <rect key="frame" x="11.666666666666657" y="2.9999999999999982" width="32" height="26"/>
-                                                                            <color key="tintColor" systemColor="labelColor"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="32" id="K7L-cw-1S2"/>
-                                                                                <constraint firstAttribute="height" constant="32" id="eBf-zx-kTd"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsr-w2-mLs">
-                                                                            <rect key="frame" x="0.0" y="40" width="55.333333333333336" height="17"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="EEl-oj-3bS" firstAttribute="centerX" secondItem="itinerary-button-content" secondAttribute="centerX" id="D7y-nR-EO7"/>
-                                                                <constraint firstItem="EEl-oj-3bS" firstAttribute="centerY" secondItem="itinerary-button-content" secondAttribute="centerY" id="TUo-Ga-Hh9"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <gestureRecognizers/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="sVT-DY-Cgg" secondAttribute="height" multiplier="1:1" id="2G9-B7-cjm"/>
-                                                        </constraints>
-                                                        <blurEffect style="systemThinMaterial"/>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="itinerary-tap-gesture" appends="YES" id="itinerary-tap-connection"/>
-                                                        </connections>
-                                                    </visualEffectView>
-                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Members Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Alerts Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="members-button-content">
                                                             <rect key="frame" x="0.0" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CQU-Mb-brE">
-                                                                    <rect key="frame" x="8.6666666666666288" y="11" width="62" height="57"/>
+                                                                    <rect key="frame" x="20.000000000000004" y="11" width="39.333333333333343" height="57"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="m2e-GW-zbe">
-                                                                            <rect key="frame" x="15" y="1.6666666666666643" width="32" height="30"/>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megaphone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="m2e-GW-zbe">
+                                                                            <rect key="frame" x="3.6666666666666288" y="0.33333333333333037" width="32" height="31.666666666666671"/>
                                                                             <color key="tintColor" systemColor="labelColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="32" id="M2o-Z4-DWj"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="ofl-QA-Lza"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGJ-uY-7U6">
-                                                                            <rect key="frame" x="0.0" y="40" width="62" height="17"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alerts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGJ-uY-7U6">
+                                                                            <rect key="frame" x="0.0" y="40" width="39.333333333333336" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -268,13 +268,13 @@
                                                         </constraints>
                                                         <blurEffect style="systemThinMaterial"/>
                                                         <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="members-tap-gesture" appends="YES" id="members-tap-connection"/>
+                                                            <outletCollection property="gestureRecognizers" destination="alerts-tap-gesture" appends="YES" id="alerts-tap-connection"/>
                                                         </connections>
                                                     </visualEffectView>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-jv-uT6" userLabel="Subgroups Section">
-                                                <rect key="frame" x="0.0" y="403.33333333333326" width="393" height="496.66666666666674"/>
+                                                <rect key="frame" x="0.0" y="403" width="393" height="497"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-gU-Fhg">
                                                         <rect key="frame" x="20" y="20" width="353" height="34"/>
@@ -286,15 +286,16 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P72-Mz-lzs">
-                                                                <rect key="frame" x="268" y="0.0" width="85" height="34"/>
+                                                                <rect key="frame" x="319" y="0.0" width="34" height="34"/>
                                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" constant="34" id="create-button-width"/>
                                                                     <constraint firstAttribute="height" constant="34" id="l8f-fF-wWR"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                                                                <state key="normal" title="+ Create">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" image="plus" catalog="system">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -307,8 +308,48 @@
                                                             </button>
                                                         </subviews>
                                                     </stackView>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="subgroups-empty-state">
+                                                        <rect key="frame" x="0.0" y="54" width="393" height="443"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-stack">
+                                                                <rect key="frame" x="96.666666666666686" y="60" width="200" height="128"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-icon">
+                                                                        <rect key="frame" x="74.999999999999986" y="1.6666666666666643" width="50" height="48"/>
+                                                                        <color key="tintColor" systemColor="systemGray3Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="empty-icon-height"/>
+                                                                            <constraint firstAttribute="width" constant="50" id="empty-icon-width"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Subgroups Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-title">
+                                                                        <rect key="frame" x="28.333333333333329" y="62.000000000000007" width="143.33333333333337" height="20.333333333333336"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-description">
+                                                                        <rect key="frame" x="4" y="94.333333333333371" width="191.66666666666666" height="33.666666666666657"/>
+                                                                        <string key="text">Create subgroups to organize
+members and activities</string>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="200" id="empty-stack-width"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="empty-state-stack" firstAttribute="centerX" secondItem="subgroups-empty-state" secondAttribute="centerX" id="empty-stack-centerX"/>
+                                                            <constraint firstItem="empty-state-stack" firstAttribute="top" secondItem="subgroups-empty-state" secondAttribute="top" constant="60" id="empty-stack-top"/>
+                                                        </constraints>
+                                                    </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-hR-ufI">
-                                                        <rect key="frame" x="0.0" y="54.000000000000028" width="393" height="442.66666666666674"/>
+                                                        <rect key="frame" x="0.0" y="54" width="393" height="443"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubgroupCell" rowHeight="80" id="EBu-Eg-p2F" customClass="TripSubgroupCell" customModule="TripSync" customModuleProvider="target">
@@ -392,6 +433,10 @@
                                                     <constraint firstItem="aKV-hR-ufI" firstAttribute="leading" secondItem="7XS-jv-uT6" secondAttribute="leading" id="Q4I-Xd-O8O"/>
                                                     <constraint firstItem="pHQ-gU-Fhg" firstAttribute="leading" secondItem="7XS-jv-uT6" secondAttribute="leading" constant="20" id="Ydc-HV-s6N"/>
                                                     <constraint firstAttribute="trailing" secondItem="aKV-hR-ufI" secondAttribute="trailing" id="btt-cH-l2J"/>
+                                                    <constraint firstItem="subgroups-empty-state" firstAttribute="bottom" secondItem="7XS-jv-uT6" secondAttribute="bottom" id="empty-bottom"/>
+                                                    <constraint firstItem="subgroups-empty-state" firstAttribute="leading" secondItem="7XS-jv-uT6" secondAttribute="leading" id="empty-leading"/>
+                                                    <constraint firstItem="subgroups-empty-state" firstAttribute="top" secondItem="pHQ-gU-Fhg" secondAttribute="bottom" id="empty-top"/>
+                                                    <constraint firstItem="subgroups-empty-state" firstAttribute="trailing" secondItem="7XS-jv-uT6" secondAttribute="trailing" id="empty-trailing"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -453,6 +498,11 @@
                                             <action selector="editTripTapped:" destination="Y6W-OH-hqX" id="edit-action"/>
                                         </connections>
                                     </command>
+                                    <command title="Members" image="person.3.fill" catalog="system" id="members-menu-item">
+                                        <connections>
+                                            <action selector="membersMenuTapped:" destination="Y6W-OH-hqX" id="members-menu-action"/>
+                                        </connections>
+                                    </command>
                                 </children>
                             </menu>
                         </barButtonItem>
@@ -460,6 +510,7 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="QqN-7t-3bh" id="background-image-outlet"/>
+                        <outlet property="subgroupsEmptyStateView" destination="subgroups-empty-state" id="empty-state-outlet"/>
                         <outlet property="subgroupsTableView" destination="aKV-hR-ufI" id="subgroups-table-outlet"/>
                         <outlet property="tripDateRangeLabel" destination="TKo-ff-Rl1" id="e8N-td-7Tt"/>
                         <outlet property="tripLocationLabel" destination="Njw-pN-cfk" id="zzP-iE-gnJ"/>
@@ -471,6 +522,7 @@
                         <segue destination="Ovq-4a-p51" kind="show" identifier="tripDetailsToMap" id="map-segue"/>
                         <segue destination="ewh-Dc-x06" kind="show" identifier="tripDetailsToChat" id="chat-segue"/>
                         <segue destination="9nZ-G9-4Ye" kind="show" identifier="tripDetailsToItinerary" id="itinerary-segue"/>
+                        <segue destination="Alerts-ID" kind="show" identifier="tripDetailsToAlerts" id="alerts-segue"/>
                         <segue destination="SS03-subgroup-details" kind="show" identifier="tripDetailsToSubgroupDetails" id="subgroup-details-segue"/>
                     </connections>
                 </viewController>
@@ -490,13 +542,21 @@
                         <action selector="itineraryButtonTapped:" destination="Y6W-OH-hqX" id="itinerary-tap-action"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="members-tap-gesture">
+                <tapGestureRecognizer id="alerts-tap-gesture">
                     <connections>
-                        <action selector="membersButtonTapped:" destination="Y6W-OH-hqX" id="members-tap-action"/>
+                        <action selector="alertsButtonTapped:" destination="Y6W-OH-hqX" id="alerts-tap-action"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1017.5572519083969" y="126.7605633802817"/>
+        </scene>
+        <!--AlertsViewController-->
+        <scene sceneID="Alerts-Scene">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SA07_ChatGeneral" referencedIdentifier="AlertsViewController" id="Alerts-ID" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Alerts-FirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="370"/>
         </scene>
         <!--SA03_InviteQR-->
         <scene sceneID="cVb-4c-mA4">
@@ -1011,10 +1071,12 @@
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
+        <image name="megaphone.fill" catalog="system" width="128" height="112"/>
         <image name="message.fill" catalog="system" width="128" height="104"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <image name="trash.fill" catalog="system" width="117" height="128"/>
@@ -1032,6 +1094,12 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
