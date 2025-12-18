@@ -274,8 +274,7 @@ class CS04_SubgroupFormVC: UITableViewController {
             
             DataModel.shared.deleteSubgroup(byId: subgroup.id)
             
-            // Simply dismiss - parent VC handles navigation
-            self.dismiss(animated: true)
+            performSegue(withIdentifier: "unwindToTripDetailsWithDeleteSubgroup", sender: nil)
         })
         present(alert, animated: true)
     }

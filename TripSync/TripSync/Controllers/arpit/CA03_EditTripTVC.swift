@@ -176,9 +176,7 @@ class EditTripTableViewController: UITableViewController {
             DataModel.shared.deleteTrip(byId: trip.id)
             
             // Changed: Dismiss then pop back one screen
-            self.dismiss(animated: true) {
-                self.navigationController?.popViewController(animated: true)
-            }
+            performSegue(withIdentifier: "unwindToHomeWithDeleteTrip", sender: nil)
         })
         present(alert, animated: true)
     }
