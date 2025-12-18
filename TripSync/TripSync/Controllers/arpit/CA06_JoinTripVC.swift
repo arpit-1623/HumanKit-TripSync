@@ -27,7 +27,6 @@ class JoinTripViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTextField()
-        drawViewfinderFrame()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,43 +55,6 @@ class JoinTripViewController: UIViewController {
     
     private func setupTextField() {
         inviteCodeTextField.delegate = self
-        inviteCodeTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-    }
-    
-    private func drawViewfinderFrame() {
-        // Draw corner brackets for viewfinder
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = UIColor.systemBlue.cgColor
-        shapeLayer.lineWidth = 4
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = .round
-        
-        let path = UIBezierPath()
-        let cornerLength: CGFloat = 30
-        let bounds = viewfinderOverlay.bounds
-        
-        // Top-left corner
-        path.move(to: CGPoint(x: 0, y: cornerLength))
-        path.addLine(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: cornerLength, y: 0))
-        
-        // Top-right corner
-        path.move(to: CGPoint(x: bounds.width - cornerLength, y: 0))
-        path.addLine(to: CGPoint(x: bounds.width, y: 0))
-        path.addLine(to: CGPoint(x: bounds.width, y: cornerLength))
-        
-        // Bottom-right corner
-        path.move(to: CGPoint(x: bounds.width, y: bounds.height - cornerLength))
-        path.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
-        path.addLine(to: CGPoint(x: bounds.width - cornerLength, y: bounds.height))
-        
-        // Bottom-left corner
-        path.move(to: CGPoint(x: cornerLength, y: bounds.height))
-        path.addLine(to: CGPoint(x: 0, y: bounds.height))
-        path.addLine(to: CGPoint(x: 0, y: bounds.height - cornerLength))
-        
-        shapeLayer.path = path.cgPath
-        viewfinderOverlay.layer.addSublayer(shapeLayer)
     }
     
     // MARK: - Camera Setup
@@ -218,10 +180,10 @@ class JoinTripViewController: UIViewController {
         validateAndJoinTrip(with: code)
     }
     
-    @objc private func textFieldDidChange() {
+    @IBAction private func textFieldDidChange(_ sender: UITextField) {
         // Auto-uppercase and format
-        if let text = inviteCodeTextField.text {
-            inviteCodeTextField.text = text.uppercased()
+        if let text = sender.text {
+            sender.text = text.uppercased()
         }
     }
     

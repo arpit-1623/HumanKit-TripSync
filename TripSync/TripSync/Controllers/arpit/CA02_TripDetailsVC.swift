@@ -48,7 +48,6 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         
         if let tripId = trip?.id {
             if let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
-                // Verify user still has access after refresh
                 guard updatedTrip.canUserAccess(currentUser.id) else {
                     navigationController?.popViewController(animated: true)
                     return
@@ -151,19 +150,6 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     @IBAction func alertsButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToAlerts", sender: nil)
-    }
-    
-    // MARK: - Helper Methods
-    private func showErrorAndDismiss() {
-        let alert = UIAlertController(
-            title: "Error",
-            message: "Unable to load trip details. Please try again.",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        })
-        present(alert, animated: true)
     }
     
     // MARK: - Navigation

@@ -47,9 +47,7 @@ class TripMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupMapView()
         setupLocationManager()
-        setupTableViews()
         loadTripData()
     }
     
@@ -77,33 +75,12 @@ class TripMapViewController: UIViewController {
         
         // Set initial collapsed state
         menuHeightConstraint.constant = collapsedHeight
-        
-        // Add tap gesture to menu for expanding
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
-        menuContainerView.addGestureRecognizer(tapGesture)
-    }
-    
-    private func setupMapView() {
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.showsCompass = true
-        mapView.showsScale = true
     }
     
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-    }
-    
-    private func setupTableViews() {
-        // Configure member table view
-        memberTableView.delegate = self
-        memberTableView.dataSource = self
-        
-        // Configure subgroup table view
-        subgroupTableView.delegate = self
-        subgroupTableView.dataSource = self
     }
     
     private func loadTripData() {
@@ -200,7 +177,13 @@ class TripMapViewController: UIViewController {
     @objc private func toggleMenu() {
         isMenuExpanded.toggle()
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut) {
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.5,
+            options: .curveEaseInOut
+        ) {
             self.menuHeightConstraint.constant = self.isMenuExpanded ? self.expandedHeight : self.collapsedHeight
             self.view.layoutIfNeeded()
         }
@@ -250,7 +233,6 @@ class TripMapViewController: UIViewController {
     
     private func startLocationUpdates() {
         locationManager.startUpdatingLocation()
-        // In a real app, you would also start a timer or observer to fetch other users' locations
     }
     
     private func stopLocationUpdates() {

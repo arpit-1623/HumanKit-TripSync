@@ -18,9 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-view-001">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsUserLocation="YES" showsCompass="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="map-view-001">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="map-delegate-001"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btn-focus-all-001" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
                                 <rect key="frame" x="325" y="637" width="48" height="48"/>
@@ -92,6 +95,10 @@
                                             <rect key="frame" x="0.0" y="63" width="361" height="17"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="Y6W-OH-hqX" id="table-members-datasource-001"/>
+                                                <outlet property="delegate" destination="Y6W-OH-hqX" id="table-members-delegate-001"/>
+                                            </connections>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemberMapCell" id="cell-member-001" customClass="MemberMapCell" customModule="TripSync" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="50" width="361" height="52"/>
@@ -199,6 +206,10 @@
                                             <rect key="frame" x="0.0" y="63" width="361" height="17"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="separatorInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="Y6W-OH-hqX" id="table-subgroups-datasource-001"/>
+                                                <outlet property="delegate" destination="Y6W-OH-hqX" id="table-subgroups-delegate-001"/>
+                                            </connections>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SubgroupCell" id="cell-subgroup-001" customClass="SubgroupMapCell" customModule="TripSync" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="50" width="361" height="60"/>
@@ -275,6 +286,10 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="tap-menu-gesture-001" appends="YES" id="gesture-connection-001"/>
+                                </connections>
                             </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -313,6 +328,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tap-menu-gesture-001">
+                    <connections>
+                        <action selector="toggleMenu" destination="Y6W-OH-hqX" id="action-tap-menu-001"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139" y="131"/>
         </scene>
