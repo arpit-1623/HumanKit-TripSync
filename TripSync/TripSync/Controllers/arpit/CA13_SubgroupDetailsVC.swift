@@ -23,6 +23,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     var subgroup: Subgroup?
     var trip: Trip?
     var members: [User] = []
+    private var invitationsByUserId: [UUID: Invitation] = [:]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -107,6 +108,14 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
         members = subgroup.memberIds.compactMap { memberId in
             DataModel.shared.getUser(byId: memberId)
         }
+        
+        // Load and cache accepted invitations for this subgroup
+        // Use uniquingKeysWith to handle duplicate invitations (keep most recent)
+        let acceptedInvitations = DataModel.shared.getInvitations(forSubgroupId: subgroup.id, status: .accepted)
+        invitationsByUserId = Dictionary(acceptedInvitations.map { ($0.invitedUserId, $0) }, 
+                                        uniquingKeysWith: { invitation1, invitation2 in
+                                            invitation1.createdAt > invitation2.createdAt ? invitation1 : invitation2
+                                        })
         
         membersTableView.reloadData()
     }
@@ -208,8 +217,17 @@ extension SubgroupDetailsViewController: UITableViewDataSource {
         
         let member = members[indexPath.row]
         
-        // First member in the subgroup is the admin (creator)
-        let role = (subgroup?.memberIds.first == member.id) ? "Admin" : "Member"
+        // Determine role based on invitation status
+        let role: String
+        if subgroup?.memberIds.first == member.id {
+            // First member is the subgroup creator/admin
+            role = "Admin"
+        } else {
+            // For members who joined via invitation or were added before invitation system,
+            // show blank as per requirements (accepted invitations don't show anything)
+            role = ""
+        }
+        
         cell.configure(with: member, role: role)
         
         return cell

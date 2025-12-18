@@ -589,6 +589,19 @@ class DataModel {
         invitations.removeAll(where: { $0.tripId == tripId && $0.invitedUserId == userId })
     }
     
+    public func getInvitations(forSubgroupId subgroupId: UUID, status: InvitationStatus? = nil) -> [Invitation] {
+        var filtered = invitations.filter {
+            $0.type == .subgroup &&
+            $0.subgroupId == subgroupId
+        }
+        
+        if let status = status {
+            filtered = filtered.filter { $0.status == status }
+        }
+        
+        return filtered.sorted { $0.createdAt > $1.createdAt }
+    }
+    
     // MARK: - Memory Data Model
     
     private func loadMemoriesFromFile() -> [Memory] {

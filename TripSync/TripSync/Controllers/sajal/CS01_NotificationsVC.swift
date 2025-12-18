@@ -168,17 +168,6 @@ class NotificationsViewController: UIViewController {
         loadInvitations()
     }
     
-    private func viewSubgroupDetails(_ invitation: Invitation) {
-        guard let subgroupId = invitation.subgroupId,
-              let subgroup = DataModel.shared.getSubgroup(byId: subgroupId) else {
-            showAlert(title: "Error", message: "Unable to load subgroup details")
-            return
-        }
-        
-        // TODO: Navigate to subgroup details
-        showAlert(title: subgroup.name, message: subgroup.description ?? "No description available")
-    }
-    
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -204,8 +193,6 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
                 self?.acceptInvitation(invitation)
             }, onDecline: { [weak self] in
                 self?.declineInvitation(invitation)
-            }, onViewDetails: { [weak self] in
-                self?.viewSubgroupDetails(invitation)
             })
             
             return cell
