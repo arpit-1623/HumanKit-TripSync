@@ -215,7 +215,10 @@ extension SubgroupDetailsViewController: UITableViewDataSource {
         }
         
         let member = members[indexPath.row]
-        cell.configure(with: member, role: "Member")
+        
+        // First member in the subgroup is the admin (creator)
+        let role = (subgroup?.memberIds.first == member.id) ? "Admin" : "Member"
+        cell.configure(with: member, role: role)
         
         return cell
     }

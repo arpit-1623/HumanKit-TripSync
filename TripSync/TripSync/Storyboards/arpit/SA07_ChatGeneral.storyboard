@@ -24,7 +24,6 @@
                                 <segments>
                                     <segment title="General"/>
                                     <segment title="Subgroups"/>
-                                    <segment title="Alerts"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="ChatContainer-ID" eventType="valueChanged" id="ChatContainer-SegmentAction"/>

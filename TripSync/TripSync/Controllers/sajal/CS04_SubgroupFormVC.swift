@@ -183,13 +183,18 @@ class CS04_SubgroupFormVC: UITableViewController {
             
             delegate?.didUpdateSubgroup(updatedSubgroup)
         } else {
-            // Create new subgroup - start with empty members
+            // Create new subgroup - add current user as member by default
+            guard let currentUser = DataModel.shared.getCurrentUser() else {
+                showAlert(title: "Error", message: "Unable to create subgroup")
+                return
+            }
+            
             let newSubgroup = Subgroup(
                 name: name,
                 description: description,
                 colorHex: selectedColorHex,
                 tripId: tripId,
-                memberIds: []  // Empty initially, members added via invite modal
+                memberIds: [currentUser.id]  // Add creator as member by default
             )
             
             delegate?.didCreateSubgroup(newSubgroup)

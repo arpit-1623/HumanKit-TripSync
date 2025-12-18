@@ -38,7 +38,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glass-container" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="125.66666666666664" width="322" height="58.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="glass-content-view">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58.333333333333329"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="current-info-stack">

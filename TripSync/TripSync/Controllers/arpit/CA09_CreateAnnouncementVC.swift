@@ -31,7 +31,6 @@ class CreateAnnouncementViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavigationBar()
     }
     
     // MARK: - Setup
@@ -129,22 +128,12 @@ class CreateAnnouncementViewController: UITableViewController {
         updatePrioritySelection()
     }
     
-    private func setupNavigationBar() {
-        title = "Announcement"
-        
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
-        navigationItem.leftBarButtonItem = cancelButton
-        
-        let sendButton = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendTapped))
-        navigationItem.rightBarButtonItem = sendButton
-    }
-    
     // MARK: - Actions
-    @objc private func cancelTapped() {
+    @IBAction func cancelTapped() {
         dismiss(animated: true)
     }
     
-    @objc private func sendTapped() {
+    @IBAction func sendTapped() {
         // Validate trip and user
         guard let trip = trip,
               let currentUser = DataModel.shared.getCurrentUser() else {
