@@ -39,6 +39,12 @@ class NotificationsViewController: UIViewController {
         loadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        // Post notification to refresh home screen badge when modal is dismissed
+        NotificationCenter.default.post(name: NSNotification.Name("RefreshNotificationBadge"), object: nil)
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         segmentedControl?.selectedSegmentIndex = 0

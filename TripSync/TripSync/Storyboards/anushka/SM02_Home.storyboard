@@ -41,7 +41,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next adventure?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-location-label">
                                                 <rect key="frame" x="0.0" y="70.333333333333314" width="345" height="28.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -88,13 +88,11 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to TripSync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-title">
                                                                     <rect key="frame" x="10.666666666666657" y="65" width="275.66666666666674" height="61"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a trip and take charge—or scan a QR code to join a trip your friends have already set in motion." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-description">
                                                                     <rect key="frame" x="0.0" y="130" width="297" height="61"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -250,7 +248,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="empty-state-button-stack" firstAttribute="leading" secondItem="empty-state-container" secondAttribute="leading" constant="16" id="empty-button-leading"/>
                                     <constraint firstItem="empty-state-button-stack" firstAttribute="top" secondItem="empty-welcome-card" secondAttribute="bottom" constant="16" id="empty-button-top"/>
@@ -783,6 +781,7 @@
                         <outlet property="upcomingEmptyStateView" destination="upcoming-empty-state" id="upcoming-empty-outlet"/>
                         <outlet property="upcomingTripsHeaderLabel" destination="FHJ-t9-hOQ" id="upcoming-header-outlet"/>
                         <segue destination="TdJ-fO-mnf" kind="show" identifier="homeToTripDetails" id="EUu-Ap-69w"/>
+                        <segue destination="BRf-9R-AH7" kind="presentation" identifier="homeToNotifications" id="homeToNotifications-segue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -891,6 +890,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="homeToNotifications-segue"/>
         <segue reference="d5t-qB-45f"/>
         <segue reference="aoR-8a-7oW"/>
     </inferredMetricsTieBreakers>
@@ -913,6 +913,9 @@
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -38,17 +38,25 @@ class CS05_InviteSubgroupMembersVC: UIViewController {
     
     // MARK: - Setup
     private func loadMembers() {
-        guard let trip = trip else { return }
+        guard let trip = trip, let subgroup = subgroup else { return }
         
-        // Load all trip members
+        // Get all pending invitations for this subgroup
+        let allInvitations = DataModel.shared.getAllInvitations()
+        let pendingInvitationUserIds = Set(allInvitations.filter {
+            $0.type == .subgroup &&
+            $0.status == .pending &&
+            $0.subgroupId == subgroup.id
+        }.map { $0.invitedUserId })
+        
+        // Load trip members who are not already in subgroup and don't have pending invitations
         allTripMembers = trip.memberIds.compactMap { memberId in
             DataModel.shared.getUser(byId: memberId)
+        }.filter { user in
+            !subgroup.memberIds.contains(user.id) && !pendingInvitationUserIds.contains(user.id)
         }
         
-        // Pre-select existing subgroup members
-        if let subgroup = subgroup {
-            selectedMemberIds = Set(subgroup.memberIds)
-        }
+        // Start with no pre-selections (we're inviting, not adding)
+        selectedMemberIds = []
     }
     
     private func setupNavigationBar() {
@@ -77,13 +85,14 @@ class CS05_InviteSubgroupMembersVC: UIViewController {
     
     private func updateAddButton() {
         let count = selectedMemberIds.count
-        let title = "Add (\(count))"
+        let title = count > 0 ? "Send (\(count))" : "Send"
         let addButton = UIBarButtonItem(
             title: title,
             style: .done,
             target: self,
             action: #selector(addButtonTapped)
         )
+        addButton.isEnabled = count > 0
         navigationItem.rightBarButtonItem = addButton
     }
     
@@ -103,8 +112,48 @@ class CS05_InviteSubgroupMembersVC: UIViewController {
     }
     
     @objc private func addButtonTapped() {
-        delegate?.didUpdateMembers(Array(selectedMemberIds))
-        dismiss(animated: true)
+        sendInvitations()
+    }
+    
+    private func sendInvitations() {
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let subgroup = subgroup,
+              let trip = trip else {
+            showAlert(title: "Error", message: "Unable to send invitations")
+            return
+        }
+        
+        guard !selectedMemberIds.isEmpty else {
+            showAlert(title: "No Members Selected", message: "Please select at least one member to invite")
+            return
+        }
+        
+        // Create invitation for each selected member
+        for memberId in selectedMemberIds {
+            let invitation = Invitation(
+                type: .subgroup,
+                tripId: trip.id,
+                subgroupId: subgroup.id,
+                invitedByUserId: currentUser.id,
+                invitedUserId: memberId
+            )
+            DataModel.shared.saveInvitation(invitation)
+        }
+        
+        // Show success message
+        let memberCount = selectedMemberIds.count
+        let message = memberCount == 1 ? "Invitation sent!" : "\(memberCount) invitations sent!"
+        showAlert(title: "Success", message: message) {
+            self.dismiss(animated: true)
+        }
+    }
+    
+    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        })
+        present(alert, animated: true)
     }
 }
 

@@ -186,19 +186,11 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     
     // MARK: - InviteSubgroupMembersDelegate
     func didUpdateMembers(_ memberIds: [UUID]) {
-        guard var subgroup = subgroup else { return }
+        // Note: This delegate method is no longer used since we switched to invitation-based flow
+        // Invitations are sent instead of directly adding members
+        // Keeping this for backward compatibility, but it won't be called from the new invite flow
         
-        // Update subgroup with new members
-        subgroup.memberIds = memberIds
-        subgroup.updatedAt = Date()
-        
-        // Save to DataModel
-        DataModel.shared.saveSubgroup(subgroup)
-        
-        // Update local reference
-        self.subgroup = subgroup
-        
-        // Reload UI
+        // Simply reload the UI in case anything changed
         loadData()
     }
 }
