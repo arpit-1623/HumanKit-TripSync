@@ -142,6 +142,9 @@ class EditTripTableViewController: UITableViewController {
         trip.coverImageURL = selectedImageURL
         trip.coverImagePhotographerName = selectedPhotographerName
         
+        // Update status based on new dates
+        trip.updateStatusBasedOnDates()
+        
         // Save to DataModel
         DataModel.shared.saveTrip(trip)
         
