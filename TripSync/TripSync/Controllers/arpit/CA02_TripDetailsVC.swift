@@ -11,6 +11,7 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     // MARK: - Outlets
     @IBOutlet weak var backgroundImageView: UIImageView?
+    @IBOutlet weak var subgroupsEmptyStateView: UIView?
     @IBOutlet weak var subgroupsTableView: UITableView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
@@ -64,6 +65,12 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     func loadData() {
         guard let trip = trip else { return }
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
+        
+        // Show/hide empty state
+        let isEmpty = subgroups.isEmpty
+        subgroupsEmptyStateView?.isHidden = !isEmpty
+        subgroupsTableView.isHidden = isEmpty
+        
         subgroupsTableView.reloadData()
     }
     
