@@ -11,6 +11,7 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     // MARK: - Outlets
     @IBOutlet weak var backgroundImageView: UIImageView?
+    @IBOutlet weak var subgroupsEmptyStateView: UIView?
     @IBOutlet weak var subgroupsTableView: UITableView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
@@ -63,6 +64,12 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     func loadData() {
         guard let trip = trip else { return }
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
+        
+        // Show/hide empty state
+        let isEmpty = subgroups.isEmpty
+        subgroupsEmptyStateView?.isHidden = !isEmpty
+        subgroupsTableView.isHidden = isEmpty
+        
         subgroupsTableView.reloadData()
     }
     
@@ -124,21 +131,25 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         performSegue(withIdentifier: "tripDetailsToEditTrip", sender: nil)
     }
     
+    @IBAction func membersMenuTapped(_ sender: Any) {
+        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    }
+    
     // MARK: - Button Actions
     @IBAction func mapButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToMap", sender: self)
-    }
-    
-    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
     }
     
     @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToItinerary", sender: nil)
     }
     
-    @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
+    }
+    
+    @IBAction func alertsButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToAlerts", sender: nil)
     }
     
     // MARK: - Navigation
@@ -201,6 +212,9 @@ extension TripDetailsViewController {
         } else if segue.identifier == "tripDetailsToItinerary",
                   let itineraryVC = segue.destination as? CS02_ItineraryVC {
             itineraryVC.trip = self.trip
+        } else if segue.identifier == "tripDetailsToAlerts",
+                  let alertsVC = segue.destination as? AlertsViewController {
+            alertsVC.trip = self.trip
         } else if segue.identifier == "tripDetailsToMembers",
                   let membersVC = segue.destination as? TripMembersViewController {
             membersVC.trip = self.trip

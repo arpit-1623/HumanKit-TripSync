@@ -93,11 +93,11 @@ class CreateAnnouncementViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    @objc private func cancelTapped() {
+    @IBAction func cancelTapped() {
         dismiss(animated: true)
     }
     
-    @objc private func sendTapped() {
+    @IBAction func sendTapped() {
         // Validate trip and user
         guard let trip = trip,
               let currentUser = DataModel.shared.getCurrentUser() else {

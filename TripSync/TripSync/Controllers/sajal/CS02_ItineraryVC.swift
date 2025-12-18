@@ -12,6 +12,9 @@ class CS02_ItineraryVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var subgroupCollectionView: UICollectionView!
     @IBOutlet weak var itineraryTableView: UITableView!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var emptyStateTitleLabel: UILabel!
+    @IBOutlet weak var emptyStateDescriptionLabel: UILabel!
     
     // MARK: - Properties
     var trip: Trip?
@@ -163,6 +166,23 @@ class CS02_ItineraryVC: UIViewController {
         // Convert to sorted array
         groupedStops = grouped.map { (date: $0.key, stops: $0.value.sorted { $0.time < $1.time }) }
             .sorted { $0.date < $1.date }
+        
+        // Show/hide empty state view and update text based on filter
+        let isEmpty = groupedStops.isEmpty
+        emptyStateView.isHidden = !isEmpty
+        
+        if isEmpty {
+            // Update empty state text based on selected filter
+            if let selectedId = selectedSubgroupId, selectedId == myItineraryFilterId {
+                // MY filter selected
+                emptyStateTitleLabel.text = "No My Itinerary Yet"
+                emptyStateDescriptionLabel.text = "Swipe right or left from All or other subgroups to add items to My Itinerary."
+            } else {
+                // ALL or specific subgroup selected
+                emptyStateTitleLabel.text = "No Itinerary Yet"
+                emptyStateDescriptionLabel.text = "Plan your trip by adding stops to your itinerary. Tap the + button above to create your first stop."
+            }
+        }
         
         itineraryTableView.reloadData()
     }

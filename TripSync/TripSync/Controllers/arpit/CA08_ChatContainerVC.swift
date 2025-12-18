@@ -18,7 +18,6 @@ class ChatContainerViewController: UIViewController {
     
     private var generalChatVC: GeneralChatViewController?
     private var subgroupsListVC: SubgroupsListViewController?
-    private var alertsVC: AlertsViewController?
     
     private var currentViewController: UIViewController?
     
@@ -57,7 +56,6 @@ class ChatContainerViewController: UIViewController {
 
             generalChatVC?.trip = trip
             subgroupsListVC?.trip = trip
-            alertsVC?.trip = trip
         }
     }
     
@@ -74,11 +72,6 @@ class ChatContainerViewController: UIViewController {
         if let subgroupsVC = chatStoryboard.instantiateViewController(withIdentifier: "SubgroupsListViewController") as? SubgroupsListViewController {
             subgroupsVC.trip = self.trip
             subgroupsListVC = subgroupsVC
-        }
-        
-        if let alertVC = chatStoryboard.instantiateViewController(withIdentifier: "AlertsViewController") as? AlertsViewController {
-            alertVC.trip = self.trip
-            alertsVC = alertVC
         }
     }
     
@@ -98,8 +91,6 @@ class ChatContainerViewController: UIViewController {
             viewControllerToShow = generalChatVC
         case 1:
             viewControllerToShow = subgroupsListVC
-        case 2:
-            viewControllerToShow = alertsVC
         default:
             break
         }
