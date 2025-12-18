@@ -105,6 +105,12 @@ class HomeViewController: UIViewController {
         updateGreeting()
         updateCurrentTripUI()
         upcomingCollectionView.reloadData()
+        
+        // Force layout update to ensure scroll view recognizes content size
+        DispatchQueue.main.async { [weak self] in
+            self?.mainScrollView?.setNeedsLayout()
+            self?.mainScrollView?.layoutIfNeeded()
+        }
     }
     
     // MARK: - UI Update

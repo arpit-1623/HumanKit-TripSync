@@ -573,10 +573,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aXo-Jp-dXp">
-                                                <rect key="frame" x="0.0" y="625" width="393" height="220"/>
+                                                <rect key="frame" x="0.0" y="625" width="393" height="280"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="220" id="upcoming-height"/>
+                                                    <constraint firstAttribute="height" constant="280" id="upcoming-height"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="16" id="upcoming-layout">
                                                     <size key="itemSize" width="280" height="200"/>
@@ -657,12 +657,13 @@
                                             <constraint firstAttribute="trailing" secondItem="FHJ-t9-hOQ" secondAttribute="trailing" constant="20" id="Rcx-k8-vWu"/>
                                             <constraint firstItem="DcR-3Y-9pP" firstAttribute="top" secondItem="DeJ-8a-bjH" secondAttribute="bottom" constant="16" id="UQM-jP-RK1"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="top" secondItem="DcR-3Y-9pP" secondAttribute="bottom" constant="24" id="c2F-fj-Vfi"/>
-                                            <constraint firstAttribute="bottom" secondItem="aXo-Jp-dXp" secondAttribute="bottom" constant="20" id="contentView-bottom"/>
+                                            <constraint firstAttribute="bottom" secondItem="aXo-Jp-dXp" secondAttribute="bottom" constant="60" id="contentView-bottom"/>
                                             <constraint firstItem="DeJ-8a-bjH" firstAttribute="top" secondItem="greeting-stack" secondAttribute="bottom" constant="20" id="cpG-Wb-S4M"/>
                                             <constraint firstAttribute="trailing" secondItem="DeJ-8a-bjH" secondAttribute="trailing" constant="16" id="dWL-yR-ZRa"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="24" id="greeting-leading"/>
                                             <constraint firstItem="greeting-stack" firstAttribute="top" secondItem="K7p-fh-dce" secondAttribute="top" constant="20" id="greeting-top"/>
                                             <constraint firstAttribute="trailing" secondItem="greeting-stack" secondAttribute="trailing" constant="24" id="greeting-trailing"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="950" id="content-min-height"/>
                                             <constraint firstItem="FHJ-t9-hOQ" firstAttribute="leading" secondItem="K7p-fh-dce" secondAttribute="leading" constant="20" id="t70-3G-fhK"/>
                                         </constraints>
                                     </view>
