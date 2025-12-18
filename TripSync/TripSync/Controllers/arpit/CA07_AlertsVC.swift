@@ -51,10 +51,6 @@ class AlertsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func addAnnouncementTapped() {
-        performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
-    }
-    
     @IBAction func createAnnouncementTapped() {
         performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
     }

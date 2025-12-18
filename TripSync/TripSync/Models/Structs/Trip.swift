@@ -83,4 +83,15 @@ struct Trip: Codable {
     var numberOfDays: Int {
         return Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 0
     }
+    
+    mutating func updateStatusBasedOnDates() {
+        let now = Date()
+        if startDate > now {
+            self.status = .upcoming
+        } else if endDate < now {
+            self.status = .past
+        } else {
+            self.status = .current
+        }
+    }
 }

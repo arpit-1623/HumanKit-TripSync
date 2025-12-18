@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -288,11 +288,11 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P72-Mz-lzs">
                                                                 <rect key="frame" x="319" y="0.0" width="34" height="34"/>
                                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="34" id="create-button-width"/>
                                                                     <constraint firstAttribute="height" constant="34" id="l8f-fF-wWR"/>
                                                                 </constraints>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="plus" catalog="system">
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
@@ -312,7 +312,7 @@
                                                         <rect key="frame" x="0.0" y="54" width="393" height="443"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-stack">
-                                                                <rect key="frame" x="96.666666666666686" y="157.33333333333337" width="200" height="128"/>
+                                                                <rect key="frame" x="96.666666666666686" y="60" width="200" height="128"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-icon">
                                                                         <rect key="frame" x="74.999999999999986" y="1.6666666666666643" width="50" height="48"/>
@@ -329,7 +329,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-description">
-                                                                        <rect key="frame" x="4" y="94.333333333333258" width="191.66666666666666" height="33.666666666666657"/>
+                                                                        <rect key="frame" x="4" y="94.333333333333371" width="191.66666666666666" height="33.666666666666657"/>
                                                                         <string key="text">Create subgroups to organize
 members and activities</string>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1076,6 +1076,7 @@ members and activities</string>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <image name="trash.fill" catalog="system" width="117" height="128"/>
