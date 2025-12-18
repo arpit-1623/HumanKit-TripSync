@@ -20,6 +20,249 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-container" userLabel="Empty State Container">
+                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="empty-greeting-stack" userLabel="Empty Greeting Stack">
+                                        <rect key="frame" x="24" y="20" width="345" height="99"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Evening, Aditya" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-greeting-label">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="33.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready to plan your" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-subgreeting-label">
+                                                <rect key="frame" x="0.0" y="37.666666666666657" width="345" height="28.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next adventure?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-location-label">
+                                                <rect key="frame" x="0.0" y="70.333333333333314" width="345" height="28.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemGray2Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-welcome-card" userLabel="Empty Welcome Card">
+                                        <rect key="frame" x="16" y="139" width="361" height="300"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createTripBg" translatesAutoresizingMaskIntoConstraints="NO" id="empty-card-bg-image">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="300"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-card-gradient" userLabel="Gradient Overlay">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="300"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="25"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <visualEffectView opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="empty-card-blur" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="12" width="337" height="276"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="empty-card-blur-content">
+                                                    <rect key="frame" x="0.0" y="0.0" width="337" height="276"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="empty-card-content-stack">
+                                                            <rect key="frame" x="20" y="20" width="297" height="191"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suitcase.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-icon">
+                                                                    <rect key="frame" x="103.66666666666666" y="1" width="90" height="59"/>
+                                                                    <color key="tintColor" name="ProminentColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="90" id="empty-icon-height"/>
+                                                                        <constraint firstAttribute="width" constant="90" id="empty-icon-width"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to TripSync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-title">
+                                                                    <rect key="frame" x="10.666666666666657" y="65" width="275.66666666666674" height="61"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a trip and take charge—or scan a QR code to join a trip your friends have already set in motion." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-description">
+                                                                    <rect key="frame" x="0.0" y="130" width="297" height="61"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="empty-state-description" firstAttribute="leading" secondItem="empty-card-content-stack" secondAttribute="leading" id="card-desc-leading"/>
+                                                                <constraint firstItem="empty-state-description" firstAttribute="trailing" secondItem="empty-card-content-stack" secondAttribute="trailing" id="card-desc-trailing"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="empty-card-content-stack" secondAttribute="bottom" constant="20" id="card-content-bottom"/>
+                                                        <constraint firstItem="empty-card-content-stack" firstAttribute="leading" secondItem="empty-card-blur-content" secondAttribute="leading" constant="20" id="card-content-leading"/>
+                                                        <constraint firstItem="empty-card-content-stack" firstAttribute="top" secondItem="empty-card-blur-content" secondAttribute="top" constant="20" id="card-content-top"/>
+                                                        <constraint firstAttribute="trailing" secondItem="empty-card-content-stack" secondAttribute="trailing" constant="20" id="card-content-trailing"/>
+                                                    </constraints>
+                                                </view>
+                                                <blurEffect style="systemThinMaterial"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0.0" height="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </visualEffectView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstItem="empty-card-blur" firstAttribute="top" secondItem="empty-welcome-card" secondAttribute="top" constant="12" id="WAf-6C-CwK"/>
+                                            <constraint firstAttribute="bottom" secondItem="empty-card-bg-image" secondAttribute="bottom" id="card-bg-bottom"/>
+                                            <constraint firstItem="empty-card-bg-image" firstAttribute="leading" secondItem="empty-welcome-card" secondAttribute="leading" id="card-bg-leading"/>
+                                            <constraint firstItem="empty-card-bg-image" firstAttribute="top" secondItem="empty-welcome-card" secondAttribute="top" id="card-bg-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="empty-card-bg-image" secondAttribute="trailing" id="card-bg-trailing"/>
+                                            <constraint firstAttribute="bottom" secondItem="empty-card-blur" secondAttribute="bottom" constant="12" id="card-blur-bottom"/>
+                                            <constraint firstItem="empty-card-blur" firstAttribute="leading" secondItem="empty-welcome-card" secondAttribute="leading" constant="12" id="card-blur-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="empty-card-blur" secondAttribute="trailing" constant="12" id="card-blur-trailing"/>
+                                            <constraint firstAttribute="bottom" secondItem="empty-card-gradient" secondAttribute="bottom" id="card-gradient-bottom"/>
+                                            <constraint firstItem="empty-card-gradient" firstAttribute="leading" secondItem="empty-welcome-card" secondAttribute="leading" id="card-gradient-leading"/>
+                                            <constraint firstItem="empty-card-gradient" firstAttribute="top" secondItem="empty-welcome-card" secondAttribute="top" id="card-gradient-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="empty-card-gradient" secondAttribute="trailing" id="card-gradient-trailing"/>
+                                            <constraint firstAttribute="height" constant="300" id="empty-card-height"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <real key="value" value="0.12"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.0" height="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="empty-state-button-stack">
+                                        <rect key="frame" x="16" y="455" width="361" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="empty-create-trip-button" userLabel="Create Trip Button" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="60"/>
+                                                <color key="backgroundColor" name="ProminentColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="empty-create-height"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="tintColor" name="ProminentColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="  Create Trip" cornerStyle="large" titleAlignment="center">
+                                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="medium" renderingMode="hierarchical"/>
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" name="ProminentColor"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.14999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0.0" height="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="jcL-mB-nvm" kind="show" id="empty-create-segue"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="empty-join-trip-button" userLabel="Join Trip Button" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="186.66666666666663" y="0.0" width="174.33333333333337" height="60"/>
+                                                <color key="backgroundColor" name="ProminentColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="empty-join-height"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="tintColor" name="ProminentColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="  Join Trip" cornerStyle="large" titleAlignment="center">
+                                                    <imageReference key="image" image="person.badge.plus.fill" catalog="system" symbolScale="medium" renderingMode="hierarchical"/>
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" name="ProminentColor"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.14999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0.0" height="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="2F6-r0-Z46" kind="show" id="empty-join-segue"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="empty-button-stack-height"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="empty-state-button-stack" firstAttribute="leading" secondItem="empty-state-container" secondAttribute="leading" constant="16" id="empty-button-leading"/>
+                                    <constraint firstItem="empty-state-button-stack" firstAttribute="top" secondItem="empty-welcome-card" secondAttribute="bottom" constant="16" id="empty-button-top"/>
+                                    <constraint firstItem="empty-state-button-stack" firstAttribute="trailing" secondItem="empty-state-container" secondAttribute="trailing" constant="-16" id="empty-button-trailing"/>
+                                    <constraint firstItem="empty-welcome-card" firstAttribute="leading" secondItem="empty-state-container" secondAttribute="leading" constant="16" id="empty-card-leading"/>
+                                    <constraint firstItem="empty-welcome-card" firstAttribute="top" secondItem="empty-greeting-stack" secondAttribute="bottom" constant="20" id="empty-card-top"/>
+                                    <constraint firstItem="empty-welcome-card" firstAttribute="trailing" secondItem="empty-state-container" secondAttribute="trailing" constant="-16" id="empty-card-trailing"/>
+                                    <constraint firstItem="empty-greeting-stack" firstAttribute="leading" secondItem="empty-state-container" secondAttribute="leading" constant="24" id="empty-greeting-leading"/>
+                                    <constraint firstItem="empty-greeting-stack" firstAttribute="top" secondItem="empty-state-container" secondAttribute="top" constant="20" id="empty-greeting-top"/>
+                                    <constraint firstItem="empty-greeting-stack" firstAttribute="trailing" secondItem="empty-state-container" secondAttribute="trailing" constant="-24" id="empty-greeting-trailing"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZb-8e-gHd">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
@@ -437,6 +680,10 @@
                         <constraints>
                             <constraint firstItem="hZb-8e-gHd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="4gP-HV-zUu"/>
                             <constraint firstAttribute="bottom" secondItem="hZb-8e-gHd" secondAttribute="bottom" id="YVe-PY-ug8"/>
+                            <constraint firstItem="empty-state-container" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="empty-container-bottom"/>
+                            <constraint firstItem="empty-state-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="empty-container-leading"/>
+                            <constraint firstItem="empty-state-container" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="empty-container-top"/>
+                            <constraint firstItem="empty-state-container" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="empty-container-trailing"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hZb-8e-gHd" secondAttribute="trailing" id="idc-DL-PIs"/>
                             <constraint firstItem="hZb-8e-gHd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="tYo-iM-QSo"/>
                         </constraints>
@@ -455,9 +702,15 @@
                         <outlet property="currentTripLocationLabel" destination="k2u-Ma-DfK" id="location-outlet"/>
                         <outlet property="currentTripNameLabel" destination="kd3-UI-fSE" id="name-outlet"/>
                         <outlet property="currentTripRedirectButton" destination="3Yu-JI-Wmz" id="redirect-outlet"/>
+                        <outlet property="emptyGreetingLabel" destination="empty-greeting-label" id="empty-greeting-outlet"/>
+                        <outlet property="emptyLocationLabel" destination="empty-location-label" id="empty-location-outlet"/>
+                        <outlet property="emptyStateContainer" destination="empty-state-container" id="empty-container-outlet"/>
                         <outlet property="emptyStateView" destination="emptyStateStack" id="Dbm-hq-vFe"/>
+                        <outlet property="emptySubGreetingLabel" destination="empty-subgreeting-label" id="empty-subgreeting-outlet"/>
                         <outlet property="greetingLabel" destination="greeting-label" id="greeting-outlet"/>
+                        <outlet property="greetingStack" destination="greeting-stack" id="greeting-stack-outlet"/>
                         <outlet property="locationLabel" destination="location-label" id="location-label-outlet"/>
+                        <outlet property="mainScrollView" destination="hZb-8e-gHd" id="main-scroll-outlet"/>
                         <outlet property="subGreetingLabel" destination="subgreeting-label" id="subgreeting-outlet"/>
                         <outlet property="upcomingCollectionView" destination="aXo-Jp-dXp" id="collection-outlet"/>
                         <segue destination="TdJ-fO-mnf" kind="show" identifier="homeToTripDetails" id="EUu-Ap-69w"/>
@@ -568,6 +821,10 @@
             <point key="canvasLocation" x="1063.3587786259541" y="130.98591549295776"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="d5t-qB-45f"/>
+        <segue reference="aoR-8a-7oW"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="110"/>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
@@ -578,6 +835,7 @@
         <image name="map" catalog="system" width="128" height="112"/>
         <image name="person.badge.plus.fill" catalog="system" width="128" height="126"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="suitcase.fill" catalog="system" width="128" height="100"/>
         <namedColor name="ProminentColor">
             <color red="1" green="0.51372549019607838" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -9,6 +9,7 @@ import UIKit
 
 class TripsViewController: UIViewController {
     // MARK: - Outlets
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var currentTripCard: UIView!
@@ -18,6 +19,9 @@ class TripsViewController: UIViewController {
     
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var pastCollectionView: UICollectionView!
+    
+    // MARK: - Outlets - Empty State
+    @IBOutlet weak var emptyStateContainer: UIView!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -44,6 +48,17 @@ class TripsViewController: UIViewController {
         
         // Get only trips where current user is a member
         let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        
+        // Check if user has any trips and toggle empty state
+        if userTrips.isEmpty {
+            mainScrollView?.isHidden = true
+            emptyStateContainer?.isHidden = false
+            view.bringSubviewToFront(emptyStateContainer)
+            return
+        } else {
+            mainScrollView?.isHidden = false
+            emptyStateContainer?.isHidden = true
+        }
         
         // Filter by status
         currentTrip = userTrips.first { $0.status == .current }

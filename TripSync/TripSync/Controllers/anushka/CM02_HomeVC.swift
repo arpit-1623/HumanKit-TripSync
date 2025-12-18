@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     // MARK: - Outlets - Greeting Section
+    @IBOutlet weak var greetingStack: UIStackView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var subGreetingLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -23,6 +24,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripRedirectButton: UIButton!
     @IBOutlet weak var emptyStateView: UIStackView!
     
+    // MARK: - Outlets - Empty State
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var emptyStateContainer: UIView!
+    @IBOutlet weak var emptyGreetingLabel: UILabel!
+    @IBOutlet weak var emptySubGreetingLabel: UILabel!
+    @IBOutlet weak var emptyLocationLabel: UILabel!
+    
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     
@@ -35,6 +43,26 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
+        
+        // Listen for trip deletion notifications
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTripDeleted),
+            name: NSNotification.Name("TripDeleted"),
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func handleTripDeleted() {
+        // Ensure we're on the main thread
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            loadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +87,18 @@ class HomeViewController: UIViewController {
         
         // Get only trips where current user is a member
         let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        
+        // Check if user has any trips and toggle empty state
+        if userTrips.isEmpty {
+            mainScrollView?.isHidden = true
+            greetingStack?.isHidden = true
+            emptyStateContainer?.isHidden = false
+            view.bringSubviewToFront(emptyStateContainer)
+        } else {
+            mainScrollView?.isHidden = false
+            greetingStack?.isHidden = false
+            emptyStateContainer?.isHidden = true
+        }
         
         currentTrip = userTrips.first { $0.status == .current }
         upcomingTrips = userTrips.filter { $0.status == .upcoming }
@@ -87,7 +127,11 @@ class HomeViewController: UIViewController {
         
         let firstName = currentUser.fullName.components(separatedBy: " ").first ?? currentUser.fullName
         
+        // Update regular greeting
         greetingLabel?.text = "\(timeGreeting), \(firstName)"
+        
+        // Update empty state greeting
+        emptyGreetingLabel?.text = "\(timeGreeting), \(firstName)"
         
         if let trip = currentTrip {
             subGreetingLabel?.text = "Have fun on your trip to"
@@ -95,6 +139,10 @@ class HomeViewController: UIViewController {
         } else {
             subGreetingLabel?.text = "Ready to plan your"
             locationLabel?.text = "next adventure?"
+            
+            // Update empty state greeting text
+            emptySubGreetingLabel?.text = "Ready to plan your"
+            emptyLocationLabel?.text = "next adventure?"
         }
     }
     
