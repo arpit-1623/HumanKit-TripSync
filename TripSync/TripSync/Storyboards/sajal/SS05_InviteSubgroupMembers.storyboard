@@ -104,7 +104,13 @@
                             <constraint firstItem="safe-area" firstAttribute="trailing" secondItem="members-tableview" secondAttribute="trailing" id="tableview-trailing"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Invite" id="nav-item"/>
+                    <navigationItem key="navigationItem" title="Invite" id="nav-item">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="close-button">
+                            <connections>
+                                <action selector="closeButtonTapped" destination="invite-members-vc" id="close-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="membersTableView" destination="members-tableview" id="tableview-outlet"/>
                     </connections>

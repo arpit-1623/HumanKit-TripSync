@@ -73,11 +73,6 @@ class CS02_ItineraryVC: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         title = "Itinerary"
-        
-        // Add button
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
-        
         view.backgroundColor = .systemBackground
     }
     
@@ -279,7 +274,7 @@ class CS02_ItineraryVC: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func addButtonTapped() {
+    @IBAction private func addButtonTapped() {
         performSegue(withIdentifier: "showAddStop", sender: nil)
     }
     

@@ -93,12 +93,10 @@ class CS03_AddItineraryStopVC: UITableViewController {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.minimumDate = Date()
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
         
         // Configure time picker
         timePicker.datePickerMode = .time
         timePicker.preferredDatePickerStyle = .wheels
-        timePicker.addTarget(self, action: #selector(timePickerChanged), for: .valueChanged)
         
         // Set default date to today
         datePicker.date = Date()
@@ -116,11 +114,11 @@ class CS03_AddItineraryStopVC: UITableViewController {
         timeValueLabel.text = timeFormatter.string(from: timePicker.date)
     }
     
-    @objc private func datePickerChanged() {
+    @IBAction private func datePickerChanged() {
         dateValueLabel.text = dateFormatter.string(from: datePicker.date)
     }
     
-    @objc private func timePickerChanged() {
+    @IBAction private func timePickerChanged() {
         timeValueLabel.text = timeFormatter.string(from: timePicker.date)
     }
     

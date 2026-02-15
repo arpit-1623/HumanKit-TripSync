@@ -294,6 +294,7 @@
                     <navigationItem key="navigationItem" title="Itinerary" id="nav-item-itinerary">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="add-stop-bar-btn">
                             <connections>
+                                <action selector="addButtonTapped" destination="Y6W-OH-hqX" id="add-button-action"/>
                                 <segue destination="add-stop-nav-controller" kind="presentation" identifier="showAddStop" modalPresentationStyle="formSheet" id="segue-add-stop"/>
                             </connections>
                         </barButtonItem>
@@ -454,6 +455,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="date-picker">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
+                                                    <connections>
+                                                        <action selector="datePickerChanged" destination="add-stop-vc" eventType="valueChanged" id="date-picker-action"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -504,6 +508,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="time-picker">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="216"/>
+                                                    <connections>
+                                                        <action selector="timePickerChanged" destination="add-stop-vc" eventType="valueChanged" id="time-picker-action"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

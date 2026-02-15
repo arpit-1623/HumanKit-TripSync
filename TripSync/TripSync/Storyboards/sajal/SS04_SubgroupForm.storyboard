@@ -335,7 +335,18 @@
                             <outlet property="delegate" destination="subgroup-form-vc" id="delegate-connection"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item"/>
+                    <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="close-button">
+                            <connections>
+                                <action selector="closeButtonTapped" destination="subgroup-form-vc" id="close-action"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="save-button" style="done">
+                            <connections>
+                                <action selector="saveButtonTapped" destination="subgroup-form-vc" id="save-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
                         <outlet property="color1Button" destination="color-btn-1" id="color1-outlet"/>

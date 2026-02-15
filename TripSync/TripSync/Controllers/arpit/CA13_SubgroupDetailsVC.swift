@@ -55,10 +55,6 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     private func setupUI() {
         title = "Circle Details"
         
-        // Add edit button to navigation bar
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        navigationItem.rightBarButtonItem = editButton
-        
         // Configure logo view
         logoView.layer.cornerRadius = 30
         logoView.layer.masksToBounds = true
@@ -121,7 +117,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     }
     
     // MARK: - Actions
-    @objc private func editButtonTapped() {
+    @IBAction private func editButtonTapped() {
         performSegue(withIdentifier: "subgroupDetailsToEdit", sender: subgroup)
     }
     

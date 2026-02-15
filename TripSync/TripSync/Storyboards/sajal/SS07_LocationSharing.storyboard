@@ -42,6 +42,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="location-toggle">
                                                     <rect key="frame" x="272" y="14" width="63" height="28"/>
+                                                    <connections>
+                                                        <action selector="toggleChanged:" destination="LocationSharingVC" eventType="valueChanged" id="toggle-action"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
