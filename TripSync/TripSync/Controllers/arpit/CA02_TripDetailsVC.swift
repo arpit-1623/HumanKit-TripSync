@@ -18,10 +18,17 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     @IBOutlet weak var tripDateRangeLabel: UILabel!
     @IBOutlet weak var tripMembersLabel: UILabel!
     @IBOutlet weak var imageAttributionLabel: UILabel?
+    @IBOutlet weak var upcomingStopContainerView: UIView?
+    @IBOutlet weak var upcomingStopTitleLabel: UILabel?
+    @IBOutlet weak var upcomingStopTimeLabel: UILabel?
+    @IBOutlet weak var upcomingStopLocationLabel: UILabel?
+    @IBOutlet weak var upcomingStopIconImageView: UIImageView?
+    @IBOutlet weak var upcomingStopEmptyStateView: UIView?
     
     // MARK: - Properties
     var trip: Trip?
     var subgroups: [Subgroup] = []
+    var upcomingStop: ItineraryStop?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +79,53 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         subgroupsTableView.isHidden = isEmpty
         
         subgroupsTableView.reloadData()
+        
+        // Load upcoming stop
+        loadUpcomingStop()
+    }
+    
+    private func loadUpcomingStop() {
+        guard let trip = trip else { return }
+        let allStops = DataModel.shared.getItineraryStops(forTripId: trip.id)
+        let now = Date()
+        upcomingStop = allStops.filter { $0.time > now }.first
+        
+        setupUpcomingStopUI()
+    }
+    
+    private func setupUpcomingStopUI() {
+        if let stop = upcomingStop {
+            // Show upcoming stop, hide empty state
+            upcomingStopContainerView?.isHidden = false
+            upcomingStopEmptyStateView?.isHidden = true
+            
+            // Configure title (truncate if needed)
+            if stop.title.count > 25 {
+                upcomingStopTitleLabel?.text = String(stop.title.prefix(25)) + "..."
+            } else {
+                upcomingStopTitleLabel?.text = stop.title
+            }
+            
+            // Configure time
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "h:mm a"
+            upcomingStopTimeLabel?.text = timeFormatter.string(from: stop.time)
+            
+            // Configure location
+            upcomingStopLocationLabel?.text = stop.location
+            
+            // Configure icon
+            if let category = stop.category {
+                upcomingStopIconImageView?.image = UIImage(systemName: category)
+            } else {
+                upcomingStopIconImageView?.image = UIImage(systemName: "mappin.and.ellipse")
+            }
+            upcomingStopIconImageView?.tintColor = .systemOrange
+        } else {
+            // Hide upcoming stop, show empty state
+            upcomingStopContainerView?.isHidden = true
+            upcomingStopEmptyStateView?.isHidden = false
+        }
     }
     
     // MARK: - Setup

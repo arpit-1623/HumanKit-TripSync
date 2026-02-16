@@ -273,8 +273,91 @@
                                                     </visualEffectView>
                                                 </subviews>
                                             </stackView>
+                                            <!-- Upcoming Itinerary Card -->
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-stop-card" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="403.33" width="353" height="76"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="upcoming-card-content">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-main-stack">
+                                                            <rect key="frame" x="16" y="16" width="321" height="44"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.and.ellipse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-icon">
+                                                                    <rect key="frame" x="0.0" y="7" width="32" height="30"/>
+                                                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="32" id="upcoming-icon-width"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="upcoming-icon-height"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-text-stack">
+                                                                    <rect key="frame" x="48" y="0.0" width="179" height="44"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Museum Visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-title">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="179" height="20"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-location-stack">
+                                                                            <rect key="frame" x="0.0" y="24" width="179" height="20"/>
+                                                                            <subviews>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-location-icon">
+                                                                                    <rect key="frame" x="0.0" y="0.67" width="16" height="19"/>
+                                                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="16" id="upcoming-loc-icon-width"/>
+                                                                                        <constraint firstAttribute="height" constant="16" id="upcoming-loc-icon-height"/>
+                                                                                    </constraints>
+                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downtown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-location">
+                                                                                    <rect key="frame" x="20" y="0.0" width="159" height="20"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="10:30 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-time">
+                                                                    <rect key="frame" x="243" y="12" width="78" height="20"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="leading" secondItem="upcoming-card-content" secondAttribute="leading" constant="16" id="upcoming-stack-leading"/>
+                                                        <constraint firstAttribute="trailing" secondItem="upcoming-main-stack" secondAttribute="trailing" constant="16" id="upcoming-stack-trailing"/>
+                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="top" secondItem="upcoming-card-content" secondAttribute="top" constant="16" id="upcoming-stack-top"/>
+                                                        <constraint firstAttribute="bottom" secondItem="upcoming-main-stack" secondAttribute="bottom" constant="16" id="upcoming-stack-bottom"/>
+                                                    </constraints>
+                                                </view>
+                                                <blurEffect style="systemThinMaterial"/>
+                                            </visualEffectView>
+                                            <!-- Empty State -->
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-state">
+                                                <rect key="frame" x="20" y="403.33" width="353" height="76"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No upcoming stops" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-empty-label">
+                                                        <rect key="frame" x="95.33" y="28" width="162.33" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="upcoming-empty-label" firstAttribute="centerX" secondItem="upcoming-empty-state" secondAttribute="centerX" id="upcoming-empty-centerX"/>
+                                                    <constraint firstItem="upcoming-empty-label" firstAttribute="centerY" secondItem="upcoming-empty-state" secondAttribute="centerY" id="upcoming-empty-centerY"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-jv-uT6" userLabel="Subgroups Section">
-                                                <rect key="frame" x="0.0" y="403.33333333333326" width="393" height="496.66666666666674"/>
+                                                <rect key="frame" x="0.0" y="499.33" width="393" height="400.67"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-gU-Fhg">
                                                         <rect key="frame" x="20" y="20" width="353" height="34"/>
@@ -449,13 +532,19 @@ members and activities</string>
                                             <constraint firstAttribute="bottom" secondItem="7XS-jv-uT6" secondAttribute="bottom" id="EvT-P7-Ndt"/>
                                             <constraint firstItem="mJi-Uq-qR7" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="JKp-Ci-nkw"/>
                                             <constraint firstItem="QqN-7t-3bh" firstAttribute="top" secondItem="Zfg-2h-Wbn" secondAttribute="top" id="OrY-Zd-1Mc"/>
-                                            <constraint firstItem="7XS-jv-uT6" firstAttribute="top" secondItem="mJi-Uq-qR7" secondAttribute="bottom" constant="20" id="bSo-cF-OOf"/>
                                             <constraint firstItem="trip-info-blur-card" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="blur-card-leading"/>
                                             <constraint firstItem="trip-info-blur-card" firstAttribute="top" secondItem="Zfg-2h-Wbn" secondAttribute="top" constant="75" id="blur-card-top"/>
                                             <constraint firstAttribute="trailing" secondItem="trip-info-blur-card" secondAttribute="trailing" constant="20" id="blur-card-trailing"/>
-                                            <constraint firstAttribute="height" constant="900" id="content-view-height"/>
+                                            <constraint firstAttribute="height" constant="1050" id="content-view-height"/>
                                             <constraint firstItem="mJi-Uq-qR7" firstAttribute="top" secondItem="trip-info-blur-card" secondAttribute="bottom" constant="20" id="lfX-X2-5lT"/>
                                             <constraint firstAttribute="trailing" secondItem="7XS-jv-uT6" secondAttribute="trailing" id="pYv-sR-fHX"/>
+                                            <constraint firstItem="upcoming-stop-card" firstAttribute="top" secondItem="mJi-Uq-qR7" secondAttribute="bottom" constant="20" id="upcoming-card-top"/>
+                                            <constraint firstItem="upcoming-stop-card" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="upcoming-card-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="upcoming-stop-card" secondAttribute="trailing" constant="20" id="upcoming-card-trailing"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="top" secondItem="mJi-Uq-qR7" secondAttribute="bottom" constant="20" id="upcoming-empty-top"/>
+                                            <constraint firstItem="upcoming-empty-state" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="upcoming-empty-leading"/>
+                                            <constraint firstAttribute="trailing" secondItem="upcoming-empty-state" secondAttribute="trailing" constant="20" id="upcoming-empty-trailing"/>
+                                            <constraint firstItem="7XS-jv-uT6" firstAttribute="top" secondItem="upcoming-stop-card" secondAttribute="bottom" constant="20" id="subgroups-top-to-upcoming"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -521,6 +610,12 @@ members and activities</string>
                         <outlet property="tripLocationLabel" destination="Njw-pN-cfk" id="zzP-iE-gnJ"/>
                         <outlet property="tripMembersLabel" destination="trip-members-label" id="trip-members-outlet"/>
                         <outlet property="tripNameLabel" destination="UPk-Yw-hha" id="E5z-7M-qho"/>
+                        <outlet property="upcomingStopContainerView" destination="upcoming-stop-card" id="upcoming-container-outlet"/>
+                        <outlet property="upcomingStopEmptyStateView" destination="upcoming-empty-state" id="upcoming-empty-outlet"/>
+                        <outlet property="upcomingStopIconImageView" destination="upcoming-icon" id="upcoming-icon-outlet"/>
+                        <outlet property="upcomingStopLocationLabel" destination="upcoming-location" id="upcoming-location-outlet"/>
+                        <outlet property="upcomingStopTimeLabel" destination="upcoming-time" id="upcoming-time-outlet"/>
+                        <outlet property="upcomingStopTitleLabel" destination="upcoming-title" id="upcoming-title-outlet"/>
                         <segue destination="edit-nav-controller" kind="presentation" identifier="tripDetailsToEditTrip" id="rMt-H2-jAg"/>
                         <segue destination="fzT-z3-qEK" kind="show" identifier="tripDetailsToInviteQR" id="Su7-dq-ayw"/>
                         <segue destination="SA04-members-placeholder" kind="show" identifier="tripDetailsToMembers" id="members-segue"/>
