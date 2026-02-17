@@ -52,12 +52,11 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         loadData()
     }
-    
 
     
     // MARK: - Setup
     private func setupUI() {
-        setupNotificationButton()
+        // UI is configured in storyboard
     }
     
     private func setupCollectionView() {
@@ -174,20 +173,7 @@ class HomeViewController: UIViewController {
         upcomingEmptyStateView?.isHidden = hasUpcomingTrips
     }
     
-    // MARK: - Notification Setup
-    private func setupNotificationButton() {
-        let bellButton = UIButton(type: .system)
-        bellButton.setImage(UIImage(systemName: "bell.fill"), for: .normal)
-        bellButton.tintColor = .label
-        bellButton.addTarget(self, action: #selector(notificationButtonTapped), for: .touchUpInside)
-        
-        let barButtonItem = UIBarButtonItem(customView: bellButton)
-        navigationItem.rightBarButtonItem = barButtonItem
-    }
-    
-    @objc private func notificationButtonTapped() {
-        performSegue(withIdentifier: "homeToNotifications", sender: nil)
-    }
+
     
     // MARK: - Actions
     @IBAction func currentTripCardTapped(_ sender: UIButton) {

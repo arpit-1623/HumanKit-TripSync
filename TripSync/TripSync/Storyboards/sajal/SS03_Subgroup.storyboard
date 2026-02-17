@@ -320,6 +320,13 @@
                             <constraint firstItem="6oW-lU-EAt" firstAttribute="top" secondItem="fqr-Yh-pcf" secondAttribute="top" id="wjN-9Z-mNV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Circle Details" id="nav-item-subgroup-details">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="edit-button">
+                            <connections>
+                                <action selector="editButtonTapped" destination="GxH-BE-WPK" id="edit-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="chatButton" destination="POG-25-jXy" id="jLP-tQ-FuM"/>

@@ -48,7 +48,6 @@ class NotificationsViewController: UIViewController {
     // MARK: - Setup
     private func setupUI() {
         segmentedControl?.selectedSegmentIndex = 0
-        segmentedControl?.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         
         emptyStateImageView?.image = UIImage(systemName: "bell.slash")
         emptyStateImageView?.tintColor = .systemGray
@@ -124,7 +123,7 @@ class NotificationsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func segmentChanged() {
+    @IBAction private func segmentChanged() {
         currentTab = NotificationTab(rawValue: segmentedControl?.selectedSegmentIndex ?? 0) ?? .invites
         loadData()
     }

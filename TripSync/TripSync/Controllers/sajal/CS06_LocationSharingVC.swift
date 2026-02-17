@@ -41,9 +41,6 @@ class LocationSharingViewController: UITableViewController {
     private func setupUI() {
         title = "Location Sharing"
         
-        // Configure toggle
-        locationToggle.addTarget(self, action: #selector(toggleChanged(_:)), for: .valueChanged)
-        
         // Update selected duration
         updateSelectedDuration()
     }
@@ -86,7 +83,7 @@ class LocationSharingViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    @objc private func toggleChanged(_ sender: UISwitch) {
+    @IBAction private func toggleChanged(_ sender: UISwitch) {
         isLocationSharingEnabled = sender.isOn
         
         guard var user = user else { return }

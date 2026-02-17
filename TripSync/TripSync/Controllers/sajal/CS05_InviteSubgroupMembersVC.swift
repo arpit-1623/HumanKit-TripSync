@@ -62,17 +62,7 @@ class CS05_InviteSubgroupMembersVC: UIViewController {
     private func setupNavigationBar() {
         title = "Invite"
         
-        // Close button
-        let closeButton = UIBarButtonItem(
-            image: UIImage(systemName: "xmark"),
-            style: .plain,
-            target: self,
-            action: #selector(closeButtonTapped)
-        )
-        closeButton.tintColor = .label
-        navigationItem.leftBarButtonItem = closeButton
-        
-        // Add button with count
+        // Add button with count is managed programmatically since it's dynamic
         updateAddButton()
     }
     
@@ -107,11 +97,11 @@ class CS05_InviteSubgroupMembersVC: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func closeButtonTapped() {
+    @IBAction private func closeButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc private func addButtonTapped() {
+    @IBAction private func addButtonTapped() {
         sendInvitations()
     }
     

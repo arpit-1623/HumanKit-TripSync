@@ -1062,7 +1062,7 @@
                                 <action selector="cancelTapped" destination="CreateAnnouncement-ID" id="CreateAnnouncement-CancelAction"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="compose" id="CreateAnnouncement-SendButton">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="CreateAnnouncement-SendButton">
                             <connections>
                                 <action selector="sendTapped" destination="CreateAnnouncement-ID" id="CreateAnnouncement-SendAction"/>
                             </connections>

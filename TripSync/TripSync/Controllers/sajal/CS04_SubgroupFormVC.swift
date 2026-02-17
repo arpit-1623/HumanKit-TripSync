@@ -56,7 +56,6 @@ class CS04_SubgroupFormVC: UITableViewController {
         super.viewDidLoad()
         
         setupUI()
-        setupNavigationBar()
         setupColorButtons()
         loadExistingData()
         
@@ -94,26 +93,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    private func setupNavigationBar() {
-        // Close button
-        let closeButton = UIBarButtonItem(
-            image: UIImage(systemName: "xmark"),
-            style: .plain,
-            target: self,
-            action: #selector(closeButtonTapped)
-        )
-        closeButton.tintColor = .label
-        navigationItem.leftBarButtonItem = closeButton
-        
-        // Save button
-        let saveButton = UIBarButtonItem(
-            title: "Save",
-            style: .done,
-            target: self,
-            action: #selector(saveButtonTapped)
-        )
-        navigationItem.rightBarButtonItem = saveButton
-    }
+
     
     private func setupColorButtons() {
         let buttons = [color1Button, color2Button, color3Button, color4Button, color5Button,
@@ -158,11 +138,11 @@ class CS04_SubgroupFormVC: UITableViewController {
     }
     
     // MARK: - Actions
-    @objc private func closeButtonTapped() {
+    @IBAction private func closeButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc private func saveButtonTapped() {
+    @IBAction private func saveButtonTapped() {
         guard let name = nameTextField.text, !name.isEmpty else {
             showAlert(title: "Error", message: "Please enter a subgroup name")
             return

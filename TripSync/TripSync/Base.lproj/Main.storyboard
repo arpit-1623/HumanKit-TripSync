@@ -21,7 +21,6 @@
                     <connections>
                         <segue destination="S1G-0g-Rzm" kind="relationship" relationship="viewControllers" id="DG5-Kw-2gu"/>
                         <segue destination="gac-aq-0eH" kind="relationship" relationship="viewControllers" id="roQ-gw-zua"/>
-                        <segue destination="jid-VO-Xpg" kind="relationship" relationship="viewControllers" id="jsH-iQ-eMv"/>
                         <segue destination="89d-gO-Pii" kind="relationship" relationship="viewControllers" id="ayL-BB-MSQ"/>
                     </connections>
                 </tabBarController>
