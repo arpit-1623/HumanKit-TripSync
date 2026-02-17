@@ -11,13 +11,30 @@ class TripsViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var allEmptyStateView: UIView!
+    
+    @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var currentTripCard: UIView!
     @IBOutlet weak var currentTripImageView: UIImageView!
     @IBOutlet weak var currentTripNameLabel: UILabel!
     @IBOutlet weak var currentTripDetailsLabel: UILabel!
     
+    @IBOutlet weak var currentTripEmptyStateView: UIView!
+    @IBOutlet weak var currentTripEmptyStateImageView: UIImageView!
+    @IBOutlet weak var currentTripEmptyStateLabel: UILabel!
+    
+    @IBOutlet weak var upcomingLabel: UILabel!
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
     @IBOutlet weak var pastCollectionView: UICollectionView!
+    
+    @IBOutlet weak var upcomingEmptyStateView: UIView!
+    @IBOutlet weak var upcomingEmptyStateImageView: UIImageView!
+    @IBOutlet weak var upcomingEmptyStateLabel: UILabel!
+    
+    @IBOutlet weak var pastLabel: UILabel!
+    @IBOutlet weak var pastEmptyStateView: UIView!
+    @IBOutlet weak var pastEmptyStateImageView: UIImageView!
+    @IBOutlet weak var pastEmptyStateLabel: UILabel!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -52,13 +69,88 @@ class TripsViewController: UIViewController {
         allTrips = userTrips.filter { $0.status != .current }
         
         configureCurrentTripUI()
+        updateAllEmptyState()
+        updateEmptyStates()
         upcomingCollectionView.reloadData()
         pastCollectionView.reloadData()
+    }
+    
+    private func updateEmptyStates() {
+        // Don't show individual empty states when showing all-empty state
+        let isAllEmpty = currentTrip == nil && upcomingTrips.isEmpty && pastTrips.isEmpty
+        if isAllEmpty {
+            return
+        }
+        
+        // Show/hide upcoming empty state
+        let hasUpcomingTrips = !upcomingTrips.isEmpty
+        upcomingEmptyStateView.isHidden = hasUpcomingTrips
+        upcomingCollectionView.isHidden = !hasUpcomingTrips
+        
+        // Show/hide past empty state
+        let hasPastTrips = !pastTrips.isEmpty
+        pastEmptyStateView.isHidden = hasPastTrips
+        pastCollectionView.isHidden = !hasPastTrips
+    }
+    
+    private func updateAllEmptyState() {
+        let isAllEmpty = currentTrip == nil && upcomingTrips.isEmpty && pastTrips.isEmpty
+        
+        allEmptyStateView.isHidden = !isAllEmpty
+        
+        // Update navigation title
+        navigationItem.title = isAllEmpty ? "" : "Your Trips"
+        
+        // Hide all content when showing all-empty state
+        searchBar.isHidden = isAllEmpty
+        currentLabel.isHidden = isAllEmpty
+        upcomingLabel.isHidden = isAllEmpty
+        pastLabel.isHidden = isAllEmpty
+        
+        currentTripCard.isHidden = isAllEmpty || currentTrip == nil
+        currentTripEmptyStateView.isHidden = isAllEmpty || currentTrip != nil
+        upcomingCollectionView.isHidden = isAllEmpty
+        upcomingEmptyStateView.isHidden = isAllEmpty
+        pastCollectionView.isHidden = isAllEmpty
+        pastEmptyStateView.isHidden = isAllEmpty
     }
     
     // MARK: - Setup
     private func setupUI() {
         searchBar.delegate = self
+        setupEmptyStates()
+    }
+    
+    private func setupEmptyStates() {
+        // Current trip empty state
+        currentTripEmptyStateImageView.image = UIImage(systemName: "airplane.departure")
+        currentTripEmptyStateImageView.tintColor = .systemGray
+        currentTripEmptyStateImageView.contentMode = .scaleAspectFit
+        currentTripEmptyStateLabel.text = "No active trip\nJoin or create a trip to get started"
+        currentTripEmptyStateLabel.textAlignment = .center
+        currentTripEmptyStateLabel.numberOfLines = 0
+        currentTripEmptyStateLabel.textColor = .secondaryLabel
+        currentTripEmptyStateLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        
+        // Upcoming empty state
+        upcomingEmptyStateImageView.image = UIImage(systemName: "calendar.badge.plus")
+        upcomingEmptyStateImageView.tintColor = .systemGray
+        upcomingEmptyStateImageView.contentMode = .scaleAspectFit
+        upcomingEmptyStateLabel.text = "No upcoming trips yet\nCreate or join a trip to start planning"
+        upcomingEmptyStateLabel.textAlignment = .center
+        upcomingEmptyStateLabel.numberOfLines = 0
+        upcomingEmptyStateLabel.textColor = .secondaryLabel
+        upcomingEmptyStateLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        
+        // Past empty state
+        pastEmptyStateImageView.image = UIImage(systemName: "clock.arrow.circlepath")
+        pastEmptyStateImageView.tintColor = .systemGray
+        pastEmptyStateImageView.contentMode = .scaleAspectFit
+        pastEmptyStateLabel.text = "No past trips yet\nYour completed trips will appear here"
+        pastEmptyStateLabel.textAlignment = .center
+        pastEmptyStateLabel.numberOfLines = 0
+        pastEmptyStateLabel.textColor = .secondaryLabel
+        pastEmptyStateLabel.font = .systemFont(ofSize: 16, weight: .medium)
     }
     
     private func setupCollectionViews() {
@@ -72,10 +164,12 @@ class TripsViewController: UIViewController {
     func configureCurrentTripUI() {
         guard let trip = currentTrip else {
             currentTripCard.isHidden = true
+            currentTripEmptyStateView.isHidden = false
             return
         }
         
         currentTripCard.isHidden = false
+        currentTripEmptyStateView.isHidden = true
         
         if let imageURL = trip.coverImageURL {
             UnsplashService.shared.loadImage(from: imageURL, placeholder: UIImage(named: "createTripBg"), into: currentTripImageView)
@@ -106,6 +200,7 @@ class TripsViewController: UIViewController {
         upcomingTrips = filtered.filter { $0.status == .upcoming }
         pastTrips = filtered.filter { $0.status == .past }
         
+        updateEmptyStates()
         upcomingCollectionView.reloadData()
         pastCollectionView.reloadData()
     }

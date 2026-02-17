@@ -59,6 +59,14 @@ class EditTripTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Only admins can edit trips
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.isUserAdmin(currentUser.id) else {
+            dismiss(animated: true)
+            return
+        }
+        
         setupUI()
         updateDateLabels()
     }
@@ -73,7 +81,7 @@ class EditTripTableViewController: UITableViewController {
         // Populate fields from trip
         tripNameField.text = trip.name
         tripLocationField.text = trip.location
-        tripLocationField.isUserInteractionEnabled = false // Force use of location picker
+        tripLocationField.isUserInteractionEnabled = false
         startDatePicker.date = trip.startDate
         endDatePicker.date = trip.endDate
         inviteCodeValueLabel.text = trip.inviteCode
@@ -142,6 +150,9 @@ class EditTripTableViewController: UITableViewController {
         trip.coverImageURL = selectedImageURL
         trip.coverImagePhotographerName = selectedPhotographerName
         
+        // Update status based on new dates
+        trip.updateStatusBasedOnDates()
+        
         // Save to DataModel
         DataModel.shared.saveTrip(trip)
         
@@ -164,12 +175,9 @@ class EditTripTableViewController: UITableViewController {
             
             DataModel.shared.deleteTrip(byId: trip.id)
             
-            // Dismiss edit screen and pop to root
-            self.dismiss(animated: true) {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+            // Changed: Dismiss then pop back one screen
+            performSegue(withIdentifier: "unwindToHomeWithDeleteTrip", sender: nil)
         })
-        
         present(alert, animated: true)
     }
     

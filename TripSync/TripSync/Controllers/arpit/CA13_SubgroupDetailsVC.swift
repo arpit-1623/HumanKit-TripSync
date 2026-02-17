@@ -2,7 +2,7 @@
 //  CS03_SubgroupDetailsVC.swift
 //  TripSync
 //
-//  Created on 23/11/2025.
+//  Created by Arpit Garg on 23/11/2025.
 //
 
 import UIKit
@@ -23,6 +23,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     var subgroup: Subgroup?
     var trip: Trip?
     var members: [User] = []
+    private var invitationsByUserId: [UUID: Invitation] = [:]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -52,11 +53,7 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     
     // MARK: - Setup
     private func setupUI() {
-        title = "Subgroup Details"
-        
-        // Add edit button to navigation bar
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        navigationItem.rightBarButtonItem = editButton
+        title = "Circle Details"
         
         // Configure logo view
         logoView.layer.cornerRadius = 30
@@ -108,11 +105,19 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
             DataModel.shared.getUser(byId: memberId)
         }
         
+        // Load and cache accepted invitations for this subgroup
+        // Use uniquingKeysWith to handle duplicate invitations (keep most recent)
+        let acceptedInvitations = DataModel.shared.getInvitations(forSubgroupId: subgroup.id, status: .accepted)
+        invitationsByUserId = Dictionary(acceptedInvitations.map { ($0.invitedUserId, $0) }, 
+                                        uniquingKeysWith: { invitation1, invitation2 in
+                                            invitation1.createdAt > invitation2.createdAt ? invitation1 : invitation2
+                                        })
+        
         membersTableView.reloadData()
     }
     
     // MARK: - Actions
-    @objc private func editButtonTapped() {
+    @IBAction private func editButtonTapped() {
         performSegue(withIdentifier: "subgroupDetailsToEdit", sender: subgroup)
     }
     
@@ -186,19 +191,11 @@ class SubgroupDetailsViewController: UIViewController, SubgroupFormDelegate, Inv
     
     // MARK: - InviteSubgroupMembersDelegate
     func didUpdateMembers(_ memberIds: [UUID]) {
-        guard var subgroup = subgroup else { return }
+        // Note: This delegate method is no longer used since we switched to invitation-based flow
+        // Invitations are sent instead of directly adding members
+        // Keeping this for backward compatibility, but it won't be called from the new invite flow
         
-        // Update subgroup with new members
-        subgroup.memberIds = memberIds
-        subgroup.updatedAt = Date()
-        
-        // Save to DataModel
-        DataModel.shared.saveSubgroup(subgroup)
-        
-        // Update local reference
-        self.subgroup = subgroup
-        
-        // Reload UI
+        // Simply reload the UI in case anything changed
         loadData()
     }
 }
@@ -215,7 +212,19 @@ extension SubgroupDetailsViewController: UITableViewDataSource {
         }
         
         let member = members[indexPath.row]
-        cell.configure(with: member, role: "Member")
+        
+        // Determine role based on invitation status
+        let role: String
+        if subgroup?.memberIds.first == member.id {
+            // First member is the subgroup creator/admin
+            role = "Admin"
+        } else {
+            // For members who joined via invitation or were added before invitation system,
+            // show blank as per requirements (accepted invitations don't show anything)
+            role = ""
+        }
+        
+        cell.configure(with: member, role: role)
         
         return cell
     }

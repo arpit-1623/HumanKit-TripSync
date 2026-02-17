@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ImagePickerNavController">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ImagePickerNavController">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,51 +35,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-container">
+                            <searchBar contentMode="redraw" placeholder="Search images..." translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield" userLabel="Search Bar">
                                 <rect key="frame" x="16" y="90" width="361" height="48"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon">
-                                        <rect key="frame" x="12" y="14.999999999999996" width="20" height="18.333333333333332"/>
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="search-icon-height"/>
-                                            <constraint firstAttribute="width" constant="20" id="search-icon-width"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search images..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="search-textfield">
-                                        <rect key="frame" x="40" y="0.0" width="281" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                    </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mic.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mic-icon">
-                                        <rect key="frame" x="329" y="13.666666666666668" width="20" height="19.666666666666661"/>
-                                        <color key="tintColor" systemColor="systemGray2Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="mic-icon-height"/>
-                                            <constraint firstAttribute="width" constant="20" id="mic-icon-width"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstItem="mic-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="mic-centerY"/>
-                                    <constraint firstItem="mic-icon" firstAttribute="leading" secondItem="search-textfield" secondAttribute="trailing" constant="8" id="mic-leading"/>
-                                    <constraint firstAttribute="trailing" secondItem="mic-icon" secondAttribute="trailing" constant="12" id="mic-trailing"/>
-                                    <constraint firstAttribute="height" constant="48" id="search-container-height"/>
-                                    <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search-container" secondAttribute="centerY" id="search-icon-centerY"/>
-                                    <constraint firstItem="search-icon" firstAttribute="leading" secondItem="search-container" secondAttribute="leading" constant="12" id="search-icon-leading"/>
-                                    <constraint firstItem="search-textfield" firstAttribute="bottom" secondItem="search-container" secondAttribute="bottom" id="textfield-bottom"/>
-                                    <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="search-icon" secondAttribute="trailing" constant="8" id="textfield-leading"/>
-                                    <constraint firstItem="search-textfield" firstAttribute="top" secondItem="search-container" secondAttribute="top" id="textfield-top"/>
+                                    <constraint firstAttribute="height" constant="48" id="search-bar-height"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search and select a cover image for your trip" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="help-text-label">
+                                <rect key="frame" x="16" y="158" width="361" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="collection-view">
-                                <rect key="frame" x="0.0" y="146" width="393" height="647"/>
+                                <rect key="frame" x="0.0" y="183" width="393" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="8" minimumInteritemSpacing="8" id="flow-layout">
                                     <size key="itemSize" width="110" height="110"/>
@@ -95,11 +65,14 @@
                         <constraints>
                             <constraint firstItem="collection-view" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="collection-bottom"/>
                             <constraint firstItem="collection-view" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="collection-leading"/>
-                            <constraint firstItem="collection-view" firstAttribute="top" secondItem="search-container" secondAttribute="bottom" constant="8" id="collection-top"/>
+                            <constraint firstItem="collection-view" firstAttribute="top" secondItem="help-text-label" secondAttribute="bottom" constant="8" id="collection-top"/>
                             <constraint firstItem="collection-view" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="collection-trailing"/>
-                            <constraint firstItem="search-container" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="search-leading"/>
-                            <constraint firstItem="search-container" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="search-top"/>
-                            <constraint firstItem="search-container" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-16" id="search-trailing"/>
+                            <constraint firstItem="help-text-label" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="help-text-leading"/>
+                            <constraint firstItem="help-text-label" firstAttribute="top" secondItem="search-textfield" secondAttribute="bottom" constant="20" id="help-text-top"/>
+                            <constraint firstItem="help-text-label" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-16" id="help-text-trailing"/>
+                            <constraint firstItem="search-textfield" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="search-leading"/>
+                            <constraint firstItem="search-textfield" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="search-top"/>
+                            <constraint firstItem="search-textfield" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-16" id="search-trailing"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Image" id="image-picker-nav-item">
@@ -122,20 +95,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="116"/>
+            <point key="canvasLocation" x="237" y="115"/>
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="mic.fill" catalog="system" width="110" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

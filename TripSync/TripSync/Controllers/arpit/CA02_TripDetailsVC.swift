@@ -11,16 +11,25 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     // MARK: - Outlets
     @IBOutlet weak var backgroundImageView: UIImageView?
+    @IBOutlet weak var subgroupsEmptyStateView: UIView?
     @IBOutlet weak var subgroupsTableView: UITableView!
+    @IBOutlet weak var subgroupsTableViewHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
     @IBOutlet weak var tripMembersLabel: UILabel!
     @IBOutlet weak var imageAttributionLabel: UILabel?
+    @IBOutlet weak var upcomingStopContainerView: UIView?
+    @IBOutlet weak var upcomingStopContainerHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var upcomingStopTitleLabel: UILabel?
+    @IBOutlet weak var upcomingStopTimeLabel: UILabel?
+    @IBOutlet weak var upcomingStopLocationLabel: UILabel?
+    @IBOutlet weak var upcomingStopIconImageView: UIImageView?
     
     // MARK: - Properties
     var trip: Trip?
     var subgroups: [Subgroup] = []
+    var upcomingStop: ItineraryStop?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +41,19 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
             navigationController?.popViewController(animated: true)
             return
         }
+        
+        // Configure navigation bar to be transparent so background image shows through
+        if let navigationBar = navigationController?.navigationBar {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundColor = .clear
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+        }
 
         setupUI()
         loadData()
+        setupMenuForRole()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +66,6 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         
         if let tripId = trip?.id {
             if let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
-                // Verify user still has access after refresh
                 guard updatedTrip.canUserAccess(currentUser.id) else {
                     navigationController?.popViewController(animated: true)
                     return
@@ -64,7 +82,79 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     func loadData() {
         guard let trip = trip else { return }
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
+        
+        // Show/hide empty state
+        let isEmpty = subgroups.isEmpty
+        subgroupsEmptyStateView?.isHidden = !isEmpty
+        subgroupsTableView.isHidden = isEmpty
+        
         subgroupsTableView.reloadData()
+        
+        // Update table height based on content
+        updateSubgroupsTableHeight()
+        
+        // Load upcoming stop
+        loadUpcomingStop()
+    }
+    
+    private func updateSubgroupsTableHeight() {
+        // Calculate height: number of rows × row height
+        // insetGrouped style automatically adds spacing between sections
+        let rowHeight: CGFloat = 80
+        let numberOfRows = subgroups.count
+        
+        // Add spacing for insetGrouped style (approximately 10px per section gap)
+        let sectionSpacing: CGFloat = numberOfRows > 0 ? CGFloat(numberOfRows + 1) * 10 : 0
+        let calculatedHeight = (CGFloat(numberOfRows) * rowHeight) + sectionSpacing
+        
+        // Set minimum height to avoid collapsing when empty
+        let finalHeight = max(calculatedHeight, 100)
+        
+        subgroupsTableViewHeightConstraint?.constant = finalHeight
+    }
+    
+    private func loadUpcomingStop() {
+        guard let trip = trip else { return }
+        let allStops = DataModel.shared.getItineraryStops(forTripId: trip.id)
+        let now = Date()
+        upcomingStop = allStops.filter { $0.time > now }.first
+        
+        setupUpcomingStopUI()
+    }
+    
+    private func setupUpcomingStopUI() {
+        if let stop = upcomingStop {
+            // Show upcoming stop with full height
+            upcomingStopContainerView?.isHidden = false
+            upcomingStopContainerHeightConstraint?.constant = 76
+            
+            // Configure title (truncate if needed)
+            if stop.title.count > 25 {
+                upcomingStopTitleLabel?.text = String(stop.title.prefix(25)) + "..."
+            } else {
+                upcomingStopTitleLabel?.text = stop.title
+            }
+            
+            // Configure time
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "h:mm a"
+            upcomingStopTimeLabel?.text = timeFormatter.string(from: stop.time)
+            
+            // Configure location
+            upcomingStopLocationLabel?.text = stop.location
+            
+            // Configure icon
+            if let category = stop.category {
+                upcomingStopIconImageView?.image = UIImage(systemName: category)
+            } else {
+                upcomingStopIconImageView?.image = UIImage(systemName: "mappin.and.ellipse")
+            }
+            upcomingStopIconImageView?.tintColor = .systemOrange
+        } else {
+            // Collapse the section when there's no upcoming stop
+            upcomingStopContainerView?.isHidden = true
+            upcomingStopContainerHeightConstraint?.constant = 0
+        }
     }
     
     // MARK: - Setup
@@ -122,7 +212,46 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     }
     
     @IBAction func editTripTapped(_ sender: Any) {
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip,
+              trip.isUserAdmin(currentUser.id) else {
+            return
+        }
         performSegue(withIdentifier: "tripDetailsToEditTrip", sender: nil)
+    }
+    
+    @IBAction func membersMenuTapped(_ sender: Any) {
+        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    }
+    
+    @IBAction func leaveTripTapped(_ sender: Any) {
+        guard let trip = trip else { return }
+        
+        let alert = UIAlertController(
+            title: "Leave Trip",
+            message: "Are you sure you want to leave \(trip.name)? You will need a new invite code to rejoin.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Leave", style: .destructive) { [weak self] _ in
+            guard let self = self,
+                  let tripId = self.trip?.id else { return }
+            
+            if DataModel.shared.leaveTrip(tripId: tripId) {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                let errorAlert = UIAlertController(
+                    title: "Error",
+                    message: "Unable to leave the trip. Please try again.",
+                    preferredStyle: .alert
+                )
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(errorAlert, animated: true)
+            }
+        })
+        
+        present(alert, animated: true)
     }
     
     // MARK: - Button Actions
@@ -130,29 +259,59 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         performSegue(withIdentifier: "tripDetailsToMap", sender: self)
     }
     
-    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
-    }
-    
     @IBAction func itineraryButtonTapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "tripDetailsToItinerary", sender: nil)
     }
     
-    @IBAction func membersButtonTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "tripDetailsToMembers", sender: nil)
+    @IBAction func chatButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToChat", sender: nil)
     }
     
-    // MARK: - Helper Methods
-    private func showErrorAndDismiss() {
-        let alert = UIAlertController(
-            title: "Error",
-            message: "Unable to load trip details. Please try again.",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        })
-        present(alert, animated: true)
+    @IBAction func alertsButtonTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "tripDetailsToAlerts", sender: nil)
+    }
+    
+    // MARK: - Role-based Menu Setup
+    private func setupMenuForRole() {
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let trip = trip else { return }
+        
+        let isAdmin = trip.isUserAdmin(currentUser.id)
+        
+        // Create menu actions based on role
+        let shareInviteAction = UIAction(title: "Share Invite", image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+            self?.shareInviteTapped(self as Any)
+        }
+        
+        let showQRAction = UIAction(title: "Show QR", image: UIImage(systemName: "qrcode")) { [weak self] _ in
+            self?.showQRTapped(self as Any)
+        }
+        
+        let membersAction = UIAction(title: "Members", image: UIImage(systemName: "person.2.fill")) { [weak self] _ in
+            self?.membersMenuTapped(self as Any)
+        }
+        
+        var menuActions: [UIMenuElement] = [shareInviteAction, showQRAction]
+        
+        if isAdmin {
+            let editTripAction = UIAction(title: "Edit Trip", image: UIImage(systemName: "pencil")) { [weak self] _ in
+                self?.editTripTapped(self as Any)
+            }
+            menuActions.append(editTripAction)
+        } else {
+            let leaveTripAction = UIAction(title: "Leave Trip", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), attributes: .destructive) { [weak self] _ in
+                self?.leaveTripTapped(self as Any)
+            }
+            menuActions.append(leaveTripAction)
+        }
+        
+        menuActions.append(membersAction)
+        
+        let menu = UIMenu(children: menuActions)
+        
+        if let rightBarButton = navigationItem.rightBarButtonItem {
+            rightBarButton.menu = menu
+        }
     }
     
     // MARK: - Navigation
@@ -215,6 +374,9 @@ extension TripDetailsViewController {
         } else if segue.identifier == "tripDetailsToItinerary",
                   let itineraryVC = segue.destination as? CS02_ItineraryVC {
             itineraryVC.trip = self.trip
+        } else if segue.identifier == "tripDetailsToAlerts",
+                  let alertsVC = segue.destination as? AlertsViewController {
+            alertsVC.trip = self.trip
         } else if segue.identifier == "tripDetailsToMembers",
                   let membersVC = segue.destination as? TripMembersViewController {
             membersVC.trip = self.trip

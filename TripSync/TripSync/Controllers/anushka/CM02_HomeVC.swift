@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     // MARK: - Outlets - Greeting Section
+    @IBOutlet weak var greetingStack: UIStackView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var subGreetingLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -21,10 +22,20 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentTripLocationLabel: UILabel!
     @IBOutlet weak var currentTripDateLabel: UILabel!
     @IBOutlet weak var currentTripRedirectButton: UIButton!
+    @IBOutlet weak var currentTripBlurView: UIVisualEffectView!
     @IBOutlet weak var emptyStateView: UIStackView!
+    
+    // MARK: - Outlets - Empty State
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var emptyStateContainer: UIView!
+    @IBOutlet weak var emptyGreetingLabel: UILabel!
+    @IBOutlet weak var emptySubGreetingLabel: UILabel!
+    @IBOutlet weak var emptyLocationLabel: UILabel!
     
     // MARK: - Outlets - Upcoming Trips
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    @IBOutlet weak var upcomingTripsHeaderLabel: UILabel!
+    @IBOutlet weak var upcomingEmptyStateView: UIStackView!
     
     // MARK: - Properties
     private var currentTrip: Trip?
@@ -41,11 +52,11 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         loadData()
     }
-    
 
     
     // MARK: - Setup
     private func setupUI() {
+        // UI is configured in storyboard
     }
     
     private func setupCollectionView() {
@@ -57,14 +68,26 @@ class HomeViewController: UIViewController {
     private func loadData() {
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        // Get only trips where current user is a member
         let userTrips = DataModel.shared.getUserAccessibleTrips(currentUser.id)
+        
+        // Check if user has any trips and toggle empty state
+        if userTrips.isEmpty {
+            mainScrollView?.isHidden = true
+            greetingStack?.isHidden = true
+            emptyStateContainer?.isHidden = false
+            view.bringSubviewToFront(emptyStateContainer)
+        } else {
+            mainScrollView?.isHidden = false
+            greetingStack?.isHidden = false
+            emptyStateContainer?.isHidden = true
+        }
         
         currentTrip = userTrips.first { $0.status == .current }
         upcomingTrips = userTrips.filter { $0.status == .upcoming }
         
         updateGreeting()
         updateCurrentTripUI()
+        updateUpcomingTripsUI()
         upcomingCollectionView.reloadData()
     }
     
@@ -87,7 +110,11 @@ class HomeViewController: UIViewController {
         
         let firstName = currentUser.fullName.components(separatedBy: " ").first ?? currentUser.fullName
         
+        // Update regular greeting
         greetingLabel?.text = "\(timeGreeting), \(firstName)"
+        
+        // Update empty state greeting
+        emptyGreetingLabel?.text = "\(timeGreeting), \(firstName)"
         
         if let trip = currentTrip {
             subGreetingLabel?.text = "Have fun on your trip to"
@@ -95,6 +122,10 @@ class HomeViewController: UIViewController {
         } else {
             subGreetingLabel?.text = "Ready to plan your"
             locationLabel?.text = "next adventure?"
+            
+            // Update empty state greeting text
+            emptySubGreetingLabel?.text = "Ready to plan your"
+            emptyLocationLabel?.text = "next adventure?"
         }
     }
     
@@ -106,6 +137,7 @@ class HomeViewController: UIViewController {
             currentTripLocationLabel?.isHidden = true
             currentTripDateLabel?.isHidden = true
             currentTripRedirectButton?.isHidden = true
+            currentTripBlurView?.isHidden = true
             emptyStateView?.isHidden = false
             return
         }
@@ -116,6 +148,7 @@ class HomeViewController: UIViewController {
         currentTripLocationLabel?.isHidden = false
         currentTripDateLabel?.isHidden = false
         currentTripRedirectButton?.isHidden = false
+        currentTripBlurView?.isHidden = false
         emptyStateView?.isHidden = true
         
         // Configure current trip display
@@ -130,6 +163,17 @@ class HomeViewController: UIViewController {
         currentTripLocationLabel?.text = trip.location
         currentTripDateLabel?.text = trip.dateRangeString
     }
+    
+    private func updateUpcomingTripsUI() {
+        let hasUpcomingTrips = !upcomingTrips.isEmpty
+        
+        // Hide entire section (header + collection view) when no upcoming trips
+        upcomingTripsHeaderLabel?.isHidden = !hasUpcomingTrips
+        upcomingCollectionView?.isHidden = !hasUpcomingTrips
+        upcomingEmptyStateView?.isHidden = hasUpcomingTrips
+    }
+    
+
     
     // MARK: - Actions
     @IBAction func currentTripCardTapped(_ sender: UIButton) {
@@ -148,6 +192,8 @@ class HomeViewController: UIViewController {
                let trip = sender as? Trip {
                 tripDetailsVC.trip = trip
             }
+        } else if segue.identifier == "homeToNotifications" {
+            // Notifications modal is presented
         }
     }
 }

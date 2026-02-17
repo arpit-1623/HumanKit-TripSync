@@ -39,10 +39,15 @@ class NotificationsViewController: UIViewController {
         loadData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        // Post notification to refresh home screen badge when modal is dismissed
+        NotificationCenter.default.post(name: NSNotification.Name("RefreshNotificationBadge"), object: nil)
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         segmentedControl?.selectedSegmentIndex = 0
-        segmentedControl?.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         
         emptyStateImageView?.image = UIImage(systemName: "bell.slash")
         emptyStateImageView?.tintColor = .systemGray
@@ -118,7 +123,7 @@ class NotificationsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @objc private func segmentChanged() {
+    @IBAction private func segmentChanged() {
         currentTab = NotificationTab(rawValue: segmentedControl?.selectedSegmentIndex ?? 0) ?? .invites
         loadData()
     }
@@ -162,17 +167,6 @@ class NotificationsViewController: UIViewController {
         loadInvitations()
     }
     
-    private func viewSubgroupDetails(_ invitation: Invitation) {
-        guard let subgroupId = invitation.subgroupId,
-              let subgroup = DataModel.shared.getSubgroup(byId: subgroupId) else {
-            showAlert(title: "Error", message: "Unable to load subgroup details")
-            return
-        }
-        
-        // TODO: Navigate to subgroup details
-        showAlert(title: subgroup.name, message: subgroup.description ?? "No description available")
-    }
-    
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -198,8 +192,6 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
                 self?.acceptInvitation(invitation)
             }, onDecline: { [weak self] in
                 self?.declineInvitation(invitation)
-            }, onViewDetails: { [weak self] in
-                self?.viewSubgroupDetails(invitation)
             })
             
             return cell

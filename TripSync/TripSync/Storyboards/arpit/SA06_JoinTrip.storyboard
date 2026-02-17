@@ -170,6 +170,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="one-time-code"/>
+                                                        <connections>
+                                                            <action selector="textFieldDidChange:" destination="Y6W-OH-hqX" eventType="editingChanged" id="textfield-editing-changed-action"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" name="CardColor"/>

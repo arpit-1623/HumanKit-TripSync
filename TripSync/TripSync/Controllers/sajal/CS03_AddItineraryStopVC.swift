@@ -28,6 +28,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
     // MARK: - Properties
     weak var delegate: AddItineraryStopDelegate?
     var tripId: UUID?
+    var trip: Trip?
     var availableSubgroups: [Subgroup] = []
     var selectedSubgroup: Subgroup?
     var selectedCategory: (name: String, icon: String)? = ("Travel Place", "mappin.and.ellipse")
@@ -92,16 +93,17 @@ class CS03_AddItineraryStopVC: UITableViewController {
         // Configure date picker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.minimumDate = Date()
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+        
+        // Set minimum date to trip start date if available, otherwise current date
+        let initialDate = trip?.startDate ?? Date()
+        datePicker.minimumDate = initialDate
         
         // Configure time picker
         timePicker.datePickerMode = .time
         timePicker.preferredDatePickerStyle = .wheels
-        timePicker.addTarget(self, action: #selector(timePickerChanged), for: .valueChanged)
         
-        // Set default date to today
-        datePicker.date = Date()
+        // Set default date to trip start date if available, otherwise today
+        datePicker.date = initialDate
         timePicker.date = Date()
         
         // Setup subgroup label
@@ -116,11 +118,11 @@ class CS03_AddItineraryStopVC: UITableViewController {
         timeValueLabel.text = timeFormatter.string(from: timePicker.date)
     }
     
-    @objc private func datePickerChanged() {
+    @IBAction private func datePickerChanged() {
         dateValueLabel.text = dateFormatter.string(from: datePicker.date)
     }
     
-    @objc private func timePickerChanged() {
+    @IBAction private func timePickerChanged() {
         timeValueLabel.text = timeFormatter.string(from: timePicker.date)
     }
     
@@ -218,7 +220,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
         )
         
         alert.addTextField { textField in
-            textField.placeholder = "Subgroup name"
+            textField.placeholder = "Circle name"
         }
         
         let createAction = UIAlertAction(title: "Create", style: .default) { [weak self, weak alert] _ in

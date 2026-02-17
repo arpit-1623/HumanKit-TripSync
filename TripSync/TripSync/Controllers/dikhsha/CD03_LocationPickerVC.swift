@@ -16,7 +16,7 @@ protocol LocationPickerDelegate: AnyObject {
 class CD03_LocationPickerVC: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var resultsTableView: UITableView!
     
     // MARK: - Properties
@@ -43,9 +43,10 @@ class CD03_LocationPickerVC: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         
-        // Configure search text field
+        // Configure search bar
         searchTextField.delegate = self
-        searchTextField.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
+        searchTextField.searchBarStyle = .minimal
+        searchTextField.placeholder = "Search locations..."
         
         // Pre-populate with initial location if provided
         if let initialLocation = initialLocation {
@@ -65,22 +66,20 @@ class CD03_LocationPickerVC: UIViewController {
         resultsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "LocationCell")
     }
     
-    // MARK: - Text Field Handling
-    @objc private func textDidChange(_ textField: UITextField) {
-        searchCompleter.queryFragment = textField.text ?? ""
-    }
-    
     // MARK: - Actions
     @IBAction func didTapCancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension CD03_LocationPickerVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+// MARK: - UISearchBarDelegate
+extension CD03_LocationPickerVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchCompleter.queryFragment = searchText
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

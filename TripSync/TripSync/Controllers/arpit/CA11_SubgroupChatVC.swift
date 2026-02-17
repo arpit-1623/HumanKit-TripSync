@@ -2,7 +2,7 @@
 //  CS01_SubgroupChatVC.swift
 //  TripSync
 //
-//  Created by GitHub Copilot on 26/11/25.
+//  Created by Arpit Garg on 26/11/25.
 //
 
 import UIKit
@@ -41,7 +41,7 @@ class SubgroupChatViewController: UIViewController {
     
     // MARK: - Setup
     private func setupNavigationTitle() {
-        title = subgroup?.name ?? "Subgroup Chat"
+        title = subgroup?.name ?? "Circle Chat"
     }
     
     private func setupTableView() {

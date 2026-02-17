@@ -31,4 +31,8 @@ extension Trip {
         
         // keeping it same for now, might need to change for backend integration
     }
+    
+    func isUserAdmin(_ userId: UUID) -> Bool {
+        return createdByUserId == userId
+    }
 }

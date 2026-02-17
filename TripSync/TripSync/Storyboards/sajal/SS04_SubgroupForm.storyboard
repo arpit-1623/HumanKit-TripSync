@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-controller">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,13 +83,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="desc-label">
-                                                    <rect key="frame" x="16" y="14.999999999999998" width="87.666666666666671" height="20.333333333333329"/>
+                                                    <rect key="frame" x="16" y="14.999999999999998" width="87.333333333333329" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="Description" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="desc-textfield">
-                                                    <rect key="frame" x="110" y="14" width="227" height="22"/>
+                                                    <rect key="frame" x="123.33333333333333" y="14" width="213.66666666666669" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -108,7 +108,7 @@
                             <tableViewSection headerTitle="COLOR" id="section-color">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="cell-colors">
-                                        <rect key="frame" x="20" y="281.33333015441895" width="353" height="150"/>
+                                        <rect key="frame" x="20" y="211.33333015441895" width="353" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-colors" id="content-colors">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="150"/>
@@ -217,7 +217,7 @@
                             <tableViewSection headerTitle="DETAILS" id="section-details">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-members-count">
-                                        <rect key="frame" x="20" y="487.33333015441895" width="353" height="44"/>
+                                        <rect key="frame" x="20" y="417.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-members-count" id="content-members-count">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
@@ -255,7 +255,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="cell-created-date">
-                                        <rect key="frame" x="20" y="531.33333015441895" width="353" height="44"/>
+                                        <rect key="frame" x="20" y="461.33333015441895" width="353" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-created-date" id="content-created-date">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
@@ -297,7 +297,7 @@
                             <tableViewSection id="section-delete">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="cell-delete">
-                                        <rect key="frame" x="20" y="611.33333015441895" width="353" height="80"/>
+                                        <rect key="frame" x="20" y="541.33333015441895" width="353" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cell-delete" id="content-delete">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
@@ -335,7 +335,18 @@
                             <outlet property="delegate" destination="subgroup-form-vc" id="delegate-connection"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item"/>
+                    <navigationItem key="navigationItem" title="Create Subgroup" id="nav-item">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="close-button">
+                            <connections>
+                                <action selector="closeButtonTapped" destination="subgroup-form-vc" id="close-action"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="save-button" style="done">
+                            <connections>
+                                <action selector="saveButtonTapped" destination="subgroup-form-vc" id="save-action"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="color10Button" destination="color-btn-10" id="color10-outlet"/>
                         <outlet property="color1Button" destination="color-btn-1" id="color1-outlet"/>
@@ -351,22 +362,18 @@
                         <outlet property="descriptionTextField" destination="desc-textfield" id="desc-outlet"/>
                         <outlet property="membersCountLabel" destination="members-count-label" id="members-count-outlet"/>
                         <outlet property="nameTextField" destination="name-textfield" id="name-outlet"/>
+                        <segue destination="yIG-2f-DCM" kind="unwind" identifier="unwindToTripDetailsWithDeleteSubgroup" unwindAction="unwindToTripDetailsWithSegue:" id="1yv-4n-VEW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="form-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="yIG-2f-DCM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="100" y="4"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="separatorColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

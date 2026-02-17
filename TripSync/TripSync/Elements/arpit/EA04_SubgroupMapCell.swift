@@ -7,11 +7,20 @@
 
 import UIKit
 
+protocol SubgroupMapCellDelegate: AnyObject {
+    func didTapSubgroup(_ subgroup: Subgroup, cell: SubgroupMapCell)
+}
+
 class SubgroupMapCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var tapButton: UIButton!
+    
+    // MARK: - Properties
+    weak var delegate: SubgroupMapCellDelegate?
+    private var subgroup: Subgroup?
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -27,6 +36,7 @@ class SubgroupMapCell: UITableViewCell {
     
     // MARK: - Configuration
     func configure(with subgroup: Subgroup) {
+        self.subgroup = subgroup
         nameLabel.text = subgroup.name
         detailLabel.text = "\(subgroup.memberIds.count) Members"
     }
@@ -35,5 +45,12 @@ class SubgroupMapCell: UITableViewCell {
         super.prepareForReuse()
         nameLabel.text = nil
         detailLabel.text = nil
+        subgroup = nil
+    }
+    
+    // MARK: - Actions
+    @IBAction func tapButtonTapped(_ sender: UIButton) {
+        guard let subgroup = subgroup else { return }
+        delegate?.didTapSubgroup(subgroup, cell: self)
     }
 }

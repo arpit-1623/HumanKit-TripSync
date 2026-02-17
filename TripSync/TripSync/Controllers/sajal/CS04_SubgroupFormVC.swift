@@ -56,7 +56,6 @@ class CS04_SubgroupFormVC: UITableViewController {
         super.viewDidLoad()
         
         setupUI()
-        setupNavigationBar()
         setupColorButtons()
         loadExistingData()
         
@@ -80,10 +79,10 @@ class CS04_SubgroupFormVC: UITableViewController {
     
     // MARK: - Setup
     private func setupUI() {
-        title = isEditMode ? "Edit Subgroup" : "Create Subgroup"
+        title = isEditMode ? "Edit Circle" : "Create Circle"
         
         // Name text field
-        nameTextField.placeholder = "Subgroup Name"
+        nameTextField.placeholder = "Circle Name"
         nameTextField.borderStyle = .none
         
         // Description text field
@@ -94,26 +93,7 @@ class CS04_SubgroupFormVC: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    private func setupNavigationBar() {
-        // Close button
-        let closeButton = UIBarButtonItem(
-            image: UIImage(systemName: "xmark"),
-            style: .plain,
-            target: self,
-            action: #selector(closeButtonTapped)
-        )
-        closeButton.tintColor = .label
-        navigationItem.leftBarButtonItem = closeButton
-        
-        // Save button
-        let saveButton = UIBarButtonItem(
-            title: "Save",
-            style: .done,
-            target: self,
-            action: #selector(saveButtonTapped)
-        )
-        navigationItem.rightBarButtonItem = saveButton
-    }
+
     
     private func setupColorButtons() {
         let buttons = [color1Button, color2Button, color3Button, color4Button, color5Button,
@@ -158,11 +138,11 @@ class CS04_SubgroupFormVC: UITableViewController {
     }
     
     // MARK: - Actions
-    @objc private func closeButtonTapped() {
+    @IBAction private func closeButtonTapped() {
         dismiss(animated: true)
     }
     
-    @objc private func saveButtonTapped() {
+    @IBAction private func saveButtonTapped() {
         guard let name = nameTextField.text, !name.isEmpty else {
             showAlert(title: "Error", message: "Please enter a subgroup name")
             return
@@ -183,13 +163,18 @@ class CS04_SubgroupFormVC: UITableViewController {
             
             delegate?.didUpdateSubgroup(updatedSubgroup)
         } else {
-            // Create new subgroup - start with empty members
+            // Create new subgroup - add current user as member by default
+            guard let currentUser = DataModel.shared.getCurrentUser() else {
+                showAlert(title: "Error", message: "Unable to create subgroup")
+                return
+            }
+            
             let newSubgroup = Subgroup(
                 name: name,
                 description: description,
                 colorHex: selectedColorHex,
                 tripId: tripId,
-                memberIds: []  // Empty initially, members added via invite modal
+                memberIds: [currentUser.id]  // Add creator as member by default
             )
             
             delegate?.didCreateSubgroup(newSubgroup)
@@ -267,12 +252,10 @@ class CS04_SubgroupFormVC: UITableViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let self = self, let subgroup = self.existingSubgroup else { return }
             
-            // Remove subgroup from trip
             DataModel.shared.deleteSubgroup(byId: subgroup.id)
             
-            self.dismiss(animated: true)
+            performSegue(withIdentifier: "unwindToTripDetailsWithDeleteSubgroup", sender: nil)
         })
-        
         present(alert, animated: true)
     }
     
@@ -302,15 +285,15 @@ class CS04_SubgroupFormVC: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if isEditMode {
             switch section {
-            case 0: return "SUBGROUP INFORMATION"
+            case 0: return "CIRCLE INFORMATION"
             case 1: return "COLOR"
             case 2: return "DETAILS"
-            case 3: return "DELETE SUBGROUP"
+            case 3: return "DELETE CIRCLE"
             default: return nil
             }
         } else {
             switch section {
-            case 0: return "SUBGROUP INFORMATION"
+            case 0: return "CIRCLE INFORMATION"
             case 1: return "COLOR"
             default: return nil
             }

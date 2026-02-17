@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ys-o2-joi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9ys-o2-joi">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,6 +23,9 @@
                                     <segment title="Invites"/>
                                     <segment title="Alerts"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentChanged" destination="Y6W-OH-hqX" eventType="valueChanged" id="seg-action"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-vw-001">
                                 <rect key="frame" x="0.0" y="121" width="393" height="672"/>
@@ -136,45 +139,33 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ButtonStack">
-                                                            <rect key="frame" x="20" y="360" width="321" height="50"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-ButtonStack">
+                                                            <rect key="frame" x="229" y="360" width="112" height="50"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-AcceptButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130.33333333333334" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                     <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="QLQ-uW-H9j"/>
                                                                         <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-AcceptButtonHeight"/>
                                                                     </constraints>
                                                                     <color key="tintColor" systemColor="tintColor"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="tinted" image="checkmark.circle" catalog="system" title="  Accept">
-                                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="checkmark" catalog="system" title="  ">
+                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </buttonConfiguration>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DetailsButton" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
-                                                                    <rect key="frame" x="142.33333333333334" y="0.0" width="107.66666666666666" height="50"/>
-                                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DetailsButtonHeight"/>
-                                                                    </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="eye.circle" catalog="system" title="  View">
-                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                                                        <color key="baseForegroundColor" systemColor="systemBlueColor"/>
-                                                                    </buttonConfiguration>
-                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SubgroupInviteCell-DeclineButton" customClass="ProminentGlassButton" customModule="TripSync" customModuleProvider="target">
-                                                                    <rect key="frame" x="262" y="0.0" width="59" height="50"/>
+                                                                    <rect key="frame" x="62" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="SubgroupInviteCell-DeclineButtonHeight"/>
-                                                                        <constraint firstAttribute="width" constant="59" id="SubgroupInviteCell-DeclineButtonWidth"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="bB1-uj-SEZ"/>
                                                                     </constraints>
                                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="tinted" image="xmark" catalog="system">
-                                                                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="18"/>
                                                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </buttonConfiguration>
                                                                 </button>
@@ -184,7 +175,6 @@
                                                     <color key="backgroundColor" name="BlackWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackBottom"/>
-                                                        <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ButtonStackLeading"/>
                                                         <constraint firstItem="SubgroupInviteCell-ButtonStack" firstAttribute="top" secondItem="SubgroupInviteCell-ContentStack" secondAttribute="bottom" constant="20" id="SubgroupInviteCell-ButtonStackTop"/>
                                                         <constraint firstAttribute="trailing" secondItem="SubgroupInviteCell-ButtonStack" secondAttribute="trailing" constant="20" id="SubgroupInviteCell-ButtonStackTrailing"/>
                                                         <constraint firstItem="SubgroupInviteCell-ContentStack" firstAttribute="leading" secondItem="SubgroupInviteCell-CardView" secondAttribute="leading" constant="20" id="SubgroupInviteCell-ContentStackLeading"/>
@@ -211,7 +201,6 @@
                                             <outlet property="cardView" destination="SubgroupInviteCell-CardView" id="SubgroupInviteCell-CardViewOutlet"/>
                                             <outlet property="declineButton" destination="SubgroupInviteCell-DeclineButton" id="SubgroupInviteCell-DeclineButtonOutlet"/>
                                             <outlet property="descriptionLabel" destination="SubgroupInviteCell-DescriptionLabel" id="SubgroupInviteCell-DescriptionLabelOutlet"/>
-                                            <outlet property="detailsButton" destination="SubgroupInviteCell-DetailsButton" id="SubgroupInviteCell-DetailsButtonOutlet"/>
                                             <outlet property="iconImageView" destination="SubgroupInviteCell-IconImageView" id="SubgroupInviteCell-IconImageViewOutlet"/>
                                             <outlet property="iconView" destination="SubgroupInviteCell-IconView" id="SubgroupInviteCell-IconViewOutlet"/>
                                             <outlet property="inviterDetailLabel" destination="SubgroupInviteCell-InviterDetailLabel" id="SubgroupInviteCell-InviterDetailLabelOutlet"/>
@@ -234,27 +223,27 @@
                                                     <rect key="frame" x="16" y="8" width="361" height="84"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Icon">
-                                                            <rect key="frame" x="16" y="30.666666666666664" width="24" height="22.666666666666664"/>
+                                                            <rect key="frame" x="16" y="30.666666666666668" width="24" height="22.666666666666661"/>
                                                             <color key="tintColor" systemColor="systemBlueColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="AnnouncementCell-IconHeight"/>
                                                                 <constraint firstAttribute="width" constant="24" id="AnnouncementCell-IconWidth"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Announcement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Title">
-                                                            <rect key="frame" x="52" y="16" width="293" height="19.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Title">
+                                                            <rect key="frame" x="52" y="16" width="293" height="18.666666666666671"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Message content goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Message">
-                                                            <rect key="frame" x="52" y="39.333333333333336" width="293" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Message content goes here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Message">
+                                                            <rect key="frame" x="52" y="38.666666666666664" width="293" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nov 26, 3:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Timestamp">
-                                                            <rect key="frame" x="52" y="60.333333333333343" width="293" height="14.333333333333314"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Nov 26, 3:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnnouncementCell-Timestamp">
+                                                            <rect key="frame" x="52" y="59.666666666666679" width="293" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="systemGray2Color"/>
                                                             <nil key="highlightedColor"/>
@@ -383,13 +372,12 @@
     </scenes>
     <resources>
         <image name="bell.slash" catalog="system" width="119" height="128"/>
-        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
-        <image name="eye.circle" catalog="system" width="128" height="123"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="BlackWhite">
-            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

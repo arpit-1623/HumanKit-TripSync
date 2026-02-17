@@ -35,6 +35,9 @@ class TripMapViewController: UIViewController {
     private let expandedHeight: CGFloat = 360
     private var isMenuExpanded = false
     
+    private var selectedMemberId: UUID?
+    private var selectedSubgroupId: UUID?
+    
     enum MenuMode {
         case all
         case subgroups
@@ -47,9 +50,7 @@ class TripMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupMapView()
         setupLocationManager()
-        setupTableViews()
         loadTripData()
     }
     
@@ -77,33 +78,12 @@ class TripMapViewController: UIViewController {
         
         // Set initial collapsed state
         menuHeightConstraint.constant = collapsedHeight
-        
-        // Add tap gesture to menu for expanding
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
-        menuContainerView.addGestureRecognizer(tapGesture)
-    }
-    
-    private func setupMapView() {
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.showsCompass = true
-        mapView.showsScale = true
     }
     
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-    }
-    
-    private func setupTableViews() {
-        // Configure member table view
-        memberTableView.delegate = self
-        memberTableView.dataSource = self
-        
-        // Configure subgroup table view
-        subgroupTableView.delegate = self
-        subgroupTableView.dataSource = self
     }
     
     private func loadTripData() {
@@ -179,6 +159,10 @@ class TripMapViewController: UIViewController {
     }
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        // Clear selections when switching tabs
+        selectedMemberId = nil
+        selectedSubgroupId = nil
+        
         if sender.selectedSegmentIndex == 0 {
             // Show all members
             currentMenuMode = .all
@@ -200,7 +184,13 @@ class TripMapViewController: UIViewController {
     @objc private func toggleMenu() {
         isMenuExpanded.toggle()
         
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut) {
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.5,
+            options: .curveEaseInOut
+        ) {
             self.menuHeightConstraint.constant = self.isMenuExpanded ? self.expandedHeight : self.collapsedHeight
             self.view.layoutIfNeeded()
         }
@@ -250,7 +240,6 @@ class TripMapViewController: UIViewController {
     
     private func startLocationUpdates() {
         locationManager.startUpdatingLocation()
-        // In a real app, you would also start a timer or observer to fetch other users' locations
     }
     
     private func stopLocationUpdates() {
@@ -395,6 +384,15 @@ extension TripMapViewController: UITableViewDataSource {
             let member = filteredMembers[indexPath.row]
             let location = locations.first(where: { $0.userId == member.id })
             cell.configure(with: member, location: location)
+            cell.delegate = self
+            
+            // Set selection state
+            if selectedMemberId == member.id {
+                cell.contentView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+            } else {
+                cell.contentView.backgroundColor = .clear
+            }
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SubgroupCell", for: indexPath) as? SubgroupMapCell else {
@@ -402,6 +400,15 @@ extension TripMapViewController: UITableViewDataSource {
             }
             let subgroup = subgroups[indexPath.row]
             cell.configure(with: subgroup)
+            cell.delegate = self
+            
+            // Set selection state
+            if selectedSubgroupId == subgroup.id {
+                cell.contentView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+            } else {
+                cell.contentView.backgroundColor = .clear
+            }
+            
             return cell
         }
     }
@@ -445,5 +452,119 @@ extension TripMapViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+// MARK: - MemberMapCellDelegate
+extension TripMapViewController: MemberMapCellDelegate {
+    
+    func didTapMember(_ member: User, cell: MemberMapCell) {
+        // Check if member has location
+        guard let location = locations.first(where: { $0.userId == member.id }) else {
+            // Show alert if no location
+            let alert = UIAlertController(
+                title: "No Location",
+                message: "\(member.fullName) has not shared their location.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+        
+        // Update selection
+        selectedMemberId = member.id
+        selectedSubgroupId = nil
+        memberTableView.reloadData()
+        
+        // Focus map on member
+        if let annotation = userAnnotations[member.id] {
+            mapView.selectAnnotation(annotation, animated: true)
+            
+            let region = MKCoordinateRegion(
+                center: annotation.coordinate,
+                latitudinalMeters: 500,
+                longitudinalMeters: 500
+            )
+            mapView.setRegion(region, animated: true)
+        }
+    }
+}
+
+// MARK: - SubgroupMapCellDelegate
+extension TripMapViewController: SubgroupMapCellDelegate {
+    
+    func didTapSubgroup(_ subgroup: Subgroup, cell: SubgroupMapCell) {
+        // Get members of this subgroup
+        let subgroupMembers = members.filter { subgroup.memberIds.contains($0.id) }
+        
+        // Get members with locations
+        let membersWithLocations = subgroupMembers.filter { member in
+            locations.contains(where: { $0.userId == member.id })
+        }
+        
+        // Check if any members have locations
+        guard !membersWithLocations.isEmpty else {
+            let alert = UIAlertController(
+                title: "No Locations",
+                message: "No members of \"\(subgroup.name)\" are currently sharing their location.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+        
+        // Update selection
+        selectedSubgroupId = subgroup.id
+        selectedMemberId = nil
+        subgroupTableView.reloadData()
+        
+        // Get coordinates of all members with locations
+        let coordinates = membersWithLocations.compactMap { member -> CLLocationCoordinate2D? in
+            guard let location = locations.first(where: { $0.userId == member.id }) else { return nil }
+            return location.coordinate
+        }
+        
+        // Focus map on all subgroup members
+        focusMapOnCoordinates(coordinates)
+    }
+    
+    private func focusMapOnCoordinates(_ coordinates: [CLLocationCoordinate2D]) {
+        guard !coordinates.isEmpty else { return }
+        
+        if coordinates.count == 1 {
+            let region = MKCoordinateRegion(
+                center: coordinates[0],
+                latitudinalMeters: 2000,
+                longitudinalMeters: 2000
+            )
+            mapView.setRegion(region, animated: true)
+        } else {
+            var minLat = coordinates[0].latitude
+            var maxLat = coordinates[0].latitude
+            var minLon = coordinates[0].longitude
+            var maxLon = coordinates[0].longitude
+            
+            for coordinate in coordinates {
+                minLat = min(minLat, coordinate.latitude)
+                maxLat = max(maxLat, coordinate.latitude)
+                minLon = min(minLon, coordinate.longitude)
+                maxLon = max(maxLon, coordinate.longitude)
+            }
+            
+            let center = CLLocationCoordinate2D(
+                latitude: (minLat + maxLat) / 2,
+                longitude: (minLon + maxLon) / 2
+            )
+            
+            let span = MKCoordinateSpan(
+                latitudeDelta: (maxLat - minLat) * 1.5,
+                longitudeDelta: (maxLon - minLon) * 1.5
+            )
+            
+            let region = MKCoordinateRegion(center: center, span: span)
+            mapView.setRegion(region, animated: true)
+        }
     }
 }
