@@ -285,6 +285,7 @@ class CS02_ItineraryVC: UIViewController {
                let addStopVC = navController.topViewController as? CS03_AddItineraryStopVC {
                 addStopVC.delegate = self
                 addStopVC.tripId = trip?.id
+                addStopVC.trip = trip
                 addStopVC.availableSubgroups = subgroups
             }
         } else if segue.identifier == "showEditStop" {
@@ -294,6 +295,7 @@ class CS02_ItineraryVC: UIViewController {
                 let stop = groupedStops[indexPath.section].stops[indexPath.row]
                 addStopVC.delegate = self
                 addStopVC.tripId = trip?.id
+                addStopVC.trip = trip
                 addStopVC.availableSubgroups = subgroups
                 addStopVC.existingStop = stop
             }

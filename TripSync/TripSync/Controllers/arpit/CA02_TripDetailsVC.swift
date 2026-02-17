@@ -13,17 +13,18 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     @IBOutlet weak var backgroundImageView: UIImageView?
     @IBOutlet weak var subgroupsEmptyStateView: UIView?
     @IBOutlet weak var subgroupsTableView: UITableView!
+    @IBOutlet weak var subgroupsTableViewHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripLocationLabel: UILabel!
     @IBOutlet weak var tripDateRangeLabel: UILabel!
     @IBOutlet weak var tripMembersLabel: UILabel!
     @IBOutlet weak var imageAttributionLabel: UILabel?
     @IBOutlet weak var upcomingStopContainerView: UIView?
+    @IBOutlet weak var upcomingStopContainerHeightConstraint: NSLayoutConstraint?
     @IBOutlet weak var upcomingStopTitleLabel: UILabel?
     @IBOutlet weak var upcomingStopTimeLabel: UILabel?
     @IBOutlet weak var upcomingStopLocationLabel: UILabel?
     @IBOutlet weak var upcomingStopIconImageView: UIImageView?
-    @IBOutlet weak var upcomingStopEmptyStateView: UIView?
     
     // MARK: - Properties
     var trip: Trip?
@@ -39,6 +40,15 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
               trip.canUserAccess(currentUser.id) else {
             navigationController?.popViewController(animated: true)
             return
+        }
+        
+        // Configure navigation bar to be transparent so background image shows through
+        if let navigationBar = navigationController?.navigationBar {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundColor = .clear
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
         }
 
         setupUI()
@@ -80,8 +90,27 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
         
         subgroupsTableView.reloadData()
         
+        // Update table height based on content
+        updateSubgroupsTableHeight()
+        
         // Load upcoming stop
         loadUpcomingStop()
+    }
+    
+    private func updateSubgroupsTableHeight() {
+        // Calculate height: number of rows × row height
+        // insetGrouped style automatically adds spacing between sections
+        let rowHeight: CGFloat = 80
+        let numberOfRows = subgroups.count
+        
+        // Add spacing for insetGrouped style (approximately 10px per section gap)
+        let sectionSpacing: CGFloat = numberOfRows > 0 ? CGFloat(numberOfRows + 1) * 10 : 0
+        let calculatedHeight = (CGFloat(numberOfRows) * rowHeight) + sectionSpacing
+        
+        // Set minimum height to avoid collapsing when empty
+        let finalHeight = max(calculatedHeight, 100)
+        
+        subgroupsTableViewHeightConstraint?.constant = finalHeight
     }
     
     private func loadUpcomingStop() {
@@ -95,9 +124,9 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
     
     private func setupUpcomingStopUI() {
         if let stop = upcomingStop {
-            // Show upcoming stop, hide empty state
+            // Show upcoming stop with full height
             upcomingStopContainerView?.isHidden = false
-            upcomingStopEmptyStateView?.isHidden = true
+            upcomingStopContainerHeightConstraint?.constant = 76
             
             // Configure title (truncate if needed)
             if stop.title.count > 25 {
@@ -122,9 +151,9 @@ class TripDetailsViewController: UIViewController, SubgroupFormDelegate, EditTri
             }
             upcomingStopIconImageView?.tintColor = .systemOrange
         } else {
-            // Hide upcoming stop, show empty state
+            // Collapse the section when there's no upcoming stop
             upcomingStopContainerView?.isHidden = true
-            upcomingStopEmptyStateView?.isHidden = false
+            upcomingStopContainerHeightConstraint?.constant = 0
         }
     }
     

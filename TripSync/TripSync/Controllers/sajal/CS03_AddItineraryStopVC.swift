@@ -28,6 +28,7 @@ class CS03_AddItineraryStopVC: UITableViewController {
     // MARK: - Properties
     weak var delegate: AddItineraryStopDelegate?
     var tripId: UUID?
+    var trip: Trip?
     var availableSubgroups: [Subgroup] = []
     var selectedSubgroup: Subgroup?
     var selectedCategory: (name: String, icon: String)? = ("Travel Place", "mappin.and.ellipse")
@@ -92,14 +93,17 @@ class CS03_AddItineraryStopVC: UITableViewController {
         // Configure date picker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.minimumDate = Date()
+        
+        // Set minimum date to trip start date if available, otherwise current date
+        let initialDate = trip?.startDate ?? Date()
+        datePicker.minimumDate = initialDate
         
         // Configure time picker
         timePicker.datePickerMode = .time
         timePicker.preferredDatePickerStyle = .wheels
         
-        // Set default date to today
-        datePicker.date = Date()
+        // Set default date to trip start date if available, otherwise today
+        datePicker.date = initialDate
         timePicker.date = Date()
         
         // Setup subgroup label
