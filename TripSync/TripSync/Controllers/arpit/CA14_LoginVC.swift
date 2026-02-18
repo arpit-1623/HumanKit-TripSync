@@ -67,8 +67,19 @@ class CA14_LoginVC: UIViewController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        // Navigate to signup screen
-        performSegue(withIdentifier: "showSignup", sender: nil)
+        // Navigate to signup screen by replacing self in the nav stack
+        guard let navController = navigationController else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let signupVC = storyboard.instantiateViewController(withIdentifier: "CA15_SignupVC") as? CA15_SignupVC {
+            var viewControllers = navController.viewControllers
+            viewControllers.removeLast() // Remove LoginVC
+            viewControllers.append(signupVC)
+            navController.setViewControllers(viewControllers, animated: true)
+        }
+    }
+    
+    @IBAction func unwindToLogin(_ unwindSegue: UIStoryboardSegue) {
+        // Unwind target — no extra logic needed
     }
     
     // MARK: - Helper Methods
