@@ -35,6 +35,12 @@ class CreateTripViewController: UIViewController {
         setupUI()
     }
     
+    /// Returns true if the user has entered any data into the form
+    private var hasUnsavedChanges: Bool {
+        let hasName = !(tripNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true)
+        return hasName || selectedStartDate != nil || selectedEndDate != nil || selectedLocation != nil || selectedImageURL != nil
+    }
+    
     // MARK: - Setup
     private func setupUI() {
         tripNameField.delegate = self
@@ -62,6 +68,23 @@ class CreateTripViewController: UIViewController {
     
     @IBAction func didTapImage(_ sender: UIButton) {
         performSegue(withIdentifier: "createTripToImagePicker", sender: nil)
+    }
+    
+    @IBAction func didTapCancel(_ sender: UIBarButtonItem) {
+        if hasUnsavedChanges {
+            let alert = UIAlertController(
+                title: "Discard Trip?",
+                message: "You have unsaved changes. Are you sure you want to discard this trip?",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Keep Editing", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Discard", style: .destructive) { [weak self] _ in
+                self?.performSegue(withIdentifier: "unwindToHomeWithCancel", sender: nil)
+            })
+            present(alert, animated: true)
+        } else {
+            performSegue(withIdentifier: "unwindToHomeWithCancel", sender: nil)
+        }
     }
     
     @IBAction func didTapCreate(_ sender: UIBarButtonItem) {
