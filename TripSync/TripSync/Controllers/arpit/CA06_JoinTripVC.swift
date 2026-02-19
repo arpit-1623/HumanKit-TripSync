@@ -205,6 +205,8 @@ class JoinTripViewController: UIViewController {
             showAlert(title: "Invalid Code", message: "No trip found with this invite code. Please check and try again.")
         } catch JoinTripError.alreadyMember {
             showAlert(title: "Already Joined", message: "You're already a member of this trip.")
+        } catch JoinTripError.dateOverlap(let existingTripName) {
+            showAlert(title: "Date Conflict", message: "Looks like your trip '\(existingTripName)' falls on the same dates. You'll need to leave that trip first before joining this one.")
         } catch {
             showAlert(title: "Error", message: "An unexpected error occurred: \(error.localizedDescription)")
         }

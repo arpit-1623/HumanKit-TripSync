@@ -142,11 +142,29 @@ class EditTripTableViewController: UITableViewController {
             return
         }
         
+        let newStartDate = startDatePicker.date
+        let newEndDate = endDatePicker.date
+        
+        // Check for date overlap for all members of this trip
+        for memberId in trip.memberIds {
+            if let overlapping = DataModel.shared.findOverlappingTrip(forUserId: memberId, startDate: newStartDate, endDate: newEndDate, excludingTripId: trip.id) {
+                let memberName = DataModel.shared.getUser(byId: memberId)?.fullName ?? "A member"
+                let alert = UIAlertController(
+                    title: "Date Conflict",
+                    message: "\(memberName) is already on a trip '\(overlapping.name)' during these dates. Try picking a different date range.",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                present(alert, animated: true)
+                return
+            }
+        }
+        
         // Update trip properties
         trip.name = name
         trip.location = location
-        trip.startDate = startDatePicker.date
-        trip.endDate = endDatePicker.date
+        trip.startDate = newStartDate
+        trip.endDate = newEndDate
         trip.coverImageURL = selectedImageURL
         trip.coverImagePhotographerName = selectedPhotographerName
         
