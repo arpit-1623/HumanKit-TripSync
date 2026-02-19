@@ -46,7 +46,7 @@ class TripMapViewController: UIViewController {
     
     private var currentMenuMode: MenuMode = .all
     
-    // MARK: - Lifecycle
+    // MARK: - Li fecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

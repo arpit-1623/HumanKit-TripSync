@@ -85,6 +85,24 @@ class DataModel {
 
     }
     
+    // MARK: - Clear All Data
+    
+    public func clearAllData() {
+        currentUser = nil
+        users.removeAll()
+        trips.removeAll()
+        subgroups.removeAll()
+        itineraryStops.removeAll()
+        messages.removeAll()
+        locations.removeAll()
+        invitations.removeAll()
+        
+        let fileURLs = [currentUserURL, usersURL, tripsURL, subgroupsURL, itineraryStopsURL, messagesURL, locationsURL, invitationsURL]
+        for url in fileURLs {
+            try? FileManager.default.removeItem(at: url)
+        }
+    }
+    
     // MARK: - User Data Model
     
     private func loadCurrentUserFromFile() -> User? {
