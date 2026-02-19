@@ -189,7 +189,7 @@
         <!--Create Account-->
         <scene sceneID="1Hz-qZ-6Tl">
             <objects>
-                <viewController title="Create Account" id="T2F-Zk-HSO" customClass="CA15_SignupVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CA15_SignupVC" title="Create Account" id="T2F-Zk-HSO" customClass="CA15_SignupVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bFG-gX-bXR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,6 +331,12 @@
                                                 <action selector="signUpButtonTapped:" destination="T2F-Zk-HSO" eventType="touchUpInside" id="act-signup-tap"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="or-lbl-signup">
+                                            <rect key="frame" x="189" y="483" width="15" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr5-9q-rgp" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="513" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -383,7 +389,9 @@
                                         <constraint firstItem="WeA-TJ-YJS-4" firstAttribute="top" secondItem="WeA-TJ-YJS-3" secondAttribute="bottom" constant="15" id="WeA-TJ-YJS-4-top"/>
                                         <constraint firstItem="WeA-TJ-YJS-4" firstAttribute="trailing" secondItem="WeA-TJ-YJS-1" secondAttribute="trailing" id="WeA-TJ-YJS-4-trailing"/>
                                         <constraint firstItem="Kr5-9q-rgp" firstAttribute="centerX" secondItem="jkZ-GW-a5J-content" secondAttribute="centerX" id="apple-centerX"/>
-                                        <constraint firstItem="Kr5-9q-rgp" firstAttribute="top" secondItem="nSA-H4-hnd" secondAttribute="bottom" constant="50" id="apple-top"/>
+                                        <constraint firstItem="or-lbl-signup" firstAttribute="top" secondItem="nSA-H4-hnd" secondAttribute="bottom" constant="20" id="or-lbl-signup-top"/>
+                                        <constraint firstItem="or-lbl-signup" firstAttribute="centerX" secondItem="jkZ-GW-a5J-content" secondAttribute="centerX" id="or-lbl-signup-centerX"/>
+                                        <constraint firstItem="Kr5-9q-rgp" firstAttribute="top" secondItem="or-lbl-signup" secondAttribute="bottom" constant="20" id="apple-top"/>
                                         <constraint firstItem="Kr5-9q-rgp" firstAttribute="width" secondItem="nSA-H4-hnd" secondAttribute="width" id="apple-width"/>
                                         <constraint firstItem="err-lbl-signup" firstAttribute="leading" secondItem="WeA-TJ-YJS-1" secondAttribute="leading" id="err-lbl-signup-leading"/>
                                         <constraint firstItem="err-lbl-signup" firstAttribute="top" secondItem="WeA-TJ-YJS-4" secondAttribute="bottom" constant="15" id="err-lbl-signup-top"/>
@@ -441,7 +449,7 @@
         <!--Welcome Back-->
         <scene sceneID="9vh-3h-ula">
             <objects>
-                <viewController title="Welcome Back" id="0NK-19-lYu" customClass="CA14_LoginVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CA14_LoginVC" title="Welcome Back" id="0NK-19-lYu" customClass="CA14_LoginVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GgQ-F6-QMX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -527,13 +535,6 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mm0-45-gQj">
                                             <rect key="frame" x="45" y="275" width="303" height="29.666666666666686"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWj-gj-b44">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144.66666666666666" height="29.666666666666668"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Remember me">
-                                                        <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
-                                                    </buttonConfiguration>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cu1-y3-lTy">
                                                     <rect key="frame" x="158.66666666666663" y="0.0" width="144.33333333333337" height="29.666666666666668"/>
                                                     <state key="normal" title="Button"/>
@@ -559,6 +560,12 @@
                                                 <action selector="loginButtonTapped:" destination="0NK-19-lYu" eventType="touchUpInside" id="act-login-tap"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="or-lbl-login">
+                                            <rect key="frame" x="189" y="414" width="15" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-VD-rQz" customClass="GlassButton" customModule="TripSync" customModuleProvider="target">
                                             <rect key="frame" x="78.666666666666671" y="434.66666666666663" width="235.66666666666663" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -602,7 +609,9 @@
                                     <constraints>
                                         <constraint firstItem="yiW-9I-FYq" firstAttribute="top" secondItem="f2u-aD-MHb-content" secondAttribute="top" constant="30" id="A16-EK-t8q"/>
                                         <constraint firstItem="EGJ-VD-rQz" firstAttribute="centerX" secondItem="f2u-aD-MHb-content" secondAttribute="centerX" id="EGJ-VD-rQz-centerX"/>
-                                        <constraint firstItem="EGJ-VD-rQz" firstAttribute="top" secondItem="zO7-cv-MWX" secondAttribute="bottom" constant="50" id="EGJ-VD-rQz-top"/>
+                                        <constraint firstItem="or-lbl-login" firstAttribute="top" secondItem="zO7-cv-MWX" secondAttribute="bottom" constant="20" id="or-lbl-login-top"/>
+                                        <constraint firstItem="or-lbl-login" firstAttribute="centerX" secondItem="f2u-aD-MHb-content" secondAttribute="centerX" id="or-lbl-login-centerX"/>
+                                        <constraint firstItem="EGJ-VD-rQz" firstAttribute="top" secondItem="or-lbl-login" secondAttribute="bottom" constant="20" id="EGJ-VD-rQz-top"/>
                                         <constraint firstItem="EGJ-VD-rQz" firstAttribute="width" secondItem="zO7-cv-MWX" secondAttribute="width" id="EGJ-VD-rQz-width"/>
                                         <constraint firstItem="FGp-Lc-jlo-1" firstAttribute="leading" secondItem="f2u-aD-MHb-content" secondAttribute="leading" constant="45" id="FGp-Lc-jlo-1-leading"/>
                                         <constraint firstItem="FGp-Lc-jlo-1" firstAttribute="top" secondItem="yiW-9I-FYq" secondAttribute="bottom" constant="30" id="FGp-Lc-jlo-1-top"/>
@@ -748,6 +757,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Log In">
                                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="0NK-19-lYu" kind="unwind" unwindAction="unwindToLogin:" id="unw-fp-login"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>

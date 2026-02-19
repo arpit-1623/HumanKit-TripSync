@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -118,7 +117,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AY-5e-keX" userLabel="Map Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="map-button-content">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="79.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lpf-k2-yJR">
@@ -157,7 +156,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sVT-DY-Cgg" userLabel="Itinerary Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="itinerary-button-content">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79.333333333333343" height="79.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="79"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EEl-oj-3bS">
@@ -196,7 +195,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugQ-QQ-Yfe" userLabel="Chat Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="chat-button-content">
-                                                            <rect key="frame" x="0.0" y="0.0" width="78.999999999999972" height="79.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QqY-Dk-5kl">
@@ -235,7 +234,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdY-MK-rhy" userLabel="Alerts Button" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
                                                         <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="members-button-content">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79.333333333333314" height="79.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CQU-Mb-brE">
@@ -273,12 +272,8 @@
                                                     </visualEffectView>
                                                 </subviews>
                                             </stackView>
-                                            <!-- Upcoming Itinerary Card -->
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-stop-card" customClass="GlassView" customModule="TripSync" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="403.33" width="353" height="76"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="76" id="upcoming-card-height"/>
-                                                </constraints>
+                                                <rect key="frame" x="20" y="403.32999999999998" width="353" height="76"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="upcoming-card-content">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,8 +285,8 @@
                                                                     <rect key="frame" x="0.0" y="7" width="32" height="30"/>
                                                                     <color key="tintColor" systemColor="systemOrangeColor"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="32" id="upcoming-icon-width"/>
                                                                         <constraint firstAttribute="height" constant="32" id="upcoming-icon-height"/>
+                                                                        <constraint firstAttribute="width" constant="32" id="upcoming-icon-width"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-text-stack">
@@ -307,11 +302,11 @@
                                                                             <rect key="frame" x="0.0" y="24" width="179" height="20"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-location-icon">
-                                                                                    <rect key="frame" x="0.0" y="0.67" width="16" height="19"/>
+                                                                                    <rect key="frame" x="0.0" y="0.67000000000000004" width="16" height="19"/>
                                                                                     <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="16" id="upcoming-loc-icon-width"/>
                                                                                         <constraint firstAttribute="height" constant="16" id="upcoming-loc-icon-height"/>
+                                                                                        <constraint firstAttribute="width" constant="16" id="upcoming-loc-icon-width"/>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downtown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upcoming-location">
@@ -334,17 +329,19 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="leading" secondItem="upcoming-card-content" secondAttribute="leading" constant="16" id="upcoming-stack-leading"/>
-                                                        <constraint firstAttribute="trailing" secondItem="upcoming-main-stack" secondAttribute="trailing" constant="16" id="upcoming-stack-trailing"/>
-                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="top" secondItem="upcoming-card-content" secondAttribute="top" constant="16" id="upcoming-stack-top"/>
                                                         <constraint firstAttribute="bottom" secondItem="upcoming-main-stack" secondAttribute="bottom" constant="16" id="upcoming-stack-bottom"/>
+                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="leading" secondItem="upcoming-card-content" secondAttribute="leading" constant="16" id="upcoming-stack-leading"/>
+                                                        <constraint firstItem="upcoming-main-stack" firstAttribute="top" secondItem="upcoming-card-content" secondAttribute="top" constant="16" id="upcoming-stack-top"/>
+                                                        <constraint firstAttribute="trailing" secondItem="upcoming-main-stack" secondAttribute="trailing" constant="16" id="upcoming-stack-trailing"/>
                                                     </constraints>
                                                 </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="76" id="upcoming-card-height"/>
+                                                </constraints>
                                                 <blurEffect style="systemThinMaterial"/>
                                             </visualEffectView>
-
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-jv-uT6" userLabel="Subgroups Section">
-                                                <rect key="frame" x="0.0" y="499.33" width="393" height="400.67"/>
+                                                <rect key="frame" x="0.0" y="499.32999999999998" width="393" height="400.67000000000002"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-gU-Fhg">
                                                         <rect key="frame" x="20" y="20" width="353" height="34"/>
@@ -418,13 +415,13 @@ members and activities</string>
                                                             <constraint firstItem="empty-state-stack" firstAttribute="top" secondItem="subgroups-empty-state" secondAttribute="top" constant="60" id="empty-stack-top"/>
                                                         </constraints>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="0" estimatedSectionHeaderHeight="0" sectionFooterHeight="0" estimatedSectionFooterHeight="0" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-hR-ufI">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-hR-ufI">
                                                         <rect key="frame" x="0.0" y="54.000000000000028" width="393" height="442.66666666666674"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="300" id="subgroups-table-height"/>
                                                         </constraints>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubgroupCell" rowHeight="80" id="EBu-Eg-p2F" customClass="TripSubgroupCell" customModule="TripSync" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="18" width="393" height="80"/>
@@ -482,18 +479,18 @@ members and activities</string>
                                                                                     <rect key="frame" x="333" y="23.333333333333336" width="12" height="13.333333333333336"/>
                                                                                     <color key="tintColor" systemColor="tertiaryLabelColor"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="12" id="chevron-width"/>
                                                                                         <constraint firstAttribute="height" constant="14" id="chevron-height"/>
+                                                                                        <constraint firstAttribute="width" constant="12" id="chevron-width"/>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                             </subviews>
                                                                         </stackView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="ksJ-xE-qob" firstAttribute="leading" secondItem="FZQ-B1-xsn" secondAttribute="leading" constant="16" id="stack-leading"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="ksJ-xE-qob" secondAttribute="trailing" constant="16" id="stack-trailing"/>
-                                                                        <constraint firstItem="ksJ-xE-qob" firstAttribute="top" secondItem="FZQ-B1-xsn" secondAttribute="top" constant="10" id="stack-top"/>
                                                                         <constraint firstAttribute="bottom" secondItem="ksJ-xE-qob" secondAttribute="bottom" constant="10" id="stack-bottom"/>
+                                                                        <constraint firstItem="ksJ-xE-qob" firstAttribute="leading" secondItem="FZQ-B1-xsn" secondAttribute="leading" constant="16" id="stack-leading"/>
+                                                                        <constraint firstItem="ksJ-xE-qob" firstAttribute="top" secondItem="FZQ-B1-xsn" secondAttribute="top" constant="10" id="stack-top"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="ksJ-xE-qob" secondAttribute="trailing" constant="16" id="stack-trailing"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -536,11 +533,10 @@ members and activities</string>
                                             <constraint firstAttribute="trailing" secondItem="trip-info-blur-card" secondAttribute="trailing" constant="20" id="blur-card-trailing"/>
                                             <constraint firstItem="mJi-Uq-qR7" firstAttribute="top" secondItem="trip-info-blur-card" secondAttribute="bottom" constant="20" id="lfX-X2-5lT"/>
                                             <constraint firstAttribute="trailing" secondItem="7XS-jv-uT6" secondAttribute="trailing" id="pYv-sR-fHX"/>
-                                            <constraint firstItem="upcoming-stop-card" firstAttribute="top" secondItem="mJi-Uq-qR7" secondAttribute="bottom" constant="20" id="upcoming-card-top"/>
-                                            <constraint firstItem="upcoming-stop-card" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="upcoming-card-leading"/>
-                                            <constraint firstAttribute="trailing" secondItem="upcoming-stop-card" secondAttribute="trailing" constant="20" id="upcoming-card-trailing"/>
-
                                             <constraint firstItem="7XS-jv-uT6" firstAttribute="top" secondItem="upcoming-stop-card" secondAttribute="bottom" constant="20" id="subgroups-top-to-upcoming"/>
+                                            <constraint firstItem="upcoming-stop-card" firstAttribute="leading" secondItem="Zfg-2h-Wbn" secondAttribute="leading" constant="20" id="upcoming-card-leading"/>
+                                            <constraint firstItem="upcoming-stop-card" firstAttribute="top" secondItem="mJi-Uq-qR7" secondAttribute="bottom" constant="20" id="upcoming-card-top"/>
+                                            <constraint firstAttribute="trailing" secondItem="upcoming-stop-card" secondAttribute="trailing" constant="20" id="upcoming-card-trailing"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -607,8 +603,8 @@ members and activities</string>
                         <outlet property="tripLocationLabel" destination="Njw-pN-cfk" id="zzP-iE-gnJ"/>
                         <outlet property="tripMembersLabel" destination="trip-members-label" id="trip-members-outlet"/>
                         <outlet property="tripNameLabel" destination="UPk-Yw-hha" id="E5z-7M-qho"/>
-                        <outlet property="upcomingStopContainerView" destination="upcoming-stop-card" id="upcoming-container-outlet"/>
                         <outlet property="upcomingStopContainerHeightConstraint" destination="upcoming-card-height" id="upcoming-height-outlet"/>
+                        <outlet property="upcomingStopContainerView" destination="upcoming-stop-card" id="upcoming-container-outlet"/>
                         <outlet property="upcomingStopIconImageView" destination="upcoming-icon" id="upcoming-icon-outlet"/>
                         <outlet property="upcomingStopLocationLabel" destination="upcoming-location" id="upcoming-location-outlet"/>
                         <outlet property="upcomingStopTimeLabel" destination="upcoming-time" id="upcoming-time-outlet"/>
@@ -726,7 +722,6 @@ members and activities</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="BQX-wt-8d2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="edit-nav-bar">
-                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -743,7 +738,7 @@ members and activities</string>
             <objects>
                 <tableViewController id="GMa-wL-hgw" customClass="EditTripTableViewController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="vE3-Gc-iq5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <sections>
@@ -1164,30 +1159,33 @@ members and activities</string>
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="calendar" catalog="system" width="32" height="32"/>
+        <image name="chevron.right" catalog="system" width="32" height="32"/>
         <image name="createTripBg" width="401" height="874"/>
-        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
-        <image name="list.bullet" catalog="system" width="128" height="87"/>
-        <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="map.fill" catalog="system" width="128" height="110"/>
-        <image name="megaphone.fill" catalog="system" width="128" height="112"/>
-        <image name="message.fill" catalog="system" width="128" height="104"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="person.2.fill" catalog="system" width="128" height="86"/>
-        <image name="person.3.fill" catalog="system" width="128" height="66"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="qrcode" catalog="system" width="128" height="114"/>
-        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
-        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
-        <image name="trash.fill" catalog="system" width="117" height="128"/>
-        <namedColor name="CardColor">
-            <color red="0.94117647058823528" green="0.96078431372549022" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="ellipsis.circle" catalog="system" width="32" height="32"/>
+        <image name="list.bullet" catalog="system" width="32" height="32"/>
+        <image name="location.fill" catalog="system" width="32" height="32"/>
+        <image name="map.fill" catalog="system" width="32" height="32"/>
+        <image name="mappin" catalog="system" width="32" height="32"/>
+        <image name="mappin.and.ellipse" catalog="system" width="32" height="32"/>
+        <image name="megaphone.fill" catalog="system" width="32" height="32"/>
+        <image name="message.fill" catalog="system" width="32" height="32"/>
+        <image name="pencil" catalog="system" width="32" height="32"/>
+        <image name="person.2.fill" catalog="system" width="32" height="32"/>
+        <image name="person.3.fill" catalog="system" width="32" height="32"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="qrcode" catalog="system" width="32" height="32"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="32" height="32"/>
+        <image name="square.and.arrow.up" catalog="system" width="32" height="32"/>
+        <image name="trash.fill" catalog="system" width="32" height="32"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1210,11 +1208,17 @@ members and activities</string>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

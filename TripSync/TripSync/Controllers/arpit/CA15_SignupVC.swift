@@ -89,7 +89,15 @@ class CA15_SignupVC: UIViewController {
     }
     
     @IBAction func backToLoginButtonTapped(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        // Navigate to login screen by replacing self in the nav stack
+        guard let navController = navigationController else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let loginVC = storyboard.instantiateViewController(withIdentifier: "CA14_LoginVC") as? CA14_LoginVC {
+            var viewControllers = navController.viewControllers
+            viewControllers.removeLast() // Remove SignupVC
+            viewControllers.append(loginVC)
+            navController.setViewControllers(viewControllers, animated: true)
+        }
     }
     
     // MARK: - Helper Methods

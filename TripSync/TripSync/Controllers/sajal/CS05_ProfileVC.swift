@@ -66,7 +66,7 @@ class ProfileViewController: UITableViewController {
         
         // Configure Privacy Cell
         let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
-        privacyCell.configure(title: "Privacy", icon: "lock.fill", hasToggle: true, isToggleOn: isPrivacyOn)
+        privacyCell.configure(title: "Face ID Unlock", icon: "faceid", hasToggle: true, isToggleOn: isPrivacyOn)
         privacyCell.toggleChanged = { [weak self] isOn in
             self?.handlePrivacyToggle(isOn: isOn)
         }

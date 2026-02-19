@@ -12,6 +12,7 @@ enum DataModelError: LocalizedError {
     case invalidTripName
     case invalidDateRange
     case saveFailed(String)
+    case dateOverlap(existingTripName: String)
     
     var errorDescription: String? {
         switch self {
@@ -21,6 +22,8 @@ enum DataModelError: LocalizedError {
             return "Start date must be before or equal to end date."
         case .saveFailed(let message):
             return "Failed to save data: \(message)"
+        case .dateOverlap(let existingTripName):
+            return "Looks like your trip '\(existingTripName)' falls on the same dates. Please pick a different date range to continue."
         }
     }
 }
@@ -184,6 +187,22 @@ class DataModel {
         saveTripsToFile()
     }
     
+    /// Checks if a date range conflicts with any existing trip the user is a member of.
+    /// - Parameters:
+    ///   - userId: The user to check for
+    ///   - startDate: Start of the proposed date range
+    ///   - endDate: End of the proposed date range
+    ///   - excludingTripId: Trip ID to exclude (for edit scenarios)
+    /// - Returns: The first conflicting trip, or nil
+    public func findOverlappingTrip(forUserId userId: UUID, startDate: Date, endDate: Date, excludingTripId: UUID? = nil) -> Trip? {
+        return trips.first { trip in
+            trip.memberIds.contains(userId) &&
+            trip.id != excludingTripId &&
+            startDate <= trip.endDate &&
+            endDate >= trip.startDate
+        }
+    }
+    
     public func saveTripWithValidation(_ trip: Trip) throws {
         // Validate trip data
         guard !trip.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
@@ -192,6 +211,11 @@ class DataModel {
         
         guard trip.startDate <= trip.endDate else {
             throw DataModelError.invalidDateRange
+        }
+        
+        // Check for date overlap with existing trips
+        if let overlapping = findOverlappingTrip(forUserId: trip.createdByUserId, startDate: trip.startDate, endDate: trip.endDate, excludingTripId: trip.id) {
+            throw DataModelError.dateOverlap(existingTripName: overlapping.name)
         }
         
         // Save the trip
@@ -735,6 +759,11 @@ class DataModel {
             throw JoinTripError.alreadyMember
         }
         
+        // Check for date overlap with user's existing trips
+        if let overlapping = findOverlappingTrip(forUserId: userId, startDate: trip.startDate, endDate: trip.endDate) {
+            throw JoinTripError.dateOverlap(existingTripName: overlapping.name)
+        }
+        
         var updatedTrip = trip
         updatedTrip.memberIds.append(userId)
         
@@ -761,6 +790,11 @@ class DataModel {
         guard let tripId = invitation.tripId,
               var trip = getTrip(byId: tripId) else {
             throw JoinTripError.tripNotFound
+        }
+        
+        // Check for date overlap with user's existing trips
+        if let overlapping = findOverlappingTrip(forUserId: userId, startDate: trip.startDate, endDate: trip.endDate) {
+            throw JoinTripError.dateOverlap(existingTripName: overlapping.name)
         }
         
         if !trip.memberIds.contains(userId) {

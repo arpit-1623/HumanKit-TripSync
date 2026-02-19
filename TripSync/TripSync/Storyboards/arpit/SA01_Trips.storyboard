@@ -535,7 +535,7 @@
         <!--Trips-->
         <scene sceneID="z3y-cn-4pI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mF8-b1-YIG" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mF8-b1-YIG" customClass="HidesTabBarNavigationController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trips" image="suitcase.fill" catalog="system" id="L8w-JV-pes"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

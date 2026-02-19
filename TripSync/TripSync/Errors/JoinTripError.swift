@@ -14,6 +14,7 @@ enum JoinTripError: LocalizedError {
     case unauthorizedAccess
     case invalidInvitationStatus
     case tripNotFound
+    case dateOverlap(existingTripName: String)
     
     var errorDescription: String? {
         switch self {
@@ -29,6 +30,8 @@ enum JoinTripError: LocalizedError {
             return "This invitation cannot be accepted."
         case .tripNotFound:
             return "Trip not found."
+        case .dateOverlap(let existingTripName):
+            return "Looks like your trip '\(existingTripName)' falls on the same dates. Please pick a different date range to continue."
         }
     }
 }
