@@ -74,6 +74,18 @@ class CS02_ItineraryVC: UIViewController {
     private func setupUI() {
         title = "Itinerary"
         view.backgroundColor = .systemBackground
+        
+        // Pull-to-refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        itineraryTableView.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        loadTripData()
+        filterAndGroupStops()
+        subgroupCollectionView.reloadData()
+        itineraryTableView.refreshControl?.endRefreshing()
     }
     
     private func setupCollectionView() {

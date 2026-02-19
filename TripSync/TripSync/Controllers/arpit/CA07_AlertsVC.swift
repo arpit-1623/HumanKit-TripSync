@@ -34,6 +34,16 @@ class AlertsViewController: UIViewController {
     private func setupTableView() {
         tableView?.delegate = self
         tableView?.dataSource = self
+        
+        // Pull-to-refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        loadAnnouncements()
+        tableView?.refreshControl?.endRefreshing()
     }
     
     private func loadAnnouncements() {

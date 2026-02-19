@@ -90,10 +90,15 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Section 0: Profile (not tappable)
+        // Section 0: Profile (tappable — navigate to Edit Profile)
+        if indexPath.section == 0 {
+            let storyboard = UIStoryboard(name: "SA08_EditProfile", bundle: nil)
+            let editProfileVC = storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
+            navigationController?.pushViewController(editProfileVC, animated: true)
+        }
         // Section 1: My Trips (not tappable, handled by collection view)
         // Section 2: Preferences
-        if indexPath.section == 2 {
+        else if indexPath.section == 2 {
             if indexPath.row == 1 {  // Location Sharing
                 showLocationSharingOptions()
             }

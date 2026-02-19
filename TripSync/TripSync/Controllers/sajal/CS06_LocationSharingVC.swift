@@ -93,6 +93,19 @@ class LocationSharingViewController: UITableViewController {
         if indexPath.section == 1 {
             selectedDuration = LocationSharingDuration.allCases[indexPath.row]
             updateSelectedDuration()
+            
+            // Save selected duration and compute expiry
+            guard var user = user else { return }
+            user.userPreferences.locationSharingDuration = selectedDuration
+            if let interval = selectedDuration.timeInterval {
+                user.userPreferences.locationSharingExpiresAt = Date().addingTimeInterval(interval)
+            } else {
+                // Indefinitely — no expiry
+                user.userPreferences.locationSharingExpiresAt = nil
+            }
+            DataModel.shared.saveUser(user)
+            DataModel.shared.setCurrentUser(user)
+            self.user = user
         }
     }
     
@@ -104,8 +117,18 @@ class LocationSharingViewController: UITableViewController {
         
         if isLocationSharingEnabled {
             user.userPreferences.shareLocation = .allTrips
+            // Set default duration
+            user.userPreferences.locationSharingDuration = selectedDuration
+            if let interval = selectedDuration.timeInterval {
+                user.userPreferences.locationSharingExpiresAt = Date().addingTimeInterval(interval)
+            } else {
+                user.userPreferences.locationSharingExpiresAt = nil
+            }
         } else {
             user.userPreferences.shareLocation = .off
+            // Clear duration and expiry
+            user.userPreferences.locationSharingDuration = nil
+            user.userPreferences.locationSharingExpiresAt = nil
         }
         
         DataModel.shared.saveUser(user)
