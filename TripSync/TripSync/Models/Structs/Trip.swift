@@ -30,7 +30,7 @@ struct Trip: Codable {
     var status: TripStatus
     var subgroupIds: [UUID]
     var itineraryStopIds: [UUID]
-    var memoryIds: [UUID]
+
 
     var memberCount: Int {
         return memberIds.count
@@ -59,7 +59,7 @@ struct Trip: Codable {
         
         self.subgroupIds = []
         self.itineraryStopIds = []
-        self.memoryIds = []
+
     }
     
     static func generateInviteCode() -> String {
@@ -93,5 +93,26 @@ struct Trip: Codable {
         } else {
             self.status = .current
         }
+    }
+    
+    // Backward compatibility: decode old data that may still have memoryIds
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        location = try container.decode(String.self, forKey: .location)
+        startDate = try container.decode(Date.self, forKey: .startDate)
+        endDate = try container.decode(Date.self, forKey: .endDate)
+        coverImageData = try container.decodeIfPresent(Data.self, forKey: .coverImageData)
+        coverImageURL = try container.decodeIfPresent(String.self, forKey: .coverImageURL)
+        coverImagePhotographerName = try container.decodeIfPresent(String.self, forKey: .coverImagePhotographerName)
+        inviteCode = try container.decode(String.self, forKey: .inviteCode)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        createdByUserId = try container.decode(UUID.self, forKey: .createdByUserId)
+        memberIds = try container.decode([UUID].self, forKey: .memberIds)
+        status = try container.decode(TripStatus.self, forKey: .status)
+        subgroupIds = try container.decode([UUID].self, forKey: .subgroupIds)
+        itineraryStopIds = try container.decode([UUID].self, forKey: .itineraryStopIds)
+        // memoryIds is intentionally not decoded — Memories feature has been removed
     }
 }

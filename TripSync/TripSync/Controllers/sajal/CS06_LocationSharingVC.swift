@@ -7,12 +7,26 @@
 
 import UIKit
 
-enum LocationSharingDuration: String, CaseIterable {
+enum LocationSharingDuration: String, Codable, CaseIterable {
     case oneHour = "1 Hour"
     case threeHours = "3 Hours"
     case endOfDay = "Until End of Day"
     case twentyFourHours = "24 Hours"
     case indefinitely = "Indefinitely"
+    
+    var timeInterval: TimeInterval? {
+        switch self {
+        case .oneHour: return 3600
+        case .threeHours: return 10800
+        case .endOfDay:
+            // Calculate seconds until end of current day
+            let calendar = Calendar.current
+            guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date()) else { return 86400 }
+            return endOfDay.timeIntervalSinceNow
+        case .twentyFourHours: return 86400
+        case .indefinitely: return nil
+        }
+    }
 }
 
 class LocationSharingViewController: UITableViewController {

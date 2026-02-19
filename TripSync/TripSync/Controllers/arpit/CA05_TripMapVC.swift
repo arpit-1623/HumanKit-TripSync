@@ -98,8 +98,8 @@ class TripMapViewController: UIViewController {
         // Load subgroups
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
         
-        // Load locations - for now initialize empty, would be updated via location updates
-        locations = []
+        // Load locations from persisted data
+        locations = DataModel.shared.getLocations(forTripId: trip.id)
         
         // Update map annotations
         updateMapAnnotations()

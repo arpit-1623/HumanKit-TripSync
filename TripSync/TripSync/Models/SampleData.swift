@@ -16,7 +16,7 @@ class SampleData {
     private var locations: [UserLocation] = []
     private var messages: [Message] = []
     private var invitations: [Invitation] = []
-    private var memories: [Memory] = []
+
     
     var currentUser: User? {
         return users.first
@@ -34,7 +34,7 @@ class SampleData {
         loadLocations()
         loadMessages()
         loadInvitations()
-        loadMemories()
+
     }
     
     // MARK: - User Sample Data
@@ -158,7 +158,8 @@ class SampleData {
             description: "For those who want to try authentic Japanese cuisine",
             colorHex: "#FF8C42",
             tripId: tokyoTrip.id,
-            memberIds: [users[1].id, users[2].id]
+            memberIds: [users[1].id, users[2].id],
+            createdByUserId: users[1].id
         )
         allSubgroups.append(foodExplorers)
         
@@ -167,7 +168,8 @@ class SampleData {
             description: "Come explore mountains of japan...",
             colorHex: "#007AFF",
             tripId: tokyoTrip.id,
-            memberIds: [users[0].id, users[1].id, users[3].id]
+            memberIds: [users[0].id, users[1].id, users[3].id],
+            createdByUserId: users[0].id
         )
         allSubgroups.append(mountainTrek)
         
@@ -465,41 +467,7 @@ class SampleData {
         invitations = allInvitations
     }
 
-    // MARK: - Memory Sample Data
-    
-    private func loadMemories() {
-        var allMemories: [Memory] = []
-        
-        // Past trips memories
-        if let europeTrip = trips.first(where: { $0.name == "European City Explorer" }) {
-            let memory1 = Memory(
-                tripId: europeTrip.id,
-                photoData: [],
-                notes: "Amazing architecture in Prague and Vienna"
-            )
-            allMemories.append(memory1)
-        }
-        
-        if let coastalTrip = trips.first(where: { $0.name == "Coastal Road Trip Adventure" }) {
-            let memory2 = Memory(
-                tripId: coastalTrip.id,
-                photoData: [],
-                notes: "Beautiful sunsets along the Pacific Coast Highway"
-            )
-            allMemories.append(memory2)
-        }
-        
-        if let desertTrip = trips.first(where: { $0.name == "Desert Camping Expedition" }) {
-            let memory3 = Memory(
-                tripId: desertTrip.id,
-                photoData: [],
-                notes: "Stargazing under the clear desert sky was unforgettable"
-            )
-            allMemories.append(memory3)
-        }
-        
-        memories = allMemories
-    }
+
     
     // MARK: - Utility Methods
     
@@ -548,7 +516,6 @@ extension SampleData {
         // Save all invitations
         invitations.forEach { dataModel.saveInvitation($0) }
         
-        // Save all memories
-        memories.forEach { dataModel.saveMemory($0) }
+
     }
 }

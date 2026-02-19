@@ -65,7 +65,7 @@ class ProfileViewController: UITableViewController {
         }
         
         // Configure Privacy Cell
-        let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
+        let isPrivacyOn = user?.userPreferences.faceIdEnabled ?? false
         privacyCell.configure(title: "Face ID Unlock", icon: "faceid", hasToggle: true, isToggleOn: isPrivacyOn)
         privacyCell.toggleChanged = { [weak self] isOn in
             self?.handlePrivacyToggle(isOn: isOn)
@@ -128,7 +128,7 @@ class ProfileViewController: UITableViewController {
     
     private func handlePrivacyToggle(isOn: Bool) {
         guard var user = user else { return }
-        user.userPreferences.showApproximateLocation = isOn
+        user.userPreferences.faceIdEnabled = isOn
         DataModel.shared.saveUser(user)
         DataModel.shared.setCurrentUser(user)
         self.user = user

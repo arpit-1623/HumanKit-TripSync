@@ -213,14 +213,11 @@ extension SubgroupDetailsViewController: UITableViewDataSource {
         
         let member = members[indexPath.row]
         
-        // Determine role based on invitation status
+        // Determine role based on who created the subgroup
         let role: String
-        if subgroup?.memberIds.first == member.id {
-            // First member is the subgroup creator/admin
+        if subgroup?.createdByUserId == member.id {
             role = "Admin"
         } else {
-            // For members who joined via invitation or were added before invitation system,
-            // show blank as per requirements (accepted invitations don't show anything)
             role = ""
         }
         
@@ -240,27 +237,57 @@ extension SubgroupDetailsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Only the subgroup creator (admin) can remove members
+        guard let currentUser = DataModel.shared.getCurrentUser(),
+              let subgroup = subgroup else { return false }
+        return subgroup.createdByUserId == currentUser.id
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard var subgroup = subgroup else { return }
             
             let member = members[indexPath.row]
             
-            // Remove member from subgroup
-            subgroup.memberIds.removeAll { $0 == member.id }
-            subgroup.updatedAt = Date()
+            // Don't allow removing the admin
+            if subgroup.createdByUserId == member.id {
+                let alert = UIAlertController(title: "Cannot Remove", message: "The circle admin cannot be removed.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                present(alert, animated: true)
+                return
+            }
             
-            // Update DataModel
-            DataModel.shared.saveSubgroup(subgroup)
+            // Show confirmation dialog
+            let confirmAlert = UIAlertController(
+                title: "Remove Member",
+                message: "Are you sure you want to remove \(member.fullName) from this circle?",
+                preferredStyle: .alert
+            )
             
-            // Update local reference
-            self.subgroup = subgroup
+            confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            confirmAlert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+                guard let self = self else { return }
+                
+                // Remove member from subgroup
+                subgroup.memberIds.removeAll { $0 == member.id }
+                subgroup.updatedAt = Date()
+                
+                // Update DataModel
+                DataModel.shared.saveSubgroup(subgroup)
+                
+                // Update local reference
+                self.subgroup = subgroup
+                
+                // Find current index of the member (may have changed)
+                if let currentIndex = self.members.firstIndex(where: { $0.id == member.id }) {
+                    self.members.remove(at: currentIndex)
+                    tableView.deleteRows(at: [IndexPath(row: currentIndex, section: 0)], with: .automatic)
+                }
+            })
             
-            // Update local members array
-            members.remove(at: indexPath.row)
-            
-            // Delete row from table
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            present(confirmAlert, animated: true)
         }
     }
 }
+

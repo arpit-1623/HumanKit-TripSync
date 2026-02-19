@@ -173,13 +173,15 @@ class CS03_AddItineraryStopVC: UITableViewController {
         })
         
         // Add "MY" option
+        let currentUserId = DataModel.shared.getCurrentUser()?.id ?? UUID()
         let mySubgroup = Subgroup(
             id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
             name: "MY",
             description: "My personal itinerary",
             colorHex: "#FF2D55",
             tripId: tripId ?? UUID(),
-            memberIds: []
+            memberIds: [],
+            createdByUserId: currentUserId
         )
         let myTitle = "MY" + (selectedSubgroup?.name == "MY" ? " ✓" : "")
         alert.addAction(UIAlertAction(title: myTitle, style: .default) { [weak self] _ in
@@ -237,7 +239,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
     }
     
     private func createNewSubgroup(name: String) {
-        guard let tripId = tripId else { return }
+        guard let tripId = tripId,
+              let currentUser = DataModel.shared.getCurrentUser() else { return }
         
         // Generate random color
         let colors = ["systemBlue", "systemRed", "systemGreen", "systemOrange", "systemPurple", "systemPink"]
@@ -248,7 +251,8 @@ class CS03_AddItineraryStopVC: UITableViewController {
             description: nil,
             colorHex: randomColor,
             tripId: tripId,
-            memberIds: []
+            memberIds: [currentUser.id],
+            createdByUserId: currentUser.id
         )
         
         // Add to DataModel (assuming you have a shared instance)
