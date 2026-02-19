@@ -256,7 +256,7 @@
                     <navigationItem key="navigationItem" title="Create Trip" largeTitleDisplayMode="never" id="Kzz-4r-zhY">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KOD-d3-iRa">
                             <connections>
-                                <segue destination="4ld-PP-h31" kind="unwind" identifier="unwindToHomeWithCancel" unwindAction="unwindToHome:" id="IIB-5c-uvd"/>
+                                <action selector="didTapCancel:" destination="Y6W-OH-hqX" id="cancel-action-id"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="R2D-kd-Ayw">
@@ -278,6 +278,7 @@
                         <segue destination="Xg8-J7-qvh" kind="presentation" identifier="createTripToDatePicker" modalPresentationStyle="automatic" id="RDE-zP-3TE"/>
                         <segue destination="Aug-Xa-Omv" kind="presentation" identifier="createTripToLocationPicker" id="ggf-Z3-nY1"/>
                         <segue destination="xSu-kQ-8nH" kind="presentation" identifier="createTripToImagePicker" id="Xvi-rg-Oyz"/>
+                        <segue destination="4ld-PP-h31" kind="unwind" identifier="unwindToHomeWithCancel" unwindAction="unwindToHome:" id="IIB-5c-uvd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

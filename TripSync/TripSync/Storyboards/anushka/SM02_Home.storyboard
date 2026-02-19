@@ -871,7 +871,7 @@
         <!--Home-->
         <scene sceneID="i55-ci-nNy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ssw-uM-xNg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ssw-uM-xNg" customClass="HidesTabBarNavigationController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="R2j-mr-kDU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

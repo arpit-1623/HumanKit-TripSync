@@ -70,14 +70,21 @@ class CD05_SummaryVC: UIViewController {
             try DataModel.shared.saveTripWithValidation(newTrip)
             // Navigate back to home
             navigationController?.popToRootViewController(animated: true)
+        } catch let error as DataModelError {
+            switch error {
+            case .dateOverlap:
+                showErrorAlert(title: "Date Conflict", message: error.localizedDescription)
+            default:
+                showErrorAlert(message: error.localizedDescription)
+            }
         } catch {
             showErrorAlert(message: "Failed to save trip: \(error.localizedDescription)")
         }
     }
     
     // MARK: - Helper Methods
-    private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    private func showErrorAlert(title: String = "Error", message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }

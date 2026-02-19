@@ -14,7 +14,6 @@
                     <toolbarItems/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nav-bar">
-                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -31,7 +30,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CS04_SubgroupFormVC" id="subgroup-form-vc" customClass="CS04_SubgroupFormVC" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="table-view">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <sections>
@@ -341,7 +340,7 @@
                                 <action selector="closeButtonTapped" destination="subgroup-form-vc" id="close-action"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="save-button" style="done">
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="save-button">
                             <connections>
                                 <action selector="saveButtonTapped" destination="subgroup-form-vc" id="save-action"/>
                             </connections>
@@ -372,6 +371,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="xmark" catalog="system" width="32" height="32"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

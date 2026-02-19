@@ -11,7 +11,7 @@
         <!--Profile-->
         <scene sceneID="5lj-XO-cwP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KSV-lG-nD0" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KSV-lG-nD0" customClass="HidesTabBarNavigationController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="fNW-lH-8Ag"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

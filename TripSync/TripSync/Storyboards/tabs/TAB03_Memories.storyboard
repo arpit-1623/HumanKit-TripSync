@@ -12,7 +12,7 @@
         <!--Memories-->
         <scene sceneID="mRG-up-4PF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8je-M8-4Oi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8je-M8-4Oi" customClass="HidesTabBarNavigationController" customModule="TripSync" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Memories" image="archivebox.fill" catalog="system" id="lA4-Kv-08h"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
