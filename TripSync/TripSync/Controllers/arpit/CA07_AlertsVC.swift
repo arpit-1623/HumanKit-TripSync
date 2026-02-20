@@ -34,6 +34,16 @@ class AlertsViewController: UIViewController {
     private func setupTableView() {
         tableView?.delegate = self
         tableView?.dataSource = self
+        
+        // Pull-to-refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        loadAnnouncements()
+        tableView?.refreshControl?.endRefreshing()
     }
     
     private func loadAnnouncements() {
@@ -52,6 +62,19 @@ class AlertsViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func createAnnouncementTapped() {
+        // Only trip admins can create announcements
+        guard let trip = trip,
+              let currentUser = DataModel.shared.getCurrentUser(),
+              trip.isUserAdmin(currentUser.id) else {
+            let alert = UIAlertController(
+                title: "Permission Denied",
+                message: "Only trip admins can create announcements.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
         performSegue(withIdentifier: "alertsToCreateAnnouncement", sender: nil)
     }
     

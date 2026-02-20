@@ -50,13 +50,37 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkLocationSharingExpiry()
         loadData()
     }
 
     
     // MARK: - Setup
     private func setupUI() {
-        // UI is configured in storyboard
+        // Pull-to-refresh on scroll view
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        mainScrollView?.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        checkLocationSharingExpiry()
+        loadData()
+        mainScrollView?.refreshControl?.endRefreshing()
+    }
+    
+    /// Check if location sharing has expired and auto-disable if needed
+    private func checkLocationSharingExpiry() {
+        guard var user = DataModel.shared.getCurrentUser() else { return }
+        if let expiresAt = user.userPreferences.locationSharingExpiresAt,
+           expiresAt <= Date() {
+            // Expired — auto-disable
+            user.userPreferences.shareLocation = .off
+            user.userPreferences.locationSharingDuration = nil
+            user.userPreferences.locationSharingExpiresAt = nil
+            DataModel.shared.saveUser(user)
+            DataModel.shared.setCurrentUser(user)
+        }
     }
     
     private func setupCollectionView() {
@@ -127,6 +151,71 @@ class HomeViewController: UIViewController {
             emptySubGreetingLabel?.text = "Ready to plan your"
             emptyLocationLabel?.text = "next adventure?"
         }
+        
+        // Show location sharing status if active
+        updateLocationSharingLabel()
+    }
+    
+    private func updateLocationSharingLabel() {
+        guard let user = DataModel.shared.getCurrentUser() else {
+            locationSharingPill?.isHidden = true
+            return
+        }
+        let prefs = user.userPreferences
+        
+        if prefs.isLocationSharingActive {
+            ensureLocationPillExists()
+            locationSharingPill?.isHidden = false
+        } else {
+            locationSharingPill?.isHidden = true
+        }
+    }
+    
+    // MARK: - Location Sharing Pill
+    private var locationSharingPill: UIView?
+    
+    private func ensureLocationPillExists() {
+        guard locationSharingPill == nil else { return }
+        
+        // Container pill
+        let pill = UIView()
+        pill.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.15)
+        pill.layer.cornerRadius = 14
+        pill.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Location icon
+        let iconConfig = UIImage.SymbolConfiguration(pointSize: 13, weight: .semibold)
+        let iconView = UIImageView(image: UIImage(systemName: "location.fill", withConfiguration: iconConfig))
+        iconView.tintColor = .systemGreen
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // "Live" label
+        let liveLabel = UILabel()
+        liveLabel.text = "Live"
+        liveLabel.font = .systemFont(ofSize: 13, weight: .semibold)
+        liveLabel.textColor = .systemGreen
+        liveLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        pill.addSubview(iconView)
+        pill.addSubview(liveLabel)
+        
+        // Add above the current trip card
+        if let tripCard = currentTripCard {
+            tripCard.superview?.addSubview(pill)
+            
+            NSLayoutConstraint.activate([
+                iconView.leadingAnchor.constraint(equalTo: pill.leadingAnchor, constant: 10),
+                iconView.centerYAnchor.constraint(equalTo: pill.centerYAnchor),
+                liveLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 5),
+                liveLabel.centerYAnchor.constraint(equalTo: pill.centerYAnchor),
+                liveLabel.trailingAnchor.constraint(equalTo: pill.trailingAnchor, constant: -10),
+                pill.heightAnchor.constraint(equalToConstant: 28),
+                pill.bottomAnchor.constraint(equalTo: tripCard.topAnchor, constant: -8),
+                pill.trailingAnchor.constraint(equalTo: tripCard.trailingAnchor)
+            ])
+        }
+        
+        locationSharingPill = pill
     }
     
     private func updateCurrentTripUI() {

@@ -7,12 +7,26 @@
 
 import UIKit
 
-enum LocationSharingDuration: String, CaseIterable {
+enum LocationSharingDuration: String, Codable, CaseIterable {
     case oneHour = "1 Hour"
     case threeHours = "3 Hours"
     case endOfDay = "Until End of Day"
     case twentyFourHours = "24 Hours"
     case indefinitely = "Indefinitely"
+    
+    var timeInterval: TimeInterval? {
+        switch self {
+        case .oneHour: return 3600
+        case .threeHours: return 10800
+        case .endOfDay:
+            // Calculate seconds until end of current day
+            let calendar = Calendar.current
+            guard let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date()) else { return 86400 }
+            return endOfDay.timeIntervalSinceNow
+        case .twentyFourHours: return 86400
+        case .indefinitely: return nil
+        }
+    }
 }
 
 class LocationSharingViewController: UITableViewController {
@@ -79,6 +93,19 @@ class LocationSharingViewController: UITableViewController {
         if indexPath.section == 1 {
             selectedDuration = LocationSharingDuration.allCases[indexPath.row]
             updateSelectedDuration()
+            
+            // Save selected duration and compute expiry
+            guard var user = user else { return }
+            user.userPreferences.locationSharingDuration = selectedDuration
+            if let interval = selectedDuration.timeInterval {
+                user.userPreferences.locationSharingExpiresAt = Date().addingTimeInterval(interval)
+            } else {
+                // Indefinitely — no expiry
+                user.userPreferences.locationSharingExpiresAt = nil
+            }
+            DataModel.shared.saveUser(user)
+            DataModel.shared.setCurrentUser(user)
+            self.user = user
         }
     }
     
@@ -90,8 +117,18 @@ class LocationSharingViewController: UITableViewController {
         
         if isLocationSharingEnabled {
             user.userPreferences.shareLocation = .allTrips
+            // Set default duration
+            user.userPreferences.locationSharingDuration = selectedDuration
+            if let interval = selectedDuration.timeInterval {
+                user.userPreferences.locationSharingExpiresAt = Date().addingTimeInterval(interval)
+            } else {
+                user.userPreferences.locationSharingExpiresAt = nil
+            }
         } else {
             user.userPreferences.shareLocation = .off
+            // Clear duration and expiry
+            user.userPreferences.locationSharingDuration = nil
+            user.userPreferences.locationSharingExpiresAt = nil
         }
         
         DataModel.shared.saveUser(user)

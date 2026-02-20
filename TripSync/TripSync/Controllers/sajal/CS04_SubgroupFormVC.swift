@@ -174,7 +174,8 @@ class CS04_SubgroupFormVC: UITableViewController {
                 description: description,
                 colorHex: selectedColorHex,
                 tripId: tripId,
-                memberIds: [currentUser.id]  // Add creator as member by default
+                memberIds: [currentUser.id],
+                createdByUserId: currentUser.id
             )
             
             delegate?.didCreateSubgroup(newSubgroup)

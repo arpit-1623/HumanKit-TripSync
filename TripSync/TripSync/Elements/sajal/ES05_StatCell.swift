@@ -28,14 +28,13 @@ class StatCell: UITableViewCell {
         containerView.layer.cornerRadius = 0
     }
     
-    func configureHorizontal(trips: Int, memories: Int, photos: Int) {
+    func configureHorizontal(trips: Int, photos: Int) {
         // Check if horizontal stack already exists
         if let existingStack = containerView.subviews.first(where: { $0 is UIStackView }) as? UIStackView {
             // Update existing views
-            if existingStack.arrangedSubviews.count == 3 {
+            if existingStack.arrangedSubviews.count == 2 {
                 updateStatView(existingStack.arrangedSubviews[0], value: trips, label: "Trips")
-                updateStatView(existingStack.arrangedSubviews[1], value: memories, label: "Memories")
-                updateStatView(existingStack.arrangedSubviews[2], value: photos, label: "Photos")
+                updateStatView(existingStack.arrangedSubviews[1], value: photos, label: "Photos")
                 return
             }
         }
@@ -43,20 +42,18 @@ class StatCell: UITableViewCell {
         // Remove existing subviews only if we need to create new layout
         containerView.subviews.forEach { $0.removeFromSuperview() }
         
-        // Create horizontal stack with three stat views
+        // Create horizontal stack with two stat views
         let horizontalStack = UIStackView()
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .fillEqually
         horizontalStack.spacing = 12
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         
-        // Create three stat views
+        // Create two stat views
         let tripsStat = createStatView(value: trips, label: "Trips")
-        let memoriesStat = createStatView(value: memories, label: "Memories")
         let photosStat = createStatView(value: photos, label: "Photos")
         
         horizontalStack.addArrangedSubview(tripsStat)
-        horizontalStack.addArrangedSubview(memoriesStat)
         horizontalStack.addArrangedSubview(photosStat)
         
         containerView.addSubview(horizontalStack)

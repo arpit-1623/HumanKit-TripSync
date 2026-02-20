@@ -17,6 +17,7 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var helpCell: ActionCell!
     @IBOutlet weak var aboutCell: ActionCell!
     @IBOutlet weak var logoutCell: ActionCell!
+    @IBOutlet weak var sampleDataCell: ActionCell!
     
     // MARK: - Properties
     private var user: User?
@@ -65,7 +66,7 @@ class ProfileViewController: UITableViewController {
         }
         
         // Configure Privacy Cell
-        let isPrivacyOn = user?.userPreferences.showApproximateLocation ?? false
+        let isPrivacyOn = user?.userPreferences.faceIdEnabled ?? false
         privacyCell.configure(title: "Face ID Unlock", icon: "faceid", hasToggle: true, isToggleOn: isPrivacyOn)
         privacyCell.toggleChanged = { [weak self] isOn in
             self?.handlePrivacyToggle(isOn: isOn)
@@ -85,15 +86,23 @@ class ProfileViewController: UITableViewController {
         helpCell.configure(title: "Help & Support", icon: "questionmark.circle.fill", isDestructive: false)
         aboutCell.configure(title: "About TripSync", icon: "info.circle.fill", isDestructive: false)
         logoutCell.configure(title: "Log Out", icon: "rectangle.portrait.and.arrow.right", isDestructive: true)
+        
+        // Configure Sample Data Cell
+        sampleDataCell.configure(title: "Load Sample Data", icon: "square.and.arrow.down", isDestructive: false)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Section 0: Profile (not tappable)
+        // Section 0: Profile (tappable — navigate to Edit Profile)
+        if indexPath.section == 0 {
+            let storyboard = UIStoryboard(name: "SA08_EditProfile", bundle: nil)
+            let editProfileVC = storyboard.instantiateViewController(withIdentifier: "EditProfileViewController")
+            navigationController?.pushViewController(editProfileVC, animated: true)
+        }
         // Section 1: My Trips (not tappable, handled by collection view)
         // Section 2: Preferences
-        if indexPath.section == 2 {
+        else if indexPath.section == 2 {
             if indexPath.row == 1 {  // Location Sharing
                 showLocationSharingOptions()
             }
@@ -109,6 +118,12 @@ class ProfileViewController: UITableViewController {
                 showLogOutConfirmation()
             default:
                 break
+            }
+        }
+        // Section 4: Developer
+        else if indexPath.section == 4 {
+            if indexPath.row == 0 {
+                showLoadSampleDataConfirmation()
             }
         }
     }
@@ -128,7 +143,7 @@ class ProfileViewController: UITableViewController {
     
     private func handlePrivacyToggle(isOn: Bool) {
         guard var user = user else { return }
-        user.userPreferences.showApproximateLocation = isOn
+        user.userPreferences.faceIdEnabled = isOn
         DataModel.shared.saveUser(user)
         DataModel.shared.setCurrentUser(user)
         self.user = user
@@ -173,6 +188,35 @@ class ProfileViewController: UITableViewController {
         
         alert.addAction(UIAlertAction(title: "Log Out", style: .destructive) { [weak self] _ in
             self?.performLogOut()
+        })
+        
+        present(alert, animated: true)
+    }
+    
+    private func showLoadSampleDataConfirmation() {
+        let alert = UIAlertController(
+            title: "Load Sample Data",
+            message: "This will clear all existing data and populate the app with sample trips, users, messages, and more. Continue?",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        alert.addAction(UIAlertAction(title: "Load Data", style: .destructive) { [weak self] _ in
+            // Populate with sample data
+            SampleData.shared.populateDataModel()
+            
+            // Restart app to refresh all screens
+            guard let sceneDelegate = self?.view.window?.windowScene?.delegate as? SceneDelegate,
+                  let window = sceneDelegate.window else {
+                return
+            }
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            if let rootVC = mainStoryboard.instantiateInitialViewController() {
+                window.rootViewController = rootVC
+                UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
+            }
         })
         
         present(alert, animated: true)

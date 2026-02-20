@@ -40,6 +40,20 @@ class TripMembersViewController: UIViewController {
         membersTableView.dataSource = self
         membersTableView.rowHeight = 88
         membersTableView.separatorStyle = .none
+        
+        // Pull-to-refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshMembers), for: .valueChanged)
+        membersTableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshMembers() {
+        if let tripId = trip?.id,
+           let updatedTrip = DataModel.shared.getTrip(byId: tripId) {
+            trip = updatedTrip
+        }
+        loadMembers()
+        membersTableView.refreshControl?.endRefreshing()
     }
     
     private func loadMembers() {
@@ -96,13 +110,15 @@ extension TripMembersViewController: UITableViewDelegate {
     }
     
     private func showMemberProfile(_ member: User) {
-        let alert = UIAlertController(
-            title: member.fullName,
-            message: "Profile details will be shown here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        let profileVC = MemberProfileViewController()
+        profileVC.member = member
+        profileVC.trip = trip
+        profileVC.modalPresentationStyle = .pageSheet
+        if let sheet = profileVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(profileVC, animated: true)
     }
     
     private func showMemberMenu(for member: User, at indexPath: IndexPath) {
@@ -121,7 +137,7 @@ extension TripMembersViewController: UITableViewDelegate {
         // Only show remove option if current user is admin and target is not admin
         if isCurrentUserAdmin && !isMemberAdmin {
             alert.addAction(UIAlertAction(title: "Remove Member", style: .destructive) { [weak self] _ in
-                self?.removeMember(member, at: indexPath)
+                self?.removeMember(member)
             })
         }
         
@@ -130,7 +146,7 @@ extension TripMembersViewController: UITableViewDelegate {
         present(alert, animated: true)
     }
     
-    private func removeMember(_ member: User, at indexPath: IndexPath) {
+    private func removeMember(_ member: User) {
         let confirmAlert = UIAlertController(
             title: "Remove Member",
             message: "Are you sure you want to remove \(member.fullName) from this trip?",
@@ -143,8 +159,11 @@ extension TripMembersViewController: UITableViewDelegate {
                   let tripId = self.trip?.id else { return }
             
             if DataModel.shared.removeMemberFromTrip(tripId: tripId, memberId: member.id) {
-                self.members.remove(at: indexPath.row)
-                self.membersTableView.deleteRows(at: [indexPath], with: .fade)
+                // Find the member's current index at removal time to avoid stale index bugs
+                if let currentIndex = self.members.firstIndex(where: { $0.id == member.id }) {
+                    self.members.remove(at: currentIndex)
+                    self.membersTableView.deleteRows(at: [IndexPath(row: currentIndex, section: 0)], with: .fade)
+                }
             } else {
                 let errorAlert = UIAlertController(
                     title: "Error",
@@ -159,3 +178,4 @@ extension TripMembersViewController: UITableViewDelegate {
         present(confirmAlert, animated: true)
     }
 }
+
