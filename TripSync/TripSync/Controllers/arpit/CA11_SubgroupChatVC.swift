@@ -66,7 +66,22 @@ class SubgroupChatViewController: UIViewController {
         messages = messages.filter { !$0.isAnnouncement }
         
         tableView.reloadData()
+        updateEmptyState()
         scrollToBottom()
+    }
+    
+    private func updateEmptyState() {
+        if messages.isEmpty {
+            let emptyLabel = UILabel()
+            emptyLabel.text = "No messages yet.\nStart the conversation!"
+            emptyLabel.textAlignment = .center
+            emptyLabel.numberOfLines = 0
+            emptyLabel.textColor = .secondaryLabel
+            emptyLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            tableView.backgroundView = emptyLabel
+        } else {
+            tableView.backgroundView = nil
+        }
     }
     
     private func scrollToBottom(animated: Bool = false) {

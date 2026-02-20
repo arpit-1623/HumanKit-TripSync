@@ -1,5 +1,5 @@
 //
-//  User 2.swift
+//  User.swift
 //  TripSync
 //
 //  Created by Arpit Garg on 31/10/25.
@@ -15,9 +15,6 @@ struct User: Codable {
     var email: String
     var passwordHash: String
     var profileImage: Data?
-    var totalTrips: Int
-    var totalMemories: Int
-    var totalPhotos: Int
     var createdAt: Date
     var userPreferences: UserPreferences
     
@@ -26,15 +23,34 @@ struct User: Codable {
         self.fullName = fullName
         self.email = email
         self.passwordHash = passwordHash
-        self.totalTrips = 0
-        self.totalMemories = 0
-        self.totalPhotos = 0
         self.createdAt = Date()
         self.userPreferences = UserPreferences(
             userId: self.id,
             shareLocation: .allTrips,
-            showApproximateLocation: false
+            faceIdEnabled: false
         )
+    }
+    
+    // Backward compatibility: old data may have totalTrips, totalMemories, totalPhotos — just ignore them
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        fullName = try container.decode(String.self, forKey: .fullName)
+        email = try container.decode(String.self, forKey: .email)
+        passwordHash = try container.decode(String.self, forKey: .passwordHash)
+        profileImage = try container.decodeIfPresent(Data.self, forKey: .profileImage)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        userPreferences = try container.decode(UserPreferences.self, forKey: .userPreferences)
+    }
+    
+    /// Computed total trips from DataModel
+    var totalTrips: Int {
+        return DataModel.shared.getUserTrips(forUserId: id).count
+    }
+    
+    /// Computed total photos (placeholder — no photo tracking feature yet)
+    var totalPhotos: Int {
+        return 0
     }
     
     var initials: String {

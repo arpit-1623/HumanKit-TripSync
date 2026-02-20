@@ -46,7 +46,7 @@ class TripMapViewController: UIViewController {
     
     private var currentMenuMode: MenuMode = .all
     
-    // MARK: - Lifecycle
+    // MARK: - Li fecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -78,6 +78,30 @@ class TripMapViewController: UIViewController {
         
         // Set initial collapsed state
         menuHeightConstraint.constant = collapsedHeight
+        
+        // Add grabber handle to indicate the menu can be tapped to expand
+        let grabber = UIView()
+        grabber.backgroundColor = UIColor.systemGray3
+        grabber.layer.cornerRadius = 2.5
+        grabber.translatesAutoresizingMaskIntoConstraints = false
+        
+        // menuContainerView is a UIVisualEffectView subclass — add to its contentView
+        if let effectView = menuContainerView as? UIVisualEffectView {
+            effectView.contentView.addSubview(grabber)
+        } else {
+            menuContainerView.addSubview(grabber)
+        }
+        
+        NSLayoutConstraint.activate([
+            grabber.topAnchor.constraint(equalTo: menuContainerView.topAnchor, constant: 8),
+            grabber.centerXAnchor.constraint(equalTo: menuContainerView.centerXAnchor),
+            grabber.widthAnchor.constraint(equalToConstant: 36),
+            grabber.heightAnchor.constraint(equalToConstant: 5)
+        ])
+        
+        // Make the menu container tappable to toggle
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
+        menuContainerView.addGestureRecognizer(tapGesture)
     }
     
     private func setupLocationManager() {
@@ -98,8 +122,8 @@ class TripMapViewController: UIViewController {
         // Load subgroups
         subgroups = DataModel.shared.getSubgroups(forTripId: trip.id)
         
-        // Load locations - for now initialize empty, would be updated via location updates
-        locations = []
+        // Load locations from persisted data
+        locations = DataModel.shared.getLocations(forTripId: trip.id)
         
         // Update map annotations
         updateMapAnnotations()

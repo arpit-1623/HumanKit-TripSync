@@ -66,9 +66,11 @@ class NotificationsViewController: UIViewController {
     private func loadData() {
         guard let currentUser = DataModel.shared.getCurrentUser() else { return }
         
-        // Get current trip (assuming we're in trip context)
+        // Get the current trip context — prioritize active/current trips, then upcoming, then most recent
         let trips = DataModel.shared.getTrips(forUserId: currentUser.id)
-        currentTrip = trips.first
+        currentTrip = trips.first(where: { $0.status == .current })
+            ?? trips.first(where: { $0.status == .upcoming })
+            ?? trips.first
         
         if currentTab == .invites {
             loadInvitations()

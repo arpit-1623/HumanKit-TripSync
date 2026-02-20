@@ -43,7 +43,7 @@ class DataModel {
     private let messagesURL: URL
     private let locationsURL: URL
     private let invitationsURL: URL
-    private let memoriesURL: URL
+
     private let usersURL: URL
     
     // MARK: - Properties
@@ -55,7 +55,7 @@ class DataModel {
     private var messages: [Message] = []
     private var locations: [UserLocation] = []
     private var invitations: [Invitation] = []
-    private var memories: [Memory] = []
+
     
     private init() {
         currentUserURL = documentDir.appendingPathComponent("current_user_data").appendingPathExtension("json")
@@ -65,7 +65,7 @@ class DataModel {
         messagesURL = documentDir.appendingPathComponent("messages_data").appendingPathExtension("json")
         locationsURL = documentDir.appendingPathComponent("locations_data").appendingPathExtension("json")
         invitationsURL = documentDir.appendingPathComponent("invitations_data").appendingPathExtension("json")
-        memoriesURL = documentDir.appendingPathComponent("memories_data").appendingPathExtension("json")
+
         usersURL = documentDir.appendingPathComponent("users_data").appendingPathExtension("json")
         
         loadData()
@@ -82,7 +82,25 @@ class DataModel {
         messages = loadMessagesFromFile()
         locations = loadLocationsFromFile()
         invitations = loadInvitationsFromFile()
-        memories = loadMemoriesFromFile()
+
+    }
+    
+    // MARK: - Clear All Data
+    
+    public func clearAllData() {
+        currentUser = nil
+        users.removeAll()
+        trips.removeAll()
+        subgroups.removeAll()
+        itineraryStops.removeAll()
+        messages.removeAll()
+        locations.removeAll()
+        invitations.removeAll()
+        
+        let fileURLs = [currentUserURL, usersURL, tripsURL, subgroupsURL, itineraryStopsURL, messagesURL, locationsURL, invitationsURL]
+        for url in fileURLs {
+            try? FileManager.default.removeItem(at: url)
+        }
     }
     
     // MARK: - User Data Model
@@ -286,7 +304,7 @@ class DataModel {
         deleteItineraryStops(forTripId: id)
         deleteMessages(forTripId: id)
         deleteLocations(forTripId: id)
-        deleteMemories(forTripId: id)
+
         deleteInvitations(forTripId: id)
     }
     
@@ -662,72 +680,7 @@ class DataModel {
         return filtered.sorted { $0.createdAt > $1.createdAt }
     }
     
-    // MARK: - Memory Data Model
-    
-    private func loadMemoriesFromFile() -> [Memory] {
-        guard FileManager.default.fileExists(atPath: memoriesURL.path),
-              let data = try? Data(contentsOf: memoriesURL),
-              let loadedMemories = try? JSONDecoder().decode([Memory].self, from: data) else {
-            return []
-        }
-        return loadedMemories
-    }
-    
-    private func saveMemoriesToFile() {
-        do {
-            let data = try JSONEncoder().encode(memories)
-            try data.write(to: memoriesURL, options: .atomic)
-        } catch {
-            print("Error saving memories to file: \(error.localizedDescription)")
-        }
-    }
-    
-    public func saveMemory(_ memory: Memory) {
-        if let index = memories.firstIndex(where: { $0.id == memory.id }) {
-            memories[index] = memory
-        } else {
-            memories.append(memory)
-            // Add to trip's memoryIds
-            if var trip = getTrip(byId: memory.tripId) {
-                if !trip.memoryIds.contains(memory.id) {
-                    trip.memoryIds.append(memory.id)
-                    saveTrip(trip)
-                }
-            }
-        }
-        saveMemoriesToFile()
-    }
-    
-    public func getAllMemories() -> [Memory] {
-        return memories
-    }
-    
-    public func getMemories(forTripId tripId: UUID) -> [Memory] {
-        return memories.filter { $0.tripId == tripId }
-    }
-    
-    public func getMemory(byId id: UUID) -> Memory? {
-        return memories.first(where: { $0.id == id })
-    }
-    
-    public func deleteMemory(byId id: UUID) {
-        guard let memory = getMemory(byId: id) else { return }
-        
-        memories.removeAll(where: { $0.id == id })
-        
-        // Remove from trip's memoryIds
-        if var trip = getTrip(byId: memory.tripId) {
-            trip.memoryIds.removeAll(where: { $0 == id })
-            saveTrip(trip)
-        }
-        
-        saveMemoriesToFile()
-    }
-    
-    public func deleteMemories(forTripId tripId: UUID) {
-        memories.removeAll(where: { $0.tripId == tripId })
-        saveMemoriesToFile()
-    }
+
     
     // MARK: - Trip Access Data Model
     public func canUserAccessTrip(_ userId: UUID, tripId: UUID) -> Bool {

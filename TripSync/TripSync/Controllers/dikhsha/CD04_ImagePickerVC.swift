@@ -47,6 +47,13 @@ class CD04_ImagePickerVC: UIViewController {
     private let accessKey = "icTlumgLa3IIY8sVnRmz3laOMX_N2XWLelCgxGAUW40"
     private let imageCache = NSCache<NSString, UIImage>()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +68,13 @@ class CD04_ImagePickerVC: UIViewController {
         searchTextField.searchBarStyle = .minimal
         searchTextField.placeholder = "Search images..."
         confirmBarButton.isEnabled = false
+        
+        // Loading indicator
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor)
+        ])
     }
     
     private func setupCollectionView() {
@@ -104,11 +118,14 @@ class CD04_ImagePickerVC: UIViewController {
         
         guard let url = URL(string: urlString) else { return }
         
+        activityIndicator.startAnimating()
+        
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self,
                   let data = data,
                   error == nil else {
                 DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
                     print("Error fetching images: \(error?.localizedDescription ?? "Unknown error")")
                 }
                 return
@@ -122,6 +139,7 @@ class CD04_ImagePickerVC: UIViewController {
                     self.selectedImage = nil
                     self.selectedPhotoData = nil
                     self.confirmBarButton.isEnabled = false
+                    self.activityIndicator.stopAnimating()
                     self.collectionView.reloadData()
                 }
             } catch {
