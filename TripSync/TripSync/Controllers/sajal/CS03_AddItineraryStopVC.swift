@@ -102,9 +102,11 @@ class CS03_AddItineraryStopVC: UITableViewController {
         timePicker.datePickerMode = .time
         timePicker.preferredDatePickerStyle = .wheels
         
-        // Set default date to trip start date if available, otherwise today
-        datePicker.date = initialDate
-        timePicker.date = Date()
+        // Set default date/time only for new stops (edit mode already set above)
+        if !isEditMode {
+            datePicker.date = initialDate
+            timePicker.date = Date()
+        }
         
         // Setup subgroup label
         updateSubgroupLabel()
