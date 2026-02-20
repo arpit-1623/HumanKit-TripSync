@@ -80,7 +80,6 @@ class CD04_ImagePickerVC: UIViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -249,73 +248,14 @@ extension CD04_ImagePickerVC: UISearchBarDelegate {
 // MARK: - Custom Image Cell
 class ImageCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.backgroundColor = .systemGray5
-        return iv
-    }()
-    
-    let checkmarkView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 1.0, green: 0.58, blue: 0.0, alpha: 1.0)
-        view.layer.cornerRadius = 12
-        view.isHidden = true
-        return view
-    }()
-    
-    let checkmarkImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "checkmark")
-        iv.tintColor = .white
-        iv.contentMode = .scaleAspectFit
-        return iv
-    }()
+    // MARK: - Outlets (connected in SD04_ImagePicker.storyboard)
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var checkmarkView: UIView!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
     
     var isSelectedCell: Bool = false {
         didSet {
             checkmarkView.isHidden = !isSelectedCell
         }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupViews()
-    }
-    
-    private func setupViews() {
-        contentView.addSubview(imageView)
-        contentView.addSubview(checkmarkView)
-        checkmarkView.addSubview(checkmarkImageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        checkmarkView.translatesAutoresizingMaskIntoConstraints = false
-        checkmarkImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            checkmarkView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            checkmarkView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            checkmarkView.widthAnchor.constraint(equalToConstant: 24),
-            checkmarkView.heightAnchor.constraint(equalToConstant: 24),
-            
-            checkmarkImageView.centerXAnchor.constraint(equalTo: checkmarkView.centerXAnchor),
-            checkmarkImageView.centerYAnchor.constraint(equalTo: checkmarkView.centerYAnchor),
-            checkmarkImageView.widthAnchor.constraint(equalToConstant: 14),
-            checkmarkImageView.heightAnchor.constraint(equalToConstant: 14)
-        ])
-        
-        contentView.layer.cornerRadius = 8
-        contentView.clipsToBounds = true
     }
 }

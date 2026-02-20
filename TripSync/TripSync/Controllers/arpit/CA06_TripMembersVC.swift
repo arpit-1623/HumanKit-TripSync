@@ -110,7 +110,8 @@ extension TripMembersViewController: UITableViewDelegate {
     }
     
     private func showMemberProfile(_ member: User) {
-        let profileVC = MemberProfileViewController()
+        let storyboard = UIStoryboard(name: "SA14_MemberProfile", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "MemberProfileViewController") as! MemberProfileViewController
         profileVC.member = member
         profileVC.trip = trip
         profileVC.modalPresentationStyle = .pageSheet

@@ -550,7 +550,43 @@
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="category-icon-content">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="54"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ci-container-view">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="54"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ci-icon-imageview">
+                                                                                <rect key="frame" x="19" y="11" width="32" height="32"/>
+                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="32" id="ci-icon-w"/>
+                                                                                    <constraint firstAttribute="height" constant="32" id="ci-icon-h"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="ci-icon-imageview" firstAttribute="centerX" secondItem="ci-container-view" secondAttribute="centerX" id="ci-icon-cx"/>
+                                                                            <constraint firstItem="ci-icon-imageview" firstAttribute="centerY" secondItem="ci-container-view" secondAttribute="centerY" id="ci-icon-cy"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <real key="value" value="12"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="ci-container-view" firstAttribute="top" secondItem="category-icon-content" secondAttribute="top" id="ci-container-top"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ci-container-view" secondAttribute="bottom" id="ci-container-bottom"/>
+                                                                    <constraint firstItem="ci-container-view" firstAttribute="leading" secondItem="category-icon-content" secondAttribute="leading" id="ci-container-lead"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ci-container-view" secondAttribute="trailing" id="ci-container-trail"/>
+                                                                </constraints>
                                                             </collectionViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="containerView" destination="ci-container-view" id="ci-out-container"/>
+                                                                <outlet property="iconImageView" destination="ci-icon-imageview" id="ci-out-icon"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>

@@ -152,7 +152,6 @@ class CS03_AddItineraryStopVC: UITableViewController {
     private func setupCategoryCollectionView() {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-        categoryCollectionView.register(ES04_CategoryIconCell.self, forCellWithReuseIdentifier: "CategoryIconCell")
         categoryCollectionView.backgroundColor = .clear
         categoryCollectionView.isScrollEnabled = false
         
